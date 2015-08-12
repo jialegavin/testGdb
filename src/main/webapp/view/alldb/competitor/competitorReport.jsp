@@ -65,9 +65,9 @@
 							</font>
 							<input id="compbegindateFlexBr" value="2012-01-01"
 								style="width: 88px; height: 20px; border: 1px solid #95b8e7; border-color: #e5e5e5; border-radius: 4px 4px 4px 4px;"
-								name="compbegindateFlexBr"
+								name="compbegindateFlexBr" onfocus="WdatePicker({onpicking:getDateOfReport})"
 								onclick="WdatePicker({lang:'<%=dateLanguage%>',quickSel:['2010-1-1','2011-1-1','2012-1-1','2013-1-1','2014-1-1'],readOnly:true})" />
-							<font class="henggang">-</font> <input name="compenddateFlexBr"
+							<font class="henggang">-</font> <input name="compenddateFlexBr" onfocus="WdatePicker({onpicking:getDateOfReport})"
 								style="width: 88px; height: 20px; border: 1px solid #95b8e7; border-color: #e5e5e5; border-radius: 4px 4px 4px 4px;"
 								id="compenddateFlexBr" value="2012-12-31"
 								onclick="WdatePicker({lang:'<%=dateLanguage%>',quickSel:['2010-12-31','2011-12-31','2012-12-31','2013-12-31','2014-12-31'],readOnly:true})" />&nbsp;&nbsp;

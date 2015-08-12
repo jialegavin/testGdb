@@ -53,6 +53,7 @@
 	<script type="text/javascript" src="${root }/static/js/My97DataPicker/WdatePicker.js"></script>
 	<script type="text/javascript" src="${root}/static/js/eachart/reportEcharts.js"></script>  
 	<script type="text/javascript" src="${root }/static/js/common/common-path.js"></script>
+	<script type="text/javascript" src="${root}/static/js/common/dateutil.js"></script>
 	<!-- echarts -->
 	<script type="text/javascript" src="${root }/static/js/eachart/echarts-all.js"></script>
 	<script type="text/javascript" src="${root }/static/js/eachart/echarts.js"></script>
@@ -83,9 +84,9 @@
 			</div>
 			 <div id="customerDg" style="height:30px;line-height:30px;display:none; font-size: 16px;font-family:Microsoft YaHei;background-color:#E7F1FB;">
 			   	<div style="width:100%; height: 30px;line-height: 26px;">
-					<a href="javascript:addCompetitor();" title="立即查询" class="btn_alldb_add"><span style="margin-left: 15px;">Add</span></a>
-					<a href="javascript:updateCompetitor();" title="立即查询" class="btn_alldb_eit"><span style="margin-left: 15px;">Refine</span></a>
-					<a href="javascript:del();" title="立即查询" class="btn_alldb_remove"><span style="margin-left: 15px;">Delete</span></a>
+					<a href="javascript:addCompetitor();" title="立即查询" class="btn_alldb_add"><span style="margin-left: 15px;">新增</span></a>
+					<a href="javascript:updateCompetitor();" title="立即查询" class="btn_alldb_eit"><span style="margin-left: 15px;">修改</span></a>
+					<a href="javascript:del();" title="立即查询" class="btn_alldb_remove"><span style="margin-left: 15px;">删除</span></a>
 					<span style="float: right; margin-top: 5px;">
 						<input class="easyui-searchbox" id="queryCountry" style="width: 200px;">
 					</span>
@@ -173,4 +174,8 @@
 	<jsp:include page="/view/alldb/competitor/addAndUpdateCompetitor.jsp"></jsp:include>
 	<!-- 查看详情页面 -->
 	<jsp:include page="/view/datasearch/dialog/viewdetail.jsp"></jsp:include>
+	<!-- 添加我的对手 -->
+	<jsp:include page="/view/alldb/competitor/addAndUpdateCompetitor.jsp"></jsp:include>
+	<!-- 添加我的客户 -->
+	<jsp:include page="/view/alldb/customer/addAndUpdateCustomer.jsp"></jsp:include>
 </html>
