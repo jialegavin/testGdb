@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.njyb.gbdbase.dao.datasearch.country.ICostaricaImportDao">
+
+	<!--实体映射-->
+	<resultMap id="costaricaImportResultMap" type="com.njyb.gbdbase.model.datasearch.costarica.CostaricaImportModel">
+		<!--主键编号-->
+		<id property="costaricaImportId" column="COSTARICA_IMPORT_ID" />
+		<!--日期-->
+		<result property="date" column="DATE" />
+		<!--日-->
+		<result property="day" column="DAY" />
+		<!--月-->
+		<result property="month" column="MONTH" />
+		<!--年-->
+		<result property="year" column="YEAR" />
+		<!--报关单号-->
+		<result property="declarationNumber" column="DECLARATION_NUMBER" />
+		<!--海关城市-->
+		<result property="customs" column="CUSTOMS" />
+		<!--船号-->
+		<result property="shippingNumber" column="SHIPPING_NUMBER" />
+		<!--贸易类型-->
+		<result property="tradeType" column="TRADE_TYPE" />
+		<!--进口商编号-->
+		<result property="importerId" column="IMPORTER_ID" />
+		<!--进口商-->
+		<result property="importer" column="IMPORTER" />
+		<!--进口商地址-->
+		<result property="importerAddress" column="IMPORTER_ADDRESS" />
+		<!--发票总金额-->
+		<result property="totalInv" column="TOTAL_INV" />
+		<!--CIF金额-->
+		<result property="totalCif" column="TOTAL_CIF" />
+		<!--毛重(报关单中的毛重求和)-->
+		<result property="totalGWeight" column="TOTAL_G_WEIGHT" />
+		<!--净重(报关单中的净重求和)-->
+		<result property="totalNWeight" column="TOTAL_N_WEIGHT" />
+		<!--运输方式-->
+		<result property="transType" column="TRANS_TYPE" />
+		<!--汇率(EXCHANGE_RATE)-->
+		<result property="exchangeRate" column="EXCHANGE_RATE" />
+		<!--备注-->
+		<result property="remarks" column="REMARKS" />
+		<!--序列号-->
+		<result property="serialNumber" column="SERIAL_NUMBER" />
+		<!--海关编码(HS_CODE)-->
+		<result property="hscode" column="HSCODE" />
+		<!--产品描述(PRODUCT_DESC)-->
+		<result property="goodsDesc" column="GOODS_DESC" />
+		<!--包装数量-->
+		<result property="packages" column="PACKAGES" />
+		<!--包装类型(TYPE_OF_PACKAGE)-->
+		<result property="packageType" column="PACKAGE_TYPE" />
+		<!--品牌(商标)-->
+		<result property="brand" column="BRAND" />
+		<!--此项CIF价(CIF)-->
+		<result property="cifValue" column="CIF_VALUE" />
+		<!--此项毛重(ITEM_G_WEIGHT)-->
+		<result property="grossWeight" column="G_WEIGHT" />
+		<!--此项净重(ITEM_N_WEIGHT)-->
+		<result property="netWeight" column="N_WEIGHT" />
+	</resultMap>
+
+
+	<!-- 通用查询结果列-->
+	<sql id="Base_Column_List">
+		COSTARICA_IMPORT_ID,
+	DATE,	DAY,	MONTH,	YEAR,	DECLARATION_NUMBER,	CUSTOMS,	SHIPPING_NUMBER,	TRADE_TYPE,
+	IMPORTER_ID,	IMPORTER,	IMPORTER_ADDRESS,	TOTAL_INV,	TOTAL_CIF,	TOTAL_G_WEIGHT,	TOTAL_N_WEIGHT,	TRANS_TYPE,
+	EXCHANGE_RATE,	REMARKS,	SERIAL_NUMBER,	HSCODE,	GOODS_DESC,	PACKAGES,	PACKAGE_TYPE,	BRAND,
+	CIF_VALUE,	G_WEIGHT,	N_WEIGHT
+	</sql>
+
+	<!-- 查询（根据主键ID查询） -->
+	<select id="queryByPrimaryAll" resultMap="costaricaImportResultMap" parameterType="java.lang.Integer">
+		 SELECT
+		 <include refid="Base_Column_List" />
+		 FROM data_costarica_import
+		 WHERE COSTARICA_IMPORT_ID in ${sql}
+	</select>
+
+
+</mapper>

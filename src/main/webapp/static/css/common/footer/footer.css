@@ -1,0 +1,21 @@
+/*夏莲：添加页尾样式*/
+.footer_position {
+  font-family:"宋体",Heiti, arial,helvetica,sans-serif !important;
+  font-size:12px;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+}
+.footer_z_div {
+  width: 100%;
+  text-align: center;
+  margin-top: 20px;
+  background-color: #ffffff;
+  height: 30px;
+  line-height: 30px;
+}
+.footer_div{
+  width: 1000px;
+  margin: 0 auto;
+  min-width: 1000px;
+}

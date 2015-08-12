@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>  
+<!DOCTYPE mapper  PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN" "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+<mapper namespace="com.njyb.gbdbase.dao.personalcenter.favorites.IBrowsingHistoryAndMyFavoritesDao">
+	<!-- 注意 -->
+	<!-- 我的浏览记录 和 我的收藏 共用xml -->
+	<resultMap
+		type="com.njyb.gbdbase.model.personalcenter.favorites.HistoryAndFavoritesModel"
+		id="hisResult">
+		<id column="ID" property="id" />
+		<result column="USERID" property="userId" />
+		<result property="name" column="name" />
+		<result column="QUERYTIME" property="querytime" />
+		<result column="QUERYKEY" property="queryKey" />
+		<result column="QUERYVALUE" property="queryValue" />
+		<result column="COUNTRY" property="country" />
+		<result column="COUNTRY_EN" property="enCountry" />
+		<result column="TOTAL" property="total" />
+		<result property="saveTime" column="savetime" />
+		<result property="total" column="total" />
+	</resultMap>
+
+	<!--WangBo:查询浏览记录 -->
+	<select id="queryBrowsingHistoryByParamModel" parameterType="java.util.Map"
+		resultMap="hisResult">
+		<![CDATA[
+			SELECT id, userid, querytime, querykey, queryvalue,country,
+			(select count(1) from HELP_HISTORY_REC WHERE userid = #{userId} and country = #{country}) as total
+ 			FROM HELP_HISTORY_REC
+			where userid = #{userId} and country = #{country}
+			order by querytime desc LIMIT #{index},#{size}
+ 		]]>
+	</select>
+
+	<!-- WangBo:查询所有我的收藏夹数据 -->
+	<select id="queryMyFavoritesByParamModel" parameterType="java.lang.Integer" resultMap="hisResult">
+		select id,userid,name,querykey,queryvalue,scc.country_cn as country,scc.COUNTRY_EN,savetime,(SELECT count(1) 
+			FROM user_collection 
+			WHERE userid = #{userId}) as total 
+		from user_collection uc 
+		left join SYS_COUNTRY_CODE scc on uc.country = SCC.country_en 
+		where userid=#{userId} 
+		order by savetime desc 
+	</select>
+	
+	<!-- WangBo : 根据查询条件查询收藏数据记录 -->
+	<select id="queryMyFavoritesByParams" parameterType="java.util.Map" resultMap="hisResult">
+		select id,userid,name,querykey,queryvalue,scc.country_cn as country,scc.COUNTRY_EN,savetime,(select count(1) from user_collection uc 
+			WHERE uc.userId = #{userId} 
+			<if test="null!=hscode and ''!=hscode">
+				AND LOCATE(#{hscode},uc.queryValue) > 0 
+			</if>
+			<if test="beginDate!=null and beginDate!='' and endDate!=null and endDate!=''">
+				AND uc.savetime BETWEEN #{beginDate} AND #{endDate} 
+			</if>
+			<if test="country !=null and country!= '' ">
+				AND uc.country = #{country} 
+			</if>
+		) as total 
+		FROM user_collection uc 
+		LEFT JOIN SYS_COUNTRY_CODE SCC ON uc.country = SCC.country_en
+		WHERE uc.userId = #{userId} 
+		<if test="null!=hscode and ''!=hscode">
+			AND LOCATE(#{hscode},uc.queryValue) > 0 
+		</if>
+		<if test="beginDate!=null and beginDate!='' and endDate!=null and endDate!=''">
+			AND uc.savetime BETWEEN #{beginDate} AND #{endDate} 
+		</if>
+		<if test="country !=null and country!= '' ">
+			AND uc.country = #{country} 
+		</if>
+		ORDER BY uc.savetime DESC 
+		LIMIT #{index},#{size}
+	</select>
+
+	<!--WangBo:插入浏览记录 -->
+	<insert id="addBrowsingHistory"
+		parameterType="com.njyb.gbdbase.model.personalcenter.favorites.HistoryAndFavoritesModel">
+		<![CDATA[
+			INSERT INTO help_history_rec VALUES(null,#{userId},#{querytime},#{querykey},#{queryvalue},#{country});
+		]]>
+	</insert>
+
+	<!-- WangBo:添加我的收藏 -->
+	<insert id="addMyFavorites"
+		parameterType="com.njyb.gbdbase.model.personalcenter.favorites.HistoryAndFavoritesModel">
+		<![CDATA[insert into user_collection(userid,name,querykey,queryvalue,country,savetime)   
+                 values(#{userId},#{name},#{queryKey},#{queryValue},#{country},#{saveTime})]]>
+	</insert>
+
+	<!-- WangBo:删除我的收藏 -->
+	<delete id="deleteMyFavorites" parameterType="java.util.Map" statementType="CALLABLE">
+		{CALL del_myfavites_pro(#{idList,mode=IN,jdbcType=VARCHAR},#{flag,mode=OUT,jdbcType=INTEGER})}
+	</delete>
+</mapper>

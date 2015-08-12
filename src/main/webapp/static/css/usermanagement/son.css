@@ -1,0 +1,119 @@
+        #fm{
+            margin:0;
+            padding:10px 30px;
+       }
+        .ftitle{
+            font-size:14px;
+            font-weight:bold;
+            padding:5px 0;
+            margin-bottom:10px;
+            border-bottom:1px solid #ccc;
+        }
+       .fitem{
+            margin-bottom:20px;
+        }
+        .fitem label{
+            display:inline-block;
+            width:80px;
+        }
+        #table{
+    	table-layout:fixed ; 
+    }
+    .inputTextcss{
+    	width:184px;
+    	height:28px;
+    	border: 1px solid #e5e5e5;
+		border-radius:4px 4px 4px 4px;
+		margin-left:8px;
+    }
+    .body_style{
+			font-family: "宋体",Heiti, arial,helvetica,sans-serif !important;
+		}
+	.fitem font{
+		color:#434343;
+		font-size: 16px;
+		font-family: "宋体",Heiti, arial,helvetica,sans-serif !important;
+		padding-left: 140px;
+		padding-top:5px;
+		width:70px;
+		display:inline-block;
+		text-align:right;
+	}
+	.fitem {
+		height:34px;
+	}
+    .fitem input,.fitem font,.fitem span{
+    	float:left;
+    }
+
+	.txt{ height:28px; border:1px solid #cdcdcd; width:186px;margin-left: 8px;border-radius:4px 4px 4px 4px;cursor: pointer;} 
+	.addLogoFile{  filter:alpha(opacity:0);opacity: 0; position: relative;float: left;left:222px;top:-31px;width:233px;height:30px;cursor: pointer;}
+	.scannerPicture{width: 40px; height: 30px;margin-left:10px;}
+	.showfontCls{
+		color: black;
+		font-size:2px;
+	}
+	.buttonWhite
+{
+	border: 1px solid #C2C2C2;
+	border-top-color: #E1E1E1;
+	background-color: #FFFFFF;
+	font-size: 16px;
+	font-family: Microsoft YaHei;
+	color: #6C6E73;
+	cursor: pointer;
+	border-radius:2px;
+}
+.buttonWhite:active
+{
+	border: 1px solid #C2C2C2;
+	border-top-color: #D8D8D8;
+	background-color: #DADADA;
+}
+.someIn{
+	font-size:14px;
+	color:blue;
+}
+.help-inline {
+  display: inline-block;
+  *display: inline;
+  padding-left: 5px;
+  vertical-align: middle;
+  *zoom: 1;
+   color: red;
+  font-size:12px;
+}
+.doubleinpText{
+	line-height: 22px;
+	width: 88px;
+	height: 25px;
+	border: 1px solid #d0d0d0;
+	border-color: #e5e5e5;
+	border-radius:4px 4px 4px 4px;
+}
+
+/*选项卡1*/
+#lib_Tab{width:280px;margin:0px;padding:0px;margin-bottom:15px;background-color:#498FE5;}
+#result_Tab{width:300px;margin:0px;padding:0px;margin-bottom:15px;}
+/*菜单class*/
+.lib_Menubox {height:32px;line-height:28px;position:relative;}
+
+.lib_Menubox ul{margin:0px;padding:0px;list-style:none; position:absolute; top:3px; left:0; margin-left:10px; height:25px;text-align:center;}
+.lib_Menubox li
+{
+	float:left;
+	display:block;
+	cursor:pointer;
+	width:100px;
+	color:#478de2;
+	font-weight:bold; 
+	margin-right:8px;
+	height:30px;
+	line-height:25px; 
+	border-radius: 3px!important;
+	background: #E3EEFF;
+	border-color: #FFFFFF;
+}
+.lib_Menubox li.hover{padding:0px;background:#fff;width:102px;
+color:#739242;height:28px;line-height:25px;}
+.lib_Contentbox{clear:both;margin-top:0px; border-top:none;height:181px; text-align:center;padding-top:8px;}

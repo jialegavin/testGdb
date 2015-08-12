@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.njyb.gbdbase.dao.datasearch.country.IBrazilImportDao">
+
+	<!--实体映射-->
+	<resultMap id="brazilImportResultMap" type="com.njyb.gbdbase.model.datasearch.brazil.BrazilImportModel">
+		<!--主键编号-->
+		<id property="brazilImportId" column="BRAZIL_IMPORT_ID" />
+		<!--进货日期(月/年)-->
+		<result property="date" column="DATE" />
+		<!--海关编码-->
+		<result property="hscode" column="HSCODE" />
+		<!--产品描述-->
+		<result property="goodsDesc" column="GOODS_DESC" />
+		<!--原产国-->
+		<result property="originCountry" column="ORIGIN_COUNTRY" />
+		<!--进口商(DEPARTMENT)-->
+		<result property="importer" column="IMPORTER" />
+		<!--目的地(DESTINATIO:借用字段)-->
+		<result property="destCountry" column="DEST_COUNTRY" />
+		<!--单位类型-->
+		<result property="unitType" column="UNIT_TYPE" />
+		<!--数量-->
+		<result property="quantity" column="QUANTITY" />
+		<!--净重-->
+		<result property="netWeight" column="N_WEIGHT" />
+		<!--FOB单价-->
+		<result property="fobUnit" column="FOB_UNIT" />
+		<!--FOB美元总价-->
+		<result property="fobValue" column="FOB_VALUE" />
+		<!--运输方式-->
+		<result property="transType" column="TRANS_TYPE" />
+		<!--自治区-->
+		<result property="municCity" column="MUNIC_CITY" />
+	</resultMap>
+
+
+	<!-- 通用查询结果列-->
+	<sql id="Base_Column_List">
+		BRAZIL_IMPORT_ID,
+	DATE,	HSCODE,	GOODS_DESC,	ORIGIN_COUNTRY,	IMPORTER,	DEST_COUNTRY,	UNIT_TYPE,	QUANTITY,
+	N_WEIGHT,	FOB_UNIT,	FOB_VALUE,	TRANS_TYPE,	MUNIC_CITY
+	</sql>
+
+	<!-- 查询（根据主键ID查询） -->
+	<select id="queryByPrimaryAll" resultMap="brazilImportResultMap" parameterType="java.lang.Integer">
+		 SELECT
+		 <include refid="Base_Column_List" />
+		 FROM data_brazil_import
+		 WHERE BRAZIL_IMPORT_ID in ${sql}
+	</select>
+
+
+</mapper>

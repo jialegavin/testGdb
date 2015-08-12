@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.njyb.gbdbase.dao.datasearch.country.IChinaEightDao">
+
+	<!--实体映射-->
+	<resultMap id="chinaEightResultMap" type="com.njyb.gbdbase.model.datasearch.chinaEight.ChinaEightModel">
+		<!---->
+		<id property="chinaEightId" column="CHINA_EIGHT_ID" />
+		<!--进出口类型-->
+		<result property="tradeType" column="TRADE_TYPE" />
+		<!--海关编码-->
+		<result property="hscode" column="HSCODE" />
+		<!--商品名称(productname)-->
+		<result property="goodsDesc" column="GOODS_DESC" />
+		<!--时间：月度(monthly)-->
+		<result property="date" column="DATE" />
+		<!--企业编码(companycode)-->
+		<result property="companyCode" column="COMPANY_CODE" />
+		<!--企业名称(companyname)-->
+		<result property="companyName" column="COMPANY_NAME" />
+		<!--收发货地/生产地(productplace)-->
+		<result property="productPlace" column="PRODUCT_PLACE" />
+		<!--数量-->
+		<result property="quantity" column="QUANTITY" />
+		<!--金额(money,借用CIF_VALUE名称，翻译为金额)-->
+		<result property="cifValue" column="CIF_VALUE" />
+		<!--单价(借用CIF_UNIT名称，翻译为单价：unitprice)-->
+		<result property="cifUnit" column="CIF_UNIT" />
+		<!--产销国(productsalcountry)-->
+		<result property="originCountry" column="ORIGIN_COUNTRY" />
+		<!--中转国(transitcountry)-->
+		<result property="transitcountry" column="TRANSITCOUNTRY" />
+		<!--报关口岸(customsports)-->
+		<result property="startPort" column="START_PORT" />
+		<!--贸易方式(trade)-->
+		<result property="tradeMethod" column="TRADE_METHOD" />
+		<!--运输方式(transportmode)-->
+		<result property="transType" column="TRANS_TYPE" />
+		<!--计量单位(measureunits)-->
+		<result property="measureunits" column="MEASUREUNITS" />
+		<!--电话(phone)-->
+		<result property="phone" column="PHONE" />
+		<!--传真(fax)-->
+		<result property="fax" column="FAX" />
+		<!--邮编(zip)-->
+		<result property="zip" column="ZIP" />
+		<!--电子邮件(email)-->
+		<result property="email" column="EMAIL" />
+		<!--联系人(contact)-->
+		<result property="contact" column="CONTACT" />
+		<!--公司性质(companyproperty)-->
+		<result property="companyProperty" column="COMPANY_PROPERTY" />
+		<!--地址(address)-->
+		<result property="address" column="ADDRESS" />
+	</resultMap>
+
+
+	<!-- 通用查询结果列-->
+	<sql id="Base_Column_List">
+		CHINA_EIGHT_ID,
+	TRADE_TYPE,	HSCODE,	GOODS_DESC,	DATE,	COMPANY_CODE,	COMPANY_NAME,	PRODUCT_PLACE,	QUANTITY,
+	CIF_VALUE,	CIF_UNIT,	ORIGIN_COUNTRY,	TRANSITCOUNTRY,	START_PORT,	TRADE_METHOD,	TRANS_TYPE,	MEASUREUNITS,
+	PHONE,	FAX,	ZIP,	EMAIL,	CONTACT,	COMPANY_PROPERTY,	ADDRESS
+	</sql>
+
+	<!-- 查询（根据主键ID查询） -->
+	<select id="queryByPrimaryAll" resultMap="chinaEightResultMap" parameterType="java.lang.Integer">
+		 SELECT
+		 <include refid="Base_Column_List" />
+		 FROM data_china_eight
+		 WHERE CHINA_EIGHT_ID in ${sql}
+	</select>
+
+
+</mapper>

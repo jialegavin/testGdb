@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.njyb.gbdbase.dao.datasearch.country.IUruguayImportDao">
+
+	<!--实体映射-->
+	<resultMap id="uruguayImportResultMap" type="com.njyb.gbdbase.model.datasearch.uruguay.UruguayImportModel">
+		<!---->
+		<id property="uruguayImportId" column="URUGUAY_IMPORT_ID" />
+		<!--日期(REG_DATE)-->
+		<result property="date" column="DATE" />
+		<!--海关城市-->
+		<result property="customs" column="CUSTOMS" />
+		<!--进口商-->
+		<result property="importer" column="IMPORTER" />
+		<!--进口商编号-->
+		<result property="importerId" column="IMPORTER_ID" />
+		<!--海关编码(HS_CODE)-->
+		<result property="hscode" column="HSCODE" />
+		<!--产品描述(PRODUCT_DESC)-->
+		<result property="goodsDesc" column="GOODS_DESC" />
+		<!--原产国-->
+		<result property="originCountry" column="ORIGIN_COUNTRY" />
+		<!--销售国-->
+		<result property="salesCountry" column="SALES_COUNTRY" />
+		<!--运输方式-->
+		<result property="transType" column="TRANS_TYPE" />
+		<!--运输公司-->
+		<result property="transCorp" column="TRANS_CORP" />
+		<!--毛重-->
+		<result property="grossWeight" column="G_WEIGHT" />
+		<!--净重-->
+		<result property="netWeight" column="N_WEIGHT" />
+		<!--税费-->
+		<result property="tax" column="TAX" />
+		<!--数量-->
+		<result property="quantity" column="QUANTITY" />
+		<!--数量单位(UNIT_OF_QUANTITY)-->
+		<result property="quantityUnit" column="QUANTITY_UNIT" />
+		<!--物理数量-->
+		<result property="physicalQuantity" column="PHYSICAL_QUANTITY" />
+		<!--物理数量单位(UNIT_OF_PHYSICAL_QUANTITY)-->
+		<result property="physicalQuantityUnit" column="PHYSICAL_QUANTITY_UNIT" />
+		<!--保险费-->
+		<result property="insurance" column="INSURANCE" />
+		<!--保费币种-->
+		<result property="insuranceCurrency" column="INSURANCE_CURRENCY" />
+		<!--运费-->
+		<result property="freight" column="FREIGHT" />
+		<!--运费币种-->
+		<result property="freightCurrency" column="FREIGHT_CURRENCY" />
+		<!--CIF金额（CIF）-->
+		<result property="cifValue" column="CIF_VALUE" />
+	</resultMap>
+
+
+	<!-- 通用查询结果列-->
+	<sql id="Base_Column_List">
+		URUGUAY_IMPORT_ID,
+	DATE,	CUSTOMS,	IMPORTER,	IMPORTER_ID,	HSCODE,	GOODS_DESC,	ORIGIN_COUNTRY,	SALES_COUNTRY,
+	TRANS_TYPE,	TRANS_CORP,	G_WEIGHT,	N_WEIGHT,	TAX,	QUANTITY,	QUANTITY_UNIT,	PHYSICAL_QUANTITY,
+	PHYSICAL_QUANTITY_UNIT,	INSURANCE,	INSURANCE_CURRENCY,	FREIGHT,	FREIGHT_CURRENCY,	CIF_VALUE
+	</sql>
+
+	<!-- 查询（根据主键ID查询） -->
+	<select id="queryByPrimaryAll" resultMap="uruguayImportResultMap" parameterType="java.lang.Integer">
+		 SELECT
+		 <include refid="Base_Column_List" />
+		 FROM data_uruguay_import
+		 WHERE URUGUAY_IMPORT_ID in ${sql}
+	</select>
+
+
+</mapper>

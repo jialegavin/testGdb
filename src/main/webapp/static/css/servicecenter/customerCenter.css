@@ -1,0 +1,33 @@
+.call_inp_cls
+{
+	border: 1px #cecece solid;
+	width:88%; height:auto !important;
+	height: 22px;
+	line-height: 22px;
+	box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1) inset;
+	border-radius: 3px 3px 3px 3px;
+}		
+.call_area_cls
+{
+	border: 1px #cecece solid;
+	height: 80px;
+	width:88%;
+	resize:none;
+	box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1) inset;
+	border-radius: 3px 3px 3px 3px;
+}	
+input.call_inp_cls:hover,textarea.call_area_cls:hover {
+  border-color: #828282;
+}
+.advancesearchCenter{
+	width: 95%!important;
+	overflow: auto!important;
+	border-radius: 15px!important;
+	border-collapse: separate!important;
+	background-color: #ffffff!important;
+	margin: .3em 0!important;
+	border-bottom-style:outset;
+	border-color: #FFFFFF;
+	margin-left: auto;
+	margin-right: auto;
+}

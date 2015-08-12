@@ -1,0 +1,242 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.njyb.gbdbase.dao.datasearch.country.IRussiaImportDao">
+
+	<!--实体映射-->
+	<resultMap id="russiaImportResultMap" type="com.njyb.gbdbase.model.datasearch.russia.RussiaImportModel">
+		<!--主键编号-->
+		<id property="russiaImportId" column="RUSSIA_IMPORT_ID" />
+		<!--外贸统计帐号标记(STAT)-->
+		<result property="accountSign" column="ACCOUNT_SIGN" />
+		<!--报关单号(Declaration Number)-->
+		<result property="declarationNo" column="DECLARATION_NO" />
+		<!--货物序号(Cargo Number on GTD)-->
+		<result property="goodsNo" column="GOODS_NO" />
+		<!---->
+		<result property="g07" column="G07" />
+		<!--海关记录内部编号(Customs Identity Code in Automated Information System)-->
+		<result property="customsIdentityCode" column="CUSTOMS_IDENTITY_CODE" />
+		<!--登记时间(Registration Date in Automated Information System)-->
+		<result property="date" column="DATE" />
+		<!--海关记录序号(Declaration Serial Number)-->
+		<result property="customsSerialNo" column="CUSTOMS_SERIAL_NO" />
+		<!--贸易类型(Direction of Cargo Movement)-->
+		<result property="tradeType" column="TRADE_TYPE" />
+		<!--海关模式(Code of Basic Customs Mode)-->
+		<result property="basicCustomsMode" column="BASIC_CUSTOMS_MODE" />
+		<!--申报的附加标志(Additional Sign of Declaration)-->
+		<result property="declarationAdditionSign" column="DECLARATION_ADDITION_SIGN" />
+		<!--发货人SOATO编码(Shipper Main State Registration Number)-->
+		<result property="exporterSoatoCode" column="EXPORTER_SOATO_CODE" />
+		<!--发货人纳税号(Shipper Taxpying Identification Number)-->
+		<result property="exporterTaxId" column="EXPORTER_TAX_ID" />
+		<!--发货人（Foreign Shipper Name）-->
+		<result property="exporter" column="EXPORTER" />
+		<!--发货人地址(G023)-->
+		<result property="exporterAddress" column="EXPORTER_ADDRESS" />
+		<!---->
+		<result property="g024b" column="G024B" />
+		<!---->
+		<result property="g05" column="G05" />
+		<!---->
+		<result property="g06" column="G06" />
+		<!--收货人SOATO编码（Consignee Main State Registration Number）-->
+		<result property="importerSoatoCode" column="IMPORTER_SOATO_CODE" />
+		<!--收货人纳税号(Consignee Taxpaying Identification Number)-->
+		<result property="importerTaxId" column="IMPORTER_TAX_ID" />
+		<!--进口商(Russian Consignee Name)-->
+		<result property="importer" column="IMPORTER" />
+		<!--进口商地址(G083)-->
+		<result property="importerAddress" column="IMPORTER_ADDRESS" />
+		<!---->
+		<result property="g084b" column="G084B" />
+		<!--付款人SOATO编号(Payee Main State Registration Number)-->
+		<result property="payeeSoatoCode" column="PAYEE_SOATO_CODE" />
+		<!--付款人纳税号(Payee Taxpaying Identification Number)-->
+		<result property="payeeTaxId" column="PAYEE_TAX_ID" />
+		<!--付款人(Russian Payee Name)-->
+		<result property="payee" column="PAYEE" />
+		<!--银行地址(G093)-->
+		<result property="bankAddress" column="BANK_ADDRESS" />
+		<!---->
+		<result property="g094b" column="G094B" />
+		<!--申报人SOATO编号(Customs Applicant Main State Registration Number)-->
+		<result property="appliantSoatoCode" column="APPLIANT_SOATO_CODE" />
+		<!--申报人纳税号(Customs Applicant Taxpying Identification Number)-->
+		<result property="appliantTaxId" column="APPLIANT_TAX_ID" />
+		<!--申报人(Customs Applicant Name)-->
+		<result property="appliant" column="APPLIANT" />
+		<!---->
+		<result property="g143" column="G143" />
+		<!--附加表序号(Additional Sheet Serial Number)-->
+		<result property="additionalSheetNo" column="ADDITIONAL_SHEET_NO" />
+		<!--贸易国代码(Trading Country Code)-->
+		<result property="tradeCountryCode" column="TRADE_COUNTRY_CODE" />
+		<!--海关价值的货币类型(Digital Code of Customs Value Currency)-->
+		<result property="customsCurrency" column="CUSTOMS_CURRENCY" />
+		<!---->
+		<result property="g12" column="G12" />
+		<!--起运国(Departure Country)-->
+		<result property="startCountry" column="START_COUNTRY" />
+		<!--起运国代码(G15A)-->
+		<result property="startCountryCode" column="START_COUNTRY_CODE" />
+		<!--原产国(Origin Country)-->
+		<result property="originCountry" column="ORIGIN_COUNTRY" />
+		<!--目的国代码(G17A)-->
+		<result property="destCountryCode" column="DEST_COUNTRY_CODE" />
+		<!--目的国(G17B)-->
+		<result property="destCountry" column="DEST_COUNTRY" />
+		<!---->
+		<result property="g18" column="G18" />
+		<!--是否集装箱运输(Container Transportation Record)-->
+		<result property="containerTranFlag" column="CONTAINER_TRAN_FLAG" />
+		<!--g21-->
+		<result property="g21" column="G21" />
+		<!--贸易术语,成交方式(Incoterms)-->
+		<result property="incoterms" column="INCOTERMS" />
+		<!--交货地点(Cargo Delivery Point)-->
+		<result property="placeDelivery" column="PLACE_DELIVERY" />
+		<!--合同结算货币（Currency Character Code of Contract Prices）-->
+		<result property="contactCurrency" column="CONTACT_CURRENCY" />
+		<!---->
+		<result property="g221c" column="G221C" />
+		<!---->
+		<result property="g222" column="G222" />
+		<!--货币兑换日期(Date of Application Currency)-->
+		<result property="currencyAppliedDate" column="CURRENCY_APPLIED_DATE" />
+		<!--g25-->
+		<result property="g25" column="G25" />
+		<!--g26-->
+		<result property="g26" column="G26" />
+		<!--装卸地址(Place of Loading or Unloading)-->
+		<result property="addressLoad" column="ADDRESS_LOAD" />
+		<!--仓库收货人(Warehouse Consignee)-->
+		<result property="warehouseConsignee" column="WAREHOUSE_CONSIGNEE" />
+		<!--免费仓库证书号（Licenses Number of Free Warehouse）-->
+		<result property="freeWarehouseNo" column="FREE_WAREHOUSE_NO" />
+		<!--证书类型（Type of Document for License or Certificate）-->
+		<result property="certificateType" column="CERTIFICATE_TYPE" />
+		<!--证书发放日期(Issuance Date of  Certificates or Licenses)-->
+		<result property="certificateDate" column="CERTIFICATE_DATE" />
+		<!--仓储的海关编码或仓库所有者(Customs Authority Code or Warehouse Owner for Temporary Storage)-->
+		<result property="tempStorageInfo" column="TEMP_STORAGE_INFO" />
+		<!--俄罗斯企业名称（All-Russian Nomenclature of Business and Organization）-->
+		<result property="businessName" column="BUSINESS_NAME" />
+		<!--银行简称(Abbreviation of Bank Name)-->
+		<result property="bankShort" column="BANK_SHORT" />
+		<!---->
+		<result property="g29" column="G29" />
+		<!--信息类型(Type of Information)-->
+		<result property="infoType" column="INFO_TYPE" />
+		<!--文档类型(Type of Document)-->
+		<result property="documentType" column="DOCUMENT_TYPE" />
+		<!--证书编号(Number of Certificates)-->
+		<result property="certificateNo" column="CERTIFICATE_NO" />
+		<!--铁路车站或仓库收货人的名称(Name of Railway Stations or Warehouse Consignee)-->
+		<result property="stationWarehousr" column="STATION_WAREHOUSR" />
+		<!--仓库收货人的海关编码(Customs Authority Code of Warehouse Consignee)-->
+		<result property="warehousrCode" column="WAREHOUSR_CODE" />
+		<!--报关员(Customs Declarant)-->
+		<result property="declarant" column="DECLARANT" />
+		<!--申报单位电话(Phone Number)-->
+		<result property="phone" column="PHONE" />
+		<!--报关员岗位(Post of Customs Declarant)-->
+		<result property="declarantPost" column="DECLARANT_POST" />
+		<!--通关代码(Code of Customs Clearance Completion)-->
+		<result property="clearanceCode" column="CLEARANCE_CODE" />
+		<!--货物通关时间(Cargo Release Date)-->
+		<result property="cargoReleaseDate" column="CARGO_RELEASE_DATE" />
+		<!--检验员ID号(Personal  Inspector  ID Number)-->
+		<result property="inspectorId" column="INSPECTOR_ID" />
+		<!--产品描述(Detailed Cargo Description)-->
+		<result property="goodsDesc" column="GOODS_DESC" />
+		<!--生产商(Producer Name)-->
+		<result property="producer" column="PRODUCER" />
+		<!--商标（Trade Mark）-->
+		<result property="brand" column="BRAND" />
+		<!--生产国名称(Origin Country Name)-->
+		<result property="produceCountry" column="PRODUCE_COUNTRY" />
+		<!--包装数量(Number of Packages)-->
+		<result property="packages" column="PACKAGES" />
+		<!--包装类型和商标(Type of Cago Packages & Goods Marks)-->
+		<result property="packageType" column="PACKAGE_TYPE" />
+		<!--货盘数目（Quantity of Pallets）-->
+		<result property="quantityPallet" column="QUANTITY_PALLET" />
+		<!--货盘信息(Information on Pallets)-->
+		<result property="palletInfo" column="PALLET_INFO" />
+		<!--集装箱数量(Quantity of Container)-->
+		<result property="quantity" column="QUANTITY" />
+		<!--数量2(Quantity of Cargo in Secondary Unit of Measure)-->
+		<result property="quantitySecond" column="QUANTITY_SECOND" />
+		<!--单位2(Name of Secondary Unit of Measure)-->
+		<result property="measureSecond" column="MEASURE_SECOND" />
+		<!--数量3(Quantity of  Goods on  Third Unit of Measure)-->
+		<result property="quantityThird" column="QUANTITY_THIRD" />
+		<!--单位3(Name of  Third Units of Measure)-->
+		<result property="measureThird" column="MEASURE_THIRD" />
+		<!--单位3编码(Code of Third Units of Measure)-->
+		<result property="codeMeasureThird" column="CODE_MEASURE_THIRD" />
+		<!--数量4(Quantity of  Goods on  Fourth Unit of Measure)-->
+		<result property="quantityFourth" column="QUANTITY_FOURTH" />
+		<!--单位4(Name of  Fourth Units of Measure)-->
+		<result property="measureFourth" column="MEASURE_FOURTH" />
+		<!--单位4编码(Code of  Fourth Units of Measure)-->
+		<result property="codeMeasureFourth" column="CODE_MEASURE_FOURTH" />
+		<!--海关编码(Nomenclature)-->
+		<result property="hscode" column="HSCODE" />
+		<!--原产国代码(Origin Country Code)-->
+		<result property="originCountryCode" column="ORIGIN_COUNTRY_CODE" />
+		<!--毛重kg(Gross Weight Kilos)-->
+		<result property="grossWeight" column="G_WEIGHT" />
+		<!--费用支付选项(Fees Payment Preferences)-->
+		<result property="feePay" column="FEE_PAY" />
+		<!--海关程序代码(Customs Procedure Code)-->
+		<result property="customsProcedureCode" column="CUSTOMS_PROCEDURE_CODE" />
+		<!--净重(Net Weight Kilos)-->
+		<result property="netWeight" column="N_WEIGHT" />
+		<!--配额-->
+		<result property="quota" column="QUOTA" />
+		<!--计量单位附加码(Additional Code of UOM)-->
+		<result property="uomCode" column="UOM_CODE" />
+		<!--货物成本(Price of Cargo)-->
+		<result property="cost" column="COST" />
+		<!--海关是否调整货物价值(Customs Value Adjustments)-->
+		<result property="adjustFlag" column="ADJUST_FLAG" />
+		<!--货物估计:卢布(Cargo Customs Value in Roubles)-->
+		<result property="rubValue" column="RUB_VALUE" />
+		<!--海关价值计量方法(Number Method for Determining the Customs Value)-->
+		<result property="customsMethod" column="CUSTOMS_METHOD" />
+		<!--货物估价:美元(Cargo Statistics Value in US Dollars)-->
+		<result property="cifValue" column="CIF_VALUE" />
+	</resultMap>
+
+
+	<!-- 通用查询结果列-->
+	<sql id="Base_Column_List">
+		RUSSIA_IMPORT_ID,
+	ACCOUNT_SIGN,	DECLARATION_NO,	GOODS_NO,	G07,	CUSTOMS_IDENTITY_CODE,	CUSTOMS_SERIAL_NO,	TRADE_TYPE,
+	BASIC_CUSTOMS_MODE,	DECLARATION_ADDITION_SIGN,	EXPORTER_SOATO_CODE,	EXPORTER_TAX_ID,	EXPORTER,	EXPORTER_ADDRESS,	G024B,	G05,
+	G06,	IMPORTER_SOATO_CODE,	IMPORTER_TAX_ID,	IMPORTER,	IMPORTER_ADDRESS,	G084B,	PAYEE_SOATO_CODE,	PAYEE_TAX_ID,
+	PAYEE,	BANK_ADDRESS,	G094B,	APPLIANT_SOATO_CODE,	APPLIANT_TAX_ID,	APPLIANT,	G143,	ADDITIONAL_SHEET_NO,
+	TRADE_COUNTRY_CODE,	CUSTOMS_CURRENCY,	G12,	START_COUNTRY,	START_COUNTRY_CODE,	ORIGIN_COUNTRY,	DEST_COUNTRY_CODE,	DEST_COUNTRY,
+	G18,	CONTAINER_TRAN_FLAG,	G21,	INCOTERMS,	PLACE_DELIVERY,	CONTACT_CURRENCY,	G221C,	G222,
+	CURRENCY_APPLIED_DATE,	G25,	G26,	ADDRESS_LOAD,	WAREHOUSE_CONSIGNEE,	FREE_WAREHOUSE_NO,	CERTIFICATE_TYPE,	CERTIFICATE_DATE,
+	TEMP_STORAGE_INFO,	BUSINESS_NAME,	BANK_SHORT,	G29,	INFO_TYPE,	DOCUMENT_TYPE,	CERTIFICATE_NO,	STATION_WAREHOUSR,
+	WAREHOUSR_CODE,	DECLARANT,	PHONE,	DECLARANT_POST,	CLEARANCE_CODE,	DATE,	INSPECTOR_ID,	GOODS_DESC,
+	PRODUCER,	BRAND,	PRODUCE_COUNTRY,	PACKAGES,	PACKAGE_TYPE,	QUANTITY_PALLET,	PALLET_INFO,	QUANTITY,
+	QUANTITY_SECOND,	MEASURE_SECOND,	QUANTITY_THIRD,	MEASURE_THIRD,	CODE_MEASURE_THIRD,	QUANTITY_FOURTH,	MEASURE_FOURTH,	CODE_MEASURE_FOURTH,
+	HSCODE,	ORIGIN_COUNTRY_CODE,	G_WEIGHT,	FEE_PAY,	CUSTOMS_PROCEDURE_CODE,	N_WEIGHT,	QUOTA,	UOM_CODE,
+	COST,	ADJUST_FLAG,	RUB_VALUE,	CUSTOMS_METHOD,	CIF_VALUE
+	</sql>
+
+	<!-- 查询（根据主键ID查询） -->
+	<select id="queryByPrimaryAll" resultMap="russiaImportResultMap" parameterType="java.lang.Integer">
+		 SELECT
+		 <include refid="Base_Column_List" />
+		 FROM data_russia_import
+		 WHERE RUSSIA_IMPORT_ID in ${sql}
+	</select>
+
+
+</mapper>

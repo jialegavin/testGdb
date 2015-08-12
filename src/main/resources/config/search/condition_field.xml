@@ -1,0 +1,700 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.1.xsd">
+	<!-- 作者:洪皓 -->
+	<description>各国查询条件配置</description>
+	<bean id="conditionFieldModel" class="com.njyb.gbdbase.model.datasearch.common.ConditionFieldModel" scope="prototype">
+		<property name="conditionFieldMap">
+			<ref local="condition_map"/>
+		</property>
+	</bean>
+	
+	<bean id="condition_map" class="java.util.HashMap">
+		<constructor-arg>
+			<map>
+				<!-- 阿根廷 -->
+				<!-- 阿根廷进口搜索条件字段-->
+				<entry key="argentina_import_conditionzhname" value="国家：,海关编码：,CIF价格：,重量：,产品描述：,日期：,FOB价格：,数量：,采购商：,原产国："></entry>
+				<entry key="argentina_import_conditionfieldid" value="country,hscode,cifstartprice/cifendprice,startweight/endweight,goodsdesc,startdate/enddate,fobstartprice/fobendprice,startquantity/endquantity,importer,origin_country"></entry>
+
+				<entry key="argentina_import_conditionenname" value="country：,Custom number：,CIF price：,weight：,Description：,Date：,FOB price：,Amount：,Buyer：,Origin："></entry>
+
+				
+				<!-- 需要添加翻译的字段id -->
+				<entry key="argentina_import_trans" value="goodsdesc,importer,origin_country"></entry>
+				<!-- 需要添加文本框描述的字段id -->
+				<entry key="argentina_import_desc" value="hscode,goodsdesc,importer,origin_country"></entry>
+				<!-- 日期格式 -->
+				<entry key="argentina_import_dateFormatter" value="yyyy-MM-dd"></entry>
+				<!-- 初始日期 -->
+				<entry key="argentina_import_dateValue" value="2014-01-01,2014-12-31"></entry>
+				<!-- 阿根廷进口下拉显示字段 -->
+				<entry key="argentina_import_select" value="origin"></entry>
+				<entry key="argentina_import_origin" value="China~Brasil ~Estados Unidos ~Area aduanera especial de Tierra del Fuego ~Taiwán ~España ~Indonesia~Canadá ~Chile~Ecuador~Suecia ~Argentina~Thailand ~Japón~República Federal de Alemania~Holanda~Francia~Italia ~Uruguay~Sudáfrica~República de Corea ~Suiza~República Checa~República de Eslovaquia~Turquía~Dinamarca~Austria~Mexico ~India~Qatar~Guatemala~Malasia~Tanzania ~Mozambique ~Pakistán ~Israel ~Filipinas~Bélgica~Bulgaria ~Reino Unido~Colombia ~Vietnam~Hungría~Luxemburgo ~Rusia~Emitatos Arabes Unidos ~Polonia~República Demócratica de Corea ~Finlandia~Zona Franca Manaos ~Australia~Portugal ~El Salvador~Singapur ~Marruecos~Costa Rica ~Hong Kong~Perú ~Rumania~País europeo no determinado~Irlanda~Malta~Islandia ~Nueva Zelandia ~Cambodia ~Antillas Holandesas~País americano no determinado~Honduras ~Croacia/Hrvatska ~Mónaco ~Eslovenia~Túnez~Paraguay ~Lituania ~Estonia~Ucraina~Sri Lanka~Bahamas~Puerto Rico~Bolivia~Macedonia~Egipto ~Malawi ~Noruega~Arabia Saudita ~Mauritania ~Jamaica~Gabón~República Dominicana ~Bangladesh ~República Islámica de Irán ~Bosnia y Herzegovina ~República de Moldavia~Liechtenstein~Jordan ~Panamá ~Myanmar~Macau~Venezuela~Zona Franca La Plata ~Letonia~Costa de Marfil~Madagascar ~Grecia ~Trinidad y Tobago~Zona Franca Nueva Palmira~Territorio británico del Oceáno Indico ~Afganistán ~Serbia~Territorios Franceses en América ~Armenia~Zona Franca Córdoba~Bahrein~Islas Mauricio ~Kenya~Zona Franca Colonia~Republica de Bielorrusia~Tayikistán ~Guyana ~Ghana~Burkina Faso ~Haiti~Repúblic del Congo ~San Cristóbal y Nevis~Georgia~Andorra~Cuba ~Albania~Zona Franca Río Negro~Sierra Leona ~Comoras~Zona Franca General Pico ~Zona Franca Mendoza~162~Líbano ~Chad ~Yemen~Turmenistán~Zaire~Nicaragua~San Marino ~Uzbekistán ~BA~Nepal~Oman ~Chipre ~Seychelles ~Argelia~Zona Franca Nueva Helvecia ~Kuwait ~Swasilandia~Samoa Occidental ~Zimbabwe ~Brunei Darussalam~Kazajstán~Dominica ~Zona Franca Comodoro Rivadavia ~Senegal~Zona Franca Puerto Iguazú~Belice ~País africano no determinado ~Nigeria~Timor Oriental ~Antigua y Barbuda~Zambia ~Etiopía~Camerún~266~República Democrática de Laos~Somalia~Barbados ~Niger~Namibia~República Arabe Siria~País asiático no determinado ~Posesión Británica en Europa ~Posesión Estadounidense en América ~Zona Franca Colon (Panama) ~Zona Franca América~Zona Franca Florida~Zona Franca Libertad ~Zona Franca Iquique (Chile)~Santa Lucía~Guinea-Bissau~Nauru~Azerbaiyán~Papua New Guinea ~Angola ~Islas Fiji ~Bután~Vaticano (Santa Sede)~Botswana ~Lesotho~Irak ~289~267~Uganda ~Suriname ~Mali ~Guinea ~Tonga~Palau~Gambia ~Benín~Togo ~Territorios Daneses~Montenegro~Liberia~OB~Islas Maldives ~Mongolia ~SF~Territorios Españoles~Kiribati ~Kirguistán ~507~Eritrea~Islas Salomón~"></entry>
+				
+				
+				<!-- 阿根廷出口搜索条件字段-->
+				<entry key="argentina_export_conditionzhname" value="国家：,海关编码：,重量：,CIF价格：,产品描述：,日期：,数量：,FOB价格：,供应商：,原产国："></entry>
+				<entry key="argentina_export_conditionfieldid" value="country,hscode,startweight/endweight,cifstartprice/cifendprice,goodsdesc,startdate/enddate,startquantity/endquantity,fobstartprice/fobendprice,exporter,origin_country"></entry>
+				<entry key="argentina_export_conditionenname" value="country：,Custom number：,CIF price：,weight：,Description：,Date：,FOB price：,Amount：,Buyer：,Origin："></entry>
+				<!-- 需要添加翻译的字段id -->
+				<entry key="argentina_export_trans" value="goodsdesc,exporter,origin_country"></entry>
+				<!-- 需要添加文本框描述的字段id -->
+				<entry key="argentina_export_desc" value="hscode,goodsdesc,exporter,origin_country"></entry>
+				<!-- 日期格式 -->
+				<entry key="argentina_export_dateFormatter" value="yyyy-MM-dd"></entry>
+				<!-- 初始日期 -->
+				<entry key="argentina_export_dateValue" value="2014-01-01,2014-12-31"></entry>
+				
+				<!-- 阿根廷出口-->
+				<entry key="argentina_export_select" value="dest"></entry>
+				<entry key="argentina_export_dest" value="India~Colombia ~Rusia~Chile~Estados Unidos ~Panamá ~Hong Kong~Reino Unido~El Salvador~China~Uruguay~Australia~Arabia Saudita ~Brasil ~Francia~Nueva Zelandia ~Ecuador~Bélgica~Turquía~Italia ~Ucraina~Canadá ~Holanda~España ~Paraguay ~Polonia~Bahamas~Sudáfrica~Bolivia~Perú ~República Dominicana ~Mexico ~República Federal de Alemania~Zaire~Malasia~Liberia~República de Eslovaquia~Trinidad y Tobago~Indonesia~Jamaica~Venezuela~Libia~Qatar~República de Corea ~Thailand ~Vietnam~Costa Rica ~Singapur ~Suecia ~Israel ~Repúblic del Congo ~Nicaragua~Eslovenia~Marruecos~Portugal ~Emitatos Arabes Unidos ~Japón~Guatemala~Mauritania ~Dinamarca~Suiza~Zona Franca América~Area aduanera especial de Tierra del Fuego ~Estonia~Granada~Puerto Rico~Zona Franca Punta Arenas ~Austria~Finlandia~Taiwán ~Filipinas~Lituania ~Argelia~Angola ~Letonia~Pakistán ~Gabón~Argentina~Cuba ~Egipto ~Zona Franca Colonia~Ghana~Aruba~Líbano ~República de Moldavia~Irlanda~Senegal~Nigeria~Haiti~Bulgaria ~Yemen~Honduras ~Zona Franca Colon (Panama) ~Antillas Holandesas~Croacia/Hrvatska ~Camerún~República Islámica de Irán ~Territorios Autónomos Palestinos ~Guinea Ecuatorial~Niger~Guyana ~Bangladesh ~Cambodia ~Noruega~Grecia ~Irak ~Serbia~Jordan ~Tanzania ~Zimbabwe ~Malta~Rumania~República Demócratica de Corea ~162~Polinesia Francesa ~Kenya~Montenegro~Luxemburgo ~Oman ~Bahrein~Armenia~Túnez~Hungría~República Arabe Siria~Benín~Kuwait ~Chad ~Republica de Bielorrusia~Mozambique ~República Checa~Zona Franca General Pico ~Barbados ~Sri Lanka~Kazajstán~Albania~Comoras~Posesión Francesa en Africa~Namibia~Myanmar~Ruanda ~País no determinado~Madagascar ~Azerbaiyán~Islas Mauricio ~Bosnia y Herzegovina ~Zona Franca Libertad ~Togo ~Mali ~Afganistán ~Costa de Marfil~Vanuatu~Georgia~Belice ~Macedonia~Burkina Faso ~Chipre ~Islas Cabo Verde ~Zona Franca Río Negro~Antigua y Barbuda~Zona Franca Nueva Helvecia ~Islas Marshall ~Zona Franca Florida~Brunei Darussalam~Suriname ~Guinea-Bissau~Mongolia ~Territorios Franceses en América ~Zambia ~Zona Franca La Plata ~Mar Territorial Argentino y/o Zona Economica Exclusiva ~Territorio británico del Oceáno Indico ~Eritrea~Gambia ~Islandia ~Papua New Guinea ~Kirguistán ~Islas Maldives ~Posesión Estadounidense en América ~Santa Lucía~Macau~República Democrática de Laos~Sierra Leona ~Islas Fiji ~Dominica ~Swasilandia~Guinea ~Etiopía~Uzbekistán ~Seychelles ~Zona Franca Córdoba~Posesión Británica en Europa ~País de Oceanía no determinado ~163~Tayikistán ~San Vicente y las Granadinas ~Posesión Estadounidense en Oceanía ~Uganda ~Nepal~Zona Franca Iquique (Chile)~Botswana ~San Marino ~Area Franca Ilas, Antártida Argentina~Malawi ~Djibouti ~Posesión Británica en Africa ~Zona Franca Puerto Iguazú~Zona Franca Manaos ~San Cristóbal y Nevis~Tuvalu ~Turmenistán~Zona Franca Nueva Palmira~Mónaco ~República Centroafricana ~Territorios Españoles~Islas Salomón~272~Kiribati ~"></entry>
+				
+				<!-- 乌拉圭进口搜索条件字段-->
+				<entry key="uruguay_import_conditionzhname" value="国家：,海关编码：,重量：,CIF价格：,产品描述：,采购商：,日期：,数量：,原产国："></entry>
+				<entry key="uruguay_import_conditionfieldid" value="country,hscode,startweight/endweight,cifstartprice/cifendprice,goodsdesc,importer,startdate/enddate,startquantity/endquantity,origin_country"></entry>
+				<entry key="uruguay_import_conditionenname" value="country：,Custom number：,weight：,CIF price：,Description：,Buyer：,Date：,Amount：,Origin："></entry>
+				<!-- 需要添加翻译的字段id -->
+				<entry key="uruguay_import_trans" value="goodsdesc,importer"></entry>
+				<!-- 需要添加文本框描述的字段id -->
+				<entry key="uruguay_import_desc" value="hscode,goodsdesc,importer,origin_country"></entry>
+				<!-- 日期格式 -->
+				<entry key="uruguay_import_dateFormatter" value="yyyy-MM-dd"></entry>
+				<!-- 初始日期 -->
+				<entry key="uruguay_import_dateValue" value="2014-01-01,2014-12-31"></entry>
+				<!-- 乌拉圭进口下拉框显示字段 -->
+				<entry key="uruguay_import_select" value="origin"></entry>
+				<entry key="uruguay_import_origin" value="CHINA, REPUBLICA POPULAR DE             ~ESPANA~E.E.U.U.                                ~FRANCIA                                 ~JAPON                                   ~MALASIA                                 ~ALEMANIA                                ~TAIWAN (FORMOSA)                        ~MEXICO                                  ~CANADA                                  ~HONG KONG                               ~ARGENTINA                               ~ITALIA                                  ~INDIA                                   ~INDONESIA                               ~BRASIL                                  ~COLOMBIA                                ~PARAGUAY                                ~CAMBODIA                                ~LAOS                                    ~TURQUIA                                 ~TUNEZ                                   ~BANGLADESH                              ~RUMANIA                                 ~YUGOESLAVIA                             ~CROATIA                                 ~MAURICIO                                ~EGIPTO                                  ~PORTUGAL                                ~COSTA RICA                              ~AUSTRALIA                               ~REP. CHECA                              ~REINO UNIDO                             ~DINAMARCA                               ~ECUADOR                                 ~BULGARIA                                ~AUSTRIA                                 ~PERU                                    ~COREA (SUR)                             ~POLONIA                                 ~UKRAINE                                 ~BELGICA, LUXEMBURGO                     ~HUNGRIA                                 ~SUECIA                                  ~VIETNAM                                 ~TAILANDIA                               ~CHILE                                   ~QATAR                                   ~SUIZA                                   ~HOLANDA (PAISES BAJOS)                  ~ISRAEL                                  ~MARRUECOS                               ~SRI LANKA                               ~SINGAPUR                                ~URUGUAY                                 ~LITUANIA                                ~SLOVENIA                                ~ESLOVAQUIA                              ~PUERTO RICO                             ~FINLANDIA                               ~PAKISTAN                                ~PANAMA                                  ~EL SALVADOR                             ~FILIPINAS                               ~IRLANDA (EIRE)                          ~ARABIA SAUDITA                          ~MACAO                                   ~SUDAFRICA                               ~NORUEGA                                 ~MALTA                                   ~MONGOLIA                                ~987~GUATEMALA                               ~GHANA                                   ~GRECIA                                  ~HONDURAS                                ~BOLIVIA                                 ~EMIRATOS ARABES UNIDOS                  ~HAITI                                   ~LUXEMBOURG                              ~VENEZUELA                               ~NUEVA ZELANDIA                          ~LIECHTENSTEIN                           ~RUSIA (FEDERACION RUSA)                 ~ESTONIA                                 ~NIGERIA                                 ~REP. DOMINICANA                         ~SENEGAL                                 ~Z.F.COLONIA                             ~LATVIA                                  ~COSTA DE MARFIL                         ~BOSNIA AND HERZEGOVINA                  ~SAN MARINO                              ~ANTILLAS HOLANDESAS                     ~CUBA                                    ~BELARUS                                 ~Z.F.MONTEVIDEO                          ~GABON                                   ~FRANCE, METROPOLITAN                    ~BARBADOS                                ~GUINEA                                  ~GEORGIA                                 ~MADAGASCAR                              ~Z.F. MANAOS SEGUN DECRETO               ~Z.F.NUEVA HELVECIA                      ~KUWAIT                                  ~COCOS (KEELING), ISLAS                  ~COREA (NORTE)                           ~MOLDOVA                                 ~MALAWI                                  ~MONACO                                  ~ARGELIA                                 ~LIBANO                                  ~UNITED STATES MINOR OUTLYING ISLANDS    ~ESPAQA                                  ~Z.F.FLORIDA                             ~ALBANIA                                 ~NICARAGUA                               ~TURKMENISTAN                            ~KENIA                                   ~MYANMAR                                 ~GUYANA                                  ~JORDANIA                                ~CHIPRE                                  ~986~CONGO                                   ~FALKLAND ISLANDS (MALVINAS)             ~NAMIBIA                                 ~SIERRA LEONA                            ~SWASILANDIA                             ~BELICE                                  ~BAHREIN                                 ~OMAN                                    ~NEPAL                                   ~SEYCHELLES                              ~IRAN                                    ~Macedonia                               ~AFGANISTAN                              ~ISLANDIA                                ~MALDIVAS, ISLAS                         ~985~BAHAMAS, ISLAS                          ~Z.F.LIBERTAD                            ~SIRIA                                   ~TOGO                                    ~BUTAN                                   ~ARMENIA                                 ~MOZAMBIQUE                              ~MALI                                    ~ANDORRA                                 ~YEMEN                                   ~ETIOPIA                                 ~TRINIDAD Y TOBAGO                       ~DOMINICA                                ~TANZANIA                                ~ZONA DEL CANAL DE PANAMA                ~JAMAICA                                 ~ANGOLA                                  ~BURUNDI                                 ~TAJIKISTAN                              ~LESOTHO                                 ~COMORAS                                 ~MARTINICA                               ~UGANDA                                  ~VIRGENES, ISLAS BRITANICAS              ~AMERICAN SAMOA                          ~CABO VERDE                              ~SURINAME                                ~ANGUILLA                                ~CAMERUN                                 ~MAURITANIA                              ~IRAK                                    ~GIBRALTAR                               ~SUDAN                                   ~ZAIRE                                   ~SOMALIA                                 ~MARSHALL ISLANDS                        ~Rep\u00FAblica Popular de China~Estados Unidos~Paises Bajos~Rep\u00FAblica de Corea del Sur~Taiw\u00E1n~B\u00E9lgica~Letonia~Islas V\u00EDrgenes Brit\u00E1nicas~Rep\u00FAblica Checa~Croacia~Irlanda~Zona Franca Florida~Zon Franca Frey Bentos - Botnia~Zona Franca Montevideo~Zona Franca Libertad~Zona Franca Colonia~Camboya~Todos los Paises~Republica Eslovaquia~Emiratos Arabes Unidos (E.A.U)~Republica Dominica~Republica Seychelles~Islas Bahamas~Samoa~Luxemburgo~Birmania~Rep\u00FAblica Democr\u00E1tica Popular de Corea Norte~Zona Franca Nueva Palmira~Zona Nueva Helvecia~Zona Franca Rivera~Brunei Darussalam~Federacion Rusia~Zonas Franca Manaos (Seg\u00FAn Decreto)~Bermudas~Bosnia y Herzegovina~Timor Oriental~Yugoslavia~Eslovenia~Isla Marianas del Norte~Ucrania~"></entry>
+				
+				<!-- 乌拉圭出口搜索条件字段-->
+				<entry key="uruguay_export_conditionzhname" value="国家：,海关编码：,重量：,FOB价格：,产品描述：,出口商：,日期：,数量：,目的国："></entry>
+				<entry key="uruguay_export_conditionfieldid" value="country,hscode,startweight/endweight,fobstartprice/fobendprice,goodsdesc,exporter,startdate/enddate,startquantity/endquantity,dest_country"></entry>
+				<entry key="uruguay_export_conditionenname" value="country：,Custom number：,weight：,FOB price：,Description：,Exporter：,Date：,Amount：,Destination："></entry>
+				<!-- 需要添加翻译的字段id -->
+				<entry key="uruguay_export_trans" value="goodsdesc,exporter"></entry>
+				<!-- 需要添加文本框描述的字段id -->
+				<entry key="uruguay_export_desc" value="hscode,goodsdesc,exporter,dest_country"></entry>
+				<!-- 日期格式 -->
+				<entry key="uruguay_export_dateFormatter" value="yyyy-MM-dd"></entry>
+				<!-- 初始日期 -->
+				<entry key="uruguay_export_dateValue" value="2014-01-01,2014-12-31"></entry>
+				<!-- 乌拉圭出口下拉框显示字段 -->
+				<entry key="uruguay_export_select" value="dest"></entry>
+				<entry key="uruguay_export_dest" value="COSTA RICA                              ~MEXICO                                  ~FRANCIA                                 ~HOLANDA (PAISES BAJOS)                  ~POLINESIA FRANCESA                      ~ISRAEL                                  ~CHINA, REPUBLICA POPULAR DE             ~JAPON                                   ~ITALIA                                  ~GAMBIA                                  ~PANAMA                                  ~CANADA                                  ~VANUATU                                 ~ 76~FILIPINAS                               ~VENEZUELA                               ~GUYANA                                  ~TRINIDAD Y TOBAGO                       ~REINO UNIDO                             ~ESPANA~SUECIA                                  ~PERU                                    ~GABON                                   ~ 12~HONG KONG                               ~VIETNAM                                 ~ECUADOR                                 ~E.E.U.U.                                ~CHILE                                   ~FALKLAND ISLANDS (MALVINAS)             ~TAILANDIA                               ~INDONESIA                               ~GUATEMALA                               ~COREA (SUR)                             ~TAIWAN (FORMOSA)                        ~RUSIA (FEDERACION RUSA)                 ~SIRIA                                   ~CABO VERDE                              ~ 56~GRENADA                                 ~SANTA LUCIA                             ~DOMINICA                                ~ALEMANIA                                ~ 32~COLOMBIA                                ~SUIZA                                   ~SUDAFRICA                               ~Z.F.RIVERA                              ~987~PARAGUAY                                ~Z.F.NUEVA PALMIRA                       ~MAYOTTE                                 ~REP. CHECA                              ~GUINEA ECUATORIAL                       ~986~PORTUGAL                                ~ARUBA                                   ~985~Z.F.MONTEVIDEO                          ~Z.F.COLONIA                             ~NORUEGA                                 ~CUBA                                    ~MALDIVAS, ISLAS                         ~BELARUS                                 ~HUNGRIA                                 ~IRAN                                    ~KENIA                                   ~TURQUIA                                 ~ 68~DINAMARCA                               ~LUXEMBOURG                              ~ 24~POLONIA                                 ~INDIA                                   ~ 40~REP. DOMINICANA                         ~ 36~PAKISTAN                                ~Z.F.LIBERTAD                            ~PUERTO RICO                             ~CAMERUN                                 ~ 52~IRAK                                    ~BULGARIA                                ~MALASIA                                 ~ESTONIA                                 ~COREA (NORTE)                           ~ARABIA SAUDITA                          ~ 28~HONDURAS                                ~BENIN                                   ~CONGO                                   ~EMIRATOS ARABES UNIDOS                  ~ 50~MADAGASCAR                              ~Z.F.NUEVA HELVECIA                      ~ANTILLAS HOLANDESAS                     ~Z.F.FLORIDA                             ~SENEGAL                                 ~EL SALVADOR                             ~  4~RUMANIA                                 ~SINGAPUR                                ~NIGERIA                                 ~ZONA NEUTRAL (PALESTINA)                ~GEORGIA                                 ~KUWAIT                                  ~UKRAINE                                 ~GUINEA BISSAU                           ~KAZAJSTAN                               ~FINLANDIA                               ~NUEVA ZELANDIA                          ~ 48~JAMAICA                                 ~NICARAGUA                               ~LITUANIA                                ~LAOS                                    ~TONGA                                   ~IRLANDA (EIRE)                          ~GRECIA                                  ~SAN VICENTE Y LAS GRANADINAS            ~MAURICIO                                ~CAMBODIA                                ~ESPAQA                                  ~MARRUECOS                               ~ESLOVAQUIA                              ~LATVIA                                  ~MACAO                                   ~JORDANIA                                ~GHANA                                   ~HAITI                                   ~COSTA DE MARFIL                         ~SIERRA LEONA                            ~TUNEZ                                   ~LIBANO                                  ~LIBIA                                   ~ZAMBIA                                  ~COMORAS                                 ~MYANMAR                                 ~EGIPTO                                  ~ 31~MAURITANIA                              ~SUDAN                                   ~ZIMBABWE                                ~GUINEA                                  ~  8~MOLDOVA                                 ~QATAR                                   ~NAMIBIA                                 ~ 44~MOZAMBIQUE                              ~OMAN                                    ~ 72~ 96~CHIPRE                                  ~SEYCHELLES                              ~Macedonia                               ~ 51~YEMEN                                   ~TAJIKISTAN                              ~CROATIA                                 ~BRASIL                                  ~ARGELIA                                 ~MALTA                                   ~ARGENTINA                               ~AUSTRALIA                               ~BOLIVIA                                 ~BELGICA, LUXEMBURGO                     ~MARSHALL ISLANDS                        ~BANGLADESH                              ~BARBADOS                                ~ANGOLA                                  ~AFGANISTAN                              ~BAHAMAS, ISLAS                          ~BRUNEI                                  ~AUSTRIA                                 ~BELICE                                  ~BURKINA FASO                            ~LIBERIA                                 ~TOGO                                    ~SLOVENIA                                ~984~YUGOESLAVIA                             ~ETIOPIA                                 ~MALI                                    ~CENTRAL AFRICAN REPUBLIC                ~FRANCE, METROPOLITAN                    ~ 90~BOTSWANA                                ~BOUVET ISLAND                           ~TURKMENISTAN                            ~ARMENIA                                 ~ALBANIA                                 ~SURINAME                                ~BAHREIN                                 ~SRI LANKA                               ~983~ANTIGUA Y BARBUDA                       ~GUAM                                    ~"></entry>
+				
+				
+				<!-- 巴拉圭进口搜索条件字段-->
+				<entry key="paraguay_import_conditionzhname" value="国家：,海关编码：,重量：,CIF价格：,产品描述：,采购商：,日期：,数量：,原产国：,出口商："></entry>
+				<entry key="paraguay_import_conditionfieldid" value="country,hscode,startweight/endweight,cifstartprice/cifendprice,goodsdesc,importer,startdate/enddate,startquantity/endquantity,origin_country,exporter"></entry>
+				<entry key="paraguay_import_conditionenname" value="country：,Custom number：,weight：,CIF price：,Description：,Buyer：,Date：,Amount：,Origin：,Exporter:"></entry>
+				<!-- 需要添加翻译的字段id -->
+				<entry key="paraguay_import_trans" value="goodsdesc,exporter,importer"></entry>
+				<!-- 需要添加文本框描述的字段id -->
+				<entry key="paraguay_import_desc" value="hscode,goodsdesc,exporter,origin_country,importer"></entry>
+				<!-- 日期格式 -->
+				<entry key="paraguay_import_dateFormatter" value="yyyy-MM-dd"></entry>
+				<!-- 初始日期 -->
+				<entry key="paraguay_import_dateValue" value="2014-01-01,2014-12-31"></entry>
+				<!-- 巴拉圭进口下拉框显示字段 -->
+				<entry key="paraguay_import_select" value="origin"></entry>
+				<entry key="paraguay_import_origin" value="PAKISTAN~ARGENTINA~ESPAÑA~BRASIL~URUGUAY~BELGICA~CANADA~INDIA~USA~CHINA~SUIZA~FRANCIA~ALEMANIA~SUDAFRICA~ITALIA~MEXICO~COREA NORTE~ESLOVENIA~R.UNIDO~HUNGRIA~DINAMARCA~PAISES BAJOS~MALASIA~CHILE~HONG KONG~INDONESIA~AUSTRIA~FINLANDIA~TAIWAN~IRLANDA~SUECIA~COLOMBIA~COREA SUR~NUEVA ZELANDA~JAPON~PERU~ECUADOR~CROACIA~PORTUGAL~RUMANIA~SINGAPUR~POLONIA~TAILANDIA~FILIPINAS~TURQUIA~BOLIVIA~ESLOVAQUIA~HONDURAS~COSTA RICA~RCA.CHECA~NICARAGUA~LETONIA~PARAGUAY~VIETNAM~PANAMA~SAN MARINO~ISRAEL~RUSIA~QATAR~BULGARIA~EGIPTO~ARABIA SAUDITA~GUATEMALA~BIELORRUSIA~AUSTRALIA~SIRIA~ESTONIA~CAMBOYA~PUERTO RICO~ISLAS CAIMAN~MACAO~BOSNIA-HERZEGOVINA~DOMINICA~MARRUECOS~EMIRATOS ARABES~NORUEGA~LESOTHO~MONACO~BANGLADESH~LIBANO~JORDANIA~GRANADA~CORA SUR~UCRANIA~CUBA~BUTAN~LUXEMBURGO~SRI LANKA~EL SALVADOR~N.ZELANDA~REUNION~LITUANIA~NIGERIA~DOMINICANA~TUNEZ~GRECIA~VENEZUELA~~ISLAS CANARIAS~MALTA~LAOS~MAURICIO~EMIRATOS ARABES UNIDOS~SAN PEDRO Y MIQUELON~ZIMBABWE~REPUBLICA CHECA~REINO UNIDO~COREA DEL SUR~COREA DEL NORTE~PRINCIPADO DE MONACO~IRAN~TRINIDAD Y TOBAGO~ISLAS MARIANAS DEL NORTE~R.DOMINICANA~BERMUDAS~PALESTINA~MYANMAR~HAITI~SIERRA LEONA~ESTADOS UNIDOS DE AMERICA~ESPA�A~CAMBOYA(KAMPUCHEA)~TAHITI~KIRGUIZISTAN~CHIPRE~ZA FRCA GLOBAL~ISLANDIA~MALAWI~TURKMENISTAN~SERBIA~BARBADOS~N. ZELANDA~ZAMBIA~MONTENEGRO~BAHREIN~ISLAS VIRGENES EE.UU.~ALBANIA~SAMOA OCCIDENTAL~MONTSERRAT~GABON~ARMENIA~MACEDONIA~PALAU~GUADALUPE~MAURITANIA~BRUNEI~GEORGIA~MONGOLIA~ARGELIA~TANZANIA~ANGUILLA~KUWAIT~AFGANISTAN~SENEGAL~SAN CRISTOBAL Y NEVIS~NUEVA CALEDONIA Y DEPENDENCIAS~BELICE~MADAGASCAR~KENIA~SUDAN~"></entry>
+				
+				<!-- 巴拉圭出口搜索条件字段-->
+				<entry key="paraguay_export_conditionzhname" value="国家：,海关编码：,重量：,CIF价格：,产品描述：,采购商：,日期：,数量：,目的国：,出口商：,"></entry>
+				<entry key="paraguay_export_conditionfieldid" value="country,hscode,startweight/endweight,cifstartprice/cifendprice,goodsdesc,importer,startdate/enddate,startquantity/endquantity,dest_country,exporter"></entry>
+				<entry key="paraguay_export_conditionenname" value="country：,Custom number：,weight：,CIF price：,Description：,Buyer：,Date：,Amount：,Destination：,Exporter："></entry>
+				<!-- 需要添加翻译的字段id -->
+				<entry key="paraguay_export_trans" value="goodsdesc,exporter,importer"></entry>
+				<!-- 需要添加文本框描述的字段id -->
+				<entry key="paraguay_export_desc" value="hscode,goodsdesc,exporter,dest_country,importer"></entry>
+				<!-- 日期格式 -->
+				<entry key="paraguay_export_dateFormatter" value="yyyy-MM-dd"></entry>
+				<!-- 初始日期 -->
+				<entry key="paraguay_export_dateValue" value="2014-01-01,2014-12-31"></entry>
+				<!-- 巴拉圭出口下拉框显示字段 -->
+				<entry key="paraguay_export_select" value="dest"></entry>
+				<entry key="paraguay_export_dest" value="URUGUAY~BRASIL~CHILE~ARGENTINA~BOLIVIA~VENEZUELA~COSTA DE MARFIL~RUSIA~HONG KONG~ISRAEL~ESPAÑA~ANGOLA~SINGAPUR~GHANA~KUWAIT~USA~FRANCIA~COREA SUR~MEXICO~ALEMANIA~SENEGAL~SUDAFRICA~ITALIA~CONGO~ARMENIA~PERU~TAIWAN~CHINA~ZA FRCA GLOBAL~GABON~BANGLADESH~KOSOVO~AUSTRALIA~PAISES BAJOS~VIETNAM~PANAMA~COSTA RICA~BAHREIN~DOMINICA~GUATEMALA~DOMINICANA~SUIZA~R.UNIDO~PORTUGAL~INDIA~AUSTRIA~PUERTO RICO~TAILANDIA~RCA.CHECA~ECUADOR~NICARAGUA~ANTILLAS NEERL.~INDONESIA~LIBANO~TUNEZ~KAZAJSTAN~EL SALVADOR~CORA SUR~CANADA~SURINAN~POLONIA~JAPON~HAITI~COLOMBIA~ZIMBABWE~GEORGIA~BELGICA~ANGUILLA~DINAMARCA~N.ZELANDA~MALTA~SUECIA~IRLANDA~AZERBAIJAN~TURQUIA~ARUBA~LIBIA~ALBANIA~MALASIA~EMIRATOS ARABES~BELICE~PALESTINA~EGIPTO~GAMBIA~TRINIDAD Y TOBAGO~UCRANIA~EMIRATOS ARABES UNIDOS~NORUEGA~ARABIA SAUDITA~CUBA~PAPUA NUEVA GUINEA~GUINEA~BENIN~COREA DEL SUR~R.DOMINICANA~REINO UNIDO~CHIPRE~MONTENEGRO~GUINEA ECUATORIAL~GRECIA~ANTILLAS NEERLANDESAS~ESTADOS UNIDOS DE AMERICA~FINLANDIA~PAKISTAN~ESPA�A~GRANADA~BAHAMAS~SIERRA LEONA~LETONIA~ARGELIA~MOZAMBIQUE~HONDURAS~BULGARIA~FILIPINAS~BIELORRUSIA~NUEVA ZELANDA~LIBERIA~ISLAS VIRGENES (GB)~ZA FRCA TRANSTRADE~NIGERIA~LUXEMBURGO~ESLOVAQUIA~MONACO~QATAR~IRAN~REPUBLICA DEMOCRATICA DEL CONGO~CABO VERDE~AFGANISTAN~HUNGRIA~LITUANIA~JORDANIA~MARRUECOS~CAMERUN~IRAK~MYANMAR~"></entry>
+				
+				
+				<!-- 秘鲁进口搜索条件字段-->
+				<entry key="peru_import_conditionzhname" value="国家：,海关编码：,重量：,CIF价格：,产品描述：,采购商：,日期：,数量：,起运港：,出口商：,原产国："></entry>
+				<entry key="peru_import_conditionfieldid" value="country,hscode,startweight/endweight,cifstartprice/cifendprice,goodsdesc,importer,startdate/enddate,startquantity/endquantity,start_port,exporter,origin_country"></entry>
+				<entry key="peru_import_conditionenname" value="country：,Custom number：,weight：,CIF price：,Description：,Buyer：,Date：,Amount：,Loadig port:,Exporter:,Origin："></entry>
+				<!-- 需要添加翻译的字段id -->
+				<entry key="peru_import_trans" value="goodsdesc,exporter,importer,start_port"></entry>
+				<!-- 需要添加文本框描述的字段id -->
+				<entry key="peru_import_desc" value="hscode,goodsdesc,exporter,importer,start_port,origin_country"></entry>
+				<!-- 日期格式 -->
+				<entry key="peru_import_dateFormatter" value="yyyy-MM-dd"></entry>
+				<!-- 初始日期 -->
+				<entry key="peru_import_dateValue" value="2014-01-01,2014-12-31"></entry>
+				<!-- 秘鲁进口下拉框显示字段 -->
+				<entry key="peru_import_select" value="origin"></entry>
+				<entry key="peru_import_origin" value="CHINA~ESTADOS UNIDOS~ALEMANIA~POLONIA~BOLIVIA~INDONESIA~ITALIA~FRANCIA~COREA {SUR}~SRI LANKA~COLOMBIA~JAPON~TAILANDIA~FINLANDIA~SUECIA~BRASIL~RUMANIA~REINO UNIDO~TAIWAN {FORMOSA}~TURQUIA~SUDAFRICA, REPUBLICA DE~SUIZA~REPUBLICA CHECA~PERU - ZONAS FRANCAS~BELGICA~BULGARIA~ESPAÑA~INDIA~MALASIA~CANADA~MEXICO~FILIPINAS~RUSIA, FEDERACION~IRLANDA {EIRE}~ARABIA SAUDITA~MARRUECOS~VIETNAM~ISRAEL~SINGAPUR~BANGLADESH~ECUADOR~HUNGRIA~AUSTRIA~ESLOVAQUIA~PAISES BAJOS~CHILE~PORTUGAL~DINAMARCA~ESLOVENIA~PAKISTAN~GRECIA~TUNICIA~ARGENTINA~COSTA RICA~CAMBOYA~NORUEGA~NUEVA ZELANDIA~PARAGUAY~PERU~MALTA~CROACIA~HONG KONG {CHINA}~GUATEMALA~JORDANIA~AUSTRALIA~ESTONIA~PANAMA~EMIRATOS ARABES UNIDOS~LIECHTENSTEIN~MALI~URUGUAY~EL SALVADOR~EGIPTO~LITUANIA~UCRANIA~BOSNIA-HERZEGOVINA~REPUBLICA DOMINICANA~BELARUS~VENEZUELA~ARMENIA~MOLDAVIA, REPUBLICA DE~GEORGIA~QATAR~LETONIA~MACEDONIA {F.Y.R.}~TRINIDAD Y TOBAGO~ALBANIA~HONDURAS~MAURITANIA~PUERTO RICO~NICARAGUA~MACAO {CHINA}~MAURICIO~TOKELAU~SERBIA~SIERRA LEONA~LUXEMBURGO~MADAGASCAR~AGUAS INTERNACIONALES~NEPAL~LIBANO~IRAN, REPUBLICA ISLAMICA DEL~LAOS~BARBADOS~BAHREIN~SAMOA NORTEAMERICANA~NIGERIA~COREA {NORTE}~HAITI~MONTENEGRO~KENIA~MONACO~ESCOCIA~ANQUILLA~COSTA DE MARFIL {COTE D'IVOIRE}~SURINAM~CHIPRE~JAMAICA~BELICE~ISLANDIA~ANTILLAS HOLANDESAS~NO DECLARADOS~CUBA~TURKMENISTAN~NIUE {NUEVA ZELANDIA}~SAWSILANDIA~GROENLANDIA {DINAMARCA}~SANTA ELENA~SUDAN~EL VATICANO {SANTA SEDE}~DOMINICA~CAMERUN~POLINESIA FRANCESA {FRANCIA}~ZAMBIA~SEYCHELLES~GRANADA~GHANA~SANTA LUCIA~COCOS {KEELING}, ISLAS~AFGANISTAN~GUINEA-BISSAU~MALAWI~SAN VICENTE Y LAS GRANADINAS~MONTSERRAT, ISLA~MARSHALL, ISLAS~KAZAJSTAN~ARUBA~ANDORRA~NIGER~MAYOTTE {FRANCIA}~TURCAS Y CAICOS, ISLAS~UZBEKISTAN~GUYANA~SIRIA, REPUBLICA ARABE DE~MYANMAR~TADJIKISTAN~TANZANIA, REPUBLICA UNIDA DE~LESOTHO~VIRGENES, ISLAS {NORTEAMERICANAS}~GUINEA~NAMIBIA~SAN MARINO~GUADALUPE {FRANCIA}~TIMOR DEL ESTE~ARGELIA~NAVIDAD, ISLA {AUSTRALIA}~MONGOLIA~UGANDA~BRUNEI DARUSSALAM~SENEGAL~VIRGENES, ISLAS {BRITANICAS}~BERMUDAS~PAPUASIA NUEVA GUINEA~YUGOSLAVIA~FIJI~BURKINA FASO~OMAN~GAMBIA~FEROE, ISLAS {DINAMARCA}~IRAQ~KUWAIT~BAHAMAS~ETIOPIA~NUEVA CALEDONIA {FRANCIA}~CONGO~BUTAN~BURUNDI~REUNION {FRANCIA}~GUAM~DJIBOUTI~REPUBLICA CENTROAFRICANA~TERRIT. BRITANICO DEL OCEANO INDICO {REINO UNIDO}~CABO VERDE~ANTIGUA Y BARBUDA~SAN CRISTOBAL Y NIEVES~MOZAMBIQUE~CHAD~YEMEN~MARIANAS DEL NORTE, ISLAS~MALDIVAS~ANGOLA~MICRONESIA, ESTADOS FEDERADOS DE~GEORGIA DEL SUR Y SANDWICH DEL SUR, ISLAS~CAIMAN, ISLAS~MARTINICA {FRANCIA}~CW~"></entry>
+				
+				<!-- 秘鲁出口搜索条件字段-->
+				<entry key="peru_export_conditionzhname" value="国家：,海关编码：,重量：,FOB价格：,产品描述：,出口商：,日期：,数量：,抵达港：,目的国："></entry>
+				<entry key="peru_export_conditionfieldid" value="country,hscode,startweight/endweight,fobstartprice/fobendprice,goodsdesc,exporter,startdate/enddate,startquantity/endquantity,end_port,dest_country"></entry>
+				<entry key="peru_export_conditionenname" value="country：,Custom number：,weight：,FOB price：,Description：,Exporter：,Date：,Amount：,Arrival Port:,Destination："></entry>
+				<!-- 需要添加翻译的字段id -->
+				<entry key="peru_export_trans" value="goodsdesc,exporter,end_port"></entry>
+				<!-- 需要添加文本框描述的字段id -->
+				<entry key="peru_export_desc" value="hscode,goodsdesc,exporter,end_port,dest_country"></entry>
+				<!-- 日期格式 -->
+				<entry key="peru_export_dateFormatter" value="yyyy-MM-dd"></entry>
+				<!-- 初始日期 -->
+				<entry key="peru_export_dateValue" value="2014-01-01,2014-12-31"></entry>
+				<!-- 秘鲁进口下拉框显示字段 -->
+				<entry key="peru_export_select" value="dest"></entry>
+				<entry key="peru_export_dest" value="ESPAÑA~CHINA~BOLIVIA~ESTADOS UNIDOS~PUERTO RICO~BAHAMAS~PAISES BAJOS~RUSIA, FEDERACION~JAPON~POLONIA~HONG KONG {CHINA}~BRASIL~ISRAEL~FRANCIA~TAILANDIA~COREA {SUR}~REINO UNIDO~BELGICA~CANADA~ITALIA~IRLANDA {EIRE}~CHILE~EMIRATOS ARABES UNIDOS~COSTA RICA~INDONESIA~COLOMBIA~PORTUGAL~ARABIA SAUDITA~AUSTRALIA~ALEMANIA~ARGENTINA~ECUADOR~PANAMA~MEXICO~REPUBLICA DOMINICANA~CUBA~VENEZUELA~EL SALVADOR~URUGUAY~PARAGUAY~GUATEMALA~TURQUIA~HONDURAS~NUEVA ZELANDIA~NORUEGA~SUECIA~SUIZA~TAIWAN {FORMOSA}~SINGAPUR~VIETNAM~NICARAGUA~AGUAS INTERNACIONALES~TODOS LOS PAISES~DINAMARCA~TRINIDAD Y TOBAGO~PAKISTAN~GUADALUPE {FRANCIA}~COREA {NORTE}~SUDAFRICA, REPUBLICA DE~SANTA LUCIA~BULGARIA~CABO VERDE~FINLANDIA~LITUANIA~PERU - ZONAS FRANCAS~JORDANIA~SAN CRISTOBAL Y NIEVES~REPUBLICA CHECA~GRECIA~GAMBIA~MAURITANIA~HAITI~CONGO~MALASIA~GEORGIA~EGIPTO~ANGOLA~GABON~CROACIA~INDIA~FILIPINAS~LIBANO~MARTINICA {FRANCIA}~JAMAICA~CW~REUNION {FRANCIA}~KENIA~AUSTRIA~GUYANA~ISLANDIA~CAIMAN, ISLAS~VIRGENES, ISLAS {BRITANICAS}~NIGERIA~ZAMBIA~UCRANIA~CHIPRE~KUWAIT~MAURICIO~DOMINICA~LETONIA~BELICE~ANTILLAS HOLANDESAS~BANGLADESH~OMAN~ESTONIA~IRAQ~ABAST.COMB. O AVITUALLAMIENTO~ARUBA~RUMANIA~ARGELIA~MARRUECOS~SAN VICENTE Y LAS GRANADINAS~HUNGRIA~SIRIA, REPUBLICA ARABE DE~SENEGAL~ESLOVENIA~LUXEMBURGO~SURINAM~MALAWI~BARBADOS~CAMERUN~NUEVA CALEDONIA {FRANCIA}~GUAYANA FRANCESA {FRANCIA}~ANTIGUA Y BARBUDA~SERBIA~BAHREIN~MYANMAR~BURKINA FASO~TOGO~QATAR~SX~GUINEA~LIBIA~ESLOVAQUIA~AFGANISTAN~MONTENEGRO~KIRIBATI~SRI LANKA~MALTA~NAMIBIA~GHANA~GUAM~COSTA DE MARFIL {COTE D'IVOIRE}~GRANADA~GUINEA ECUATORIAL~YUGOSLAVIA~NEPAL~BENIN~SOMALIA~MICRONESIA, ESTADOS FEDERADOS DE~TUNICIA~LIBERIA~SIERRA LEONA~BELARUS~IRAN, REPUBLICA ISLAMICA DEL~SAMOA~ALBANIA~KAZAJSTAN~MOLDAVIA, REPUBLICA DE~GROENLANDIA {DINAMARCA}~FIJI~ERITREA~UZBEKISTAN~BERMUDAS~UGANDA~VIRGENES, ISLAS {NORTEAMERICANAS}~SEYCHELLES~ULTRAMARINAS MENORES, ISLAS {EE.UU.}~MADAGASCAR~COCOS {KEELING}, ISLAS~ESCOCIA~AZERBAIJAN~LIECHTENSTEIN~MOZAMBIQUE~POLINESIA FRANCESA {FRANCIA}~TANZANIA, REPUBLICA UNIDA DE~TURCAS Y CAICOS, ISLAS~PAPUASIA NUEVA GUINEA~MONGOLIA~SUDAN~"></entry>
+		
+				
+				<!-- 厄瓜多尔进口搜索条件字段-->
+				<entry key="ecuador_import_conditionzhname" value="国家：,海关编码：,CIF价格：,数量：,产品描述：,起运港：,日期：,原产国：,进口商：,出口商："></entry>
+				<entry key="ecuador_import_conditionfieldid" value="country,hscode,cifstartprice/cifendprice,startquantity/endquantity,goodsdesc,start_port,startdate/enddate,origin_country,importer,exporter"></entry>
+				<entry key="ecuador_import_conditionenname" value="country：,Custom number：,CIF price：,Amount：,Description：,Loadig port:,Date：,Origin：,Importer:,Exporter:"></entry>
+				<!-- 需要添加翻译的字段id -->
+				<entry key="ecuador_import_trans" value="goodsdesc,exporter,importer,start_port"></entry>
+				<!-- 需要添加文本框描述的字段id -->
+				<entry key="ecuador_import_desc" value="hscode,goodsdesc,exporter,importer,start_port,origin_country"></entry>
+				<!-- 日期格式 -->
+				<entry key="ecuador_import_dateFormatter" value="yyyy-MM-dd"></entry>
+				<!-- 初始日期 -->
+				<entry key="ecuador_import_dateValue" value="2014-01-01,2014-12-31"></entry>
+				<!-- 厄瓜多尔进口下拉框显示字段 -->
+				<entry key="ecuador_import_select" value="origin"></entry>
+				<entry key="ecuador_import_origin" value="JAPAN~KOREA, REPUBLIC OF KOREA (SOUTH)~PERU~CHINA~UNITED STATES~FRANCE~REINO UNIDO DE GRAN BRETAÑA~MEXICO~THAILAND~ITALY~BRAZIL~SPAIN~POLAND~HUNGARY~GERMANY~COLOMBIA~PORTUGAL~ISRAEL~TAIWAN~TUNISIA~FINLAND~INDIA~NORWAY~RUSSIAN FEDERATION~SOUTH AFRICA~CHILE~PAISES BAJOS~PANAMA~ARGENTINA~CANADA~VIET NAM~VENEZUELA, BOLIVARIAN REPUB~SWITZERLAND~CZECIA~ROMANIA~SWEDEN~MALAYSIA~UNITED ARAB EMIRATES~BELGIUM~PHILIPPINES~INDONESIA~CAMBODIA~HONG KONG~GUATEMALA~TURKEY~SINGAPORE~URUGUAY~MOROCCO~PAKISTAN~BANGLADESH~SLOVAKIA~BULGARIA~UKRAINE~JORDAN~AUSTRIA~BOLIVIA~AGUAS INTERNACIONALES~EL SALVADOR~PUERTO RICO~EGYPT~AUSTRALIA~SLOVENIA~DENMARK~ALBANIA~MADAGASCAR~UGANDA~SRI LANKA~ECUADOR~COSTA RICA~DOMINICAN REPUBLIC~REPUBLICA DE COREA, POPULAR~HONDURAS~IRELAND~LATVIA~KENYA~PARAGUAY~MAURITIUS~NEW ZEALAND~SAUDI ARABIA~GHANA~BARBADOS~LAO PEOPLES DEMOCRATIC REPU~NICARAGUA~NETHERLANDS ANTILLES~REUNION~CYPRUS~TURKMENISTAN~GREECE~CUBA~HAITI~MYANMAR~MALI~ESTONIA~ICELAND~MOLDAVIA~DOMINICA~LUXEMBURGO~TANZANIA, UNITED REPUBLIC O~CAMEROON~LITHUANIA~QATAR~VIRGIN ISLANDS (BRIT~CROACIA~IRAN (ISLAMIC REPUBL~GEORGIA~BELARUS~COTE DIVOIRE~MONACO~SENEGAL~LIECHTENSTEIN~TRINIDAD AND TOBAGO~MALTA~BRITISH INDIAN OCEAN TERRIT~BOSNIA HERZEGOVINA~BAHRAIN~SERBIA Y MONTENEGRO~SWAZILAND~BAHAMAS~SAN MARINO~LEBANON~NIGERIA~BELIZE~TADJIKISTAN~ESTADOS UNIDOS ISLAS MENORE~CURAZAO~JAMAICA~GUINEA-BISSAU~CAYMAN ISLANDS~SAMOA~ETIOPIA~LESOTHO~MACEDONIA, ANTIGUA REPUBLIC~KIRIBATI~MICRONESIA, FEDERATED STATE~VANUATU~SAINT LUCIA~MACAU~NEPAL~SYRIAN ARAB REPUBLIC~ALGERIA~GUINEA~SURINAME~UNITED KINGDOM~VENEZUELA~KOREA, DEMOCRATIC PEOPLE  REPUBLIC OF KOREA (NORTH)~OMAN~TOKELAU~ARUBA~CENTRAL AFRICAN REPU~COTE D`IVOIRE~SAINT KITTS AND NEVI~ZAMBIA~SIERRA LEONE~NUEVA CALEDONIA~CONGO~VIRGIN ISLANDS (U.S.~LIBERIA~SANTA ELENA, ASCENSIN Y TRI~AMERICAN SAMOA~KUWAIT~MOZAMBIQUE~BRUNEI DARUSSALAM~COCOS (KEELING),ISLAS~SANTA SEDE (CIUDAD DEL VATI~GUYANA~NAURU~CABO VERDE~SUDAN~NIGER~MALAWI~SAN VICENTE Y LAS GRANADINA~AFGHANISTAN~BENIN~ANTARTIDA~ANDORRA~MALDIVES~FIJI~SOMALIA~PAPUA NEW GUINEA~SEYCHELLES~SOLOMON ISLANDS~FAROE ISLANDS~SUDAN DEL SUR~LIBIA~GUAM~MARTINIQUE~CONGO, THE DEMOCRATIC REPUB~TOGO~FRENCH GUIANA~MARSHALL ISLANDS~TIMOR-LESTE~GUADELOUPE~KAZAKHSTAN~SAN BARTOLOME~IRAQ~MAURITANIA~REINO UNIDO DE GRAN BRETAÐA~FRENCH POLYNESIA~AZERBAIJAN~RUANDA~DJIBOUTI~ANTIGUA AND BARBUDA~COOK ISLANDS~COMOROS~NORFOLK. ISLA~MONGOLIA, REPUBLICA POPULAR DE~ANGUILLA~NORTHERN MARIANA ISL~ANGOLA~GRENADA~BURKINA FASO~BERMUDA~JERSEY~"></entry>
+				
+				<!-- 厄瓜多尔出口搜索条件字段-->
+				<entry key="ecuador_export_conditionzhname" value="国家：,海关编码：,FOB价格：,数量：,产品描述：,抵达港：,日期：,目的国：,进口商：,出口商："></entry>
+				<entry key="ecuador_export_conditionfieldid" value="country,hscode,fobstartprice/fobendprice,startquantity/endquantity,goodsdesc,end_port,startdate/enddate,dest_country,importer,exporter"></entry>
+				<entry key="ecuador_export_conditionenname" value="country：,Custom number：,FOB price：,Amount：,Description：,Arrival Port:,Date：,Destination：,Importer:,Exporter:"></entry>
+				<!-- 需要添加翻译的字段id -->
+				<entry key="ecuador_export_trans" value="goodsdesc,exporter,importer,end_port"></entry>
+				<!-- 需要添加文本框描述的字段id -->
+				<entry key="ecuador_export_desc" value="hscode,goodsdesc,exporter,importer,end_port,dest_country"></entry>
+				<!-- 日期格式 -->
+				<entry key="ecuador_export_dateFormatter" value="yyyy-MM-dd"></entry>
+				<!-- 初始日期 -->
+				<entry key="ecuador_export_dateValue" value="2014-01-01,2014-12-31"></entry>
+				<!-- 厄瓜多尔出口下拉框显示字段 -->
+				<entry key="ecuador_export_select" value="dest"></entry>
+				<entry key="ecuador_export_dest" value="UNITED STATES~CHILE~FINLAND~BRAZIL~CUBA~PAISES BAJOS~CANADA~CHINA~SPAIN~INDIA~MEXICO~MALAYSIA~POLAND~COLOMBIA~RUSSIAN FEDERATION~BELGIUM~AZERBAIJAN~HUNGARY~DOMINICAN REPUBLIC~FRANCE~PERU~ARGENTINA~URUGUAY~REINO UNIDO DE GRAN BRETAÃ‘A~GERMANY~KUWAIT~THAILAND~PANAMA~COSTA RICA~ITALY~TAIWAN~JAPAN~GUATEMALA~ROMANIA~UKRAINE~MARTINIQUE~MOLDAVIA~GREECE~VENEZUELA~BAHRAIN~TURKEY~LITHUANIA~TRINIDAD AND TOBAGO~PORTUGAL~AUSTRALIA~VIET NAM~PUERTO RICO~PHILIPPINES~CZECIA~GEORGIA~GUADELOUPE~CROACIA~KAZAKHSTAN~PARAGUAY~SAUDI ARABIA~BELARUS~DENMARK~BOLIVIA~HONG KONG~KOREA, REPUBLIC OF KOREA (SOUTH)~SWITZERLAND~LATVIA~BULGARIA~SINGAPORE~UZBEKISTAN~SERBIA Y MONTENEGRO~UNITED ARAB EMIRATES~ESTONIA~SWEDEN~ICO~LIBIA~HONDURAS~ALBANIA~AMA~GHANA~BOSNIA HERZEGOVINA~NORWAY~NEW ZEALAND~INDONESIA~QATAR~KYRGYZSTAN~MOROCCO~SAINT LUCIA~EL SALVADOR~EGYPT~GUAM~TURKMENISTAN~AUSTRIA~CYPRUS~IRELAND~NICARAGUA~NETHERLANDS ANTILLES~TUNISIA~ANTIGUA AND BARBUDA~CIA~MALTA~BAHAMAS~ISRAEL~ETIOPIA~JORDAN~LEBANON~JAMAICA~HAITI~SOUTH AFRICA~IA~ARMENIA~SRI LANKA~CAYMAN ISLANDS~SYRIAN ARAB REPUBLIC~BARBADOS~MAYOTTE~SLOVENIA~U~LE~AÃ‘A~MANIA~OMBIA~CURAZAO~CAMEROON~NIGERIA~MYANMAR~ARUBA~OMAN~YEMEN~COTE DIVOIRE~ALGERIA~DOMINICA~GABON~REINO UNIDO DE GRAN BRETAÑA~AGUAS INTERNACIONALES~ECUADOR~CONGO~VIRGIN ISLANDS (U.S.~LIBERIA~AÑA~NA~SALVADOR~MALDIVES~TADJIKISTAN~ADA~CONGO, THE DEMOCRATIC REPUBLIC OF THE~KENYA~COTE D`IVOIRE~SURINAME~SAINT KITTS AND NEVI~ENTINA~GRENADA~BELIZE~LUXEMBURGO~MACEDONIA~SLOVAKIA~ANGOLA~BRUNEI DARUSSALAM~SAINT VINCENT AND TH~FALKLAND ISLANDS (MALVINAS)~FRENCH POLYNESIA~BANGLADESH~TA RICA~GUYANA~GUAY~KIRIBATI~GICA~FRENCH GUIANA~REINO UNIDO DE GRAN BRETA├æA~LIA~ADOR~PAKISTAN~BENIN~SIL~IRAN (ISLAMIC REPUBL~MONGOLIA, REPUBLICA POPULAR DE~NUEVA CALEDONIA~MOZAMBIQUE~NO UNIDO DE GRAN BRETAÑA~MADAGASCAR~ONESIA~UGANDA~SIERRA LEONE~ICELAND~TANZANIA, UNITED REP~REUNION~TUGAL~TEMALA~O VERDE~ZA~UBLICA DOMINICANA~ON~SAMOA~SENEGAL~CABO VERDE~GAPUR~GUINEA~PRE~SUDAN~MARSHALL ISLANDS~"></entry>
+				
+				<!-- 智利进口搜索条件字段-->
+				<entry key="chile_import_conditionzhname" value="国家：,海关编码：,CIF价格：,数量：,产品描述：,抵达港：,日期：,重量：,进口商：,起运港：,原产国："></entry>
+				<entry key="chile_import_conditionfieldid" value="country,hscode,cifstartprice/cifendprice,startquantity/endquantity,goodsdesc,end_port,startdate/enddate,startweight/endweight,importer,start_port,origin_country"></entry>
+				<entry key="chile_import_conditionenname" value="country：,Custom number：,CIF price：,Amount：,Description：,Arrival Port:,Date：,weight:,Importer:,Loadig port:,Origin："></entry>
+				<!-- 需要添加翻译的字段id -->
+				<entry key="chile_import_trans" value="goodsdesc,importer,end_port,start_port"></entry>
+				<!-- 需要添加文本框描述的字段id -->
+				<entry key="chile_import_desc" value="hscode,goodsdesc,importer,end_port,start_port,origin_country"></entry>
+				<!-- 日期格式 -->
+				<entry key="chile_import_dateFormatter" value="yyyy-MM-dd"></entry>
+				<!-- 初始日期 -->
+				<entry key="chile_import_dateValue" value="2014-01-01,2014-12-31"></entry>
+				<!-- 智利进口下拉框显示字段 -->
+				<entry key="chile_import_select" value="origin"></entry>
+				<entry key="chile_import_origin" value="U.S.A~CHINA~TAIWAN~SINGAPUR~ORIGEN O DESTINO NO PRECISADO~PERU~ZONA FRANCA IQUIQUE~ESPANA~ZONA FRANCA ARICA~BOLIVIA~INDIA~COREA DEL SUR~COLOMBIA~CANADA~BRASIL~ECUADOR~ITALIA~CHILE~ALEMANIA~HOLANDA~JAPON~PARAGUAY~THAILANDIA~FRANCIA~ARGENTINA~POLONIA~SUECIA~HUNGRIA~URUGUAY~REINO UNIDO~FINLANDIA~VIETNAM~TURQUIA~AUSTRALIA~BANGLADESH~REPUBLICA CHECA~MALASIA~FILIPINAS~ESLOVENIA~BELGICA~SUDAFRICA~AUSTRIA~SRI LANKA~PAKISTAN~MEXICO~SUIZA~PORTUGAL~HONG KONG~IRLANDA~PANAMA~EMIRATOS ARABES~DINAMARCA~INDONESIA~TUNEZ~BELARUS~COSTA RICA~ISRAEL~GUATEMALA~RUSIA~NUEVA ZELANDIA~TRINIDAD TOBAGO~EGIPTO~BOSNIA Y HERZEGOVINA~GEORGIA~GRECIA~RUMANIA~CROACIA~ARABIA SAUDITA~CABO VERDE~CAMBODIA~BULGARIA~HONDURAS~LUXEMBURGO~NORUEGA~TERRITORIO FRANCES EN AUSTRALIA~LETONIA~RF YUGOSLAVIA~REPUBLICA DOMINICANA~VENEZUELA~CUBA~PAIS DESCONOCIDO~JORDANIA~PUERTO RICO~COREA DEL NORTE~UCRANIA~REPUBLICA ESLOVACA~NEPAL~MARRUECOS~MALTA~EL SALVADOR~ESTONIA~KENIA~ZONA FRANCA PUNTA ARENAS~NICARAGUA~MALAWI~ARGELIA~LITUANIA~SAN VICENTE~TERRITORIO FRANCES EN RESTO DE AMERICA~LIECHTENSTEIN~MAURICIO~MADAGASCAR~UZBEKISTAN~SIERRA LEONA~ETIOPIA~ALBANIA~ISLANDIA~CHAD~ANTILLAS NEERLANDESAS~MYANMAR (EX-BIRMANIA)~BAHREIN~MONACO~ANDORRA~GHANA~ISLAS CAYMAN~UGANDA~MACAO~SENEGAL~JAMAICA~ZIMBABWE~CHECOESLOVAQUIA~ZAMBIA~CHIPRE~DOMINICA~BARBADOS~KASAJSTAN~FIJI~BAHAMAS~IRAN~NIGERIA~HAITI~LIBANO~SWAZILANDIA~MACEDONIA~MAURITANIA~ANGOLA~SAN MARINO~PAPUA NUEVA GUINEA~OMAN~TANZANIA~NAMIBIA~GRANADA~LESOTHO~KUWAIT~BELICE~AFGHANISTAN~QATAR~MOLDOVA~GUINEA ECUATORIAL~KIRGISTAN~BURKINA FASO~VANUATU~GABON~LAOS~COSTA DE MARFIL~SAMOA OCCIDENTAL~MICRONESIA~POLINESIA FRANCESA~MONSERRAT~546~MALI~TERRITORIO BRITANICO EN RESTO DE AMERICA~TURKMENISTAN~RANCHO DE NAVES~BERMUDAS~SURINAM~GUYANA~AZERBAIJAN~GUINEA~ISLAS VIRGENES BRITANICAS~ISLAS MALDIVAS~TIMOR ORIENTAL~IRAK~TERRITORIO HOLANDES EN RESTO DE AMERICA~CAMERUN~SEYCHELLES~NUEVA CALEDONIA~SIRIA~561~TERRITORIO DE DINAMARCA EN RESTO DE AMERICA~CONGO~REPUBLICA CENTRO AFRICANA~NIGER~"></entry>
+				
+				<!-- 智利出口搜索条件字段-->
+				<entry key="chile_export_conditionzhname" value="国家：,海关编码：,CIF价格：,数量：,产品描述：,抵达港：,日期：,重量：,出口商：,起运港：,目的国："></entry>
+				<entry key="chile_export_conditionfieldid" value="country,hscode,cifstartprice/cifendprice,startquantity/endquantity,goodsdesc,end_port,startdate/enddate,startweight/endweight,exporter,start_port,dest_country"></entry>
+				<entry key="chile_export_conditionenname" value="country：,Custom number：,CIF price：,Amount：,Description：,Arrival Port:,Date：,Weight:,Exporter:,Loadig port:,Destination："></entry>
+				<!-- 需要添加翻译的字段id -->
+				<entry key="chile_export_trans" value="goodsdesc,exporter,end_port,start_port"></entry>
+				<!-- 需要添加文本框描述的字段id -->
+				<entry key="chile_export_desc" value="hscode,goodsdesc,exporter,end_port,start_port,dest_country"></entry>
+				<!-- 日期格式 -->
+				<entry key="chile_export_dateFormatter" value="yyyy-MM-dd"></entry>
+				<!-- 初始日期 -->
+				<entry key="chile_export_dateValue" value="2014-01-01,2014-12-31"></entry>
+				<!-- 智利出口下拉框显示字段 -->
+				<entry key="chile_export_select" value="dest"></entry>
+				<entry key="chile_export_dest" value="PERU~INDONESIA~COLOMBIA~BRASIL~ECUADOR~AUSTRALIA~COSTA RICA~BOLIVIA~RANCHO DE NAVES~ARGENTINA~U.S.A~SINGAPUR~ARABIA SAUDITA~ITALIA~PARAGUAY~CUBA~MEXICO~TURQUIA~CANADA~INDIA~ZAMBIA~ESPANA~VENEZUELA~GUATEMALA~REPUBLICA CHECA~ALEMANIA~CHINA~PORTUGAL~TERRITORIO FRANCES EN RESTO DE AMERICA~HOLANDA~URUGUAY~NUEVA ZELANDIA~PANAMA~TAIWAN~FRANCIA~CAMBODIA~RUSIA~JAPON~LITUANIA~BELGICA~COREA DEL SUR~ISRAEL~VIETNAM~HONG KONG~PAIS DESCONOCIDO~SUECIA~AUSTRIA~QATAR~BARBADOS~REINO UNIDO~EMIRATOS ARABES~EGIPTO~POLONIA~BERMUDAS~MALASIA~UCRANIA~DINAMARCA~FINLANDIA~NORUEGA~EL SALVADOR~HONDURAS~NICARAGUA~GHANA~THAILANDIA~TRINIDAD TOBAGO~HUNGRIA~JAMAICA~BURUNDI~PUERTO RICO~COMBUSTIBLES Y LUBRICANTES~FILIPINAS~KUWAIT~REPUBLICA DOMINICANA~ESTONIA~IRLANDA~NIGERIA~JORDANIA~SURINAM~IRAK~MAURITANIA~GUYANA~KENIA~DOMINICA~BAHAMAS~ANTILLAS NEERLANDESAS~LUXEMBURGO~LETONIA~SUIZA~CHIPRE~SUDAFRICA~ISLANDIA~ISLAS MALDIVAS~GRECIA~ISLAS CAYMAN~TURCAS Y CAICOS~HAITI~TANZANIA~MOLDOVA~BELICE~ARUBA~ISLAS VIRGENES ESTADOS UNIDOS~LIECHTENSTEIN~OMAN~ORIGEN O DESTINO NO PRECISADO~SANTA LUCIA~BAHREIN~GUINEA ECUATORIAL~BANGLADESH~TUNEZ~SIERRA LEONA~GABON~ANTIGUA   BARBUDA~TOGO~UGANDA~RUMANIA~POLINESIA FRANCESA~ARMENIA~ARGELIA~MALTA~MAURICIO~GEORGIA~REPUBLICA DEMOCRATICA DEL CONGO~BENIN~BULGARIA~BURKINA FASO~LIBERIA~MARTINICA~SRI LANKA~GUAM~BELARUS~MARRUECOS~LIBANO~GUINEA~NEPAL~COSTA DE MARFIL~PAKISTAN~ANGOLA~KASAJSTAN~LIBIA~TERRITORIO HOLANDES EN RESTO DE AMERICA~MONGOLIA~COREA DEL NORTE~SEYCHELLES~ESLOVENIA~REPUBLICA ESLOVACA~ISLAS VIRGENES BRITANICAS~TERRITORIO BRITANICO EN RESTO DE AMERICA~TERRITORIO FRANCES EN AUSTRALIA~ANDORRA~RF YUGOSLAVIA~CONGO~CROACIA~TERRITORIO DE DINAMARCA EN RESTO DE AMERICA~GIBRALTAR~AZERBAIJAN~FIJI~SAN VICENTE~LAOS~NUEVA CALEDONIA~SWAZILANDIA~SAMOA OCCIDENTAL~YUGOESLAVIA~GRANADA~MALI~MONACO~MACAO~CABO VERDE~IRAN~ANGUILA~SIRIA~SUDAN~AFGHANISTAN~ISLAS TONGA~MADAGASCAR~TERRITORIO ESPANOL EN AFRICA~TADJIKISTAN~TERRITORIO FRANCES EN AFRICA~ETIOPIA~SENEGAL~MACEDONIA~CAMERUN~SAINT KITTS   NEVIS~BOSNIA Y HERZEGOVINA~NIGER~TERRITORIO BRITANICO EN AFRICA~DEPOSITO FRANCO~NAMIBIA~GAMBIA~MICRONESIA~PAPUA NUEVA GUINEA~MYANMAR (EX-BIRMANIA)~MOZAMBIQUE~ISLAS COOK~SAN MARINO~ZIMBABWE~KIRGISTAN~546~KIRIBATI~"></entry>
+			
+				
+				<!-- 哥伦比亚进口搜索条件字段-->
+				<entry key="colom_import_conditionzhname" value="国家：,海关编码：,CIF价格：,数量：,产品描述：,进口商：,出口商：,日期：,净重：,原产国："></entry>
+				<entry key="colom_import_conditionfieldid" value="country,hscode,cifstartprice/cifendprice,startquantity/endquantity,goodsdesc,importer,exporter,startdate/enddate,startnetweight/endnetweight,origin_country"></entry>
+				<entry key="colom_import_conditionenname" value="country：,Custom number：,CIF price：,Amount：,Description：,Importer:,Exporter:,Date：,Net weight:,Origin："></entry>
+				<!-- 需要添加翻译的字段id -->
+				<entry key="colom_import_trans" value="goodsdesc,exporter"></entry>
+				<!-- 需要添加文本框描述的字段id -->
+				<entry key="colom_import_desc" value="hscode,goodsdesc,exporter,origin_country"></entry>
+				<!-- 日期格式 -->
+				<entry key="colom_import_dateFormatter" value="yyyy-MM-dd"></entry>
+				<!-- 初始日期 -->
+				<entry key="colom_import_dateValue" value="2014-01-01,2014-12-31"></entry>
+				<!-- 哥伦比亚 进口下拉框显示字段-->
+				<entry key="colom_import_select" value="origin"></entry>
+				<entry key="colom_import_origin" value="CHINA~023~COREA (SUR) REP DE~TAILANDIA~ITALIA~ESPA?A~ESTADOS UNIDOS~JAPON~REINO UNIDO~063~FRANCIA~MEXICO~MALAYSIA~VIET NAM~INDONESIA~COLOMBIA~SINGAPUR~ESLOVAQUIA~BRASIL~CHILE~TAIWAN~PUERTO RICO~IRLANDA (EIRE)~REPUBLICA DOMINICANA~SENEGAL~SUECIA~CANADA~EL SALVADOR~087~REPUBLICA CHECA~SUIZA~HONG KONG~URUGUAY~CAMBOYA~FILIPINAS~RUMANIA~PAISES BAJOS~PERU~SRI LANKA~DINAMARCA~POLONIA~PORTUGAL~PAKISTAN~TUNICIA~081~COSTA RICA~PANAMA~069~MARRUECOS~INDIA~EMIRATOS ARABES UNIDOS~TURQUIA~HUNGRIA~GUATEMALA~ISRAEL~072~Zona Franca de Bogotá S.A.~LUXEMBURGO~BULGARIA~SUDAFRICA REPUBLICA DE~FINLANDIA~ECUADOR~Sociedad Operadora Zona Franca Industrial de Bienes y Servicios de Barranquilla ~CUBA~CAMERUN REP UNIDA DEL~NUEVA ZELANDA~097~HONDURAS~RUSIA~UCRANIA~COREA (NORTE) REPPOPDEM DE~VENEZUELA~HAITI~Zona Franca Permanente la Cayena~053~ESTONIA~UZBEKISTAN~GHANA~QATAR~NICARAGUA~NORUEGA~991~969~Ciudadela Internacional del Pacífico (Zona Franca del Pacífico)~Sociedad Operadora Zona Franca Industrial de Bienes y Servicios de Palmaseca~MADAGASCAR~ESLOVENIA~047~091~Sociedad Operadora Zona Franca Industrial de Bienes y Servicios Zona Franca S.A:~GRECIA~SAMOA~MONACO~MALTA~MONTSERRAT ISLA~Zona Franca de la Candelaria. Centro Internacional Cartagena de Indias. ~093~688~EGIPTO~AUSTRIA~PARAGUAY~ISLANDIA~JORDANIA~TRINIDAD Y TOBAGO~MACEDONIA~TERRITAUTONOMOS DE PALESTINA~Promotora Nacional de Zona Francas S.A. (Zona Franca de Ríonegro)~029~ALEMANIA~MALDIVAS~Zona Franca del Eje Cafetero~954~SAMOA AMERICANA~KENIA~041~LIECHTENSTEIN~013~IRAN REP ISLAMICA DEL~LITUANIA~MOZAMBIQUE~017~043~LIBERIA~GEORGIA~SWASILANDIA~REUNION~027~VIRGENES ISLAS (REINO UNIDO)~LETONIA~CROACIA~MOLDAVIA~026~COSTA DE MARFIL~NIGERIA~TURKMENISTAN~KIRGUIZISTAN~989~037~SEYCHELLES~MAURICIO~Sociedad Operadora Zona Franca Industrial de Bienes y Servicios Sofraza  S.A. (Z~Zona Franca Tayrona s.a.~UGANDA~NEPAL~YUGOSLAVIA~SURINAM~MALI~CAIMAN ISLAS~GUYANA~Zona Franca Permanente Especial GYPLAC S.A.~077~ERITREA~SANTA LUCIA~040~NUEVA CALEDONIA~BENIN~BANGLADESH~SAN MARINO~AUSTRALIA~083~TOKELAU~SIERRA LEONA~GIBRALTAR~GUINEA~MALAWI~MAURITANIA~BELGICA~NAMIBIA~ANTILLAS HOLANDESAS~PITCAIRN ISLA~088~LAOS REPPOP DEMOCRATICA DE~NIUE ISLA~LESOTHO~KAZAJSTAN~LIBANO~Zona Franca Industrial de Bienes y Servicios de Cúcuta~NAURU~SIRIA REP ARABE DE~REPUBLICA CENTROAFRICANA~130~OMAN~CHAD~SANTA SEDE~CONGO REPUBLICA DEL~953~074~SANTA ELENA~POLINESIA FRANCESA~JAMAICA~MACAO~BUTAN~BOSNIA Y HERZEGOVINA~ARGENTINA~REPUBDEMOCRATICA DEL CONGO~BURUNDI~BOLIVIA~ARUBA~ARABIA SAUDITA~CHIPRE~MYANMAR~BARBADOS~LIBIA~BELARUS~ALBANIA~Zona Franca las Americas~960~951~Zona Franca Permanente Intexmoda~DOMINICA~GUINEA BISSAU~ANDORRA~SANCRISTOBAL Y NIEVES~TANZANIA REP UNIDA DE~GABON~BRUNEI DARUSSALAM~BAHAMAS~SANTO TOME Y PRINCIPE~ANTIGUA Y BARBUDA~GROENLANDIA~ARGELIA~SOMALIA~ANGOLA~SUDAN~BAHREIN~BELICE~ARMENIA~AFGANISTAN~NIGER~AZERBAIJAN~IRAK~BURKINA FASO~TADJIKISTAN~964~TURCAS Y CAICOS ISLAS~BERMUDAS~PALAU ISLAS~626~BOTSWANA~KUWAIT~NAVIDAD (CHRISTMAS) ISLA~SALOMON ISLAS~ETIOPIA~PAPUASIA NUEVA GUINEA~GAMBIA~GUADALUPE~SAHARA OCCIDENTAL~ZIMBABWE~ANGUILLA~MARIANAS DE NORTE ISLAS~200~GUAYANA FRANCESA~"></entry>
+								
+				<!-- 哥伦比亚出口搜索条件字段-->
+				<entry key="colom_export_conditionzhname" value="国家：,海关编码：,FOB价格：,数量：,产品描述：,出口商：,日期：,净重：,目的国：,进口商："></entry>
+				<entry key="colom_export_conditionfieldid" value="country,hscode,fobstartprice/fobendprice,startquantity/endquantity,goodsdesc,exporter,startdate/enddate,startnetweight/endnetweight,dest_country,importer"></entry>
+				<entry key="colom_export_conditionenname" value="country：,Custom number：,FOB price：,Amount：,Description：,Exporter:,Date：,Net weight:,Destination：,Importer:"></entry>
+				<!-- 需要添加翻译的字段id -->
+				<entry key="colom_export_trans" value="goodsdesc,exporter,importer"></entry>
+				<!-- 需要添加文本框描述的字段id -->
+				<entry key="colom_export_desc" value="hscode,goodsdesc,exporter,importer,dest_country"></entry>
+				<!-- 日期格式 -->
+				<entry key="colom_export_dateFormatter" value="yyyy-MM-dd"></entry>
+				<!-- 初始日期 -->
+				<entry key="colom_export_dateValue" value="2014-01-01,2014-12-31"></entry>
+				<!-- 哥伦比亚 进口下拉框显示字段-->
+				<entry key="colom_export_select" value="dest"></entry>
+				<entry key="colom_export_dest" value="PANAMA~ESTADOS UNIDOS~ARUBA~JAPON~CANADA~Sociedad Operadora Zona Franca Industrial de Bienes y Servicios de Barranquilla S.A.~INDIA~SINGAPUR~CHINA~ESPA?A~BRASIL~COSTA RICA~CHILE~REPUBLICA DOMINICANA~PERU~PAISES BAJOS~PUERTO RICO~SUIZA~ECUADOR~NEPAL~BELGICA~BOLIVIA~GUATEMALA~VENEZUELA~ISRAEL~RUSIA~Zona Franca de Bogotá S.A.~GRECIA~DINAMARCA~COREA (SUR) REP DE~REINO UNIDO~MEXICO~HAITI~ALEMANIA~TRINIDAD Y TOBAGO~JAMAICA~TAIWAN~GUYANA~TUNICIA~INDONESIA~HONG KONG~Sociedad Operadora Zona Franca Industrial de Bienes y Servicios Zona Franca S.A: ( Zona Franca de Cartagena)~HUNGRIA~EMIRATOS ARABES UNIDOS~UCRANIA~ANTILLAS HOLANDESAS~PARAGUAY~SUDAFRICA REPUBLICA DE~URUGUAY~ITALIA~HONDURAS~SURINAM~CUBA~POLONIA~Zona Franca Permanente Especial Biocombustibles sostenibles del caribe S.A.~ARGENTINA~NUEVA ZELANDA~QATAR~NORUEGA~AUSTRALIA~LIBANO~ARABIA SAUDITA~EL SALVADOR~GHANA~LETONIA~REPUBLICA CHECA~FRANCIA~LIBIA~EGIPTO~BARBADOS~Ciudadela Internacional del Pacífico (Zona Franca del Pacífico)~NICARAGUA~TAILANDIA~Zona Franca Permanente Parque Industrial Dexton~VIET NAM~Zona Franca Permanente la Cayena~CAMERUN REP UNIDA DEL~DOMINICA~SAN VICENTE Y LAS GRANADINAS~MALAYSIA~SUECIA~SRI LANKA~GUADALUPE~NIGERIA~TANZANIA REP UNIDA DE~MARTINICA~FINLANDIA~IRAK~PAKISTAN~PORTUGAL~KENIA~GUAYANA FRANCESA~SIERRA LEONA~BELICE~ARMENIA~MONACO~TURQUIA~Promotora Nacional de Zona Francas S.A. (Zona Franca de Ríonegro)~BAHAMAS~JORDANIA~KUWAIT~BELARUS~MARSHALL ISLAS~BULGARIA~KAZAJSTAN~ESLOVAQUIA~FILIPINAS~BAHREIN~Zona Franca Industrial de Bienes y Servicios de Cúcuta~AUSTRIA~CROACIA~LITUANIA~ZAMBIA~RUMANIA~GUAM~SANTA LUCIA~ESTONIA~BENIN~CONGO REPUBLICA DEL~OMAN~COMORAS~Zona Franca de la Candelaria. Centro Internacional Cartagena de Indias. ~SIRIA REP ARABE DE~REPUBDEMOCRATICA DEL CONGO~SENEGAL~ANGOLA~Zona Franca Permanente Especial GYPLAC S.A.~MYANMAR~COSTA DE MARFIL~ANTIGUA Y BARBUDA~MAURITANIA~YEMEN~MAURICIO~CAIMAN ISLAS~IRLANDA (EIRE)~CHIPRE~MALTA~GRANADA~MADAGASCAR~CAMBOYA~MARRUECOS~SEYCHELLES~SANCRISTOBAL Y NIEVES~BOTSWANA~SUDAN~AZERBAIJAN~AFGANISTAN~ISLANDIA~PALAU ISLAS~KIRGUIZISTAN~UZBEKISTAN~ARGELIA~Sociedad Operadora Zona Franca Industrial de Bienes y Servicios de Palmaseca~GEORGIA~ANGUILLA~LIBERIA~IRAN REP ISLAMICA DEL~MACAO~DJIBOUTI~GABON~966~TURKMENISTAN~MOZAMBIQUE~MOLDAVIA~BERMUDAS~VIRGENES ISLAS (REINO UNIDO)~FIDJI~REUNION~ESLOVENIA~MACEDONIA~RUANDA~GUINEA~UGANDA~NIGER~BANGLADESH~999~MALDIVAS~953~TADJIKISTAN~TOGO~Zona Franca Permanente Especial KCAG~ALBANIA~688~MONGOLIA~CABO VERDE~ETIOPIA~NAMIBIA~TURCAS Y CAICOS ISLAS~958~LUXEMBURGO~MONTSERRAT ISLA~130~989~624~Zona Franca Permanente Intexmoda~GUINEA ECUATORIAL~TERRITAUTONOMOS DE PALESTINA~POLINESIA FRANCESA~BURUNDI~COREA (NORTE) REPPOPDEM DE~NUEVA CALEDONIA~MALAWI~954~ZIMBABWE~960~Zona Franca del Eje Cafetero~PAPUASIA NUEVA GUINEA~VIRGENES ISLAS (ESTADOS UNIDO~SWASILANDIA~134~976~MALI~Sociedad Operadora Zona Franca Industrial de Bienes y Servicios Sofraza  S.A. (Zona Franca de Santa Marta)~BRUNEI DARUSSALAM~200~699~98~729~"></entry>
+				
+				
+				<!-- 巴西进口搜索条件字段-->
+				<entry key="brazil_import_conditionzhname" value="国家：,海关编码：,FOB价格：,数量：,产品描述：,进口商：,日期：,净重：,原产国："></entry>
+				<entry key="brazil_import_conditionfieldid" value="country,hscode,fobstartprice/fobendprice,startquantity/endquantity,goodsdesc,importer,startdate/enddate,startnetweight/endnetweight,origin_country"></entry>
+				<entry key="brazil_import_conditionenname" value="country：,Custom number：,CIF price：,Amount：,Description：,Importer:,Exporter:,Date：,Net weight:,Origin："></entry>
+				<!-- 需要添加翻译的字段id -->
+				<entry key="brazil_import_trans" value="goodsdesc,importer"></entry>
+				<!-- 需要添加文本框描述的字段id -->
+				<entry key="brazil_import_desc" value="hscode,goodsdesc,importer,origin_country"></entry>
+				<!-- 日期格式 -->
+				<entry key="brazil_import_dateFormatter" value="MM/yyyy"></entry>
+				<!-- 初始日期 -->
+				<entry key="brazil_import_dateValue" value="01/2014,12/2014"></entry>
+				<!-- 巴西进口下拉框显示字段 -->
+				<entry key="brazil_import_select" value="origin"></entry>
+				<entry key="brazil_import_origin" value="CHINA, REPUBLICA POPULAR~INDIA~SUECIA~ITALIA~FRANCA~BELGICA~ALEMANHA~JAPAO~ESTADOS UNIDOS~COREIA, REP.POP.DEMOCRATICA~ESLOVACA, REPUBLICA~REINO UNIDO~TURQUIA~CHILE~ESPANHA~COLOMBIA~FORMOSA (TAIWAN)~PAISES BAIXOS (HOLANDA)~COREIA, REPUBLICA DA~RUSSIA, FEDERACAO DA~HONG KONG~ARGENTINA~REPUBLICA DOMINICANA~PORTUGAL~VIETNA~SUICA~DINAMARCA~AFRICA DO SUL~INDONESIA~TCHECA, REPUBLICA~AUSTRIA~CANADA~BOLIVIA~NORUEGA~MEXICO~TRINIDAD E TOBAGO~VENEZUELA~FINLANDIA~BAHREIN, ILHAS~UCRANIA~ESLOVENIA, REPUBLICA DA~AUSTRALIA~PARAGUAI~TAILANDIA~CINGAPURA~URUGUAI~EGITO~LUXEMBURGO~SERVIA~POLONIA, REPUBLICA DA~ROMENIA~PERU~ISRAEL~IRLANDA~COSTA RICA~HUNGRIA, REPUBLICA DA~MARROCOS~EMIRADOS ARABES UNIDOS~FILIPINAS~MALASIA~NOVA ZELANDIA~LIECHTENSTEIN~HONDURAS~BRASIL~ESTONIA, REPUBLICA DA~GRECIA~LITUANIA, REPUBLICA DA~PANAMA~QUENIA~BULGARIA, REPUBLICA DA~MARSHALL,ILHAS~MOLDOVA, REPUBLICA DA~PAQUISTAO~GIBRALTAR~IRA, REPUBLICA ISLAMICA DO~MONACO~TUNISIA~PORTO RICO~LETONIA, REPUBLICA DA~CROACIA (REPUBLICA DA)~ISLANDIA~BOSNIA-HERZEGOVINA (REPUBLIC~ARABIA SAUDITA~SRI LANKA~MALTA~MACAU~LIBANO~OMA~FEROE, ILHAS~BANGLADESH~CAMBOJA~MACEDONIA, ANT.REP.IUGOSLAVA~ALBANIA, REPUBLICA DA~CAZAQUISTAO, REPUBLICA DO~SAMOA~NICARAGUA~ANGOLA~EQUADOR~BELARUS, REPUBLICA DA~GEORGIA, REPUBLICA DA~ZIMBABUE~ANTIGUA E BARBUDA~SAN MARINO~BAHAMAS, ILHAS~LAOS, REP.POP.DEMOCR.DO~MAURICIO~SENEGAL~CONGO~NIGERIA~CHIPRE~NIUE,ILHA~NORFOLK,ILHA~SUAZILANDIA~DOMINICA,ILHA~VIRGENS,ILHAS (E.U.A.)~UZBEQUISTAO, REPUBLICA DO~IRAQUE~VIRGENS,ILHAS (BRITANICAS)~LESOTO~GUIANA~FALKLAND (ILHAS MALVINAS)~REPUBLICA CENTRO-AFRICANA~ARMENIA, REPUBLICA DA~BELIZE~ANTILHAS HOLANDESAS~SAO TOME E PRINCIPE, ILHAS~LIBERIA~MADAGASCAR~SIRIA, REPUBLICA ARABE DA~TOGO~SERRA LEOA~SOMALIA~ARGELIA~CAYMAN, ILHAS~ZAIRE~CUBA~GUATEMALA~CATAR~GANA~CABO VERDE, REPUBLICA DE~ANDORRA~ZAMBIA~EL SALVADOR~CHADE~NIGER~BOTSUANA~COSTA DO MARFIM~TURCOMENISTAO, REPUBLICA DO~MICRONESIA~SAO CRISTOVAO E NEVES,ILHAS~BARBADOS~BRUNEI~GAMBIA~NEPAL~AFEGANISTAO~MADEIRA, ILHA DA~REUNIAO, ILHA~ETIOPIA~TOQUELAU,ILHAS~COVEITE~MALI~AZERBAIJAO, REPUBLICA DO~MIANMAR (BIRMANIA)~NAMIBIA~PAPUA NOVA GUINE~MONTSERRAT,ILHAS~JAMAICA~BUTAO~SUDAO~COCOS(KEELING),ILHAS~BURKINA FASO~ANGUILLA~SAO VICENTE E GRANADINAS~GUINE-EQUATORIAL~BURUNDI~HAITI~SURINAME~TANZANIA, REP.UNIDA DA~COMORES, ILHAS~CAMAROES~MALAVI~POLINESIA FRANCESA~SANTA LUCIA~BENIN~FIJI~MOCAMBIQUE~MONGOLIA~ERITREIA~JORDANIA~CANARIAS, ILHAS~CANAL, ILHAS DO (JERSEY E GUER~GUIANA FRANCESA~PALAU~NOVA CALEDONIA~MONTENEGRO~TADJIQUISTAO, REPUBLICA DO~GABAO~SEYCHELLES~SANTA HELENA~MALDIVAS~RUANDA~VANUATU~UGANDA~WALLIS E FUTUNA, ILHAS~GUINE-BISSAU~NAO DECLARADOS~GUADALUPE~ARUBA~IEMEN~CHRISTMAS,ILHA (NAVIDAD)~WAKE, ILHA~JOHNSTON, ILHAS~TONGA~GUINE~TURCAS E CAICOS,ILHAS~QUIRGUIZ, REPUBLICA~PITCAIRN,ILHA~BANCOS CENTRAIS~MAURITANIA~TIMOR LESTE~LIBIA~SAMOA AMERICANA~GROENLANDIA~COOK, ILHAS~PACIFICO,ILHAS DO (POSSESSAO~VATICANO, EST.DA CIDADE DO~MAN, ILHA DE~NAURU~KIRIBATI~MARIANAS DO NORTE~"></entry>
+			
+				
+				<!-- 委内瑞拉进口搜索条件字段-->
+				<entry key="vnrl_import_conditionzhname" value="国家：,海关编码：,FOB价格：,重量：,产品描述：,进口商：,日期：,原产国：,起运港："></entry>
+				<entry key="vnrl_import_conditionfieldid" value="country,hscode,fobstartprice/fobendprice,startweight/endweight,goodsdesc,importer,startdate/enddate,origin_country,start_port"></entry>
+				<entry key="vnrl_import_import_conditionenname" value="country：,Custom number：,FOB price：,weight:,Description：,Importer:,Date:,Origin：,Loadig port:"></entry>
+				<!-- 需要添加翻译的字段id -->
+				<entry key="vnrl_import_trans" value="goodsdesc,importer,start_port"></entry>
+				<!-- 需要添加文本框描述的字段id -->
+				<entry key="vnrl_import_desc" value="hscode,goodsdesc,importer,start_port,origin_country"></entry>
+				<!-- 日期格式 -->
+				<entry key="vnrl_import_dateFormatter" value="MM/yyyy"></entry>
+				<!-- 初始日期 -->
+				<entry key="vnrl_import_dateValue" value="01/2014,12/2014"></entry>
+				<!-- 委内瑞拉进口下拉框显示字段 -->
+				<entry key="vnrl_import_select" value="origin"></entry>
+				<entry key="vnrl_import_origin" value="PERU~ECUADOR~ARGENTINA~JAPON~CHILE~NORUEGA~ESTADOS UNIDOS~ALEMANIA~FRANCIA~NICARAGUA~URUGUAY~BRASIL~COSTA RICA~COLOMBIA~NUEVA ZELANDA~BIELORRUSIA (BELARUS)~PORTUGAL~ESPAÐA~HOLANDA~AUSTRIA~MEXICO~ITALIA~CANADA~LIBANO~MARRUECOS~INDIA~CHINA~SRI LANKA~INDONESIA~MADAGASCAR~BULGARIA~TURQUIA~GUYANA~DINAMARCA~BELGICA~SUECIA~PANAMA~TAILANDIA~SUDAFRICA~POLONIA~FILIPINAS~REINO UNIDO~ERITREA~REPUBLICA ARABE DE SIRIA~GUATEMALA~PARAGUAY~MALASIA~TAIWAN,PROVINCIA DE CHINA~BOLIVIA~REPUBLICA DOMINICANA~IRLANDA~SUIZA~SINGAPUR~TIMOR ORIENTAL~EL SALVADOR~FINLANDIA~HONG KONG~EGIPTO~PUERTO RICO~UCRANIA~ANTILLAS HOLANDESAS~REP.POPULAR DEMOCRATICA DE COREA~REPUBLICA DE COREA~FEDERACION RUSA~TUNEZ~REPUBLICA CHECA~GRECIA~HUNGRIA~ESLOVAQUIA~EMIRATOS ARABES UNIDOS~ISRAEL~BELICE~CUBA~AUSTRALIA~LIECHTENSTEIN~HONDURAS~BARBADOS~REPUBLICA ISLAMICA DE IRAN~JORDANIA~BRUNEI DARUSSALAM~QATAR~ANGOLA~ISLAS VIRGENES BRITANICAS~ARABIA SAUDITA~ARUBA~CURAZAO~NIGERIA~PAKISTAN~RUMANIA~ESLOVENIA~VIETNAM~TRINIDAD Y TOBAGO~KUWAIT~BANGLADESH~ISLA ASCENCION~MALTA~KENIA~LETONIA~LUXEMBURGO~MACAO~CAMBOYA~ALBANIA~OMAN~ISLAS WALLIS Y FUTUNA~ANTIGUA Y BARBUDA~ESTONIA~NAURU~MAURITANIA~SIERRA LEONA~ARMENIA~LITUANIA~MAYOTTE~JAMAICA~SURINAM~VENEZUELA~SAHARA OCCIDENTAL~ZIMBABWE~REP.POPULAR DEMOCRATICA DE LAOS~UGANDA~LIBIA~GEORGIA~REPUBLICA UNIDA DE TANZANIA~HAITI~ETIOPIA~CROACIA~SUDAN~BAHREIN~MYANMAR (BIRMANIA)~MONTSERRAT~SAN MARINO~KIRGISTAN~BOSNIA Y HERZEGOVINA~ISLAS SALOMON~CHIPRE~ANTARTICA~KAZAJSTAN~ISLANDIA~ISLAS MENORES DE LOS E.E.U.U~BERMUDA~MAURICIO~Nom Pais Origen~ESTADOS FEDERADOS DE MICRONESIA~ANDORRA~COSTA DE MARFIL~SAN VINCENTE Y LAS GRANADINAS~NAMIBIA~VANUATU~NIUE~PALESTINA~IRAK~TOKELAU~ISLAS VIRGENES DE ESTADOS UNIDOS~CABO VERDE~SERBIA~UZBEKISTAN~CAMERUN~SAMOA AMERICANA~"></entry>
+				
+				
+				<!-- 委内瑞拉出口搜索条件字段-->
+				<entry key="vnrl_export_conditionzhname" value="国家：,海关编码：,FOB价格：,重量：,产品描述：,出口商：,日期：,目的国：,抵达港："></entry>
+				<entry key="vnrl_export_conditionfieldid" value="country,hscode,fobstartprice/fobendprice,startweight/endweight,goodsdesc,exporter,startdate/enddate,dest_country,end_port"></entry>
+				<entry key="vnrl_export_conditionenname" value="country：,Custom number：,FOB price：,Weight:,Description：,Exporter:,Date：,Destination：,Arrival Port:"></entry>
+				<!-- 需要添加翻译的字段id -->
+				<entry key="vnrl_export_trans" value="goodsdesc,exporter,end_port"></entry>
+				<!-- 需要添加文本框描述的字段id -->
+				<entry key="vnrl_export_desc" value="hscode,goodsdesc,exporter,end_port,dest_country"></entry>
+				<!-- 日期格式 -->
+				<entry key="vnrl_export_dateFormatter" value="MM/yyyy"></entry>
+				<!-- 初始日期 -->
+				<entry key="vnrl_export_dateValue" value="01/2014,12/2014"></entry>
+				<!-- 委内瑞拉出口下拉框显示字段 -->
+				<entry key="vnrl_export_select" value="dest"></entry>
+				<entry key="vnrl_export_dest" value="ESTADOS UNIDOS~CHILE~PANAMA~NICARAGUA~MEXICO~CURAZAO~FRANCIA~CUBA~HONG KONG~ANTILLAS HOLANDESAS~ARUBA~COLOMBIA~HOLANDA~JAPON~ALEMANIA~BRASIL~ITALIA~SAN VINCENTE Y LAS GRANADINAS~MARTINICA~GUADALUPE~CHINA~TRINIDAD Y TOBAGO~TURQUIA~COSTA RICA~ECUADOR~BELGICA~SUECIA~POLONIA~ARGENTINA~SUIZA~FILIPINAS~IRLANDA~EL SALVADOR~ESPAÐA~REPUBLICA DOMINICANA~PERU~INDIA~TAIWAN,PROVINCIA DE CHINA~GRECIA~CANADA~EGIPTO~REINO UNIDO~PORTUGAL~REPUBLICA DE COREA~AUSTRIA~FEDERACION RUSA~VIETNAM~ISRAEL~EMIRATOS ARABES UNIDOS~GUATEMALA~TAILANDIA~URUGUAY~SAN TOME Y PRINCIPE~PUERTO RICO~JAMAICA~HONDURAS~SINGAPUR~BOLIVIA~ARABIA SAUDITA~ANTIGUA Y BARBUDA~LIBANO~FINLANDIA~AUSTRALIA~INDONESIA~PARAGUAY~SURINAM~ANGOLA~RUMANIA~SAN CRISTOBAL Y NEVIS~QATAR~HAITI~KAZAJSTAN~OMAN~DOMINICA~MARRUECOS~KUWAIT~COSTA DE MARFIL~MALASIA~CONGO (CONGO BRAZZAVILLE)~SUDAFRICA~ESLOVENIA~BARBADOS~LUXEMBURGO~REPUBLICA CENTRO AFRICANA~AZERBAIYAN~GUYANA~"></entry>
+				
+				
+				<!-- 巴拿马进口搜索条件字段-->
+				<entry key="panama_import_conditionzhname" value="国家：,海关编码：,CIF价格：,重量：,产品描述：,进口商：,日期：,数量：,原产国：,抵达港："></entry>
+				<entry key="panama_import_conditionfieldid" value="country,hscode,cifstartprice/cifendprice,startweight/endweight,goodsdesc,importer,startdate/enddate,startquantity/endquantity,origin_country,end_port"></entry>
+				<entry key="panama_import_conditionenname" value="country：,Custom number：,CIF price：,Weight:,Description：,Importer:,Date：,Amount:,Origin：,Arrival Port:"></entry>
+				<!-- 需要添加翻译的字段id -->
+				<entry key="panama_import_trans" value="goodsdesc,importer,end_port"></entry>
+				<!-- 需要添加文本框描述的字段id -->
+				<entry key="panama_import_desc" value="hscode,goodsdesc,importer,end_port,origin_country"></entry>
+				<!-- 日期格式 -->
+				<entry key="panama_import_dateFormatter" value="yyyy-MM-dd"></entry>
+				<!-- 初始日期 -->
+				<entry key="panama_import_dateValue" value="2014-01-01,2014-12-31"></entry>
+				<!-- 巴拿马进口下拉框显示字段 -->
+				<entry key="panama_import_select" value="origin"></entry>
+				<entry key="panama_import_origin" value="REPUBLICA DE TAIWAN~ESTADOS UNIDOS DE NORTEAMERICA~ESPANA~REPUBLICA DE COREA~FEDERACION DE RUSIA~COLOMBIA~CHINA~MEXICO~ALEMANIA~PERU~GUATEMALA~EL SALVADOR~ITALIA~CANADA~ARGENTINA~REPUBLICA CHECA~BRASIL~COSTA RICA~ZONA LIBRE DE COLON~INDIA~PANAMA~PAKISTAN~SWITZERLAND~PUERTO RICO~JAPON~FRANCIA~TUNISIA~CHILE~DINAMARCA~TURQUIA~ISRAEL~TAILANDIA~VIET NAM~IRLANDA~ECUADOR~HOLANDA, NEDERLAND~HONDURAS~HONG KONG~REPUBLICA DOMINICANA~URUGUAY~REINO UNIDO~BELGICA~VENEZUELA~SUECIA~SINGAPUR~SUIZA~NICARAGUA~NUEVA ZELANDIA~HUNGRIA~INDONESIA~MALASIA~RSS DE UCRANIA~Zona Especial~BARBADOS~UKRANIA~AUSTRIA~AUSTRALIA~TUNEZ~ISLAS, VIRGENES BRITANICAS~PORTUGAL~POLONIA~EGIPTO~BELIZE~JAMAICA~RUMANIA~FILIPINAS~ARABIA SAUDITA~EMIRATOS ARABES UNIDOS~BAHAMAS~FINLANDIA~GUADALUPE~BANGLADESH~BULGARIA~MARRUECOS~CAMBODIA~MADAGASCAR~ALBANIA~CURAZAO~LITHUANIA~ESLOVAKIA~SUDAFRICA~TRINIDAD Y TOBAGO~MACAO~NORUEGA~ISLAS MENORES Y ALEJADAS D USA~CAMERUN~GUINEA ECUATORIAL~MALAWI~GRECIA~MALTA~GUYANA~COREA REP. POPULAR DEM. DE~GIBRALTAR~SRI LANKA~YEMEN~CROACIA~PARAGUAY~SUDAN~LATVIA (LETONIA)~CUBA~ESLOVENIA~MAURICIO~SAMOA~SANTO TOME Y PRINCIPE~UNION DE REP. SOC.  SOVIETICAS~ZAMBIA~**NO USAR ** UNION EUROPEA ~AREA DEL CANAL~SAINT KITTS Y NEVIS~ERITREA~ESTONIA~LIBANO~ISLAS VIRGENES, EE.UU.~BOSNIA Y HERZEGOVINA~CIUDAD DEL VATICANO (STA SEDE)~LIBERIA~Republica de Serbia~NAMIBIA~HAITI~MONACO~VANUATU~ANTIGUA Y BARBUDA~BOLIVIA~ZIMBABWE~FAEROE, ISLAS~CAIMAN , ISLAS~ISLANDIA~REPUBLICA DEM. POPULAR LAO~ESTADOS UNIDOS  NORTEAMERICA~HOLANDA, NERLAND~REPUBLICA  TAIWAN~AREA L CANAL~ZONA LIBRE  COLON~REPUBLICA  COREA~SWAZILANDIA~FERACION  RUSIA~LESOTHO~COREA REP. POPULAR M. ~BANGLASH~ARMENIA~RSS  UCRANIA~Republica  Serbia~REUNION~KENYA~ARUBA~FIJI ISLAS~SAN VICENTE Y LAS GRANADINAS~COTE D'IVOIRE~MOLDOVA~BRUNEI DARUSSALAM~IRAN REPUBLICA ISLAMICA DE~CHIPRE~SURINAME~SIERRA LEONA~ARGELIA~DJIBOUTI~LUXEMBURGO~NEPAL~GUAM~TURCAS Y CAICOS, ISLLAS~LIBYA~TURKMENISTAN~DOMINICA~GUINEA-BISSAU~ST. JOHNS~KYRGYSTAN~OMAN~UGANDA~GABON~CABO VERDE~ETHIOPIA~JORDANIA~REPUBLICA ARABE SIRIA~GEORGIA~ANTILLAS NEERLANDESAS~NIGERIA~UZBEKISTAN~QATAR~SAN MARINO~MACEDONIA~ANTARCTICA~TERR.BRITANICO DEL OCEAN INDIO~KIRIBATI~MONTSERRAT~MYANMAR, BIRMANIA~Sint Maarten   Antillas Holandesas~BOTSWANA~KUWAIT~FRANCE, METROPOL~WALLIS Y FUTUNA, ISLAS~GRANADA~LIECHTENSTEIN~BHUTAN~BELARUS~OCCIDENTAL AFRICA~ANGUILLA~TOGO~MARTINICA~IRAQ~ZAIRE~Pais de CURAZAO~REP. DEM.  CONGO~YUGOSLAVIA~SENEGAL~NUEVA CALEDONIA~CONGO~MALI~GHANA~NIUE~NIGER~MALDIVAS~Republica Democratica del Congo~COCOS, ISLAS~YEMEN DEMOCRATICO~TRANSITO POR PANAMA~GUINEA~TOKELAU~BIRMANIA~TANZANIA~SOUTH GEORGIA, S.S. ISLAS~TAJIKISTAN~SALOMON, ISLAS~HEARD Y MCDONALD, ISLAS~SANTA ELENA~MOZAMBIQUE~Montenegro~CHRISTMAS, ISLA~TONGA~COOK, ISLAS~"></entry>
+			
+				
+				<!-- 巴拿马出口搜索条件字段-->
+				<entry key="panama_export_conditionzhname" value="国家：,海关编码：,FOB价格：,重量：,产品描述：,出口商：,日期：,数量：,目的国：,起运港："></entry>
+				<entry key="panama_export_conditionfieldid" value="country,hscode,fobstartprice/fobendprice,startweight/endweight,goodsdesc,exporter,startdate/enddate,startquantity/endquantity,dest_country,start_port"></entry>
+				<entry key="panama_export_conditionenname" value="country：,Custom number：,FOB price：,weight:,Description：,Exporter:,Date:,Amount:,Destination：,Loadig port:"></entry>
+				<!-- 需要添加翻译的字段id -->
+				<entry key="panama_export_trans" value="goodsdesc,exporter,start_port"></entry>
+				<!-- 需要添加文本框描述的字段id -->
+				<entry key="panama_export_desc" value="hscode,goodsdesc,exporter,start_port,dest_country"></entry>
+				<!-- 日期格式 -->
+				<entry key="panama_export_dateFormatter" value="yyyy-MM-dd"></entry>
+				<!-- 初始日期 -->
+				<entry key="panama_export_dateValue" value="2014-01-01,2014-12-31"></entry>
+				<!-- 巴拿马出口下拉框显示字段 -->
+				<entry key="panama_export_select" value="dest"></entry>
+				<entry key="panama_export_dest" value="HONDURAS~INDIA~CHINA~REINO UNIDO~HOLANDA, NEDERLAND~ESTADOS UNIDOS DE NORTEAMERICA~ALEMANIA~ITALIA~NICARAGUA~COSTA RICA~BRASIL~ECUADOR~PUERTO RICO~HONG KONG~ANTILLAS NEERLANDESAS~BOLIVIA~REPUBLICA DE TAIWAN~CANADA~COLOMBIA~CHILE~TRINIDAD Y TOBAGO~VIET NAM~ARUBA~IRLANDA~TURQUIA~COREA REP. POPULAR DEM. DE~TAILANDIA~PANAMA~PORTUGAL~CUBA~ESPANA~EL SALVADOR~SURINAME~GUATEMALA~REPUBLICA DE COREA~SRI LANKA~FEDERACION DE RUSIA~SINGAPUR~JAPON~REPUBLICA DOMINICANA~JAMAICA~BAHAMAS~MEXICO~CURAZAO~DOMINICA~VENEZUELA~FRANCIA~PERU~ISLAS, VIRGENES BRITANICAS~LITHUANIA~EGIPTO~GUYANA~SANTA LUCIA~POLONIA~SUECIA~BELGICA~GEORGIA~INDONESIA~GUADALUPE~Sint Maarten   Antillas Holandesas~AUSTRALIA~CAIMAN , ISLAS~VANUATU~BARBADOS~ANTIGUA Y BARBUDA~MARTINICA~ARABIA SAUDITA~ARGENTINA~BELIZE~ANGOLA~HAITI~URUGUAY~SWITZERLAND~DINAMARCA~NORUEGA~GRANADA~BERMUDA~EMIRATOS ARABES UNIDOS~NUEVA ZELANDIA~JORDANIA~ESLOVENIA~GRECIA~MALASIA~UNION DE REP. SOC.  SOVIETICAS~ANGUILLA~PAKISTAN~REUNION~SUIZA~AUSTRIA~BOSNIA Y HERZEGOVINA~AZERBAIJAN~ALBANIA~ISRAEL~FILIPINAS~BURUNDI~FINLANDIA~NIGERIA~OMAN~HUNGRIA~KENYA~GHANA~LATVIA (LETONIA)~UKRANIA~GUAYANA FRANCESA~SUDAFRICA~MALI~PAPUA NUEVA GUINEA~QATAR~ISLAS MENORES Y ALEJADAS D USA~PARAGUAY~MALDIVAS~MALAWI~TANZANIA~KUWAIT~Pais de CURAZAO~SAN VICENTE Y LAS GRANADINAS~ZONA LIBRE DE COLON~DJIBOUTI~BANGLADESH~LIBERIA~SUDAN~ESLOVAKIA~ISLAS VIRGENES, EE.UU.~CABO VERDE~ESTONIA~SAINT KITTS Y NEVIS~"></entry>
+			
+				
+				<!-- 美国进口搜索条件字段-->
+				<entry key="usa_import_conditionzhname" value="国家：,提单号：,重量：,件数：,产品描述：,出口商：,日期：,起运港：,进口商：,通知人："></entry>
+				<entry key="usa_import_conditionfieldid" value="country,bl_number,startweight/endweight,startpackages/endpackages,goodsdesc,exporter,startdate/enddate,start_port,importer,notifier"></entry>
+				<entry key="usa_import_conditionenname" value="country：,Bill number：,weight:,#of Packages:,Description：,Exporter:,Date:,Loadig port:,Importer:,Notify:"></entry>
+				<!-- 需要添加翻译的字段id -->
+				<entry key="usa_import_trans" value="goodsdesc,importer,exporter,start_port,notifier"></entry>
+				<!-- 需要添加文本框描述的字段id -->
+				<entry key="usa_import_desc" value="bl_number,goodsdesc,importer,exporter,start_port,notifier"></entry>
+				<!-- 日期格式 -->
+				<entry key="usa_import_dateFormatter" value="yyyy-MM-dd"></entry>
+				<!-- 初始日期 -->
+				<entry key="usa_import_dateValue" value="2014-01-01,2014-12-31"></entry>
+				
+				<!-- 墨西哥进口搜索条件字段-->
+				<entry key="mexicon_import_conditionzhname" value="国家：,海关编码：,FOB价格：,数量：,产品描述：,日期：,原产国："></entry>
+				<entry key="mexicon_import_conditionfieldid" value="country,hscode,fobstartprice/fobendprice,startquantity/endquantity,goodsdesc,startdate/enddate,origin_country"></entry>
+				<entry key="mexicon_import_conditionenname" value="country：,Custom number：,FOB price：,Amount:,Description：,Date:,Origin："></entry>
+				<!-- 需要添加翻译的字段id -->
+				<entry key="mexicon_import_trans" value="goodsdesc"></entry>
+				<!-- 需要添加文本框描述的字段id -->
+				<entry key="mexicon_import_desc" value="hscode,goodsdesc,origin_country"></entry>
+				<!-- 日期格式 -->
+				<entry key="mexicon_import_dateFormatter" value="MM/yyyy"></entry>
+				<!-- 初始日期 -->
+				<entry key="mexicon_import_dateValue" value="01/2014,12/2014"></entry>
+				<!-- 墨西哥进口下拉框显示字段 -->
+				<entry key="mexico_import_origin" value="origin"></entry>
+				<entry key="mexico_import_origin" value="CHINA~SPAIN~ITALY~JAPAN~UNITED STATES~GERMANY~PERU~UNITED KINGDOM~BELGIUM~SWEDEN~NETHERLANDS~KOREA, REPUBLIC OF~THAILAND~AUSTRIA~FRANCE~SINGAPORE~PHILIPPINES~SWITZERLAND~POLAND~TAIWAN, PROVINCE OF CHINA~CZECH REPUBLIC~CANADA~TURKEY~HONDURAS~ESLOVAQUIA~IRELAND~INDIA~JORDAN~INDONESIA~BRAZIL~NORWAY~COLOMBIA~VIET NAM~CROATIA~NOT DECLARED~DENMARK~MALAYSIA~HUNGARY~ESTONIA~UKRAINE~ICELAND~ARGENTINA~ECUADOR~REUNION~COSTA RICA~PORTUGAL~LIECHTENSTEIN~NICARAGUA~DOMINICAN REPUBLIC~SLOVENIA~QATAR~ROMANIA~AUSTRALIA~TUNISIA~CURAZAO~PAKISTAN~FINLAND~MADAGASCAR~PUERTO RICO~GUATEMALA~KENYA~CHILE~SERBIA~SRI LANKA~HONG KONG~SOUTH AFRICA~ISRAEL~NEW ZEALAND~PANAMA~VENEZUELA~GREECE~BARBADOS~CAMBODIA~LUXEMBOURG~SENEGAL~URUGUAY~BANGLADESH~SWAZILAND~OTROS PAISES NO DECLARADOS DE LA UE~CAMEROON~IRAN, ISLAMIC REPUBLIC OF~BULGARIA~BOSNIA AND HERZEGOVINA~EGYPT~UNITED ARAB EMIRATES~LITHUANIA~BERMUDA~BOLIVIA~GHANA~MACAO~GEORGIA~REPUBLICA ARABE SIRIA~LATVIA~LESOTHO~PARAGUAY~KOREA, DEMOCRATIC PEOPLE S REPUBLIC OF~YUGOSLAVIA~GAMBIA~MARTINIQUE~MALI~NIGERIA~EL SALVADOR~GIBRALTAR~RUSSIAN FEDERATION~ANTIGUA AND BARBUDA~ALBANIA~MYANMAR~CHRISTMAS ISLAND~MONACO~BRITISH INDIAN OCEAN TERRITORY~MOROCCO~BAHRAIN~MOLDOVA, REPUBLIC OF~MALTA~BELARUS~MACEDONIA, THE FORMER YUGOSLAV REPUBLIC~DOMINICA~BRUNEI DARUSSALAM~GUYANA~HAITI~TRINIDAD AND TOBAGO~NETHERLANDS ANTILLES~ZAMBIA~JAMAICA~NAMIBIA~SVALBARD AND JAN MAYEN~UGANDA~ARUBA~LEBANON~WALLIS AND FUTUNA~AFGHANISTAN~NEPAL~SAN MARINO~SAINT LUCIA~BAHAMAS~SAINT HELENA~MICRONESIA, FEDERATED STATES OF~C?′D IVOIRE~NEW CALEDONIA~SURINAME~CENTRAL AFRICAN REPUBLIC~UZBEKISTAN~GUINEA~SAUDI ARABIA~NIGER~BELIZE~PITCAIRN~NORTHERN MARIANA ISLANDS~FRENCH POLYNESIA~SOMALIA~MAURITANIA~TURKS AND CAICOS ISLANDS~CYPRUS~MONTSERRAT~ANDORRA~SAINT VINCENT AND THE GRENADINES~SAINT KITTS AND NEVIS~GRENADA~COCOS (KEELING) ISLANDS~CONGO, THE DEMOCRATIC REPUBLIC OF THE~TURKMENISTAN~MOZAMBIQUE~MAURITIUS~TANZANIA, UNITED REPUBLIC OF~CAPE VERDE~ANGUILA~KAZAKHSTAN~PANAMA CANAL ZONE~SAMOA~MALDIVES~VANUATU~MONGOLIA~VIRGIN ISLANDS, BRITISH~ARMENIA~CHANNEL ISLAND~CUBA~TADJIKISTAN~ALGERIA~GABON~TUVALU~BHUTAN~MALAWI~ISLAS VIRGENES (EU)~MARSHALL ISLANDS~ETHIOPIA~SIERRA LEONE~PALAU~NAURU~CAYMAN ISLANDS~ZIMBABWE~AZERBAIJAN~FIJI~SAO TOME AND PRINCIPE~SUDAN~DJIBOUTI~MONTENEGRO~RWANDA~PACIFIC ISLANDS, TRUST TERRITORY OF THE~BOTSWANA~LAO PEOPLE S DEMOCRATIC REPUBLIC~COMOROS~BURUNDI~LIBYAN ARAB JAMAHIRIYA~NEUTRAL ZONE IRAQ - SAUDI ARABIA~KYRGYZSTAN~IRAQ~YEMEN~ZAIRE~KIRIBATI~WESTERN SAHARA~HOLY SEE (VATICAN CITY STATE)~PAPUA NEW GUINEA~CHAD~ANGOLA~NIUE~ERITREA~KUWAIT~GUINEA-BISSAU~SOLOMON ISLANDS~ISLAS TOKELAU~BENIN~BURKINA FASO~SEYCHELLES~PAISES NO IDENTIFICADOS~OMAN~COOK ISLANDS~LIBERIA~HEARD ISLAND AND MCDONALD ISLANDS~FALKLAND ISLANDS (MALVINAS)~PALESTINIAN TERRITORY, OCCUPIED~GUADELOUPE~FRENCH GUIANA~TONGA~GUAM~EQUATORIAL GUINEA~TOGO~TIMOR-LESTE~FRENCH SOUTHERN AND ANTARCTIC TERRITORIE~NORFOLK ISLAND~SAINT PIERRE AND MIQUELON~CÃ´D IVOIRE ~CôD IVOIRE ~"></entry>
+				
+				
+				<!-- 洪都拉斯进口搜索条件字段-->
+				<entry key="honduras_import_conditionzhname" value="国家：,海关编码：,CIF价格：,重量：,产品描述：,日期：,原产国："></entry>
+				<entry key="honduras_import_conditionfieldid" value="country,hscode,cifstartprice/cifendprice,startweight/endweight,goodsdesc,startdate/enddate,origin_country"></entry>
+				<entry key="honduras_import_conditionenname" value="country：,Custom number：,CIF price：,Weight:,Description：,Date:,Origin："></entry>
+				<!-- 需要添加翻译的字段id -->
+				<entry key="honduras_import_trans" value="goodsdesc"></entry>
+				<!-- 需要添加文本框描述的字段id -->
+				<entry key="honduras_import_desc" value="hscode,goodsdesc,origin_country"></entry>
+				<!-- 日期格式 -->
+				<entry key="honduras_import_dateFormatter" value="MM/yyyy"></entry>
+				<!-- 初始日期 -->
+				<entry key="honduras_import_dateValue" value="01/2014,12/2014"></entry>
+				<!-- 洪都拉斯 -->
+				<entry key="honduras_import_select" value="origin"></entry>
+				<entry key="honduras_import_origin" value="UNITED STATES ~UNITED KINGDOM ~TURKEY ~TUNISIA ~UKRAINE ~KOREA, DEM PEOPLE S REP~KOREA, REPUBLIC OF~JORDAN~MEXICO~MOZAMBIQUE~MOROCCO~UNITED ARAB EMIRATES ~TAIWAN, PROVINCE OF CHINA~THAILAND~TRINIDAD AND TOBAGO~SYRIAN ARAB REPUBLIC~CHINA~COLOMBIA~GERMANY, FEDERAL REPUBLIC OF~GUATEMALA~GREAT BRITAIN~CANADA~NICARAGUA~NETHERLANDS~NEW ZEALAND~NOT DEFINED~PANAMA~NOT DECLARED~PAKISTAN~NORWAY~PHILIPPINES~ROMANIA~POLAND~PORTUGAL~PERU~PUERTO RICO~PARAGUAY~RUSSIAN FEDERATION~SAUDI ARABIA~SERBIA AND MONTENEGRO~SPAIN~SOUTH AFRICA~SINGAPORE~SLOVENIA~SLOVAKIA~URUGUAY~VIET NAM~VENEZUELA~ZIMBABWE~CHILE~GREECE~SOMALIA~INDIA~ITALY~JAPAN~IRELAND~JAMAICA~INDONESIA~ISRAEL~LEBANON~LESOTHO~MADAGASCAR~LUXEMBOURG~MACEDONIA, FYR~MALAYSIA~MALTA~NETHERLANDS ANTILLES~CAMEROON~BULGARIA~COSTA RICA~CZECH REPUBLIC~DENMARK~CYPRUS~CUBA~CROATIA~DOMINICA~HONG KONG~HUNGARY~EGYPT~EL SALVADOR~DOMINICAN REPUBLIC~ECUADOR~SWITZERLAND~SWEDEN~SRI LANKA~SUDAN~TURKMENISTAN ~FRANCE~FINLAND~AFGHANISTAN~ARGENTINA~AUSTRALIA~BARBADOS~ARUBA~AUSTRIA~BANGLADESH~BRAZIL~BELGIUM~BOTSWANA~BOLIVIA~BELIZE~ESTONIA~GEORGIA~ICELAND~HAITI~GUINEA~IRAN, ISLAMIC REPUBLIC OF~MAURITIUS~BOSNIA-HERCEGOVINA~CENTRAL AFRICAN REPUBLIC~LITHUANIA~ANDORRA~KENYA~PAPUA NEW GUINEA~KUWAIT~REUNION~IRAQ~LIBYAN ARAB JAMAHIRIYA~ARMENIA~UGANDA ~MAURITANIA~ETHIOPIA~SURINAME~CONGO, DEM REP OF~MALI~NEPAL~VATICAN CITY STATE (HOLY SEE)~LIECHTENSTEIN~TIMOR - LESTE~ANGOLA~MONACO~SAINT LUCIA~CAPE VERDE~ALGERIA~BAHAMAS~CONGO~SENEGAL~TANZANIA, UNITED REPUBLIC OF~CW~FIJI~NIGERIA~SIERRA LEONE~QATAR~SAN MARINO~ALBANIA ~BELARUS ~CAMBODIA ~LATVIA ~CURACAO ~LAO PEOPLE S DEMOCRATIC REP ~CAYMAN ISLANDS ~BURKINA FASO ~ST HELENA ~SWAZILAND ~OMAN ~TURKS AND CAICOS ISLANDS ~UNITED STATES VIRGIN ISLANDS ~GUYANA ~TOKELAU ~ALAND ISLANDS ~BAHRAIN ~MACAU ~MALAWI ~ST KITTS-NEVIS ~PALESTINE, STATE OF ~US MINOR OUTLYING ISLANDS ~ANGUILLA ~GAMBIA ~SAINT VINCENT AND THE GRENADINES ~FRENCH POLYNESIA ~UZBEKISTAN ~EQUATORIAL GUINEA ~ANTIGUA AND BARBUDA ~TAJIKISTAN ~GHANA ~YEMEN ~MARTINIQUE ~"></entry>
+				
+				
+				<!-- 洪都拉斯出口搜索条件字段-->
+				<entry key="honduras_export_conditionzhname" value="国家：,海关编码：,FOB价格：,重量：,产品描述：,日期：,目的国："></entry>
+				<entry key="honduras_export_conditionfieldid" value="country,hscode,fobstartprice/fobendprice,startweight/endweight,goodsdesc,startdate/enddate,dest_country"></entry>
+				<entry key="honduras_export_conditionenname" value="country：,Custom number：,FOB price：,Weight:,Description：,Date:,Destination："></entry>
+				<!-- 需要添加翻译的字段id -->
+				<entry key="honduras_export_trans" value="goodsdesc"></entry>
+				<!-- 需要添加文本框描述的字段id -->
+				<entry key="honduras_export_desc" value="hscode,goodsdesc,dest_country"></entry>
+				<!-- 日期格式 -->
+				<entry key="honduras_export_dateFormatter" value="MM/yyyy"></entry>
+				<!-- 初始日期 -->
+				<entry key="honduras_export_dateValue" value="01/2014,12/2014"></entry>
+				
+				<!-- 哥斯达黎加进口搜索条件字段-->
+				<entry key="const_import_conditionzhname" value="国家：,海关编码：,CIF价格：,重量：,产品描述：,进口商：,日期："></entry>
+				<entry key="const_import_conditionfieldid" value="country,hscode,cifstartprice/cifendprice,startweight/endweight,goodsdesc,importer,startdate/enddate"></entry>
+				<entry key="const_import_conditionenname" value="country：,Custom number：,CIF price：,Weight:,Description：,Importer:,Date:"></entry>
+				<!-- 需要添加翻译的字段id -->
+				<entry key="const_import_trans" value="goodsdesc,importer"></entry>
+				<!-- 需要添加文本框描述的字段id -->
+				<entry key="const_import_desc" value="hscode,goodsdesc,importer"></entry>
+				<!-- 日期格式 -->
+				<entry key="const_import_dateFormatter" value="yyyy-MM-dd"></entry>
+				<!-- 初始日期 -->
+				<entry key="const_import_dateValue" value="2014-01-01,2014-12-31"></entry>
+				
+				<!-- 哥斯达黎加出口搜索条件字段-->
+				<entry key="const_export_conditionzhname" value="国家：,海关编码：,CIF价格：,重量：,产品描述：,出口商：,日期："></entry>
+				<entry key="const_export_conditionfieldid" value="country,hscode,cifstartprice/cifendprice,startweight/endweight,goodsdesc,exporter,startdate/enddate"></entry>
+				<entry key="const_export_conditionenname" value="country：,Custom number：,CIF price：,Weight:,Description：,Exporter:,Date:"></entry>
+				<!-- 需要添加翻译的字段id -->
+				<entry key="const_export_trans" value="goodsdesc,exporter"></entry>
+				<!-- 需要添加文本框描述的字段id -->
+				<entry key="const_export_desc" value="hscode,goodsdesc,exporter"></entry>
+				<!-- 日期格式 -->
+				<entry key="const_export_dateFormatter" value="yyyy-MM-dd"></entry>
+				<!-- 初始日期 -->
+				<entry key="const_export_dateValue" value="2014-01-01,2014-12-31"></entry>
+				
+				<!-- 危地马拉进口搜索条件字段-->
+				<entry key="wdml_import_conditionzhname" value="国家：,提单号：,数量：,原产国：,产品描述：,进口商：,日期：,起运港：,抵达港：,出口商：,通知人："></entry>
+				<entry key="wdml_import_conditionfieldid" value="country,bl_number,startquantity/endquantity,origin_country,goodsdesc,importer,startdate/enddate,start_port,end_port,exporter,notifier"></entry>
+				<entry key="wdml_import_conditionenname" value="country：,Bill number：,Amount:,Origin:,Description：,Importer:,Date:,Loadig port:,Arrival Port:,Exporter:,Notify:"></entry>
+				<!-- 需要添加翻译的字段id -->
+				<entry key="wdml_import_trans" value="goodsdesc,exporter,importer,start_port,end_port,notifier"></entry>
+				<!-- 需要添加文本框描述的字段id -->
+				<entry key="wdml_import_desc" value="bl_number,goodsdesc,exporter,importer,start_port,end_port,notifier,origin_country"></entry>
+				<!-- 日期格式 -->
+				<entry key="wdml_import_dateFormatter" value="yyyy-MM-dd"></entry>
+				<!-- 初始日期 -->
+				<entry key="wdml_import_dateValue" value="2014-01-01,2014-12-31"></entry>
+				<!-- 危地马拉进口下拉框显示字段 -->
+				<entry key="wdml_import_select" value="origin,dest"></entry>
+				<entry key="wdml_import_origin" value="CHINA~JAPON~COREA DEL SUR~ESTADOS UNIDOS DE AMERICA~MEXICO~HONG KONG~CHILE~TAIWAN~ESPANA~BRASIL~PANAMA~COSTA RICA~COLOMBIA~HONDURAS~ARABIA SAUDITA~INDIA~ALEMANIA~~QATAR~REINO UNIDO~TURQUIA~HOLANDA~PAKISTAN~LETONIA~NUEVA ZELANDA~YIBUTI~SUECIA~FEDERACION RUSA~ISRAEL~LITUANIA~ITALIA~EMIRATOS ARABES UNIDOS~PORTUGAL~INDONESIA~PERU~REPUBLICA DOMINICANA~POLONIA~TAILANDIA~JORDANIA~CANADA~SINGAPUR~UCRANIA~GEORGIA~DINAMARCA~GRECIA~COSTA DE MARFIL~FINLANDIA~NIGERIA~PUERTO RICO~CROACIA~SUDAFRICA~BELGICA~TRINIDAD Y TOBAGO~PARAGUAY~VENEZUELA~SRI LANKA~"></entry>
+				<entry key="wdml_import_dest" value="CHINA~JAPON~COREA DEL SUR~ESTADOS UNIDOS DE AMERICA~MEXICO~HONG KONG~CHILE~TAIWAN~ESPANA~BRASIL~PANAMA~COSTA RICA~COLOMBIA~HONDURAS~ARABIA SAUDITA~INDIA~ALEMANIA~~QATAR~REINO UNIDO~TURQUIA~HOLANDA~PAKISTAN~LETONIA~NUEVA ZELANDA~YIBUTI~SUECIA~FEDERACION RUSA~ISRAEL~LITUANIA~ITALIA~EMIRATOS ARABES UNIDOS~PORTUGAL~INDONESIA~PERU~REPUBLICA DOMINICANA~POLONIA~TAILANDIA~JORDANIA~CANADA~SINGAPUR~UCRANIA~GEORGIA~DINAMARCA~GRECIA~COSTA DE MARFIL~FINLANDIA~NIGERIA~PUERTO RICO~CROACIA~SUDAFRICA~BELGICA~TRINIDAD Y TOBAGO~PARAGUAY~VENEZUELA~SRI LANKA~"></entry>
+			
+				
+				
+				<!-- 危地马拉出口搜索条件字段-->
+				<entry key="wdml_export_conditionzhname" value="国家：,提单号：,数量：,原产国：,产品描述：,进口商：,日期：,起运港：,抵达港：,出口商：,通知人："></entry>
+				<entry key="wdml_export_conditionfieldid" value="country,bl_number,startquantity/endquantity,origin_country,goodsdesc,importer,startdate/enddate,start_port,end_port,exporter,notifier"></entry>
+				<entry key="wdml_export_conditionenname" value="country：,Bill number：,Amount:,Origin:,Description：,Importer:,Date:,Loadig port:,Arrival Port:,Exporter:,Notify:"></entry>
+				<!-- 需要添加翻译的字段id -->
+				<entry key="wdml_export_trans" value="goodsdesc,exporter,importer,start_port,end_port,notifier"></entry>
+				<!-- 需要添加文本框描述的字段id -->
+				<entry key="wdml_export_desc" value="bl_number,goodsdesc,exporter,importer,start_port,end_port,notifier,origin_country"></entry>
+				<!-- 日期格式 -->
+				<entry key="wdml_export_dateFormatter" value="yyyy-MM-dd"></entry>
+				<!-- 初始日期 -->
+				<entry key="wdml_export_dateValue" value="2014-01-01,2014-12-31"></entry>
+				<!-- 危地马拉出口下拉框显示字段 -->
+				<entry key="wdml_export_select" value="origin,dest"></entry>
+				<entry key="wdml_export_origin" value="GUATEMALA~EL SALVADOR~"></entry>
+				<entry key="wdml_export_dest" value="ESTADOS UNIDOS DE AMERICA~INDIA~REPUBLICA DOMINICANA~PANAMA~CUBA~NORUEGA~VENEZUELA~HOLANDA~COSTA RICA~BRASIL~TRINIDAD Y TOBAGO~COLOMBIA~ARABIA SAUDITA~~FRANCIA~JAPON~RUMANIA~BULGARIA~ISLANDIA~ECUADOR~REINO UNIDO~HONDURAS~CHINA~EMIRATOS ARABES UNIDOS~CANADA~PUERTO RICO~JORDANIA~POLONIA~BELGICA~CEUTA Y MELILLA~CHILE~NUEVA ZELANDA~FINLANDIA~AUSTRALIA~FEDERACION RUSA~NICARAGUA~HAITI~MEXICO~BARBADOS~BELICE~EL SALVADOR~ISLAS PITCAIRN~"></entry>
+			
+				
+				<!-- 尼加拉瓜进口搜索条件字段-->
+				<entry key="njlg_import_conditionzhname" value="国家：,提单号：,数量：,原产国：,产品描述：,出口商：,日期：,起运港：,抵达港：,进口商：,通知人："></entry>
+				<entry key="njlg_import_conditionfieldid" value="country,bl_number,startquantity/endquantity,origin_country,goodsdesc,exporter,startdate/enddate,start_port,end_port,importer,notifier"></entry>
+				<entry key="njlg_import_conditionenname" value="country：,Bill number：,Amount:,Origin:,Description：,Exporter:,Date:,Loadig port:,Arrival Port:,Importer:,Notify:"></entry>
+				<!-- 需要添加翻译的字段id -->
+				<entry key="njlg_import_trans" value="goodsdesc,exporter,importer,start_port,end_port,notifier"></entry>
+				<!-- 需要添加文本框描述的字段id -->
+				<entry key="njlg_import_desc" value="bl_number,goodsdesc,exporter,importer,start_port,end_port,notifier,origin_country"></entry>
+				<!-- 日期格式 -->
+				<entry key="njlg_import_dateFormatter" value="yyyy-MM-dd"></entry>
+				<!-- 初始日期 -->
+				<entry key="njlg_import_dateValue" value="2014-01-01,2014-12-31"></entry>
+				<!-- 尼加拉瓜进口下拉框显示字段 -->
+				<entry key="njlg_import_select" value="origin,dest"></entry>
+				<entry key="njlg_import_origin" value="ESTADOS UNIDOS DE AMERICA~ALEMANIA~BRASIL~CHINA~ESPANA~GUATEMALA~"></entry>
+				<entry key="njlg_import_dest" value="NICARAGUA~"></entry>
+				
+				<!-- 尼加拉瓜出口搜索条件字段-->
+				<entry key="njlg_export_conditionzhname" value="国家：,提单号：,数量：,原产国：,产品描述：,出口商：,日期：,起运港：,抵达港：,进口商：,通知人："></entry>
+				<entry key="njlg_export_conditionfieldid" value="country,bl_number,startquantity/endquantity,origin_country,goodsdesc,exporter,startdate/enddate,start_port,end_port,importer,notifier"></entry>
+				<entry key="njlg_export_conditionenname" value="country：,Bill number：,Amount:,Origin:,Description：,Exporter:,Date:,Loadig port:,Arrival Port:,Importer:,Notify:"></entry>
+				<!-- 需要添加翻译的字段id -->
+				<entry key="njlg_export_trans" value="goodsdesc,exporter,importer,start_port,end_port,notifier"></entry>
+				<!-- 需要添加文本框描述的字段id -->
+				<entry key="njlg_export_desc" value="bl_number,goodsdesc,exporter,importer,start_port,end_port,notifier,origin_country"></entry>
+				<!-- 日期格式 -->
+				<entry key="njlg_export_dateFormatter" value="yyyy-MM-dd"></entry>
+				<!-- 初始日期 -->
+				<entry key="njlg_export_dateValue" value="2014-01-01,2014-12-31"></entry>
+				<!-- 尼加拉瓜出口下拉框显示字段 -->
+				<entry key="njlg_export_select" value="origin,dest"></entry>
+				<entry key="njlg_export_origin" value="NICARAGUA~"></entry>
+				<entry key="njlg_export_dest" value="NICARAGUA~"></entry>
+				
+				<!--萨尔瓦多进口搜索条件字段-->
+				<entry key="sewd_import_conditionzhname" value="国家：,提单号：,数量：,原产国：,产品描述：,出口商：,日期：,起运港：,抵达港：,进口商：,通知人："></entry>
+				<entry key="sewd_import_conditionfieldid" value="country,bl_number,startquantity/endquantity,origin_country,goodsdesc,exporter,startdate/enddate,start_port,end_port,importer,notifier"></entry>
+				<entry key="sewd_import_conditionenname" value="country：,Bill number：,Amount:,Origin:,Description：,Exporter:,Date:,Loadig port:,Arrival Port:,Importer:,Notify:"></entry>
+				<!-- 需要添加翻译的字段id -->
+				<entry key="sewd_import_trans" value="goodsdesc,exporter,importer,start_port,end_port,notifier"></entry>
+				<!-- 需要添加文本框描述的字段id -->
+				<entry key="sewd_import_desc" value="bl_number,goodsdesc,exporter,importer,start_port,end_port,notifier,origin_country"></entry>
+				<!-- 日期格式 -->
+				<entry key="sewd_import_dateFormatter" value="yyyy-MM-dd"></entry>
+				<!-- 初始日期 -->
+				<entry key="sewd_import_dateValue" value="2014-01-01,2014-12-31"></entry>
+				<!-- 萨尔瓦多进口下拉框显示字段 -->
+				<entry key="sewd_import_select" value="origin,dest"></entry>	
+				<entry key="sewd_import_origin" value="ESTADOS UNIDOS DE AMERICA~BRASIL~PANAMA~ESPANA~HOLANDA~CHILE~CROACIA~FEDERACION RUSA~REPUBLICA DOMINICANA~COLOMBIA~GUATEMALA~ALEMANIA~PORTUGAL~ITALIA~PAKISTAN~IRLANDA~TURQUIA~ESTONIA~SUDAFRICA~ARABIA SAUDITA~BELGICA~BANGLADESH~FINLANDIA~HONDURAS~ARGENTINA~"></entry>	
+				<entry key="sewd_import_dest" value="EL SALVADOR~ESTADOS UNIDOS DE AMERICA~"></entry>
+				
+				
+				<!--萨尔瓦多出口搜索条件字段-->
+				<entry key="sewd_export_conditionzhname" value="国家：,提单号：,数量：,原产国：,产品描述：,出口商：,日期：,起运港：,抵达港：,进口商：,通知人："></entry>
+				<entry key="sewd_export_conditionfieldid" value="country,bl_number,startquantity/endquantity,origin_country,goodsdesc,exporter,startdate/enddate,start_port,end_port,importer,notifier"></entry>
+				<entry key="sewd_export_conditionenname" value="country：,Bill number：,Amount:,Origin:,Description：,Exporter:,Date:,Loadig port:,Arrival Port:,Importer:,Notify:"></entry>
+				<!-- 需要添加翻译的字段id -->
+				<entry key="sewd_export_trans" value="goodsdesc,exporter,importer,start_port,end_port,notifier"></entry>
+				<!-- 需要添加文本框描述的字段id -->
+				<entry key="sewd_export_desc" value="bl_number,goodsdesc,exporter,importer,start_port,end_port,notifier,origin_country"></entry>
+				<!-- 日期格式 -->
+				<entry key="sewd_export_dateFormatter" value="yyyy-MM-dd"></entry>
+				<!-- 初始日期 -->
+				<entry key="sewd_export_dateValue" value="2014-01-01,2014-12-31"></entry>
+				<!-- 萨尔瓦多出口下拉框显示字段 -->
+				<entry key="sewd_export_select" value="origin,dest"></entry>	
+				<entry key="sewd_export_origin" value="EL SALVADOR~"></entry>
+				<entry key="sewd_export_dest" value="ESTADOS UNIDOS DE AMERICA~BRASIL~REPUBLICA DOMINICANA~FRANCIA~REINO UNIDO~PANAMA~CANADA~BARBADOS~BELICE~"></entry>
+				
+				
+				<!--乌克兰进口搜索条件字段-->
+				<entry key="wkl_import_conditionzhname" value="国家：,海关编码：,日期：,净重：,产品描述：,进口商：,出口商："></entry>
+				<entry key="wkl_import_conditionfieldid" value="country,hscode,startdate/enddate,startnetweight/endnetweight,goodsdesc,importer,exporter"></entry>
+				<entry key="wkl_import_conditionenname" value="country：,Custom number：,Date:,Net weight:,Description：,Importer:,Exporter:"></entry>
+				<!-- 需要添加翻译的字段id -->
+				<entry key="wkl_import_trans" value="goodsdesc,exporter,importer"></entry>
+				<!-- 需要添加文本框描述的字段id -->
+				<entry key="wkl_import_desc" value="hscode,goodsdesc,exporter,importer"></entry>
+				<!-- 日期格式 -->
+				<entry key="wkl_import_dateFormatter" value="yyyy-MM-dd"></entry>
+				<!-- 初始日期 -->
+				<entry key="wkl_import_dateValue" value="2014-01-01,2014-12-31"></entry>
+				
+				<!--英国进口搜索条件字段-->
+				<entry key="uk_import_conditionzhname" value="国家：,海关编码：,日期：,公司名称：,产品描述："></entry>
+				<entry key="uk_import_conditionfieldid" value="country,hscode,startdate/enddate,companyname,goodsdesc"></entry>
+				<entry key="uk_import_conditionenname" value="country：,Custom number：,Date:,Company name:,Description："></entry>
+				<!-- 需要添加翻译的字段id -->
+				<entry key="uk_import_trans" value="goodsdesc"></entry>
+				<!-- 需要添加文本框描述的字段id -->
+				<entry key="uk_import_desc" value="hscode,goodsdesc,companyname"></entry>
+				<!-- 日期格式 -->
+				<entry key="uk_import_dateFormatter" value="MM/yyyy"></entry>
+				<!-- 初始日期 -->
+				<entry key="uk_import_dateValue" value="01/2014,12/2014"></entry>
+				
+				<!--中国搜索条件字段-->
+				<entry key="china_conditionzhname" value="国家：,海关编码：,CIF价格：,数量：,收发货地：,公司名称：,日期：,贸易类型：,报告口岸：,产销国："></entry>
+				<entry key="china_conditionfieldid" value="country,hscode,cifstartprice/cifendprice,startquantity/endquantity,product_place,companyname,startdate/enddate,trade_type,start_port,origin_country"></entry>
+
+				<entry key="china_conditionenname" value="country：,Custom number：,CIF price:,Amount:,Ship/Rec Location：,Company name:,Date:,Type:,Report port:,COO："></entry>
+
+				<!-- 需要添加翻译的字段id -->
+				<entry key="china_trans" value=""></entry>
+				<!-- 需要添加文本框描述的字段id -->
+				<entry key="china_desc" value="hscode,goodsdesc,companyname,product_place,start_port,origin_country"></entry>
+				<!-- 日期格式 -->
+				<entry key="china_dateFormatter" value="MM/yyyy"></entry>
+				<!-- 初始日期 -->
+				<entry key="china_dateValue" value="01/2014,12/2014"></entry>
+				<!-- 中国 -->
+				<entry key="china_select" value="origin"></entry>
+				<entry key="china_origin" value="0.68~0.71~0.72~0.725~0.73~0.76~0.84~0.92~1.03~1.04~1.13~1.176~1.23~1.522~1.94~1.95~10.05~10.26~10.51~11.338~11.411~11.412~11.445~11.45~11.468~11.49~11.507~11.7~11.8~11.806~11.84~11.85~11.894~12.12~12.261~12.28~12.32~12.64~12.8~12.84~12.89~123.54~13~13.08~13.12~13.18~13.22~13.33~13.462~13.98~15.18~16.63~1667.43~169.5~187.6~2.008~2.13~2.4~2.45~2.523~2.6~2.62~2.63~2.79~2.92~2.924~2.982~20.84~22.2~263.333~28.388~281~285.6~29.04~292~295~3.09~3.16~3.24~3.28~3.3~3.38~3.44~3.45~3.5~3.53~3.65~3.99~332.22~348.6~357~384.67~4.233~4.4~4.45~4.95~40.33~45~47.78~485~5~5.1~5.25~5.59~5.79~5.948~50.5~51.528~511.53~6~6.018~6.038~6.11~6.12~6.21~6.22~6.279~6.282~6.336~6.37~6.39~6.84~6.94~65~693.8~7.02~7.19~7.225~7.458~7.86~70~72.24~8.964~9~9.21~9.4~9.63~9.75~BR. VIRGIN IS.~COUNTRIES (REG.) UNKNOWN~FRENCH GUYANA~NULL~REP. OF SOUTH SUDAN~SAINT MARTIN IS.~SAINT VINCENT   GRENADINES~ST. KITTS-NEVIS~一般贸易~上海海关~不丹~东帝汶~中华人民共和国~中国~中国台湾~中国澳门~中国香港~中非~丹麦~乌克兰~乌兹别克斯坦~乌干达~乌拉圭~乌鲁木齐海关~乍得~也门~也门共和国~亚洲其他国家(地区)~亚美尼亚~产销国~以色列~伊拉克~伊朗~伯利兹~佛得角~俄罗斯~俄罗斯联邦~保加利亚~保税仓库进出境货物~克罗地亚~克罗地亚共和国~共和国南苏丹~其他大洲~其他海洋~其他海洋。新~冈比亚~冰岛~几内亚~几内亚(比绍)~几内亚比绍~几内亚（比绍）~列支敦士登~刚果~刚果(布)~刚果(金)~刚果（布）~刚果（金）~利比亚~利比里亚~前南斯拉夫马其顿~前南斯拉夫马其顿共和国~前南马其顿~加拿大~加纳~加蓬~加那利群岛~匈牙利~北京海关~北美洲其他国家(地区)~北美洲其他国家（地区）~南京海关~南宁海关~南昌海关~南苏丹~南苏丹共和国~南非~博内尔~博茨瓦纳~博茨瓦那~卡塔尔~卡奈~卢旺达~卢森堡~印度~印度尼西亚~危地马拉~厄瓜多尔~厄立特里亚~厦门海关~叙利亚~古巴~台湾~台湾省~台澎金马关税区~合肥海关~吉尔吉斯~吉尔吉斯斯坦~吉布提~呼和浩特海关~哈尔滨海关~哈萨克斯坦~哥伦比亚~哥斯达黎加~喀麦隆~国(地)别不详~国(地)别不详的~国别（地区）不详~国家(REG。)未知~国家(注册)。未知~国家(注册表。)未知~国家未知~国家注册(未知)~国家注册（未知）~国家（不详）~国家（未知）~国家（注册未知）~国家（注册）未知~国（ 地）别不详的~图瓦卢~土库曼斯坦~土耳其~圣·马丁。~圣其茨--尼维斯~圣其茨和尼维斯~圣卢西亚~圣基茨 - 尼维斯~圣基茨和尼维斯~圣基茨和尼维斯联邦~圣多美和普林西比~圣文森及纳丁斯~圣文森特及格林纳丁斯~圣文森特和格林纳丁斯~圣普和普林西比~圣皮埃尔和密克隆~圣马丁~圣马丁岛~圣马丹岛~圣马力诺~圭亚那~坦桑尼亚~埃及~埃塞俄比亚~基茨和尼维斯~基里巴斯~塔吉克斯坦~塞内加尔~塞卜泰(休达)~塞尔维亚~塞拉利昂~塞浦路斯~塞舌尔~墨西哥~多哥~多民族玻利维亚国~多米尼亚~多米尼克~多米尼加~多米尼加共和国~大洋洲其他国家(地区)~大洋洲其他国家（地区）~大连海关~天津海关~奥地利~委内瑞拉~孟加拉国~宁波海关~安哥拉~安提瓜和巴布达~安道尔~密克罗尼西亚联邦~尼加拉瓜~尼日利亚~尼日尔~尼泊尔~尼泊尔联邦民主共和国~巴勒斯坦~巴哈马~巴基斯坦~巴巴多斯~巴布亚新几内亚~巴拉圭~巴拿马~巴林~巴西~布基纳法索~布隆迪~希腊~帕劳~帕劳共和国~广州海关~库克群岛~库腊索岛~开曼群岛~德国~意大利~成都海关~所罗门群岛~扎伊尔~拉丁美洲其他国家(地区)~拉丁美洲其他国家（地区）~拉脱维亚~拱北海关~挪威~捷克~捷克共和国~摩尔多瓦~摩洛哥~摩纳哥~文莱~斐济~斯威士兰~斯洛伐克~斯洛伐克共和国~斯洛文尼亚~斯洛文尼亚共和国~斯里兰卡~新加坡~新喀里多尼亚~新西兰~日本~昆明海关~智利~朝鲜~来料加工装配贸易~杭州海关~柬埔寨~格林纳达~格陵兰~格鲁吉亚~梅利利亚~正无穷大~武汉海关~比利时~毛里塔尼亚~毛里求斯~民主刚果~汕头海关~江门海关~汤加~沈阳海关~沙特阿拉伯~法国~法国圭亚那~法属圭亚那~法属波利尼西亚~法属玻利尼西亚~法罗群岛~波兰~波多黎各~波斯尼亚—黑塞哥维那共和国~波斯尼亚　黑塞哥维那共和国~波斯尼亚－黑塞哥维那~波黑~泰国~津巴布韦~洪都拉斯~济南海关~海口海关~海地~深圳海关~湛江海关~满洲里海关~澳大利亚~澳门~烟台海关~爱尔兰~爱沙尼亚~牙买加~特克斯和凯科斯群岛~特立尼达和多巴哥~玻利维亚~瑙鲁~瑞典~瑞士~瓜德罗普~瓜德罗普岛~瓦利斯和浮图纳~瓦努阿图~留尼汪~白俄罗斯~白俄罗斯联邦~百慕大~百慕大群岛~盖比群岛~直布罗陀~石家庄海关~社会群岛~福州海关~私营企业~科威特~科摩罗~科特迪瓦~科特迪瓦共和国~秘鲁~突尼斯~立陶宛~索马里~约旦~纳米比亚~维珍~缅甸~罗马尼亚~美国~老挝~肯尼亚~芬兰~苏丹~苏丹南部~苏里南~英国~英属维尔京群岛~英属维尔京群岛。~荷兰~荷属安地列斯~荷属安地列斯群岛~荷属安的列斯群岛~莫桑比克~莱索托~菲律宾~萨尔瓦多~萨巴~萨摩亚~葡萄牙~蒙古~蒙特塞拉特~西安海关~西撒哈拉~西班牙~诺福克岛~贝劳共和国~贝宁~贵阳海关~赞比亚~赤道几内亚~越南~进料加工贸易~郑州海关~重庆海关~长春海关~长沙海关~阿塞拜疆~阿富汗~阿尔及利亚~阿尔巴尼亚~阿拉伯联合酋长国~阿曼~阿根廷~阿米尔~阿联酋~阿鲁巴~阿鲁巴岛~青岛海关~非洲其他国家(地区)~非洲其他国家（地区）~韩国~香港~马其顿~马尔代夫~马拉维~马提尼克~马提尼克岛~马来西亚~马约特~马约特岛~马绍尔群岛~马绍尔群岛共和国~马耳他~马达加斯加~马里~黄埔关区~黄埔海关~黎巴嫩~黑山~黑山黑山共和国~"></entry>
+				
+				<!--韩国搜索条件字段-->
+				<entry key="korea_conditionzhname" value="国家：,海关编码：,日期：,贸易类型：,产品描述：,公司名称："></entry>
+				<entry key="korea_conditionfieldid" value="country,hscode,startdate/enddate,trade_type,goodsdesc,companyname"></entry>
+				<entry key="korea_conditionenname" value="country：,Custom number：,Date:y,Type:,Description：,Company name:"></entry>
+				<!-- 需要添加翻译的字段id -->
+				<entry key="korea_trans" value="goodsdesc,companyname"></entry>
+				<!-- 需要添加文本框描述的字段id -->
+				<entry key="korea_desc" value="hscode,goodsdesc,companyname"></entry>
+				<!-- 日期格式 -->
+				<entry key="korea_dateFormatter" value="MM/yyyy"></entry>
+				<!-- 初始日期 -->
+				<entry key="korea_dateValue" value="01/2014,12/2014"></entry>
+				
+				<!--巴基斯坦进口搜索条件字段-->
+				<entry key="pakistan_import_conditionzhname" value="国家：,提单号：,件数：,重量：,产品描述：,日期：,出口商：,进口商：,起运港：,抵达港："></entry>
+				<entry key="pakistan_import_conditionfieldid" value="country,bl_number,startpackages/endpackages,startweight/endweight,goodsdesc,startdate/enddate,exporter,importer,start_port,end_port"></entry>
+				<entry key="pakistan_import_conditionenname" value="country：,Bill number：,#of Packages:,Weight:,Description：,Date:,Exporter:,Importer:,Loadig port:,Arrival Port:"></entry>
+				<!-- 需要添加翻译的字段id -->
+				<entry key="pakistan_import_trans" value="end_port,importer,goodsdesc,exporter,start_port"></entry>
+				<!-- 需要添加文本框描述的字段id -->
+				<entry key="pakistan_import_desc" value="bl_number,end_port,importer,goodsdesc,exporter,start_port"></entry>
+				<!-- 日期格式 -->
+				<entry key="pakistan_import_dateFormatter" value="yyyy-MM-dd"></entry>
+				<!-- 初始日期 -->
+				<entry key="pakistan_import_dateValue" value="2014-01-01,2014-12-31"></entry>
+				
+				
+				<!--越南进口搜索条件字段-->
+				<entry key="yn_import_conditionzhname" value="国家：,海关编码：,数量：,CIF金额：,产品描述：,日期：,进口商：,出口商：,抵达港：,原产国："></entry>
+				<entry key="yn_import_conditionfieldid" value="country,hscode,startquantity/endquantity,cifstartprice/cifendprice,goodsdesc,startdate/enddate,importer,exporter,end_port,origin_country"></entry>
+				<entry key="yn_import_conditionenname" value="country：,Custom number：,Amount:,CIF price:,Description：,Date:,Importer:,Exporter:,Arrival Port:,Origin_country:,"></entry>
+				<!-- 需要添加翻译的字段id -->
+				<entry key="yn_import_trans" value="goodsdesc,exporter,importer,end_port"></entry>
+				<!-- 需要添加文本框描述的字段id -->
+				<entry key="yn_import_desc" value="hscode,goodsdesc,exporter,importer,end_port,origin_country"></entry>
+				<!-- 日期格式 -->
+				<entry key="yn_import_dateFormatter" value="yyyy-MM-dd"></entry>
+				<!-- 初始日期 -->
+				<entry key="yn_import_dateValue" value="2014-01-01,2014-12-31"></entry>
+				<!-- 越南进口下拉框显示字段 -->
+				<entry key="yn_import_select" value="origin"></entry>
+				<entry key="yn_import_origin" value="China~Taiwan~Germany~HongKong~Korea (Republic)~Indonesia~Costa Rica~Italy~Thailand~Philippines~Russian Federation~Japan~Norway~United Kingdom~United States of America~Viet Nam~Malaysia~Singapore~EU~Korea (Democratic Peoples Rep.)~Bahrain~Netherlands~India~Denmark~Finland~France~Cambodia~Kiribati~Luxembourg~Mexico~United Arab Emirates~Australia~Sweden~Poland~Sri Lanka~Ukraine~Spain~Hungary~Romania~Austria~Switzerland~Latvia~Bulgaria~Lithuania~Czech Republic~Slovakia (Slovak Rep.)~Ireland~Canada~Saudi Arabia~Guinea~Belarus~Uzbekistan~Gabon~Bangladesh~Moldova (Rep.)~Chile~Pakistan~Turkey~South Africa~Slovenia~Belgium~Portugal~Marshall Islands~Puerto Rico~Qatar~"></entry>
+				
+				
+				<!--越南出口搜索条件字段-->
+				<entry key="yn_export_conditionzhname" value="国家：,海关编码：,数量：,FOB金额：,产品描述：,日期：,进口商：,出口商：,起运港：,原产国："></entry>
+				<entry key="yn_export_conditionfieldid" value="country,hscode,startquantity/endquantity,fobstartprice/fobendprice,goodsdesc,startdate/enddate,importer,exporter,start_port,origin_country"></entry>
+				<entry key="yn_export_conditionenname" value="country：,Custom number：,Amount:,FOB price:,Description：,Date:,Importer:,Exporter:,Loadig port:,Origin_country:,"></entry>
+				<!-- 需要添加翻译的字段id -->
+				<entry key="yn_export_trans" value="goodsdesc,exporter,importer,start_port"></entry>
+				<!-- 需要添加文本框描述的字段id -->
+				<entry key="yn_export_desc" value="hscode,goodsdesc,exporter,importer,start_port,origin_country"></entry>
+				<!-- 日期格式 -->
+				<entry key="yn_export_dateFormatter" value="yyyy-MM-dd"></entry>
+				<!-- 初始日期 -->
+				<entry key="yn_export_dateValue" value="2014-01-01,2014-12-31"></entry>
+				<!-- 越南出口下拉框显示字段 -->
+				<entry key="yn_export_select" value="origin"></entry>
+				<entry key="yn_export_origin" value="Viet Nam~China~Philippines~India~United States of America~Korea (Republic)~HongKong~Ecuador~Thailand~Australia~Malaysia~Nigeria~Pakistan~Romania~Indonesia~Cambodia~Laos~Cote DIvoire (Ivory Coast)~Ukraine~Turkey~Mexico~Iran (Islamic Rep.)~Japan~Myanmar (Burma)~Norway~Bulgaria~United Arab Emirates~Taiwan~France~Sierra Leone~Denmark~South Africa~UruGuay~Brazil~Italy~Germany~Yemen~Madagascar~Singapore~Argentina~Belgium~Netherlands~Canada~French Polinesia~Ghana~Chile~9~Bangladesh~Oman~Papua New Guinea~Guinea-Bissau~United Kingdom~Iceland~Costa Rica~Russian Federation~Morocco~Tanzania (United Rep.)~Malawi~New Zealand~Spain~Kenya~Ethiopia~Paraguay~Sri Lanka~American Samoa~Uzbekistan~Faroe Islands~Ireland~Solomon Islands~Fiji~Senegal~Maldives~Country of Origin~Austria~Moldova (Rep.)~Kuwait~Mauritania~Egypt~Comoros~Israel~Greece~Somalia~Gambia~Nicaragua~Poland~Afganistan~Panama~Northern Mariana Islands~Peru~Cuba~Armenia~Burkina Faso~Kiribati~"></entry>
+			
+				
+				<!--印度进口搜索条件字段-->
+				<entry key="india_import_conditionzhname" value="国家：,海关编码：,日期：,数量：,产品描述：,进口商：,起运港："></entry>
+				<entry key="india_import_conditionfieldid" value="country,hscode,startdate/enddate,startquantity/endquantity,goodsdesc,importer,start_port"></entry>
+				<entry key="india_import_conditionenname" value="country：,Custom number：,Date:,Amount:,Description：,Importer:,Loadig port:"></entry>
+				<!-- 需要添加翻译的字段id -->
+				<entry key="india_import_trans" value="goodsdesc,importer,start_port"></entry>
+				<!-- 需要添加文本框描述的字段id -->
+				<entry key="india_import_desc" value="hscode,goodsdesc,importer,start_port"></entry>
+				<!-- 日期格式 -->
+				<entry key="india_import_dateFormatter" value="yyyy-MM-dd"></entry>
+				<!-- 初始日期 -->
+				<entry key="india_import_dateValue" value="2014-01-01,2014-12-31"></entry>
+				
+				<!-- 俄罗斯进口搜索条件字段-->
+				<entry key="russian_import_conditionzhname" value="国家：,海关编码：,CIF金额：,重量：,产品描述：,日期：,进口商：,出口商：,原产国：,目的国："></entry>
+				<entry key="russian_import_conditionfieldid" value="country,hscode,cifstartprice/cifendprice,startweight/endweight,goodsdesc,startdate/enddate,importer,exporter,origin_country,dest_country"></entry>
+				<entry key="russian_import_conditionenname" value="country：,Custom number：,CIF price:,Date:,Weight:,Description：,Date:,Importer:,Exporter:,Origin:,Destination:"></entry>
+				<!-- 需要添加翻译的字段id -->
+				<entry key="russian_import_trans" value="goodsdesc,importer,exporter"></entry>
+				<!-- 需要添加文本框描述的字段id -->
+				<entry key="russian_import_desc" value="hscode,goodsdesc,importer,exporter,origin_country,dest_country"></entry>
+				<!-- 日期格式 -->
+				<entry key="russian_import_dateFormatter" value="yyyy-MM-dd"></entry>
+				<!-- 初始日期 -->
+				<entry key="russian_import_dateValue" value="2014-01-01,2014-12-31"></entry>
+				<!-- 俄罗斯进口下拉框显示字段 -->
+				<entry key="russian_import_select" value="origin"></entry>
+				<entry key="russian_import_origin" value="США~00~ГЕРМАНИЯ~НЕИЗВЕСТНА~ТУРЦИЯ~КИПР~КОРЕЯ ЮЖНАЯ~МЕКСИКА~ЯПОНИЯ~ИЗРАИЛЬ~ЕГИПЕТ~ТАИЛАНД~КИТАЙ~ВЕЛИКОБРИТАНИЯ~ИОРДАНИЯ~ЭКВАДОР~ЕВРОСОЮЗ~ФРАНЦИЯ~ИТАЛИЯ~ТАЙВАНЬ~ВЕНГРИЯ~ФИЛИППИНЫ~БРАЗИЛИЯ~ИНДИЯ~ПОРТУГАЛИЯ~МАЛАЙЗИЯ~МАРОККО~БОЛГАРИЯ~ВЬЕТНАМ~ЧЕХИЯ~ЭЛЬ-САЛЬВАДОР~ИНДОНЕЗИЯ~СЛОВЕНИЯ~СОЕДИНЕННЫЕ ШТАТЫ~БЕЛЬГИЯ~КАНАДА~РАЗНЫЕ~НИДЕРЛАНДЫ~АВСТРАЛИЯ~АВСТРИЯ~ИСПАНИЯ~ПОЛЬША~СИНГАПУР~ЭФИОПИЯ~АЗЕРБАЙДЖАН~КЕНИЯ~ГРЕЦИЯ~ПУЭРТО-РИКО~ТАДЖИКИСТАН~АРГЕНТИНА~ДАНИЯ~ПАКИСТАН~АРМЕНИЯ~ТУНИС~ШВЕЦИЯ~ИРЛАНДИЯ~СЕРБИЯ~ЧИЛИ~КОЛУМБИЯ~КУБА~РОССИЯ~ФИНЛЯНДИЯ~ГВАТЕМАЛА~БАГАМЫ~РУМЫНИЯ~КОРЕЯ СЕВЕРНАЯ~ГОНКОНГ~ШВЕЙЦАРИЯ~НОВАЯ ЗЕЛАНДИЯ~ЛАТВИЯ~ЮАР~МАДАГАСКАР~КОСТА-РИКА~СЛОВАКИЯ~ОБЪЕДИНЕННЫЕ АРАБСКИЕ ЭМИРАТЫ~УКРАИНА~ПАЛЕСТИНСКАЯ ТЕРРИТ.,ОККУПИРОВАННАЯ~НОРВЕГИЯ~БАНГЛАДЕШ~КАМБОДЖА~ФАРЕРСКИЕ ОСТРОВА~ЛИТВА~СИРИЯ~СОЕДИНЕННОЕ КОРОЛЕВСТВО~ЭСТОНИЯ~КОРЕЯ, РЕСПУБЛИКА~МАКАО~ХОРВАТИЯ~ШРИ-ЛАНКА~ТУРКМЕНИЯ~АЛБАНИЯ~ЯМАЙКА~ДОМИНИКАНСКАЯ РЕСПУБЛИКА~ИСЛАНДИЯ~СВАЗИЛЕНД~НАМИБИЯ~СЬЕРРА-ЛЕОНЕ~ЧЕШСКАЯ РЕСПУБЛИКА~ГРУЗИЯ~БОСНИЯ И ГЕРЦЕГОВИНА~МАКЕДОНИЯ~ТРИНИДАД И ТОБАГО~ЛЮКСЕМБУРГ~ИРАН~МОНАКО~МОЗАМБИК~БАХРЕЙН~МОЛДОВА~УЗБЕКИСТАН~КОТ Д'ИВУАР~ПЕРУ~ПАНАМА~МАВРИКИЙ~КИРГИЗИЯ~МОНГОЛИЯ~УГАНДА~САУДОВСКАЯ АРАВИЯ~МЬЯНМА~МАЛЬТА~ЛИХТЕНШТЕЙН~СЕНЕГАЛ~ЛАОС~БЕЛАРУСЬ~АФГАНИСТАН~ГАНА~МАВРИТАНИЯ~ТАНЗАНИЯ~ЗИМБАБВЕ~УРУГВАЙ~ГОНДУРАС~ГАИТИ~ЗАМБИЯ~МОЛДОВА, РЕСПУБЛИКА~ВЕНЕСУЭЛА~КАМЕРУН~ЛИБЕРИЯ~АЛЖИР~ПАРАГВАЙ~НИКАРАГУА~ТАЙВАНЬ (КИТАЙ)~БЕРМУДЫ~ЧАД~НИГЕРИЯ~КАЗАХСТАН~МАЛАВИ~ЛИВАН~АБХАЗИЯ~ЮЖНАЯ АФРИКА~ЮЖНАЯ ОСЕТИЯ~БОЛИВИЯ~РУАНДА~БУРУНДИ~ПАПУА-НОВАЯ ГВИНЕЯ~НЕПАЛ~ОСТРОВ МЭН~99~СЕНТ-ЛЮСИЯ~ОСТРОВА ТЕРКС И КАЙКОС~СЕЙШЕЛЫ~НИУЭ~БЕНИН~ЙЕМЕН~ГАЙАНА~БАРБАДОС~КАТАР~КУВЕЙТ~НИГЕР~АНДОРРА~ЧЕРНОГОРИЯ~ГАМБИЯ~МАЛЬДИВЫ~РЕСПУБЛИКА МАКЕДОНИЯ~САН-МАРИНО~КОНГО~ИРАН, ИСЛАМСКАЯ РЕСПУБЛИКА~БРИТАНСКАЯ ТЕРРИТОРИЯ В ИНД.ОКЕАНЕ~ТОГО~ГИБРАЛТАР~АНГИЛЬЯ~ТОНГА~СВЯТАЯ ЕЛЕНА~СУРИНАМ~ВАТИКАН~ЭРИТРЕЯ~РЕЮНЬОН~ДОМИНИКА~ЛЕСОТО~ЦЕНТРАЛЬНО-АФРИКАНСКАЯ РЕСПУБЛИКА~ГВИНЕЯ~СИРИЙСКАЯ АРАБСКАЯ РЕСПУБЛИКА~ГРЕНЛАНДИЯ~ТАНЗАНИЯ, ОБЪЕДИНЕННАЯ РЕСПУБЛИКА~БОЛИВИЯ, МНОГОНАЦИОНАЛ. ГОСУДАРСТВО~ОМАН~СУДАН~САМОА~МИКРОНЕЗИЯ, ФЕДЕРАТИВНЫЕ ШТАТЫ~КОРЕЯ, НАРОДНО-ДЕМОКРАТИЧ.РЕСПУБЛ.~ВЕНЕСУЭЛА,БОЛИВАРИАНСКАЯ РЕСПУБЛИКА~ГОСУДАРСТВО ПАЛЕСТИНА~СОЕД.КОРОЛЕВСТВО~ПАПУА НОВАЯ ГВИНЕЯ~ГВАДЕЛУПА~КОТ Д;ИВУАР~КОМОРЫ~ТИМОР-ЛЕСТЕ~0~ФРАНЦУЗСКИЕ ЮЖНЫЕ ТЕРРИТОРИИ~МОНТСЕРРАТ~ФИДЖИ~ОСТРОВ РОЖДЕСТВА~ВИРГИНСКИЕ ОСТРОВА, США~ГРЕНАДА~ВИРГИНСКИЕ ОСТРОВА, БРИТАНСКИЕ~КОНГО, ДЕМОКРАТИЧЕСКАЯ РЕСПУБЛИКА~CW~СОЕД. КОРОЛЕВСТВО~МАЛИ~ФРАНЦУЗСКАЯ ГВИАНА~СОЛОМОНОВЫ ОСТРОВА~ОСТРОВА КАЙМАН~ФОЛКЛЕНДСКИЕ ОСТРОВА (МАЛЬВИНСКИЕ)~АНТИГУА И БАРБУДА~ГВИНЕЯ-БИСАУ~ДЖАМАХИРИЯ~ЭЛАНДСКИЕ ОСТРОВА~ТОКЕЛАУ~ФРАНЦУЗСКАЯ ПОЛИНЕЗИЯ~ГЕРНСИ~ЛИВИЯ~ВАНУАТУ~БОТСВАНА~КЮРАСАО~ПАЛЕСТИНА,ГОСУДАРСТВО~ПППППППКОРЕЯ, РЕСПУБЛИКА~"></entry>
+				
+				<!-- 俄罗斯出口搜索条件字段-->
+				<entry key="russian_export_conditionzhname" value="国家：,海关编码：,CIF金额：,重量：,产品描述：,日期：,进口商：,出口商：,目的国："></entry>
+				<entry key="russian_export_conditionfieldid" value="country,hscode,cifstartprice/cifendprice,startweight/endweight,goodsdesc,startdate/enddate,importer,exporter,dest_country"></entry>
+				<entry key="russian_export_conditionenname" value="country：,Custom number：,CIF price:,Weight:,Description：,Date:,Importer:,Exporter:,Destination:"></entry>
+				<!-- 需要添加翻译的字段id -->
+				<entry key="russian_export_trans" value="goodsdesc,importer,exporter"></entry>
+				<!-- 需要添加文本框描述的字段id -->
+				<entry key="russian_export_desc" value="hscode,goodsdesc,importer,exporter,origin_country"></entry>
+				<!-- 日期格式 -->
+				<entry key="russian_export_dateFormatter" value="yyyy-MM-dd"></entry>
+				<!-- 初始日期 -->
+				<entry key="russian_export_dateValue" value="2014-01-01,2014-12-31"></entry>
+				<!-- 俄罗斯出口下拉框显示字段 -->
+				<entry key="russian_export_select" value="origin"></entry>
+				<entry key="russian_export_origin" value="КИТАЙ~КОРЕЯ ЮЖНАЯ~ТАЙВАНЬ~ВЕНГРИЯ~РОССИЯ~СЛОВАКИЯ~ТАИЛАНД~ГОНКОНГ~МАЛАЙЗИЯ~ВЬЕТНАМ~КАНАДА~ИСПАНИЯ~ФРАНЦИЯ~ИТАЛИЯ~ВЕЛИКОБРИТАНИЯ~БАГАМЫ~ФИНЛЯНДИЯ~ИРЛАНДИЯ~МЕКСИКА~ПОРТУГАЛИЯ~ЯПОНИЯ~США~СОЕДИНЕННЫЕ ШТАТЫ~ФИЛИППИНЫ~ГЕРМАНИЯ~ЧЕХИЯ~ДАНИЯ~ШВЕЙЦАРИЯ~РАЗНЫЕ~00~ПОЛЬША~УКРАИНА~ЛАТВИЯ~ИНДОНЕЗИЯ~СИНГАПУР~НИДЕРЛАНДЫ~ТУРЦИЯ~ОБЪЕДИНЕННЫЕ АРАБСКИЕ ЭМИРАТЫ~ГРЕЦИЯ~БЕЛЬГИЯ~КОРЕЯ СЕВЕРНАЯ~ЭСТОНИЯ~ОМАН~ШВЕЦИЯ~ИНДИЯ~БРАЗИЛИЯ~БОЛГАРИЯ~КОРЕЯ, РЕСПУБЛИКА~ПАКИСТАН~МАКЕДОНИЯ~СЕРБИЯ~БАНГЛАДЕШ~СЛОВЕНИЯ~ЛЮКСЕМБУРГ~МАРОККО~РУМЫНИЯ~МОЛДОВА~БЕЛАРУСЬ~АВСТРАЛИЯ~ТУНИС~ИЗРАИЛЬ~БОСНИЯ И ГЕРЦЕГОВИНА~ШРИ-ЛАНКА~КАМБОДЖА~НОРВЕГИЯ~АВСТРИЯ~АЗЕРБАЙДЖАН~ДОМИНИКАНСКАЯ РЕСПУБЛИКА~ЕВРОСОЮЗ~ЧЕШСКАЯ РЕСПУБЛИКА~СОЕДИНЕННОЕ КОРОЛЕВСТВО~МОНГОЛИЯ~ЧИЛИ~ЛИВАН~УЗБЕКИСТАН~КИПР~МАЛАВИ~КАЗАХСТАН~НОВАЯ ЗЕЛАНДИЯ~ИОРДАНИЯ~ЛИТВА~ПУЭРТО-РИКО~АРМЕНИЯ~ЛИХТЕНШТЕЙН~ХОРВАТИЯ~САУДОВСКАЯ АРАВИЯ~ЧАД~ТАДЖИКИСТАН~АРГЕНТИНА~КУБА~ИСЛАНДИЯ~УРУГВАЙ~ЮАР~КОСТА-РИКА~ЭКВАДОР~БАХРЕЙН~ПЕРУ~ЭФИОПИЯ~ТОВАР ТС~НЕИЗВЕСТНА~МЬЯНМА~КИРГИЗИЯ~ЕГИПЕТ~ИРАН~ТУРКМЕНИЯ~0~UK~АЛБАНИЯ~ТАНЗАНИЯ~КОЛУМБИЯ~НИГЕРИЯ~КОТ Д;ИВУАР~МАЛЬТА~МАВРИКИЙ~ЭЛЬ-САЛЬВАДОР~ГАНА~ПАРАГВАЙ~СЕНЕГАЛ~СИРИЯ~РУАНДА~БОЛИВИЯ~МОНАКО~ГОНДУРАС~СЬЕРРА-ЛЕОНЕ~ГВИНЕЯ~BL~МАДАГАСКАР~ГРУЗИЯ~ЗИМБАБВЕ~КАМЕРУН~СЕРБИЯ И ЧЕРНОГОРИЯ~СУДАН~ТАЙВАНЬ (КИТАЙ)~СВЯТАЯ ЕЛЕНА~АФГАНИСТАН~САН-ТОМЕ И ПРИНСИПИ~CW~"></entry>
+				
+				<!-- 玻利维亚进口搜索条件字段-->
+				<entry key="bolivia_import_conditionzhname" value="国家：,海关编码：,CIF金额：,净重：,产品描述：,日期：,FOB价格：,进口商：,出口商：,原产国："></entry>
+				<entry key="bolivia_import_conditionfieldid" value="country,hscode,cifstartprice/cifendprice,startnetweight/endnetweight,goodsdesc,startdate/enddate,fobstartprice/fobendprice,importer,exporter,origin_country"></entry>
+				<entry key="bolivia_import_conditionenname" value="country：,Custom number：,CIF price:,Net weight:,Description：,Date:,FBO price:,Importer:,Exporter:,Origin:"></entry>
+				<!-- 需要添加翻译的字段id -->
+				<entry key="bolivia_import_trans" value="goodsdesc,importer,exporter"></entry>
+				<!-- 需要添加文本框描述的字段id -->
+				<entry key="bolivia_import_desc" value="hscode,goodsdesc,importer,exporter,origin_country"></entry>
+				<!-- 日期格式 -->
+				<entry key="bolivia_import_dateFormatter" value="yyyy-MM-dd"></entry>
+				<!-- 初始日期 -->
+				<entry key="bolivia_import_dateValue" value="2014-01-01,2014-12-31"></entry>
+				<!-- 玻利维亚进口下拉框显示字段 -->
+				<entry key="bolivia_import_select" value="origin"></entry>
+				<entry key="bolivia_import_origin" value="PERU~CHINA~ARGENTINA~CHILE~BRAZIL~UNITED STATES~CZECH REPUBLIC~PARAGUAY~RUSSIAN FEDERATION~AUSTRALIA~UNITED KINGDOM~SWEDEN~FRANCE~COLOMBIA~CANADA~UNITED ARAB EMIRATES~INDIA~AUSTRIA~GERMANY~PORTUGAL~SPAIN~DENMARK~ROMANIA~JAPAN~THAILAND~KOREA, REPUBLIC OF~TAIWAN, PROVINCE OF CHINA~BELGIUM~VENEZUELA~NETHERLANDS~ITALY~BOLIVIA~MEXICO~ECUADOR~NORWAY~ESTONIA~FINLAND~IRELAND~HONG KONG~ESLOVAQUIA~INDONESIA~HUNGARY~SWITZERLAND~MALAYSIA~PHILIPPINES~ISRAEL~BULGARIA~TURKEY~VIET NAM~COSTA RICA~POLAND~BANGLADESH~DOMINICAN REPUBLIC~UKRAINE~URUGUAY~BAHAMAS~SWAZILAND~SINGAPORE~GUATEMALA~KOREA, DEMOCRATIC PEOPLE S REPUBLIC OF~COTE D IVOIRE~LITHUANIA~HONDURAS~EGYPT~LATVIA~SUDAN~CANTON AND ENDERBURY ISLANDS~GEORGIA~VIRGIN ISLANDS, U.S.~PAKISTAN~ANTIGUA AND BARBUDA~SERBIA~CAMBODIA~NICARAGUA~BARBADOS~HAITI~JORDAN~EL SALVADOR~PANAMA~SRI LANKA~MAURITANIA~ANDORRA~FIJI~LEBANON~SENEGAL~TUNISIA~MOROCCO~SAINT HELENA~UNIDENTIFIED COUNTRIES~ETHIOPIA~KENYA~ARUBA~BELARUS~GREECE~NEW ZEALAND~ALBANIA~SLOVENIA~CROATIA~LESOTHO~PUERTO RICO~SAINT KITTS AND NEVIS~CUBA~BOSNIA AND HERZEGOVINA~MAURITIUS~ICELAND~SOUTH AFRICA~SEYCHELLES~GUINEA-BISSAU~CYPRUS~ZAMBIA~CAMEROON~FRENCH POLYNESIA~SAUDI ARABIA~MOLDOVA, REPUBLIC OF~QATAR~CURAZAO~NAURU~SERBIA AND MONTENEGRO~MACAO~REUNION~LUXEMBOURG~MONTENEGRO~CHAD~MALTA~MONACO~ARMENIA~ERITREA~UGANDA~LIECHTENSTEIN~TANZANIA, UNITED REPUBLIC OF~MOZAMBIQUE~TOKELAU~CONGO~GUADELOUPE~BURUNDI~BAHRAIN~IRAN, ISLAMIC REPUBLIC OF~TRINIDAD AND TOBAGO~MACEDONIA, THE FORMER YUGOSLAV REPUBLIC~NEW CALEDONIA~AFGHANISTAN~LIBERIA~CHRISTMAS ISLAND~CONGO, THE DEMOCRATIC REPUBLIC OF THE~COOK ISLANDS~GHANA~VANUATU~ALGERIA~JAMAICA~NIGERIA~MONGOLIA~COCOS (KEELING) ISLANDS~OMAN~CENTRAL AFRICAN REPUBLIC~MALI~GAMBIA~NOT DECLARED~FRENCH GUIANA~SIERRA LEONE~NIUE~SOUTH GEORGIA AND THE SOUTH SANDWICH ISLANDS~MADAGASCAR~NORTHERN MARIANA ISLANDS~REPUBLICA ARABE SIRIA~BRUNEI DARUSSALAM~PACIFIC ISLANDS, TRUST TERRITORY OF THE~NETHERLANDS ANTILLES~DOMINICA~ANTARCTICA~LAO PEOPLE S DEMOCRATIC REPUBLIC~SURINAME~MYANMAR~TIMOR-LESTE~BELIZE~PITCAIRN~GABON~NEPAL~SAINT BARTHELEMY~KYRGYZSTAN~VIRGIN ISLANDS, BRITISH~CAPE VERDE~~LIBYAN ARAB JAMAHIRIYA~MALDIVES~MALAWI~WALLIS AND FUTUNA~TURKMENISTAN~KUWAIT~NAMIBIA~NIGER~ZIMBABWE~HOLY SEE (VATICAN CITY STATE)~MONTSERRAT~SAO TOME AND PRINCIPE~ANGOLA~BHUTAN~"></entry>
+				
+			</map>
+		</constructor-arg>
+	</bean>
+</beans>
+
+

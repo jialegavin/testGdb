@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.njyb.gbdbase.dao.datasearch.country.IParaguayExportDao">
+
+	<!--实体映射-->
+	<resultMap id="paraguayExportResultMap" type="com.njyb.gbdbase.model.datasearch.paraguay.ParaguayExportModel">
+		<!--主键编号-->
+		<id property="paraguayExportId" column="PARAGUAY_EXPORT_ID" />
+		<!--日期(REG_DATE)-->
+		<result property="date" column="DATE" />
+		<!--出口商编号-->
+		<result property="exporterId" column="EXPORTER_ID" />
+		<!--出口商-->
+		<result property="exporter" column="EXPORTER" />
+		<!--进口商(BUYER)-->
+		<result property="importer" column="IMPORTER" />
+		<!--目的国-->
+		<result property="destCountry" column="DEST_COUNTRY" />
+		<!--海关编码(HS_CODE)-->
+		<result property="hscode" column="HSCODE" />
+		<!--数量-->
+		<result property="quantity" column="QUANTITY" />
+		<!--数量单位-->
+		<result property="unitOfQuantity" column="UNIT_OF_QUANTITY" />
+		<!--产品描述(PRODUCT_DESC)-->
+		<result property="goodsDesc" column="GOODS_DESC" />
+		<!--毛重-->
+		<result property="grossWeight" column="G_WEIGHT" />
+		<!--净重-->
+		<result property="netWeight" column="N_WEIGHT" />
+		<!--FOB总价(FOB)-->
+		<result property="fobValue" column="FOB_VALUE" />
+		<!--运输价-->
+		<result property="freight" column="FREIGHT" />
+		<!--保险价-->
+		<result property="insurance" column="INSURANCE" />
+		<!--CIF总价（CIF）-->
+		<result property="cifValue" column="CIF_VALUE" />
+		<!--FOB单价（统计值）-->
+		<result property="fobUnit" column="FOB_UNIT" />
+		<!--商标-->
+		<result property="brand" column="BRAND" />
+		<!--海关城市-->
+		<result property="customs" column="CUSTOMS" />
+		<!--运输类型-->
+		<result property="transType" column="TRANS_TYPE" />
+		<!--运输公司-->
+		<result property="transCorp" column="TRANS_CORP" />
+		<!--运输国家-->
+		<result property="transCountry" column="TRANS_COUNTRY" />
+		<!--编号-->
+		<result property="orderList" column="ORDER_LIST" />
+	</resultMap>
+
+	<!-- 通用查询结果列-->
+	<sql id="Base_Column_List">
+		PARAGUAY_EXPORT_ID,
+	DATE,	EXPORTER_ID,	EXPORTER,	IMPORTER,	DEST_COUNTRY,	HSCODE,	QUANTITY,	UNIT_OF_QUANTITY,
+	GOODS_DESC,	G_WEIGHT,	N_WEIGHT,	FOB_VALUE,	FREIGHT,	INSURANCE,	CIF_VALUE,	FOB_UNIT,BRAND,
+	CUSTOMS,	TRANS_TYPE,	TRANS_CORP,	TRANS_COUNTRY,	ORDER_LIST
+	</sql>
+
+	<!-- 查询（根据主键ID查询） -->
+	<select id="queryByPrimaryAll" resultMap="paraguayExportResultMap" parameterType="java.lang.Integer">
+		 SELECT
+		 <include refid="Base_Column_List" />
+		 FROM data_paraguay_export
+		 WHERE PARAGUAY_EXPORT_ID in ${sql}
+	</select>
+
+
+</mapper>

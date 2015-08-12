@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.njyb.gbdbase.dao.datasearch.country.IUkraineImportDao">
+
+	<!--实体映射-->
+	<resultMap id="ukraineImportResultMap" type="com.njyb.gbdbase.model.datasearch.wkl.UkraineImportModel">
+		<!---->
+		<id property="ukraineImportId" column="UKRAINE_IMPORT_ID" />
+		<!--日期(Дата)-->
+		<result property="date" column="DATE" />
+		<!--报关单号（DECLARATION_NUMBER）-->
+		<result property="declarationNo" column="DECLARATION_NO" />
+		<!---->
+		<result property="exporterId" column="EXPORTER_ID" />
+		<!--出口商,发件人（Найменування відправника）-->
+		<result property="exporter" column="EXPORTER" />
+		<!--出口商地址(Адреса відправника)-->
+		<result property="exporterAddress" column="EXPORTER_ADDRESS" />
+		<!--收件人的企业代码(Код за ЄДРПОУ одержувача)-->
+		<result property="importerId" column="IMPORTER_ID" />
+		<!--进口商(Найменування одержувача)-->
+		<result property="importer" column="IMPORTER" />
+		<!--进口商地址(Адреса одержувача)-->
+		<result property="importerAddress" column="IMPORTER_ADDRESS" />
+		<!--海关编码(Код УКТЗЕД)-->
+		<result property="hscode" column="HSCODE" />
+		<!--产品描述(Опис-товару)-->
+		<result property="goodsDesc" column="GOODS_DESC" />
+		<!--净重(Вага нетто)-->
+		<result property="netWeight" column="N_WEIGHT" />
+		<!--货物成本(Фактурна вартість)-->
+		<result property="cost" column="COST" />
+		<!--发票总额(загальна фактурна вартість)-->
+		<result property="cifValue" column="CIF_VALUE" />
+		<!--货币名称/代码(код валюти)-->
+		<result property="currencyType" column="CURRENCY_TYPE" />
+		<!--汇率(Курс валюти)-->
+		<result property="exchangeRate" column="EXCHANGE_RATE" />
+		<!--担保人的企业代码(Код за ЄДРПОУ гаранта)-->
+		<result property="guaranteeId" column="GUARANTEE_ID" />
+		<!--担保人名称(Найменування гаранта)-->
+		<result property="guarantee" column="GUARANTEE" />
+		<!--担保人地址(Адреса гаранта)-->
+		<result property="guaranteeAddress" column="GUARANTEE_ADDRESS" />
+		<!--银行账号编号-->
+		<result property="bankAccountNo" column="BANK_ACCOUNT_NO" />
+		<!--分行地址代码-->
+		<result property="bankBranchLocCode" column="BANK_BRANCH_LOC_CODE" />
+		<!--银行代码-->
+		<result property="bankCode" column="BANK_CODE" />
+		<!--银行名称-->
+		<result property="bankName" column="BANK_NAME" />
+		<!--海关编号(Номер ВМД (митниця))-->
+		<result property="customsOfficeCode" column="CUSTOMS_OFFICE_CODE" />
+	</resultMap>
+
+
+	<!-- 通用查询结果列-->
+	<sql id="Base_Column_List">
+		UKRAINE_IMPORT_ID,
+	DATE,	DECLARATION_NO,	EXPORTER_ID,	EXPORTER,	EXPORTER_ADDRESS,	IMPORTER_ID,	IMPORTER,	IMPORTER_ADDRESS,
+	HSCODE,	GOODS_DESC,	N_WEIGHT,	COST,	CIF_VALUE,	CURRENCY_TYPE,	EXCHANGE_RATE,	GUARANTEE_ID,
+	GUARANTEE,	GUARANTEE_ADDRESS,	BANK_ACCOUNT_NO,	BANK_BRANCH_LOC_CODE,	BANK_CODE,	BANK_NAME,	CUSTOMS_OFFICE_CODE
+	</sql>
+
+	<!-- 查询（根据主键ID查询） -->
+	<select id="queryByPrimaryAll" resultMap="ukraineImportResultMap" parameterType="java.lang.Integer">
+		 SELECT
+		 <include refid="Base_Column_List" />
+		 FROM data_ukraine_import
+		 WHERE UKRAINE_IMPORT_ID in ${sql}
+	</select>
+
+
+</mapper>

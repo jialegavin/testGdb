@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>  
+<!DOCTYPE mapper  PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN" "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+<mapper namespace="com.njyb.gbdbase.dao.admincenter.ISystemLogDao">
+	<resultMap type="com.njyb.gbdbase.model.admincenter.UserSystemLogModel"
+		id="sysLogMap">
+		<id property="logId" column="LOGID" />
+		<id property="logTime" column="LOGTIME" />
+		<id property="country" column="COUNTRY" />
+		<id property="userName" column="USERNAME" />
+		<id property="parameter" column="PARAMETER" />
+		<id property="loginName" column="LOGINNAME" />
+		<id property="logDesc" column="LOGDESC" />
+	</resultMap>
+   <!--chenhu:分页查询系统日志-->
+	<select id="querySystemLogsForPaging" parameterType="com.njyb.gbdbase.model.usermanagement.QueryModel"  resultMap="sysLogMap">
+		<![CDATA[
+		SELECT  LOGID,LOGTIME,COUNTRY,USERNAME,PARAMETER,LOGINNAME,LOGDESC
+         FROM(SELECT u.username,u.userid,u.loginname,l.logid,l.logtime,
+			l.parameter,l.country,l.logdesc FROM sys_user u,user_search_log l
+		WHERE u.userid = l.userid) a   LIMIT  #{startnum},#{pageSize}
+		]]>
+	</select>
+	<!--chenhu:根据日志ID查询一个具体的日志信息-->
+	<select id="querySystemLogByLogId" parameterType="com.njyb.gbdbase.model.usermanagement.QueryModel"  resultMap="sysLogMap">
+		<![CDATA[
+			SELECT  LOGID,LOGTIME,COUNTRY,USERNAME,PARAMETER,LOGINNAME,LOGDESC
+         FROM(SELECT u.username,u.userid,u.loginname,l.logid,l.logtime,
+			l.parameter,l.country,l.logdesc FROM sys_user u,user_search_log l
+		WHERE u.userid = l.userid) a  WHERE a.logid=#{logId} 
+		]]>
+	</select>
+	<!--chenhu:根据用户ID分页查询日志信息-->
+	<select id="querySystemLogsByUserIdForPaging" parameterType="com.njyb.gbdbase.model.usermanagement.QueryModel"  resultMap="sysLogMap">
+		<![CDATA[
+		SELECT  LOGID,LOGTIME,COUNTRY,USERNAME,PARAMETER,LOGINNAME,LOGDESC
+         FROM(SELECT u.username,u.userid,u.loginname,l.logid,l.logtime,
+			l.parameter,l.country,l.logdesc FROM sys_user u,user_search_log l
+		WHERE u.userid = l.userid) a  WHERE a.userid=#{userId} LIMIT #{startnum},#{pageSize}
+		]]>
+	</select>
+	
+	<!--chenhu:根据用户ID查询用户查询日志总条数-->
+	<select id="querySysLogCountByUserId" parameterType="com.njyb.gbdbase.model.usermanagement.QueryModel" resultType="java.lang.Integer">
+		<![CDATA[
+		SELECT count(1) from user_search_log a WHERE a.userid=#{userId} 
+		]]>
+	</select>
+</mapper>	
+	
+
+

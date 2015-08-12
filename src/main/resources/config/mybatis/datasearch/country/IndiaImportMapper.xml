@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.njyb.gbdbase.dao.datasearch.country.IIndiaImportDao">
+
+	<!--实体映射-->
+	<resultMap id="indiaImportResultMap" type="com.njyb.gbdbase.model.datasearch.india.IndiaImportModel">
+		<!---->
+		<id property="indiaImportId" column="INDIA_IMPORT_ID" />
+		<!--日期(REG_DATE)-->
+		<result property="date" column="DATE" />
+		<!--海关编码(HS_CODE)-->
+		<result property="hscode" column="HSCODE" />
+		<!--进口商编号-->
+		<result property="importerId" column="IMPORTER_ID" />
+		<!--进口商(IMPORTER_NAME)-->
+		<result property="importer" column="IMPORTER" />
+		<!--进口商地址1(IMPORTER_ADDRESS_ONE)-->
+		<result property="importerAddressOne" column="IMPORTER_ADDRESS_ONE" />
+		<!--进口商地址2(IMPORTER_ADDRESS_TWO)-->
+		<result property="importerAddressTwo" column="IMPORTER_ADDRESS_TWO" />
+		<!--城市-->
+		<result property="city" column="CITY" />
+		<!--邮编-->
+		<result property="postal" column="POSTAL" />
+		<!--电话-->
+		<result property="tel" column="TEL" />
+		<!--传真-->
+		<result property="fax" column="FAX" />
+		<!--电子邮件-->
+		<result property="email" column="EMAIL" />
+		<!--产品描述(PRODUCT_DESC)-->
+		<result property="goodsDesc" column="GOODS_DESC" />
+		<!--数量-->
+		<result property="quantity" column="QUANTITY" />
+		<!--数量单位(UNIT_OF_QUANTITY)-->
+		<result property="quantityUnit" column="QUANTITY_UNIT" />
+		<!--卢布价(计算添加)-->
+		<result property="inrValue" column="INR_VALUE" />
+		<!--卢布单价(UNIT_PRICE_INV)-->
+		<result property="inrUnit" column="INR_UNIT" />
+		<!--美元单价(UNIT_PRICE_USD)-->
+		<result property="usdUnit" column="USD_UNIT" />
+		<!--欧元单价(UNIT_PRICE_EURO)-->
+		<result property="euroUnit" column="EURO_UNIT" />
+		<!--海关代理-->
+		<result property="customAgent" column="CUSTOM_AGENT" />
+		<!--出口商(SUPPLIER_NAME)-->
+		<result property="exporter" column="EXPORTER" />
+		<!--出口商地址(SUPPLIER_ADDRESS)-->
+		<result property="exporterAddress" column="EXPORTER_ADDRESS" />
+		<!--出口商所在国(SUPPLIER_COUNTRY)-->
+		<result property="originCountry" column="ORIGIN_COUNTRY" />
+		<!--起运港(ORIGIN_PORT)-->
+		<result property="startPort" column="START_PORT" />
+		<!--联系人1(CONTACT_1)-->
+		<result property="contactOne" column="CONTACT_ONE" />
+		<!--联系人2(CONTACT_2)-->
+		<result property="contactTwo" column="CONTACT_TWO" />
+		<!--银行-->
+		<result property="bank" column="BANK" />
+	</resultMap>
+
+
+	<!-- 通用查询结果列-->
+	<sql id="Base_Column_List">
+		INDIA_IMPORT_ID,
+	DATE,	HSCODE,	IMPORTER_ID,	IMPORTER,	IMPORTER_ADDRESS_ONE,	IMPORTER_ADDRESS_TWO,	CITY,	POSTAL,
+	TEL,	FAX,	EMAIL,	GOODS_DESC,	QUANTITY,	QUANTITY_UNIT,	INR_VALUE,	INR_UNIT,
+	USD_UNIT,	EURO_UNIT,	CUSTOM_AGENT,	EXPORTER,	EXPORTER_ADDRESS,	ORIGIN_COUNTRY,	START_PORT,	CONTACT_ONE,
+	CONTACT_TWO,	BANK
+	</sql>
+
+	<!-- 查询（根据主键ID查询） -->
+	<select id="queryByPrimaryAll" resultMap="indiaImportResultMap" parameterType="java.lang.Integer">
+		 SELECT
+		 <include refid="Base_Column_List" />
+		 FROM data_india_import
+		 WHERE INDIA_IMPORT_ID in ${sql}
+	</select>
+
+
+</mapper>

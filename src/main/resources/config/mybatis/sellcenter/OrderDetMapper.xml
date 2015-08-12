@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>  
+<!DOCTYPE mapper  PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN" "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+<mapper namespace="com.njyb.gbdbase.dao.sellcenter.IOrderDetDao">
+	<resultMap type="com.njyb.gbdbase.model.sellcenter.UserOrderDetModel" id="orderDetMap">
+	    <id property="detId" column="detId" />
+		<result property="orderNo" column="orderNo" />
+		<result property="price" column="price" />
+		<result property="times" column="times" />
+		<result property="tlimit" column="tlimit" />
+		<result property="ioType" column="ioType" />
+		<result property="country" column="country" />
+		<result property="prodesc" column="prodesc" />
+		<result property="hscode" column="hscode" />
+		<result property="byType" column="byType" />
+	</resultMap>
+	<!--chenhu:新增订单明细-->
+	<insert id="addNewOrderDet" parameterType="com.njyb.gbdbase.model.sellcenter.UserOrderDetModel">
+		<![CDATA[
+		INSERT INTO user_order_det
+			(detId, orderNo,price, times, tlimit, ioType,
+			country, prodesc, hscode, byType)
+			VALUES
+		    (null, #{orderNo}, #{price},#{times}, #{tlimit},#{ioType},
+			#{country}, #{prodesc}, #{hscode}, #{byType})
+		]]>
+	</insert>
+	<!-- 根据订单ID删除订单明细 -->
+	<delete id="deleteOrderDetByNo"   parameterType="java.lang.String" > 
+	  delete from user_order where orderNo=#{orderNo}
+	</delete>
+	<!-- 根据订单号查询订单明细 -->
+	<select id="queryOrderDetByNo"    parameterType="java.lang.String"   resultMap="orderDetMap">
+		<![CDATA[
+	   select detId, orderNo,price, times, tlimit, ioType,
+			country, prodesc, hscode, byType
+              from user_order_det
+				WHERE   orderNo=#{orderNo} 
+			]]>
+	</select>
+	<!-- 查询订单明细数量根据订单号 -->
+	<select id="querySumDetByNo" parameterType="java.lang.String" resultType="java.lang.Integer">
+		<![CDATA[
+	   select count(1)
+              from user_order_det
+				WHERE   orderNo=#{orderNo} 
+			]]>
+	</select>
+	
+</mapper>

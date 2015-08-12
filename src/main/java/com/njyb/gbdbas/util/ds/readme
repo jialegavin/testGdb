@@ -1,0 +1,18 @@
+目的:把用户数据源和国家数据源独立分开
+
+解决方法一:使用spring可扩展的rout
+
+1 先在applicationContext.xml配置多个数据源 比如这里需要两个(userDs,dbDs)
+2 spring本身能直接支持多数据源 需要我们继承并且扩展 AbstractRoutingDataSource 为每个数据源指定一种类型 然后spring通过
+获取到对应数据源的类型 从而动态注入数据源
+3 创建一个类 存放多种数据源的标致 同时因为多线程的问题 需要用线程变量共享解决
+4 因为是service调用对应的数据源 所以我们可以在service统一区分开 然后动态切换数据源
+5 因为有区分service 这里使用aop非常合适
+6 为了更好的区分数据源调用 在所有的业务方法接口中 如果用到数据库的话 必须定义一个参数 用来标致你想
+使用的数据源
+
+解决方法二:使用装饰器模式动态改变原来单一的datasource
+
+主要从数据车持久化过程开始考虑...service--dao--sessionfactory--datasource
+datasource--filter--设置变量thread--thread.get()--只要是能动态的获取的话--就可以了
+注意:线程变量共享

@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.njyb.gbdbase.dao.datasearch.country.IPanamaExportDao">
+
+	<!--实体映射-->
+	<resultMap id="panamaExportResultMap" type="com.njyb.gbdbase.model.datasearch.panama.PanamaExportModel">
+		<!--主键id-->
+		<id property="panamaExportId" column="PANAMA_EXPORT_ID" />
+		<!--出口商编号-->
+		<result property="exporterId" column="EXPORTER_ID" />
+		<!--出口商-->
+		<result property="exporter" column="EXPORTER" />
+		<!--海关编码-->
+		<result property="hscode" column="HSCODE" />
+		<!--产品描述-->
+		<result property="goodsDesc" column="GOODS_DESC" />
+		<!--海关中心-->
+		<result property="customsZone" column="CUSTOMS_ZONE" />
+		<!--起运港(PORT)-->
+		<result property="startPort" column="START_PORT" />
+		<!--运输方式-->
+		<result property="transType" column="TRANS_TYPE" />
+		<!--报关单号-->
+		<result property="declarationNumber" column="DECLARATION_NUMBER" />
+		<!--目的国-->
+		<result property="destCountry" column="DEST_COUNTRY" />
+		<!--净重-->
+		<result property="netWeight" column="N_WEIGHT" />
+		<!--毛重-->
+		<result property="grossWeight" column="G_WEIGHT" />
+		<!--件数(包装数量)-->
+		<result property="packages" column="PACKAGES" />
+		<!--数量-->
+		<result property="quantity" column="QUANTITY" />
+		<!--数量单位(UNIT_OF_QUANTITY)-->
+		<result property="quantityUnit" column="QUANTITY_UNIT" />
+		<!--FOB总价-->
+		<result property="fobValue" column="FOB_VALUE" />
+		<!--日期-->
+		<result property="date" column="DATE" />
+	</resultMap>
+
+
+	<!-- 通用查询结果列-->
+	<sql id="Base_Column_List">
+		PANAMA_EXPORT_ID,
+	EXPORTER_ID,	EXPORTER,	HSCODE,	GOODS_DESC,	CUSTOMS_ZONE,	START_PORT,	TRANS_TYPE,	DECLARATION_NUMBER,
+	DEST_COUNTRY,	N_WEIGHT,	G_WEIGHT,	PACKAGES,	QUANTITY,	QUANTITY_UNIT,	FOB_VALUE,	DATE
+
+	</sql>
+
+	<!-- 查询（根据主键ID查询） -->
+	<select id="queryByPrimaryAll" resultMap="panamaExportResultMap" parameterType="java.lang.Integer">
+		 SELECT
+		 <include refid="Base_Column_List" />
+		 FROM data_panama_export
+		 WHERE PANAMA_EXPORT_ID in ${sql}
+	</select>
+
+
+</mapper>

@@ -1,0 +1,282 @@
+<?xml version="1.0" encoding="UTF-8"?>  
+<!DOCTYPE mapper  PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN" "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+<mapper namespace="com.njyb.gbdbase.dao.admincenter.IUserDao">
+
+	<resultMap type="com.njyb.gbdbase.model.admincenter.UserModel" id="userResult">
+		<id property="userId" column="USERID" />
+		<result property="loginName" column="LOGINNAME" />
+		<result property="loginPassword" column="LOGINPASSWORD" />
+		<result property="email" column="EMAIL" />
+		<result property="phone" column="PHONE" />
+		<result property="qq" column="QQ" />
+		<result property="unitName" column="unitName" />
+		<result property="country" column="country" />
+		<result property="province" column="province" />
+		<result property="city" column="city" />
+		<result property="postalNum" column="postalNum" />
+		<result property="userName" column="USERNAME" />
+		<result property="address" column="ADDRESS" />
+		<result property="registertime" column="REGISTERTIME" />
+		<result property="endLoginTime" column="ENDLOGINTIME" />
+		<result property="beginTime" column="BEGINTIME" />
+		<result property="endTime" column="ENDTIME" />
+		<result property="userDesc" column="USERDESC"/>
+		<result property="sonAccountTotal" column="SONACCOUNTTOTAL"/>
+		<result property="isActivated" column="ISACTIVATED"/>
+		<result property="sonAccountNum" column="SONACCOUNTNUM"/>
+		<result property="openService" column="OPENSERVICE"/>
+		<result property="isLocked" column="ISLOCKED"/>
+		<result property="loginCount" column="LOGINCOUNT"/>
+		<result property="isDisable" column="ISDISABLE"/>
+		<result property="tel" column="TEL"/>
+		<result property="relaId" column="RELAID"/>
+		<result property="mainId" column="MAINID"/>
+	</resultMap>
+	
+
+	<!-- gavin:get the endtime  of user -->
+	<select id="getEndTime" resultType="java.lang.String">
+		<![CDATA[
+			SELECT ENDTIME FROM SYS_USER WHERE LOGINNAME = #{LoginName}
+		]]>
+	</select>
+	<!-- gavin: after user pay for service, update their time -->
+	<update id="updateUserTime" parameterType="java.lang.String">
+	<![CDATA[
+			UPDATE SYS_USER SET BEGINTIME=#{1},  ENDTIME=#{2}  WHERE LOGINNAME = #{0}
+		]]>
+	
+	</update>
+	<!-- gavin: after user pay for service, add their time if they are not expired -->
+	<update id="addUserTime" parameterType="java.lang.String">
+	<![CDATA[
+			UPDATE SYS_USER SET   ENDTIME=#{1}  WHERE LOGINNAME = #{0}
+		]]>
+	
+	</update>
+	<!-- gavin:after completing transaction, save transaction information -->
+
+	<insert id="saveUserCharge" parameterType="com.njyb.gbdbase.model.paypal.UserChargeModel">
+		<![CDATA[
+		INSERT INTO USER_CHARGE_LOG
+		(loginname,chargedate, chargeip,service,paymentID)
+		 VALUES(#{username},#{date},#{userip},#{userservice},#{paymentID})
+
+		
+		]]>
+	</insert>
+	
+
+	<!--chenhu:根据用户ID查询用户的所有子用户-->
+	<select id="queryUsersBySql" parameterType="com.njyb.gbdbase.model.usermanagement.QueryModel"  resultMap="userResult">
+		<![CDATA[
+			SELECT 
+				USERID, LOGINNAME,LOGINPASSWORD, EMAIL, PHONE, QQ,
+				USERNAME, ADDRESS, REGISTERTIME, ENDLOGINTIME, BEGINTIME, ENDTIME, 
+				USERDESC, SONACCOUNTTOTAL, ISACTIVATED, TEL,
+				SONACCOUNTNUM, OPENSERVICE,ISLOCKED,LOGINCOUNT,ISDISABLE,RELAID,MAINID
+				,unitName,country,province,city,postalNum
+			FROM SYS_USER 
+				WHERE  1=1  ${whereSql}
+		]]>
+	</select>
+	
+	<!--chenhu:根据用户部分唯一条件查询单个用户-->
+	<select id="queryUserBySql" parameterType="com.njyb.gbdbase.model.usermanagement.QueryModel"  resultMap="userResult">
+		<![CDATA[
+			SELECT 
+				USERID, LOGINNAME,LOGINPASSWORD, EMAIL, PHONE, QQ,
+				USERNAME, ADDRESS, REGISTERTIME, ENDLOGINTIME, BEGINTIME, ENDTIME,    
+				USERDESC, SONACCOUNTTOTAL, ISACTIVATED, TEL,
+				SONACCOUNTNUM, OPENSERVICE,ISLOCKED,LOGINCOUNT,ISDISABLE,RELAID,MAINID
+				,unitName,country,province,city,postalNum
+			FROM SYS_USER 
+				WHERE   ${whereSql}
+		]]>
+	</select>
+	
+	<!--chenhu:分页查询用户 -->
+	<select id="queryUsersForPaging"  parameterType="com.njyb.gbdbase.model.usermanagement.QueryModel" 
+		resultMap="userResult">
+		 <![CDATA[
+			SELECT 
+				USERID, LOGINNAME,LOGINPASSWORD, EMAIL, PHONE, QQ,
+				USERNAME, ADDRESS, REGISTERTIME, ENDLOGINTIME, BEGINTIME, ENDTIME, 
+				USERDESC, SONACCOUNTTOTAL, ISACTIVATED, TEL,
+				SONACCOUNTNUM, OPENSERVICE,ISLOCKED,LOGINCOUNT,ISDISABLE,RELAID,MAINID
+				,unitName,country,province,city,postalNum
+			FROM SYS_USER 
+			WHERE 1=1 
+			and  ${whereSql}
+			LIMIT #{startnum},#{pageSize}
+		]]>
+	</select>
+		
+	<!--chenhu:分页查询类别不同的用户列表 -->
+	<select id="queryUsersByDesc"  parameterType="com.njyb.gbdbase.model.usermanagement.QueryModel" 
+		resultMap="userResult">
+		 <![CDATA[
+			SELECT 
+				USERID, LOGINNAME,LOGINPASSWORD, EMAIL, PHONE, QQ,
+				USERNAME, ADDRESS, REGISTERTIME, ENDLOGINTIME, BEGINTIME, ENDTIME, 
+				USERDESC, SONACCOUNTTOTAL, ISACTIVATED, TEL,
+				SONACCOUNTNUM, OPENSERVICE,ISLOCKED,LOGINCOUNT,ISDISABLE,RELAID,MAINID
+				,unitName,country,province,city,postalNum
+			FROM SYS_USER 
+			WHERE 1=1 
+			and  USERDESC=#{userDesc} and mainid=0
+		]]>
+	</select>
+		
+	<!--chenhu:查询用户数量根据sql-->
+	<select id="queryUserCountBySql" parameterType="com.njyb.gbdbase.model.usermanagement.QueryModel"  resultType="java.lang.Integer">
+		select count(1) from sys_user where ${whereSql}
+	</select>
+	
+	
+	
+	<!--honghao:激活-->
+	<update id="updateUserBySql" parameterType="com.njyb.gbdbase.model.usermanagement.QueryModel">
+		<![CDATA[
+			UPDATE SYS_USER SET ${updateSql} WHERE 1=1 and  ${whereSql}
+		]]>
+	</update>
+		
+	<!--honghao:修改用户的登录状态-->
+	<update id="updateUserModel" parameterType="com.njyb.gbdbase.model.usermanagement.QueryModel">
+		${sql}
+	</update>
+		
+	<!--honghao:修改用戶密碼-->
+	<update id="updatePassword" parameterType="com.njyb.gbdbase.model.admincenter.UserModel">
+		<![CDATA[UPDATE SYS_USER 
+			SET LOGINPASSWORD = #{loginPassword} 
+			WHERE LOGINNAME = #{loginName}
+		]]>
+	</update>
+	
+	<!--chenhu:修改子用户信息-->
+	<update id="updateUserInfo" parameterType="com.njyb.gbdbase.model.admincenter.UserModel">  
+        <![CDATA[
+        	UPDATE SYS_USER 
+        	SET LOGINNAME=#{loginName},  TEL=#{tel},
+        	unitName=#{unitName},country=#{country},province=#{province},city=#{city},postalNum=#{postalNum},
+          	EMAIL=#{email},PHONE=#{phone},QQ=#{qq},USERNAME=#{userName},BEGINTIME=#{beginTime},ENDTIME=#{endTime},
+          	ADDRESS=#{address},USERDESC=#{userDesc}  WHERE USERID=#{userId}
+          ]]>
+	</update>
+	  <!--honghao:修改用户开通子账户权限 -->
+	<update id="updateIsOpenSubService" parameterType="com.njyb.gbdbase.model.admincenter.UserModel">  
+        <![CDATA[
+        	UPDATE SYS_USER SET OPENSERVICE=#{openService} WHERE USERID=#{userId}
+          ]]>
+	</update>	
+	
+	<!--honghao:添加新用户-->
+	<insert id="addNewUser" parameterType="com.njyb.gbdbase.model.admincenter.UserModel">
+		<![CDATA[
+			INSERT INTO SYS_USER
+		    (
+		        USERID, LOGINNAME,LOGINPASSWORD, EMAIL, PHONE, QQ,
+				USERNAME, ADDRESS, REGISTERTIME, ENDLOGINTIME, BEGINTIME, 
+				ENDTIME, USERDESC,SONACCOUNTTOTAL, ISACTIVATED, 
+				SONACCOUNTNUM, OPENSERVICE,ISLOCKED,LOGINCOUNT,ISDISABLE,RELAID,MAINID,TEL
+			)
+			VALUES
+		    (
+			    null, #{loginName}, #{loginPassword},#{email}, #{phone},#{qq},
+				#{userName}, #{address}, #{registertime}, #{endLoginTime},
+				#{beginTime}, #{endTime},#{userDesc},#{sonAccountTotal},#{isActivated}, 
+				#{sonAccountNum}, #{openService}, #{isLocked},#{loginCount}, #{isDisable},#{relaId},#{mainId},#{tel}
+			)
+		]]>
+	</insert>
+
+	<!--chenhu:用户名是否已经注册-->
+	<select id="checkLoginName" parameterType="com.njyb.gbdbase.model.admincenter.UserModel" resultType="java.lang.Integer">
+		<![CDATA[
+			SELECT COUNT(1) FROM SYS_USER WHERE LOGINNAME = #{loginName}
+		]]>
+	</select>
+	
+	<!--chenhu:邮箱是否重复-->
+	<select id="checkLoginMail" parameterType="com.njyb.gbdbase.model.admincenter.UserModel" resultType="java.lang.Integer">
+		<![CDATA[
+			SELECT COUNT(1) FROM SYS_USER WHERE EMAIL = #{email}
+		]]>
+	</select>
+    
+    
+   <!-- chenhu:删除用户的全部信息 -->
+   <delete id="deleteUserAllMesseByUserID" statementType="CALLABLE"  parameterType="java.lang.Integer" >  
+     {CALL del_user_msg_pro(#{userId,mode=IN,jdbcType=INTEGER}) }   
+    </delete> 
+    <!-- 查询用户的不同身份 -->
+    <select id="queryDiffUserByDesc"  resultType="String">
+    <![CDATA[
+			SELECT distinct userdesc FROM SYS_USER WHERE 1=1 and userdesc is not null
+		]]>
+	</select>
+	<!-- 根据用户ID获取用户 -->
+	 <select id="queryUserByID"  parameterType="java.lang.Integer"  resultMap="userResult">
+    <![CDATA[
+			SELECT 
+				USERID, LOGINNAME,LOGINPASSWORD, EMAIL, PHONE, QQ,
+				USERNAME, ADDRESS, REGISTERTIME, ENDLOGINTIME, BEGINTIME, ENDTIME, 
+				USERDESC, SONACCOUNTTOTAL, ISACTIVATED, TEL,
+				SONACCOUNTNUM, OPENSERVICE,ISLOCKED,LOGINCOUNT,ISDISABLE,RELAID,MAINID
+			FROM SYS_USER 
+				WHERE  userid= #{0}
+		]]>
+	</select>
+	<!--chenhu:修改用户的子用户数量-->
+	<update id="updateUserSonCount" parameterType="com.njyb.gbdbase.model.admincenter.UserModel">  
+        <![CDATA[
+        	UPDATE SYS_USER 
+        	SET SONACCOUNTTOTAL=#{sonAccountTotal} WHERE USERID=#{userId}
+          ]]>
+	</update>
+	<!--chenhu:查询用户部分状态字段-->
+	<select id="queryUserFieldBySql" parameterType="com.njyb.gbdbase.model.usermanagement.QueryModel" resultType="java.lang.String">  
+        <![CDATA[
+        	${whereSql}
+          ]]>
+	</select>
+	<!--chenhu:根据用户描述查询用户数量-->
+	<select id="queryUserCountByDesc"  resultType="java.lang.Integer">  
+        <![CDATA[
+        	SELECT 
+			count(1)
+			FROM SYS_USER 
+			WHERE 1=1 
+			and  USERDESC=#{0} and mainid=0
+          ]]>
+	</select>
+	<!--chenhu:修改用户创建的子用户数量-->
+	<update id="updateUserSonNum" parameterType="com.njyb.gbdbase.model.admincenter.UserModel">  
+        <![CDATA[
+        	UPDATE SYS_USER 
+        	SET SONACCOUNTNUM=#{sonAccountNum} WHERE USERID=#{userId}
+          ]]>
+	</update>
+	<!--chenhu:根据用ID修改用户身份-->
+	<update id="updateUserDescById" parameterType="com.njyb.gbdbase.model.admincenter.UserModel">  
+        <![CDATA[
+        	UPDATE SYS_USER 
+        	SET USERDESC=#{userDesc} WHERE USERID=#{userId}
+          ]]>
+	</update>
+	<!-- 修改用的详细信息 -->
+	<update id="upUserInfo" parameterType="com.njyb.gbdbase.model.admincenter.UserModel">  
+        <![CDATA[
+        	UPDATE SYS_USER 
+        	SET  TEL=#{tel},
+        	unitName=#{unitName},country=#{country},province=#{province},city=#{city},postalNum=#{postalNum},
+          	EMAIL=#{email},PHONE=#{phone},QQ=#{qq},USERNAME=#{userName},
+          	ADDRESS=#{address} WHERE USERID=#{userId}
+          ]]>
+	</update>
+</mapper>	
+	
+
+

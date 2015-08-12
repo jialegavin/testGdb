@@ -1,0 +1,135 @@
+#menuDiv span{
+	width:105px;
+	height:35px;
+	background: url('/gbdbas/static/img/sellcenter/on.png') no-repeat;
+	font-size: 14px;
+	padding-top: 10px ;
+	padding-bottom:10px;
+	color:#ffffff;
+	display:block;
+	float:left;
+	margin-left: 10px;
+	text-align:center;
+	cursor:pointer;
+}
+#menuDiv{
+	height:35px;
+	margin-top: 10px;
+}
+.title{
+	font-size: 16px;
+	font-family: 'ËÎÌו';
+	font-weight: bolder;
+	margin-top: 10px;
+}
+#menuDiv span:HOVER{
+	width:105px;
+	height:35px;
+	background: url('/gbdbas/static/img/sellcenter/out.png') no-repeat;
+	font-size: 14px;
+	padding-top: 10px ;
+	padding-bottom:10px;
+	color:#3399ff;
+	display:block;
+	float:left;
+	margin-left: 10px;
+	text-align:center;
+	cursor:pointer;
+}
+.conditionDiv{
+	border: 1px solid #3399ff;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	margin-top: 10px;
+	width:820px;
+	margin-left: 10px;
+	height: 80px;
+}
+.formCondition{
+	height:60px;
+	width: 820px;
+	margin:10px 10px 0px 20px;
+}
+ .conditionDiv tr{height:30px;}  
+ .conSpan{
+   display:block;
+   font-size: 14px;
+   width:100px;
+	height:22px;
+	text-align:center;
+	float:left;
+	padding-top: 4px;
+ }
+ .formButtom{
+    width:150px;
+    margin-left: 650px;
+     heith:40px;
+ }
+.buttonSpan{
+	 background-color:#3399ff ;
+	 display: block;
+	 width:auto;
+	 height:20px;
+	 float: left;
+	 margin-left: 14px;
+	 font-weight:bolder;
+	 text-align: center;
+	 -moz-border-radius: 1px;
+	-webkit-border-radius: 2px;
+	color: #ffffff;
+	padding: 3px 3px 3px 3px;
+	font-size: 14px;
+}
+.buttonSpan:HOVER{
+	 background-color:#ffffff ;
+	 display: block;
+	 width:auto;
+	 height:20px;
+	 float: left;
+	 margin-left: 15px;
+	 text-align: center;
+	 -moz-border-radius: 1px;
+	-webkit-border-radius: 2px;
+	border:1px solid #3399ff ;
+	cursor:pointer;
+	color: #3399ff;
+	padding: 2px 2px 2px 2px;
+	font-size: 14px;
+}
+.car{
+	border: 1px solid #3399ff;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	margin-top: 10px;
+	width:820px;
+	margin-left: 10px;
+	height: 360px;
+}
+.carDet{
+	margin-left:auto;
+	margin-right:auto;
+	width:810px;
+	margin-top: 10px;
+	height: 290px;
+}
+.doubleinpText{
+	line-height: 22px;
+	width: 72px;
+	height: 22px;
+	border: 1px solid #d0d0d0;
+	border-color: #e5e5e5;
+	border-radius:4px 4px 4px 4px;
+}
+.inputNomarl{
+	border: 1px solid #d0d0d0;
+	border-radius: 4px 4px 4px 4px;
+	height:20px;
+}
+.tag{
+   width:80px;
+   font-family:"ËÎÌו"; 
+  color: #666;
+  padding-top:5px;
+  font-size: 12px;
+  text-align: center;
+}

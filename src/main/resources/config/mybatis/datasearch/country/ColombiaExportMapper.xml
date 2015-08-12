@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.njyb.gbdbase.dao.datasearch.country.IColombiaExportDao">
+
+	<!--实体映射-->
+	<resultMap id="colombiaExportResultMap" type="com.njyb.gbdbase.model.datasearch.colombia.ColombiaExportModel">
+		<!--主键编号-->
+		<id property="colombiaExportId" column="COLOMBIA_EXPORT_ID" />
+		<!--日期-->
+		<result property="date" column="DATE" />
+		<!--日-->
+		<result property="day" column="DAY" />
+		<!--月-->
+		<result property="month" column="MONTH" />
+		<!--年-->
+		<result property="year" column="YEAR" />
+		<!--编号-->
+		<result property="controlId" column="CONTROL_ID" />
+		<!--海关城市-->
+		<result property="customs" column="CUSTOMS" />
+		<!--出口商编号-->
+		<result property="exporterId" column="EXPORTER_ID" />
+		<!--出口商-->
+		<result property="exporter" column="EXPORTER" />
+		<!--出口商地址(小范围)-->
+		<result property="exporterAddress" column="EXPORTER_ADDRESS" />
+		<!--出口商地址(大范围:省)-->
+		<result property="exporterDepartment" column="EXPORTER_DEPARTMENT" />
+		<!--海关编码-->
+		<result property="hscode" column="HSCODE" />
+		<!--目的国-->
+		<result property="destCountry" column="DEST_COUNTRY" />
+		<!--运输方式-->
+		<result property="transType" column="TRANS_TYPE" />
+		<!--支付方式-->
+		<result property="payment" column="PAYMENT" />
+		<!--净重-->
+		<result property="netWeight" column="N_WEIGHT" />
+		<!--数量-->
+		<result property="quantity" column="QUANTITY" />
+		<!--数量单位(UNIT_OF_QUANTITY)-->
+		<result property="quantityUnit" column="QUANTITY_UNIT" />
+		<!--FOB总价-->
+		<result property="fobValue" column="FOB_VALUE" />
+		<!--运费-->
+		<result property="freight" column="FREIGHT" />
+		<!--保险费-->
+		<result property="insurance" column="INSURANCE" />
+		<!--进口商-->
+		<result property="importer" column="IMPORTER" />
+		<!--进口商地址-->
+		<result property="importerAddress" column="IMPORTER_ADDRESS" />
+		<!-- 产品描述 -->
+		<result property="goodsDesc" column="goods_desc" />
+	</resultMap>
+
+
+	<!-- 通用查询结果列-->
+	<sql id="Base_Column_List">
+		COLOMBIA_EXPORT_ID,
+	DATE,	DAY,	MONTH,	YEAR,	CONTROL_ID,	CUSTOMS,	EXPORTER_ID,	EXPORTER,
+	EXPORTER_ADDRESS,	EXPORTER_DEPARTMENT,	HSCODE,	DEST_COUNTRY,	TRANS_TYPE,	PAYMENT,	N_WEIGHT,	QUANTITY,
+	QUANTITY_UNIT,	FOB_VALUE,	FREIGHT,	INSURANCE,	IMPORTER,	IMPORTER_ADDRESS
+	</sql>
+
+	<!-- 查询（根据主键ID查询） -->
+	<select id="queryByPrimaryAll" resultMap="colombiaExportResultMap" parameterType="java.lang.Integer">
+		 SELECT
+		 <include refid="Base_Column_List" />
+		 FROM data_colombia_export
+		 WHERE COLOMBIA_EXPORT_ID in ${sql}
+	</select>
+
+
+</mapper>

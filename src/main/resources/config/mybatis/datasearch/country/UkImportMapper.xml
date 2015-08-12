@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.njyb.gbdbase.dao.datasearch.country.IUkImportDao">
+
+	<!--实体映射-->
+	<resultMap id="ukImportResultMap" type="com.njyb.gbdbase.model.datasearch.uk.UkImportModel">
+		<!---->
+		<id property="ukImportId" column="UK_IMPORT_ID" />
+		<!--公司名称(进口商)-->
+		<result property="companyName" column="COMPANY_NAME" />
+		<!--海关编码-->
+		<result property="hscode" column="HSCODE" />
+		<!--产品描述-->
+		<result property="goodsDesc" column="GOODS_DESC" />
+		<!--地址-->
+		<result property="address" column="ADDRESS" />
+		<!--邮政编码-->
+		<result property="postCode" column="POST_CODE" />
+		<!--日期(monthly)-->
+		<result property="date" column="DATE" />
+	</resultMap>
+
+
+	<!-- 通用查询结果列-->
+	<sql id="Base_Column_List">
+		UK_IMPORT_ID,
+	COMPANY_NAME,	HSCODE,	GOODS_DESC,	ADDRESS,	POST_CODE,	DATE
+	</sql>
+
+	<!-- 查询（根据主键ID查询） -->
+	<select id="queryByPrimaryAll" resultMap="ukImportResultMap" parameterType="java.lang.Integer">
+		 SELECT
+		 <include refid="Base_Column_List" />
+		 FROM data_uk_import
+		 WHERE UK_IMPORT_ID in ${sql}
+	</select>
+
+
+</mapper>

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.njyb.gbdbase.dao.datasearch.country.IHondurasImportDao">
+
+	<!--实体映射-->
+	<resultMap id="hondurasImportResultMap" type="com.njyb.gbdbase.model.datasearch.honduras.HondurasImportModel">
+		<!--主键编号-->
+		<id property="hondurasImportId" column="HONDURAS_IMPORT_ID" />
+		<!--日期-->
+		<result property="date" column="DATE" />
+		<!--原产国-->
+		<result property="originCountry" column="ORIGIN_COUNTRY" />
+		<!--海关编码-->
+		<result property="hscode" column="HSCODE" />
+		<!--产品描述-->
+		<result property="goodsDesc" column="GOODS_DESC" />
+		<!--CIF美元总价-->
+		<result property="cifValue" column="CIF_VALUE" />
+		<!--毛重-->
+		<result property="grossWeight" column="G_WEIGHT" />
+		<!--CIF美元单价-->
+		<result property="cifUnit" column="CIF_UNIT" />
+	</resultMap>
+
+
+	<!-- 通用查询结果列-->
+	<sql id="Base_Column_List">
+		HONDURAS_IMPORT_ID,
+	DATE,	ORIGIN_COUNTRY,	HSCODE,	GOODS_DESC,	CIF_VALUE,	G_WEIGHT,	CIF_UNIT
+	</sql>
+
+	<!-- 查询（根据主键ID查询） -->
+	<select id="queryByPrimaryAll" resultMap="hondurasImportResultMap" parameterType="java.lang.Integer">
+		 SELECT
+		 <include refid="Base_Column_List" />
+		 FROM data_honduras_import
+		 WHERE HONDURAS_IMPORT_ID in ${sql}
+	</select>
+
+
+</mapper>

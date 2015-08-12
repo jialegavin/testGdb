@@ -1,0 +1,91 @@
+body {margin: 0;padding: 0;font-family:"宋体"; color:#000;}
+#middleDiv{
+	position:relative;
+	width:1210px;
+	height:auto;
+	margin:0 auto;
+}
+#middleDiv #sidebar{
+	float:left;
+	width:160px;
+	height:200px;
+	font-family:"宋体";
+	border-right:1px solid #6cc2ec;
+	border-left:1px solid #6cc2ec;
+	border-bottom:1px solid #6cc2ec;
+}
+#middleDiv .title1 img{
+	position:relative;
+	top:4px;
+}
+#middleDiv .title1 p{
+	position:absolute;
+	top:0;
+	left:70px;
+}
+#middleDiv  .title2 img{
+	position:relative;
+	top:4px;
+}
+#middleDiv .title2 p{
+	position:absolute;
+	top:0;
+	left:70px;
+}
+
+#middleDiv .title2
+{
+	display:none;
+}
+#middleDiv #sidebar .menu1{
+	position:relative;
+
+}
+
+#middleDiv #sidebar .menu1 p{
+	padding-top: 7px;
+	text-align: center;
+}
+
+#middleDiv #sidebar .menu2{
+	position:relative;
+	display:none;
+}
+
+#middleDiv #sidebar .menu2 img{
+	align:top;
+	width:100px;
+	height:75px;
+}
+
+#middleDiv #sidebar .menu2 span{
+	font-size: 12px;
+}
+
+#middleDiv #sidebar .menu2 div{
+	margin-top:5px;
+	padding-left: 20px;
+	border: 0px solid red;
+	width: 80%; 
+	height: 95px;
+	text-align: center;cursor: pointer;
+}
+
+#middleDiv #sidebar .menu2 p{
+	padding-top: 7px;
+	padding-left: 65px;
+	padding-top: 12px;
+}
+
+#middleDiv #sidebar .menu1 a{
+	text-decoration:none;
+	font-size:14px;
+	left:100px;
+}
+
+#middleDiv #sidebar .menu2 a{
+	text-decoration:none;
+	font-size:14px;
+	left:100px;
+}
+

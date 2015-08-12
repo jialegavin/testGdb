@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>  
+<!DOCTYPE mapper  PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN" "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+<mapper namespace="com.njyb.gbdbase.dao.usermanagement.IRightDao">
+	<resultMap type="com.njyb.gbdbase.model.usermanagement.ConditionRightModel" id="rightResult">
+		<id property="rid" column="RID" />
+		<id property="userId" column="USERID" />
+		<result property="byHsCode" column="BYHSCODE" />
+		<result property="byProductDesc" column="BYPRODUCT_DESC" />
+		<result property="byCountry" column="BYCOUNTRY" />
+		<result property="startTime" column="STARTTIME" />
+		<result property="endTime" column="ENDTIME" />
+		<result property="iExportType" column="IEXPORTTYPE" />
+		<result property="rightType" column="RIGHTTYPE" />
+	</resultMap>
+	<!--chenhu:根据条件查询国家的权限列表-->
+	<select id="queryRightsByUidCN" parameterType="com.njyb.gbdbase.model.usermanagement.QueryModel"  resultMap="rightResult">
+		<![CDATA[
+			SELECT 	RID,  BYCOUNTRY,BYHSCODE,BYPRODUCT_DESC,
+			 date_format(ENDTIME,'%Y-%c-%d') ENDTIME,IEXPORTTYPE,  RIGHTTYPE,USERID, date_format(starttime,'%Y-%c-%d') STARTTIME
+			 FROM 	USER_CONDITION_RIGHT 
+			 where 1=1
+			 and  userid=#{userId} and BYCOUNTRY=#{countryName}  order by  RIGHTtYPE desc 
+		]]>
+	</select>
+	<!--chenhu:根据用户ID和国家代码查询该用户拥有的该国家权限数量-->
+	<select id="queryCountCountryRightByUserID" parameterType="com.njyb.gbdbase.model.usermanagement.QueryModel"  resultType="java.lang.Integer">
+		<![CDATA[
+			SELECT count(1) from USER_CONDITION_RIGHT
+			 where 1=1
+			 and  userid=#{userId} and BYCOUNTRY=#{param} 
+		]]>
+	</select>
+	<!--chenhu:根据用户id和权限类别分页查询国家的权限列表-->
+	<select id="queryConditionRightsForPaging" parameterType="com.njyb.gbdbase.model.usermanagement.QueryModel"  resultMap="rightResult">
+		<![CDATA[
+			SELECT 	RID, BYCOUNTRY,BYHSCODE,BYPRODUCT_DESC,
+			date_format(ENDTIME,'%Y-%c-%d') ENDTIME,IEXPORTTYPE, RIGHTTYPE,USERID,date_format(starttime,'%Y-%c-%d') STARTTIME
+			 FROM 	USER_CONDITION_RIGHT 
+			 where 1=1
+			 and  userId=#{userId} 
+			 and RIGHTtYPE=#{param} 
+			LIMIT #{startnum},#{pageSize}
+		]]>
+	</select>
+	<!--chenhu:根据用户ID和权限类别统计权限数量-->
+	<select id="queryRightNum" parameterType="com.njyb.gbdbase.model.usermanagement.QueryModel"  resultType="java.lang.Integer">
+		<![CDATA[
+			SELECT count(1) from USER_CONDITION_RIGHT
+			 where 1=1
+			 and  userid=#{userId} and RIGHTtYPE=#{param}  
+		]]>
+	</select>
+	<!--chenhu:获取当前用户拥有哪些国家权限-->
+	<select id="queryRigthCountryByUserId"  parameterType="java.lang.Integer"  resultType="java.lang.String">
+		<![CDATA[
+			select  (select distinct code from sys_code where value=BYCOUNTRY and type='counData' ) 
+			BYCOUNTRY from USER_CONDITION_RIGHT   where 1=1
+           and  userid=#{userId} 
+		]]>
+	</select>
+	
+		<!--honghao:添加新用户-->
+	<insert id="addRight" parameterType="java.util.Map">
+		<![CDATA[
+			insert into USER_CONDITION_RIGHT(rid,userid,byhscode,
+			byproduct_desc,bycountry,starttime,endtime,iexporttype,rightType)
+			values (null,#{userId},#{byHsCode},#{byProductDesc},#{byCountry},
+			#{startTime},#{endTime},#{iExportType}, #{rightType})
+		]]>
+	</insert>
+	<!--chenhu: 查询该用户是否具有当前查询条件-->
+	<select id="checkHaveSearchRight"  parameterType="com.njyb.gbdbase.model.usermanagement.ConditionRightModel"  resultType="java.lang.Integer">
+		<![CDATA[
+			select count(1) from user_condition_right where ((str_to_date(#{startTime},'%Y-%m-%d') BETWEEN starttime and endtime) 
+				or (str_to_date(#{endTime},'%Y-%m-%d') BETWEEN starttime and endtime)) 
+				 and   bycountry=#{byCountry} and userid=#{userId}
+				and (case rightType  when  rightType='国家权限' then 1=1  when 
+				rightType='单一权限' then  (byhscode=#{byHsCode} or byproduct_desc=#{byProductDesc})  
+				 ELSE  1=1 END)
+		]]>
+	</select>
+</mapper>

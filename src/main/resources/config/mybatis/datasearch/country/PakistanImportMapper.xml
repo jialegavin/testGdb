@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.njyb.gbdbase.dao.datasearch.country.IPakistanImportDao">
+
+	<!--实体映射-->
+	<resultMap id="pakistanImportResultMap" type="com.njyb.gbdbase.model.datasearch.pakistan.PakistanImportModel">
+		<!--主键id-->
+		<id property="pakistanImportId" column="PAKISTAN_IMPORT_ID" />
+		<!--抵达港，进口港(PORT)-->
+		<result property="endPort" column="END_PORT" />
+		<!--进口舱单号-->
+		<result property="manifestNo" column="MANIFEST_NO" />
+		<!--产品索引号-->
+		<result property="indexNo" column="INDEX_NO" />
+		<!--货物类型-->
+		<result property="type" column="TYPE" />
+		<!--舱单日期(IGMDAT:MANIFEST_DATE)-->
+		<result property="date" column="DATE" />
+		<!--船名(VSLFLT)-->
+		<result property="vesselName" column="VESSEL_NAME" />
+		<!--船次(VOYAGE)-->
+		<result property="voyage" column="VOYAGE" />
+		<!--航线-->
+		<result property="sline" column="SLINE" />
+		<!--船代(ship_agency)-->
+		<result property="shipAgency" column="SHIP_AGENCY" />
+		<!--产品描述(ITMDSC)-->
+		<result property="goodsDesc" column="GOODS_DESC" />
+		<!--毛重(GRSWT)-->
+		<result property="grossWeight" column="G_WEIGHT" />
+		<!--包装数(NOPACK)-->
+		<result property="packages" column="PACKAGES" />
+		<!--包装单位(UOPCOD)-->
+		<result property="packageUnit" column="PACKAGE_UNIT" />
+		<!--20英尺货柜-->
+		<result property="c20" column="C20" />
+		<!--40英尺货柜-->
+		<result property="c40" column="C40" />
+		<!--45英尺货柜-->
+		<result property="c45" column="C45" />
+		<!--其它英尺货柜-->
+		<result property="c99" column="C99" />
+		<!--货柜总数(CNTRNR)-->
+		<result property="containers" column="CONTAINERS" />
+		<!--运费(CSGFRT)-->
+		<result property="freight" column="FREIGHT" />
+		<!--提单号(BLNO)-->
+		<result property="blNumber" column="BL_NUMBER" />
+		<!--提单日期(BLDATE)-->
+		<result property="bldate" column="BLDATE" />
+		<!--进口商(IMPNAM)-->
+		<result property="importer" column="IMPORTER" />
+		<!--进口商地址(IMPADD)-->
+		<result property="importerAddr" column="IMPORTER_ADDR" />
+		<!--发货人(CNSGNM)-->
+		<result property="exporter" column="EXPORTER" />
+		<!--起运港(PRTSHP)-->
+		<result property="startPort" column="START_PORT" />
+		<!--国家(出口国：COUNTRY)-->
+		<result property="originCountry" column="ORIGIN_COUNTRY" />
+		<!--地区-->
+		<result property="region" column="REGION" />
+	</resultMap>
+
+
+	<!-- 通用查询结果列-->
+	<sql id="Base_Column_List">
+		PAKISTAN_IMPORT_ID,
+	END_PORT,	MANIFEST_NO,	INDEX_NO,	TYPE,	DATE,	VESSEL_NAME,	VOYAGE,	SLINE,
+	SHIP_AGENCY,	GOODS_DESC,	G_WEIGHT,	PACKAGES,	PACKAGE_UNIT,	C20,	C40,	C45,
+	C99,	CONTAINERS,	FREIGHT,	BL_NUMBER,	BLDATE,	IMPORTER,	IMPORTER_ADDR,	EXPORTER,
+	START_PORT,	ORIGIN_COUNTRY,	REGION
+	</sql>
+
+	<!-- 查询（根据主键ID查询） -->
+	<select id="queryByPrimaryAll" resultMap="pakistanImportResultMap" parameterType="java.lang.Integer">
+		 SELECT
+		 <include refid="Base_Column_List" />
+		 FROM data_pakistan_import
+		 WHERE PAKISTAN_IMPORT_ID in ${sql}
+	</select>
+
+
+</mapper>

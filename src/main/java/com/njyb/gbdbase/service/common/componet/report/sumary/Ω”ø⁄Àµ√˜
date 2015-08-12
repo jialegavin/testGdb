@@ -1,0 +1,2 @@
+1 接口实现从lucene中获取文档对象 然后按次取属性的值 赋值到一个javabean对象
+2 最终返回一个List<DataReportSumModel>集合对象给别人调用

@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.njyb.gbdbase.dao.datasearch.country.IBoliviaImportDao">
+
+	<!--实体映射-->
+	<resultMap id="boliviaImportResultMap" type="com.njyb.gbdbase.model.datasearch.bolivia.BoliviaImportModel">
+		<!--主键编号-->
+		<id property="boliviaImportId" column="BOLIVIA_IMPORT_ID" />
+		<!--日期-->
+		<result property="date" column="DATE" />
+		<!--政体-->
+		<result property="regime" column="REGIME" />
+		<!--注册(Registration)-->
+		<result property="registration" column="REGISTRATION" />
+		<!--进口商编号-->
+		<result property="importerId" column="IMPORTER_ID" />
+		<!--进口商-->
+		<result property="importer" column="IMPORTER" />
+		<!--海关编码-->
+		<result property="hscode" column="HSCODE" />
+		<!--章注(Product HS)-->
+		<result property="hscodeDesc" column="HSCODE_DESC" />
+		<!--出口商(Provider)-->
+		<result property="exporter" column="EXPORTER" />
+		<!--原产国(Country of Origin)-->
+		<result property="originCountry" column="ORIGIN_COUNTRY" />
+		<!--收购国(Country of Purchase)-->
+		<result property="purchaseCountry" column="PURCHASE_COUNTRY" />
+		<!--海关城市-->
+		<result property="customs" column="CUSTOMS" />
+		<!--报关单号(Customs Broker ID)-->
+		<result property="brokerId" column="BROKER_ID" />
+		<!--报关员(Customs Broker)-->
+		<result property="broker" column="BROKER" />
+		<!--途径-->
+		<result property="channel" column="CHANNEL" />
+		<!--协议-->
+		<result property="agreement" column="AGREEMENT" />
+		<!--原始修改案(Original Amendment)-->
+		<result property="amendent" column="AMENDENT" />
+		<!--项号-->
+		<result property="item" column="ITEM" />
+		<!--税收(Total Taxes Value Bs)-->
+		<result property="tax" column="TAX" />
+		<!--净重(Net Weight)-->
+		<result property="netWeight" column="N_WEIGHT" />
+		<!--产品描述(Commercial Description)-->
+		<result property="goodsDesc" column="GOODS_DESC" />
+		<!--FOB美元总价(FOB Value US$)-->
+		<result property="fobValue" column="FOB_VALUE" />
+		<!--CIF美元总价(CIF Value US$)-->
+		<result property="cifValue" column="CIF_VALUE" />
+		<!--CIF的玻利瓦尔价(CIF Value Bs)-->
+		<result property="cifBob" column="CIF_BOB" />
+		<!--汇率(Exchange Rate)-->
+		<result property="rate" column="RATE" />
+	</resultMap>
+
+
+	<!-- 通用查询结果列-->
+	<sql id="Base_Column_List">
+		BOLIVIA_IMPORT_ID,
+	DATE,	REGIME,	REGISTRATION,	IMPORTER_ID,	IMPORTER,	HSCODE,	HSCODE_DESC,	EXPORTER,
+	ORIGIN_COUNTRY,	PURCHASE_COUNTRY,	CUSTOMS,	BROKER_ID,	BROKER,	CHANNEL,	AGREEMENT,	AMENDENT,
+	ITEM,	TAX,	N_WEIGHT,	GOODS_DESC,	FOB_VALUE,	CIF_VALUE,	CIF_BOB,	RATE
+
+	</sql>
+
+	<!-- 查询（根据主键ID查询） -->
+	<select id="queryByPrimaryAll" resultMap="boliviaImportResultMap" parameterType="java.lang.Integer">
+		 SELECT
+		 <include refid="Base_Column_List" />
+		 FROM data_bolivia_import
+		 WHERE BOLIVIA_IMPORT_ID in ${sql}
+	</select>
+
+
+</mapper>

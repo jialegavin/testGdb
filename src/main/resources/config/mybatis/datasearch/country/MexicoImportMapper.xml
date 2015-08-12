@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.njyb.gbdbase.dao.datasearch.country.IMexicoImportDao">
+
+	<!--实体映射-->
+	<resultMap id="mexicoImportResultMap" type="com.njyb.gbdbase.model.datasearch.mexico.MexicoImportModel">
+		<!--主键id-->
+		<id property="mexicoImportId" column="MEXICO_IMPORT_ID" />
+		<!--日期-->
+		<result property="date" column="DATE" />
+		<!--原产国-->
+		<result property="originCountry" column="ORIGIN_COUNTRY" />
+		<!--海关城市-->
+		<result property="customs" column="CUSTOMS" />
+		<!--运输方式-->
+		<result property="transType" column="TRANS_TYPE" />
+		<!--海关编码-->
+		<result property="hscode" column="HSCODE" />
+		<!--产品描述-->
+		<result property="goodsDesc" column="GOODS_DESC" />
+		<!--数量-->
+		<result property="quantity" column="QUANTITY" />
+		<!--计量单位-->
+		<result property="measureUnit" column="MEASURE_UNIT" />
+		<!--fob美元总价-->
+		<result property="fobValue" column="FOB_VALUE" />
+		<!--fob美元单价-->
+		<result property="fobUnit" column="FOB_UNIT" />
+	</resultMap>
+
+
+	<!-- 通用查询结果列-->
+	<sql id="Base_Column_List">
+		MEXICO_IMPORT_ID,
+	DATE,	ORIGIN_COUNTRY,	CUSTOMS,	TRANS_TYPE,	HSCODE,	GOODS_DESC,	QUANTITY,	MEASURE_UNIT,
+	FOB_VALUE,	FOB_UNIT
+	</sql>
+
+	<!-- 查询（根据主键ID查询） -->
+	<select id="queryByPrimaryAll" resultMap="mexicoImportResultMap" parameterType="java.lang.Integer">
+		 SELECT
+		 <include refid="Base_Column_List" />
+		 FROM data_mexico_import
+		 WHERE MEXICO_IMPORT_ID in ${sql}
+	</select>
+
+
+</mapper>

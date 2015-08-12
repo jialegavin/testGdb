@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>  
+<!DOCTYPE mapper  PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN" "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+<mapper namespace="com.njyb.gbdbase.dao.authcenter.ICountRightDao">
+<!--chenhu： 按次用户的次数统计表 -->
+     <resultMap type="com.njyb.gbdbase.model.authcenter.CountRightModel" id="countRightMap">
+		<id column="rid" property="rid" />
+		<result column="userId" property="userId" />
+		<result property="totalNum" column="totalNum" />
+		<result column="remainnum" property="remainnum" />
+	</resultMap>
+	<!-- chenhu：根据用户ID获取单个按次用户模型 -->
+	<select id="queryCountRightModelById" parameterType="com.njyb.gbdbase.model.admincenter.UserModel"
+		resultMap="countRightMap">
+		<![CDATA[
+		     select rid,userId,totalNum,remainnum from user_count_right where userid=#{userId}
+ 		]]>
+	</select>
+	<!--honghao:更新按次用户的使用次数-->
+	<update id="updateCountRight" parameterType="com.njyb.gbdbase.model.authcenter.CountRightModel">
+		<![CDATA[
+			UPDATE user_count_right SET userId=#{userId},totalNum=#{totalNum},
+			remainnum=#{remainnum}  where rid=#{rid} 
+		]]>
+	</update>
+	<!--chenhu:用户新增按次-->
+	<select id="addNewCountRight" parameterType="com.njyb.gbdbase.model.authcenter.CountRightModel"
+		resultMap="countRightMap">
+		<![CDATA[
+		     insert into 
+		     user_count_right(rid,userId,totalNum,remainnum) 
+		     values(null,#{userId},#{totalNum},#{remainnum})
+ 		]]>
+	</select>
+	
+	
+</mapper>

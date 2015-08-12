@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.njyb.gbdbase.dao.datasearch.country.IKoreaDao">
+
+	<!--实体映射-->
+	<resultMap id="koreaResultMap" type="com.njyb.gbdbase.model.datasearch.korea.KoreaModel">
+		<!--主键id-->
+		<id property="koreaId" column="KOREA_ID" />
+		<!--海关编码-->
+		<result property="hscode" column="HSCODE" />
+		<!--公司名称-->
+		<result property="companyName" column="COMPANY_NAME" />
+		<!--年-->
+		<result property="year" column="YEAR" />
+		<!--月-->
+		<result property="month" column="MONTH" />
+		<!--贸易类型-->
+		<result property="tradeType" column="TRADE_TYPE" />
+		<!--电话-->
+		<result property="tel" column="TEL" />
+		<!--首席执行官-->
+		<result property="ceo" column="CEO" />
+		<!--地址-->
+		<result property="address" column="ADDRESS" />
+		<!--电子邮件-->
+		<result property="email" column="EMAIL" />
+		<!--月度-->
+		<result property="date" column="DATE" />
+		<!-- 产品描述 -->
+		<result property="goodsDesc" column="goods_desc" />
+	</resultMap>
+
+
+	<!-- 通用查询结果列-->
+	<sql id="Base_Column_List">
+		KOREA_ID,
+	HSCODE,	COMPANY_NAME,	YEAR,	MONTH,	TRADE_TYPE,	TEL,	CEO,	ADDRESS,
+	EMAIL,	DATE
+	</sql>
+
+	<!-- 查询（根据主键ID查询） -->
+	<select id="queryByPrimaryAll" resultMap="koreaResultMap" parameterType="java.lang.Integer">
+		 SELECT
+		 <include refid="Base_Column_List" />
+		 FROM data_korea
+		 WHERE KOREA_ID in ${sql}
+	</select>
+
+
+</mapper>

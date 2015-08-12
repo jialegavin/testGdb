@@ -1,0 +1,350 @@
+/* general styles */
+html, body {
+  height: 100%;
+  width: 100%;
+}
+
+nav{
+  opacity = 0.8
+}
+
+
+.pad-section img {
+  width: 100%;
+}
+
+/* vertical-centered text */
+.text-vcenter {
+  display: table-cell;
+  text-align: center;
+  vertical-align: middle;
+}
+.text-vcenter h1 {
+  font-size: 7.0em;
+  font-weight: 700;
+  margin-top: -7.0cm;
+  padding: 0;
+}
+
+/* additional sections */
+#home {
+  background: url(../../img/newhomepage/homepage.jpg) no-repeat center center fixed; 
+  display: table;
+  height: 100%;
+  position: relative;
+  width: 100%;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+#about {
+}
+
+#services {
+  background-color: #306d9f;
+  color: #ffffff;
+}
+
+#buyer {
+  background-color: #306d9f;
+  color: #ffffff;
+}
+
+#seller {
+  background-color: #306d9f;
+  color: #ffffff;
+}
+
+#researcher {
+  background-color: #306d9f;
+  color: #ffffff;
+}
+
+#services .glyphicon {
+  border: 2px solid #FFFFFF;
+  border-radius: 50%;
+  display: inline-block;
+  font-size: 60px;
+  height: 140px;
+  line-height: 140px;
+  text-align: center;
+  vertical-align: middle;
+  width: 140px;
+}
+
+#information {
+  
+  display: table;
+  height: 420px;
+  position: relative;
+  width: 100%;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+#contact{
+  background-color:#2C3E50;
+  min-height: 37%;
+  color: white;
+}
+#b1{
+  background: url(../../img/newhomepage/b1.jpg) no-repeat center center fixed; 
+  display: table;
+  height: 40%;
+  position: relative;
+  width: 100%;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+#b2{
+  background: url(../../img/newhomepage/b4.jpg) no-repeat center center fixed; 
+  display: table;
+  height: 40%;
+  position: relative;
+  width: 100%;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+#partner{
+  background-color:#FFF;
+  min-height: 37%;
+  color: white;
+}
+
+#contact .glyphicon {
+  border: 2px solid #FFFFFF;
+  border-radius: 50%;
+  display: inline-block;
+  font-size: 40px;
+  height: 80px;
+  line-height: 80px;
+  text-align: center;
+  vertical-align: middle;
+  width: 80px;
+}
+
+#information .panel {
+  opacity: 0.85;
+}
+
+.splitter{
+  background-color: #306d9f;
+  color:#FFF;
+  text-align: center;
+  padding-top: 8%;
+  padding-bottom: 3%;
+  width: 100%;
+}
+
+footer {
+  padding: 20px 0;
+}
+footer .glyphicon {
+  color: #333333;
+  font-size: 60px;
+}
+footer .glyphicon:hover {
+  color: #306d9f;
+}
+
+
+
+#contact h3{
+        padding-top: 30px;
+    }
+#contact a {
+    color: white;
+}
+
+.btn-trans:active {
+  background: none;
+}
+
+.dropdown-menu li:hover{
+  background: #f0f3f5;
+}
+
+.dropdown-menu li{
+  margin:0 5px;
+  padding:5px;
+}
+
+header a.logo{
+  
+  background-repeat: no-repeat;
+  background-size: contain;
+  position: relative;
+  float: left;
+  top: 0px;
+  left: -10px;
+
+   
+}
+
+.nav{
+  font-size: 22px;
+}
+
+.navbar-brand{
+  font-size: 22px;
+}
+
+.text-vcenter h3 {
+  font-size: 2.5em;
+  font-weight: 400;
+  margin: 0;
+  padding: 0;
+}
+
+.text-vcenter h4 {
+  font-size: 1.5em;
+  font-weight: 400;
+  margin: 0;
+  padding: 0;
+}
+
+.carousel-caption h1 {
+     margin-top: -1.5cm;
+ } 
+
+.container h2 {
+     margin-top: 1.5cm;
+ } 
+
+ #about2 h2 {
+     margin-top: -0.5cm;
+ }
+
+ #buyer .container h1 {
+     margin-top: -1.0cm;
+ } 
+
+ #seller .container h1 {
+     margin-top: -1.0cm;
+ }
+
+#researcher .container h1 {
+     margin-top: -1.0cm;
+ }
+
+h1,
+.h1 {
+  font-size: 46px;
+    font-style: oblique
+}
+
+h2,
+.h2 {
+  font-size: 32px;
+   font-style: oblique
+}
+
+ 
+.btn-circle {
+    width: 70px;
+    height: 70px;
+    margin-top: 15px;
+    padding: 7px 16px;
+    border: 2px solid #C37B7B;
+    border-radius: 100%!important;
+    font-size: 40px;
+    color: #C37B7B;
+    background: 0 0;
+    -webkit-transition: background .3s ease-in-out;
+    -moz-transition: background .3s ease-in-out;
+    transition: background .3s ease-in-out;
+}
+
+.btn-circle:hover,
+.btn-circle:focus {
+    outline: 0;
+    color: #fff;
+    background: rgba(255,255,255,.1);
+}
+
+.btn-primary2 {
+  color: #fff;
+  background-color: #3F96B2;
+  border-color: #2e6da4;
+}
+
+.container>.navbar-header2 {
+margin-left: -145px;
+}
+
+a {
+  color: #333;
+  text-decoration: none;
+}
+@media (min-width: 1200px){
+  .checkbox .col-lg-6 {
+    width: 21%;
+  }
+}
+
+.btn-circle i.animated {
+    -webkit-transition-property: -webkit-transform;
+    -webkit-transition-duration: 1s;
+    -moz-transition-property: -moz-transform;
+    -moz-transition-duration: 1s;
+}
+
+.btn-circle:hover i.animated {
+    -webkit-animation-name: pulse;
+    -moz-animation-name: pulse;
+    -webkit-animation-duration: 1.5s;
+    -moz-animation-duration: 1.5s;
+    -webkit-animation-iteration-count: infinite;
+    -moz-animation-iteration-count: infinite;
+    -webkit-animation-timing-function: linear;
+    -moz-animation-timing-function: linear;
+}
+
+@-webkit-keyframes pulse {    
+    0% {
+        -webkit-transform: scale(1);
+        transform: scale(1);
+    }
+
+    50% {
+        -webkit-transform: scale(1.2);
+        transform: scale(1.2);
+    }
+
+    100% {
+        -webkit-transform: scale(1);
+        transform: scale(1);
+    }
+}
+
+@-moz-keyframes pulse {    
+    0% {
+        -moz-transform: scale(1);
+        transform: scale(1);
+    }
+
+    50% {
+        -moz-transform: scale(1.2);
+        transform: scale(1.2);
+    }
+
+    100% {
+        -moz-transform: scale(1);
+        transform: scale(1);
+    }
+}
+.panel-default > .panel-heading {
+  color: #FFF;
+  background-color: #2A5C86;
+  border-color: #ddd;
+

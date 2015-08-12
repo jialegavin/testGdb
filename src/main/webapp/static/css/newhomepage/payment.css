@@ -1,0 +1,57 @@
+﻿html, body {
+  height: 100%;
+  width: 100%;
+}
+
+nav{
+  opacity = 0.8
+}
+
+
+.pad-section img {
+  width: 100%;
+}
+
+legend {
+  display: block;
+  width: 100%;
+  padding: 0;
+  margin-bottom: 20px;
+  font-size: 32px;
+  line-height: inherit;
+  color: #333;
+  border: 0;
+  border-bottom: 1px solid #e5e5e5;
+}
+
+.btn-success {
+  color: #fff;
+  background-color: #335B91;
+  border-color: #656EA9;
+}
+
+.panel {
+    background: url("../img/white_wall_hash.png") repeat scroll 0 0 #FFFFFF;
+    border-radius: 6px 6px 6px 6px;
+    box-shadow: 0 1px 8px 5px rgba(50, 0, 0, 0.35), 0 20px 70px 8px rgba(0, 0, 0, 0.25);
+    color: #333333;
+    margin-bottom: 50px;
+    padding: 0;
+}
+
+#contract {
+  
+  display: table;
+  height: 420px;
+  position: relative;
+  width: 100%;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  
+}
+
+#collapseOne{
+  background-color: #FCFDC8;
+}

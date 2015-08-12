@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>  
+<!DOCTYPE mapper   
+	PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"   
+		"http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">  
+		
+<mapper namespace="com.njyb.gbdbase.dao.datasearch.export.IUserDownloadRightDao">
+
+	<!-- XL 添加用户下载权限记录 -->
+	<insert id="insertDownloadRecord" parameterType="com.njyb.gbdbase.model.datasearch.export.UserDownloadRightModel">
+		<![CDATA[
+			INSERT INTO USER_DOWNLOAD_RIGHT (USERID,TOTALNUM,EXCELNUM,PDFNUM)
+			VALUES (#{userId},#{totalNum},0,0)
+		]]>
+	</insert> 
+
+	<!-- XL 根据用户id查询用户下载权限信息 -->
+	<select id="queryUserDownloadRight" resultType="com.njyb.gbdbase.model.datasearch.export.UserDownloadRightModel" parameterType="java.lang.Integer">
+	 	<![CDATA[
+	 		SELECT RID,USERID,TOTALNUM,EXCELNUM,PDFNUM FROM 
+	 		USER_DOWNLOAD_RIGHT WHERE USERID = #{userId}
+	 	]]>
+	 </select>
+	 
+	 <!-- XL 公用修改用户下载EXCEL/PDF记录-->
+	<update id="updateDownloadRecord" parameterType="java.lang.String">
+	 	<![CDATA[
+	 		${sql}
+	 	]]>
+	</update>
+</mapper>	
+	
+
+

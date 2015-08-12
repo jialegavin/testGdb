@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>  
+<!DOCTYPE mapper  PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN" "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+<mapper namespace="com.njyb.gbdbase.dao.personalcenter.alipay.IPayHandleDao">
+	
+	<resultMap type="com.njyb.gbdbase.model.personalcenter.alipay.AliPalyFilingModel" 
+		id="alipalyFiling">
+		<id column="ID" property="id"/>
+		<result column="OUT_TRADE_NO" property="out_trade_no"/>
+		<result column="TRADE_NO" property="trade_no"/>
+		<result column="TRADE_STATUS" property="trade_status"/>
+		<result column="USERID" property="userId"/>
+		<result column="ALIPALYTIME" property="aliPalyTime"/>
+		<result column="PAYTYPE" property="payType"/>
+	</resultMap>
+	
+	<!-- WangBo : 插入支付备案 -->
+	<insert id="addAliPalyFiling" parameterType="com.njyb.gbdbase.model.personalcenter.alipay.AliPalyFilingModel">
+		INSERT INTO aliPaly_filing(OUT_TRADE_NO,TRADE_NO,TRADE_STATUS,USERID,ALIPALYTIME,PAYTYPE)
+		VALUES (#{out_trade_no},#{trade_no},#{trade_status},#{userId},#{aliPalyTime},#{payType})
+	</insert>
+</mapper>

@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans
+	xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:task="http://www.springframework.org/schema/task"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="
+	http://www.springframework.org/schema/beans 
+	http://www.springframework.org/schema/beans/spring-beans.xsd
+	http://www.springframework.org/schema/task 
+	http://www.springframework.org/schema/task/spring-task.xsd
+	http://www.springframework.org/schema/context
+	http://www.springframework.org/schema/context/spring-context.xsd
+	">
+
+	<bean id="multipartResolver"
+		class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<!-- 限制上传文件的大小 -->
+		<property name="maxUploadSize" value="10000000" /><!-- 10M -->
+	</bean>
+
+	<bean id="mimeMessage" class="javax.mail.internet.MimeMessage"
+		factory-bean="javaMailSender" factory-method="createMimeMessage" />
+	<!-- 查找模板 -->
+	 <!--<bean id="freeMarker" class="org.springframework.web.servlet.view.freemarker.FreeMarkerConfigurer">  
+       <property name="templateLoaderPath" value="classpath:temp"/>指定模板文件目录   
+       <property name="freemarkerSettings"> 设置FreeMarker环境属性   
+           <props>  
+               <prop key="template_update_delay">1800</prop>刷新模板的周期，单位为秒   
+               <prop key="default_encoding">UTF-8</prop>模板的编码格式   
+              <prop key="locale">zh_CN</prop> 本地化设置  
+           </props>  
+       </property>  
+     </bean>  
+	-->
+	<bean id="velocityEngine"
+		class="org.springframework.ui.velocity.VelocityEngineFactoryBean">
+		<property name="resourceLoaderPath" value="/WEB-INF/vm"/>
+	</bean>
+	<!--JavaMailSenderImpl是javaMailSender的实现类，它支持JavaMail的MimeMessage和Spring的MimeMessage -->
+	<bean id="javaMailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
+		<!--SMTP发送邮件的服务器的IP和账号 -->
+		<property name="host" value="smtp.yandex.com" />
+		<property name="port" value="587" />
+		<property name="username" value="noreply@inforvellor.com" />
+		<property name="password" value="Inforvellor" />
+		<!-- 	<property name="host" value="smtp.vip.163.com" />
+		登陆SMTP邮件发送服务器的用户名和密码 
+		<property name="username" value="nanjinginfobase@vip.163.com" />
+		<property name="password" value="infobase" /> -->
+	
+		<!-- 获得邮件会话属性,验证登录邮件服务器是否成功 -->
+		<property name="javaMailProperties">
+		
+		
+		<!--  <props>
+				<prop key="mail.smtp.auth">true</prop>
+				<prop key="mail.smtp.host">smtp.vip.163.com</prop>
+				<prop key="mail.smtp.timeout">25000</prop>
+			</props>
+			-->
+				<props>
+				<prop key="mail.smtp.auth">true</prop>
+				<prop key="mail.smtp.starttls.enable">true</prop>
+			
+				<prop key="mail.smtp.timeout">25000</prop>
+			</props>
+		</property>
+	</bean>
+	<!-- 定时发送Email -->
+	<!-- 添加定时器用于清除用户每月下载记录 -->
+	<task:annotation-driven/>
+	<context:annotation-config/>
+	<bean class="org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor"/>
+	<!-- 扫描位置 -->
+	<context:component-scan base-package="com.njyb.gbdbase.controller.datasearch"/>
+</beans>

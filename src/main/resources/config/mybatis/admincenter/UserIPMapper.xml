@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>  
+<!DOCTYPE mapper   
+	PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"   
+		"http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+
+<mapper namespace="com.njyb.gbdbase.dao.admincenter.IUserIPDao">
+	<resultMap type="com.njyb.gbdbase.model.admincenter.UserIPModel"
+		id="userIPResult">
+		<id property="ipid" column="ipid" />
+		<id property="ipaddress" column="ipaddress" />
+		<id property="ischeck" column="ischeck" />
+		<id property="ipTerritory" column="ipTerritory" />
+		<id property="userId" column="USERID" />
+	</resultMap>
+   
+</mapper>	
+	
+
+

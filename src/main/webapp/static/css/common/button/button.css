@@ -1,0 +1,201 @@
+/*xl 添加公用按钮样式*/
+/*查询按钮*/
+a.btn_cls{
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight:bold;
+    width:90px;
+    height:37px;
+    line-height: 37px;
+    text-align: center;
+    display: inline-block;
+    font-family: "宋体",Heiti, arial,helvetica,sans-serif !important;
+    background:url("/gbdbas/static/img/common/button/button.png") no-repeat center;
+}
+
+a.btnGrey_cls{
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight:bold;
+    width:90px;
+    height:37px;
+    line-height: 37px;
+    text-align: center;
+    display: inline-block;
+    font-family: "宋体",Heiti, arial,helvetica,sans-serif !important;
+    background:url("/gbdbas/static/img/common/button/buttonGrey.png") no-repeat center;
+}
+a.btn_cls:link,.btn_cls:visited{
+	color: #ffffff;
+    text-decoration: none;
+}
+a.btn_cls:hover{
+	cursor:pointer;
+	background:url("/gbdbas/static/img/common/button/buttonHover.png") no-repeat center;
+}
+/*导出pdf按钮*/
+a.exportPdf_cls{
+    color: #000;
+    text-decoration: none;
+    font-size: 12px;
+    width:70px;
+    height:25px;
+    line-height: 25px;
+    text-align: center;
+    display: inline-block;
+    font-family: "宋体",Heiti, arial,helvetica,sans-serif !important;
+    background:url("/gbdbas/static/img/common/button/exportpdf.png") no-repeat center;
+}
+a.exportPdf_cls:link,.exportPdf_cls:visited{
+	color: #000;
+    text-decoration: none;
+}
+a.exportPdf_cls:hover{
+	cursor:pointer;
+	background:url("/gbdbas/static/img/common/button/exportpdfhover.png") no-repeat center;
+}
+/*导出excel按钮*/
+a.exportExcl_cls{
+    color: #000;
+    text-decoration: none;
+    font-size: 12px;
+    width:70px;
+    height:25px;
+    line-height: 25px;
+    text-align: center;
+    display: inline-block;
+    font-family: "宋体",Heiti, arial,helvetica,sans-serif !important;
+    background:url("/gbdbas/static/img/common/button/exportexcel.png") no-repeat center;
+}
+a.exportExcl_cls:link,.exportExcl_cls:visited{
+	color: #000;
+    text-decoration: none;
+}
+a.exportExcl_cls:hover{
+	cursor:pointer;
+	background:url("/gbdbas/static/img/common/button/exportexcelhover.png") no-repeat center;
+}
+/*确定取消按钮*/
+a.confirmOrcancel_cls{
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 14px;
+    width:77px;
+    height:33px;
+    line-height: 33px;
+    text-align: center;
+    display: inline-block;
+    font-family: "宋体",Heiti, arial,helvetica,sans-serif !important;
+    background:url("/gbdbas/static/img/common/button/onclickAfter.png") no-repeat center;
+}
+a.confirmOrcancel_cls:link,.confirmOrcancel_cls:visited{
+	color: #000;
+    text-decoration: none;
+}
+a.confirmOrcancel_cls:hover{
+	color: #1369c0;
+	cursor:pointer;
+	background:url("/gbdbas/static/img/common/button/onclickBefore.png") no-repeat center;
+}
+a.sub_cls{
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 14px;
+    width:80px;
+    height:30px;
+    line-height: 30px;
+    text-align: center;
+    display: inline-block;
+    font-family: "宋体",Heiti, arial,helvetica,sans-serif !important;
+    background:url("/gbdbas/static/img/common/button/ok.png") no-repeat center;
+}
+a.sub_cls:link,.sub_cls:visited{
+	color: #000;
+    text-decoration: none;
+}
+a.sub_cls:hover{
+	cursor:pointer;
+	background:url("/gbdbas/static/img/common/button/ok2.png") no-repeat center;
+}
+
+
+
+
+
+/*�����ͻ�css*/
+a.btn_alldb_add{
+    color: red;
+    text-decoration: none;
+    font-size: 12px;
+    font-weight:bold;
+    width:56px;
+    height:25px;
+    line-height: 25px;
+    text-align: center;
+    display: inline-block;
+    font-family: "宋体",Heiti, arial,helvetica,sans-serif !important;
+    background:url("/gbdbas/static/img/alldb/add_a_l.gif") no-repeat center;
+}
+
+a.btn_alldb_add:link,.btn_alldb_add:visited{
+	color: #478DE3;
+    text-decoration: none;
+}
+a.btn_alldb_add:hover{
+	cursor:pointer;
+	color:#9B6400;
+	background:url("/gbdbas/static/img/alldb/add_hover_l.gif") no-repeat center;
+}
+/*�޸Ŀͻ�css*/
+a.btn_alldb_eit{
+    color: red;
+    text-decoration: none;
+    font-size: 12px;
+    font-weight:bold;
+    width:56px;
+    height:25px;
+    line-height: 25px;
+    text-align: center;
+    display: inline-block;
+    font-family: "宋体",Heiti, arial,helvetica,sans-serif !important;
+    background:url("/gbdbas/static/img/alldb/eit_l.png") no-repeat center;
+}
+
+a.btn_alldb_eit:link,.btn_alldb_eit:visited{
+	color: #478DE3;
+    text-decoration: none;
+}
+a.btn_alldb_eit:hover{
+	cursor:pointer;
+	color:#9B6400;
+	background:url("/gbdbas/static/img/alldb/eit2_l.png") no-repeat center;
+}
+
+
+/*ɾ��ͻ�css*/
+a.btn_alldb_remove{
+    color: red;
+    text-decoration: none;
+    font-size: 12px;
+    font-weight:bold;
+    width:56px;
+    height:25px;
+    line-height: 25px;
+    text-align: center;
+    display: inline-block;
+    font-family: "宋体",Heiti, arial,helvetica,sans-serif !important;
+    background:url("/gbdbas/static/img/alldb/delete_a_l.png") no-repeat center;
+}
+
+a.btn_alldb_remove:link,.btn_alldb_eit:visited{
+	color: #478DE3;
+    text-decoration: none;
+}
+a.btn_alldb_remove:hover{
+	cursor:pointer;
+	color:#9B6400;
+	background:url("/gbdbas/static/img/alldb/delete_hover_l.gif") no-repeat center;
+}
+

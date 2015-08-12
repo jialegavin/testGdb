@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.njyb.gbdbase.dao.datasearch.country.IUsaImportDao">
+
+	<!--实体映射-->
+	<resultMap id="usaImportResultMap" type="com.njyb.gbdbase.model.datasearch.usa.UsaImportModel">
+		<!--主键编号-->
+		<id property="usaImportId" column="USA_IMPORT_ID" />
+		<!--提单号-->
+		<result property="blNumber" column="BL_NUMBER" />
+		<!--运输编号-->
+		<result property="transCode" column="TRANS_CODE" />
+		<!---->
+		<result property="extend1" column="EXTEND1" />
+		<!---->
+		<result property="extend2" column="EXTEND2" />
+		<!--承运人代码-->
+		<result property="carrierCode" column="CARRIER_CODE" />
+		<!--舶船IMO编号-->
+		<result property="shipImo" column="SHIP_IMO" />
+		<!--船舶名称-->
+		<result property="shipName" column="SHIP_NAME" />
+		<!--船舶运输编号-->
+		<result property="shipTransCode" column="SHIP_TRANS_CODE" />
+		<!--日期（TRANS_DATE）-->
+		<result property="date" column="DATE" />
+		<!--货载数量（件数TRANS_PACKAGES）-->
+		<result property="packages" column="PACKAGES" />
+		<!--数量单位-->
+		<result property="packagesUnit" column="PACKAGES_UNIT" />
+		<!--运输重量(TRANS_WEIGHT)-->
+		<result property="grossWeight" column="G_WEIGHT" />
+		<!--重量单位-->
+		<result property="weightUnit" column="WEIGHT_UNIT" />
+		<!--运输体积-->
+		<result property="transVolume" column="TRANS_VOLUME" />
+		<!--装货港(TRANS_PORTLOADING)-->
+		<result property="startPort" column="START_PORT" />
+		<!--集装箱编号-->
+		<result property="containerNo" column="CONTAINER_NO" />
+		<!--包裹编号-->
+		<result property="packageNo" column="Package_No" />
+		<!--流水号-->
+		<result property="flowNo" column="Flow_No" />
+		<!--唛头-->
+		<result property="contMarks" column="CONT_MARKS" />
+		<!--次序号-->
+		<result property="productOrder" column="PRODUCT_ORDER" />
+		<!--产品名称(PRODCUT_NAME)-->
+		<result property="goodsDesc" column="GOODS_DESC" />
+		<!--产品数量-->
+		<result property="productQuantity" column="PRODUCT_QUANTITY" />
+		<!--产品重量-->
+		<result property="productWeight" column="PRODUCT_WEIGHT" />
+		<!--出口商公司名称(SENDER_COMPANY_NAME)-->
+		<result property="exporter" column="EXPORTER" />
+		<!--出口商地址(SENDER_ADDRESS)-->
+		<result property="exporterAddress" column="EXPORTER_ADDRESS" />
+		<!--出口商联系方式(SENDER_CONTACT)-->
+		<result property="exporterContact" column="EXPORTER_CONTACT" />
+		<!--出口商所在国(SENDER_COUNTRY)-->
+		<result property="exporterCountry" column="EXPORTER_COUNTRY" />
+		<!--进口商公司名称(RECIPIENT_COMPANY_NAME)-->
+		<result property="importer" column="IMPORTER" />
+		<!--进口商地址(RECIPIENT_ADDRESS)-->
+		<result property="importerAddress" column="IMPORTER_ADDRESS" />
+		<!--进口商联系方式(RECIPIENT_CONTACT)-->
+		<result property="importerContact" column="IMPORTER_CONTACT" />
+		<!--进口商所在国(RECIPIENT_COUNTRY)-->
+		<result property="importerCountry" column="IMPORTER_COUNTRY" />
+		<!--通知方公司名称(NOTIFY_COMPANY_NAME)-->
+		<result property="notifier" column="NOTIFIER" />
+		<!--通知方地址(NOTIFY_ADDRESS)-->
+		<result property="notifierAddress" column="NOTIFIER_ADDRESS" />
+		<!--通知方联系方式(NOTIFY_CONTACT)-->
+		<result property="notifierContact" column="NOTIFIER_CONTACT" />
+		<!--通知方所在国(NOTIFY_COUNTRY)-->
+		<result property="notifierCountry" column="NOTIFIER_COUNTRY" />
+	</resultMap>
+
+
+	<!-- 通用查询结果列-->
+	<sql id="Base_Column_List">
+		USA_IMPORT_ID,
+	BL_NUMBER,	TRANS_CODE,	EXTEND1,	EXTEND2,	CARRIER_CODE,	SHIP_IMO,	SHIP_NAME,	SHIP_TRANS_CODE,
+	DATE,	PACKAGES,	PACKAGES_UNIT,	G_WEIGHT,	WEIGHT_UNIT,	TRANS_VOLUME,	START_PORT,	CONTAINER_NO,
+	Package_No,	Flow_No,	CONT_MARKS,	PRODUCT_ORDER,	GOODS_DESC,	PRODUCT_QUANTITY,	PRODUCT_WEIGHT,	EXPORTER,
+	EXPORTER_ADDRESS,	EXPORTER_CONTACT,	EXPORTER_COUNTRY,	IMPORTER,	IMPORTER_ADDRESS,	IMPORTER_CONTACT,	IMPORTER_COUNTRY,	NOTIFIER,
+	NOTIFIER_ADDRESS,	NOTIFIER_CONTACT,	NOTIFIER_COUNTRY
+	</sql>
+
+	<!-- 查询（根据主键ID查询） -->
+	<select id="queryByPrimaryAll" resultMap="usaImportResultMap" parameterType="java.lang.Integer">
+		 SELECT
+		 <include refid="Base_Column_List" />
+		 FROM data_usa_import
+		 WHERE USA_IMPORT_ID in ${sql}
+	</select>
+
+
+</mapper>

@@ -1,0 +1,288 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.1.xsd">
+
+	<description>搜索参数</description>
+	<bean id="searchPropertiesModel" class="com.njyb.gbdbase.model.datasearch.common.SearchPropertiesModel"
+		scope="prototype">
+		<property name="propertiesMap">
+			<ref local="index_map"/>
+		</property>
+	</bean>
+
+	<bean id="index_map" class="java.util.HashMap">
+		<constructor-arg>
+			<!-- ** 参数集合 -->
+			<map>
+				<!--配置信息(进口数据):索引文件夹名称,数据库表主键,数据免费查看时间 -->
+				<!--key值  同  LuceneConstant。java 保持一致-->
+				
+				<!--阿根廷进口索引查询-->
+				<entry key="argentina_import" value="argentina_import_index,argentina_import_id,2013-01-01|2013-01-31"></entry>
+				<!--阿根廷出口索引查询-->
+				<entry key="argentina_export" value="argentina_export_index,argentina_export_id,2013-01-01|2013-01-31"></entry>
+				<!-- 巴西进口 -->
+				<entry key="brazil_import" value="brazil_import_index,brazil_import_id,01/2013|01/2013"></entry>
+				<!-- 玻利维亚进口 -->
+				<entry key="bolivia_import" value="bolivia_import_index,bolivia_import_id,2014-01-01|2014-01-31"></entry>
+				<!--智利进口索引查询-->
+				<entry key="chile_import" value="chile_import_index,chile_import_id,2013-01-01|2013-01-31"></entry>
+				<!--智利出口索引查询-->
+				<entry key="chile_export" value="chile_export_index,chile_export_id,2013-01-01|2013-01-31"></entry>
+				<!--哥伦比亚进口索引查询-->
+				<entry key="colom_import" value="colombia_import_index,colombia_import_id,2012-01-01|2012-01-31"></entry>
+				<!--哥伦比亚出口索引查询-->
+				<entry key="colom_export" value="colombia_export_index,colombia_export_id,2014-01-01|2014-01-31"></entry>
+				<!--哥斯达黎加进口索引查询-->
+				<entry key="const_import" value="costarica_import_index,costarica_import_id,01/2014|01/2014"></entry>
+				<!--哥斯达黎加出口索引查询-->
+				<entry key="const_export" value="costarica_export_index,costarica_export_id,01/2014|01/2014"></entry>
+				<!--厄瓜多尔进口索引查询-->
+				<entry key="ecuador_import" value="ecuador_import_index,ecuador_import_id,2014-01-01|2014-01-31"></entry>
+				<!--厄瓜多尔进口索引查询-->
+				<entry key="ecuador_export" value="ecuador_export_index,ecuador_export_id,2014-01-01|2014-01-31"></entry>
+				<!-- 危地马拉 -->
+				<entry key="wdml_import" value="guatemala_import_index,guatemala_import_id,2013-01-01|2013-01-31"></entry>
+				<!-- 危地马拉出口 -->
+				<entry key="wdml_export" value="guatemala_export_index,guatemala_export_id,2013-01-01|2013-01-31"></entry>	 
+				<!--洪都拉斯进口索引查询-->
+				<entry key="honduras_import" value="honduras_import_index,honduras_import_id,01/2013|01/2013"></entry>
+				<!--洪都拉斯出口索引查询-->
+				<entry key="honduras_export" value="honduras_export_index,honduras_export_id,01/2013|01/2013"></entry>
+				<!-- 印度进口索引查询 -->
+				<entry key="india_import" value="india_import_index,india_import_id,2013-01-01|2013-01-31"></entry>
+				<!-- 印度出口索引查询 -->
+				<entry key="india_export" value="india_export_index,india_export_id,2012-01-01|2012-01-31"></entry> 
+				<!-- 棒子国 -->
+				<entry key="korea" value="korea_index,korea_id,01/2013|01/2013"></entry>
+				<!--墨西哥索引查询-->
+				<entry key="mexicon_import" value="mexico_import_index,mexico_import_id,01/2013|01/2013"></entry>
+				<!-- 尼加拉瓜 -->
+				<entry key="njlg_import" value="nicaragua_import_index,nicaragua_import_id,2013-01-01|2013-01-31"></entry>		 
+				<!-- 尼加拉瓜出口 -->
+				<entry key="njlg_export" value="nicaragua_export_index,nicaragua_export_id,2013-01-01|2013-01-31"></entry>		
+				<!-- 巴基斯坦 -->
+				<entry key="pakistan_import" value="pakistan_import_index,pakistan_import_id,2013-01-01|2013-01-31"></entry>
+				<!--巴拿马索引查询-->
+				<entry key="panama_import" value="panama_import_index,panama_import_id,2014-01-01|2014-01-31"></entry>
+				<!--巴拿马出口索引查询-->
+				<entry key="panama_export" value="panama_export_index,panama_export_id,2014-01-01|2014-01-31"></entry> 
+				<!--巴拉圭索引查询-->
+				<entry key="paraguay_import" value="paraguay_import_index,paraguay_import_id,2013-01-01|2013-01-31"></entry>
+				<!--巴拉圭出口索引查询-->
+				<entry key="paraguay_export" value="paraguay_export_index,paraguay_export_id,2013-01-01|2013-01-31"></entry>
+				<!--秘鲁进口索引查询-->
+				<entry key="peru_import" value="peru_import_index,peru_import_id,2013-01-01|2013-01-31"></entry>
+				<!--秘鲁出口索引查询-->
+				<entry key="peru_export" value="peru_export_index,peru_export_id,2013-01-01|2013-01-31"></entry>
+				<!-- 俄罗斯 -->
+				<entry key="russian_import" value="russia_import_index,russia_import_id,2013-01-01|2013-01-31"></entry>
+				<!-- 俄罗斯出口-->
+				<entry key="russian_export" value="russia_export_index,russia_export_id,2013-01-01|2013-01-31"></entry>
+				<!-- 萨尔瓦多 -->
+				<entry key="sewd_import" value="salvatore_import_index,salvatore_import_id,2013-01-01|2013-01-31"></entry>		 	
+				<!-- 萨尔瓦多出口 -->
+				<entry key="sewd_export" value="salvatore_export_index,salvatore_export_id,2013-01-01,2013-01-31"></entry> 
+				<!--英国进口索引查询-->
+				<entry key="uk_import" value="uk_import_index,uk_import_id,01/2013|01/2013"></entry>
+				<!-- 乌克兰 -->
+				<entry key="wkl_import" value="ukraine_import_index,ukraine_import_id,2013-01-01|2013-01-31"></entry>
+				<!-- 乌拉圭索引查询-->
+				<entry key="uruguay_import" value="uruguay_import_index,uruguay_import_id,2013-01-01|2013-01-31"></entry>
+				<!-- 乌拉圭出口索引查询-->
+				<entry key="uruguay_export" value="uruguay_export_index,uruguay_export_id,2013-01-01|2013-01-31"></entry>
+				<!-- 美国 -->
+				<entry key="usa_import" value="usa_import_index,usa_import_id,2013-01-01|2013-01-31"></entry>
+				<!--委内瑞拉索引查询-->
+				<entry key="vnrl_import" value="venezuela_import_index,venezuela_import_id,01/2013|01/2013"></entry>
+				<!--委内瑞拉出口索引查询-->
+				<entry key="vnrl_export" value="venezuela_export_index,venezuela_export_id,01/2013|01/2013"></entry>
+				<!--越南索引查询-->
+				<entry key="yn_import" value="vietnam_import_index,vietnam_import_id,2014-01-01|2014-01-31"></entry>
+				<!--越南出口索引查询-->
+				<entry key="yn_export" value="vietnam_export_index,vietnam_export_id,2014-01-01|2014-01-31"></entry>
+				<!-- 中国-->
+				<entry key="china" value="china_eight_index,china_eight_id,01/2013|01/2013"></entry>
+				<!-- 玻利维亚 -->
+				<entry key="bolivia_import" value="bolivia_import_index,bolivia_import_id,2014-01-01|2014-01-31"></entry>
+				
+				<!--西班牙进口索引查询-->
+				<entry key="spainsh_import" value="spain_index,spainid,01/2012|01/2012"></entry>
+							
+				<!-- 买家资源库 -->
+				<entry key="dbresource" value="data_resource_index"></entry>
+			 	
+				<!-- 添加新的国家 -->
+				<!-- 表示要过滤的范围字段   -->
+				<entry key="commonFilterStr" value="cif_unit,fob_unit,g_weight,n_weight,quantity,inr_unit,unit_price,date,cif_value,fob_value,packages"></entry>
+				<!-- -表示要过滤的数值类型字段 -->
+				<entry key="commonDataFilterStr" value="cif_unit,fob_unit,g_weight,n_weight,quantity,inr_unit,unit_price"></entry>
+				<!-- 表示物流相关的字段 -->
+				<entry key="logists" value="logistics warehouse transport carryier storehouse shipping order freight consignee"></entry>
+				<!--建立索引需要参考美国国家(按年/月来建立索引)其它国家就不需要 直接建立一个索引目录 -->
+				<entry key="yyyy-mm" value="china,usa_import,russian_import,wkl_import,chile_import,peru_import,argentina_import,colom_import,india_import,const_import,ecuador_import,korea,uk_import,mexicon_import"></entry>
+				<!-- 设置报表模块返回的记录条数是200000 -->
+				<entry key="report" value="200000"></entry>
+				<!-- 设置全库检索单个国家一次性返回50000条记录数 -->
+				<entry key="alldb" value="10000"></entry>
+				<!-- 配置要从lucene中获取字段值的名称 -->
+				<!-- 都为空是为了让开发者自定义 -->
+			
+				<!-- 自定义字段 阿根廷（章华才） -->
+				<entry key="db_argentina_import" value="argentina_import_id,importer,cif_value,g_weight,quantity,date"/>
+				<entry key="bean_db_argentina_import" value="argentinaImportId,importer,cifValue,grossWeight,quantity,date"/>
+				<!-- argentinaExportId,hscode,goodsDesc,exporter,cifValue,grossWeight,quantity,date -->
+				<entry key="db_argentina_export" value=""/>
+				<entry key="bean_db_argentina_export" value=""/>
+				
+				
+				<!-- 自定义字段巴西（章华才） -->
+				<entry key="db_brazil_import" value="importer,fob_value,n_weight,quantity,date"/>
+				<entry key="bean_db_brazil_import" value="importer,fobValue,netWeight,quantity,date"/>
+				
+				<!-- 自定义字段智利（章华才） -->
+				<entry key="db_chile_import" value="importer,cif_value,g_weight,quantity,date"></entry>
+				<entry key="bean_db_chile_import" value="importer,cifValue,grossWeight,quantity,date"></entry>
+				<entry key="db_chile_export" value="exporter,cif_value,g_weight,quantity,date"></entry>
+				<entry key="bean_db_chile_export" value="exporter,cifValue,grossWeight,quantity,date"></entry>
+				
+				<!-- 自定义中国（章华才） -->
+				<entry key="db_china" value="company_name,cif_value,quantity,date,trade_type"></entry>
+				<entry key="bean_db_china" value="companyName,cifValue,quantity,date,tradeType"></entry>
+				
+				<!-- 自定义哥伦比亚（章华才） -->
+				<entry key="db_colom_import" value="importer,cif_value,n_weight,quantity,date"></entry>
+				<entry key="bean_db_colom_import" value="importer,cifValue,netWeight,quantity,date"></entry>
+				<entry key="db_colom_export" value="exporter,fob_value,n_weight,quantity,date"></entry>
+				<entry key="bean_db_colom_export" value="exporter,fobValue,netWeight,quantity,date"></entry>
+				
+				<!-- 自定义秘鲁字段（章华才） -->
+				<entry key="db_peru_import" value="importer,cif_value,g_weight,quantity,date"></entry>
+				<entry key="bean_db_peru_import" value="importer,cifValue,grossWeight,quantity,date"></entry>
+				<entry key="db_peru_export" value="exporter,fob_value,g_weight,quantity,date"></entry>
+				<entry key="bean_db_peru_export" value="exporter,fobValue,grossWeight,quantity,date"></entry>
+				
+				
+				<!-- 自定义巴拉圭字段（章华才） -->
+				<entry key="db_paraguay_import" value="importer,cif_value,g_weight,quantity,date"></entry>
+				<entry key="bean_db_paraguay_import" value="importer,cifValue,grossWeight,quantity,date"></entry>
+				<entry key="db_paraguay_export" value="exporter,cif_value,g_weight,quantity,date"></entry>
+				<entry key="bean_db_paraguay_export" value="exporter,cifValue,grossWeight,quantity,date"></entry>
+				
+				<!-- 自定义厄瓜多尔字段（章华才） -->
+				<entry key="db_ecuador_import" value="importer,cif_value,quantity,date"></entry>
+				<entry key="bean_db_ecuador_import" value="importer,cifValue,quantity,date"></entry>
+				<entry key="db_ecuador_export" value="exporter,fob_value,quantity,date"></entry>
+				<entry key="bean_db_ecuador_export" value="exporter,fobValue,quantity,date"></entry>
+				
+				<!-- 自定义洪都拉斯（章华才） -->
+				<entry key="db_honduras_import" value=""></entry>
+				<entry key="bean_honduras_export" value=""></entry>
+				
+				<!-- 自定义印度（章华才） -->
+				<entry key="db_india_import" value="importer,inr_value,quantity,date"></entry>
+				<entry key="bean_db_india_import" value="importer,inrValue,quantity,date"></entry>
+<!-- 				<entry key="db_india_export" value="india_import_id,hscode,importer,inr_value,quantity,date"></entry> -->
+<!-- 				<entry key="bean_db_india_export" value="indiaImportId,hscode,importer,inrValue,quantity,date"></entry> -->
+				
+				
+			   	 <!-- 自定义墨西哥字段（章华才） -->
+<!-- 				<entry key="db_mexicon_import" value="mexico_import_id,hscode,goods_desc,importer,cif_value,quantity,date"></entry> -->
+<!-- 				<entry key="bean_db_mexicon_import" value="ecuadorImportId,hscode,goodsDesc,importer,cifValue,quantity,date"></entry> -->
+<!-- 				<entry key="db_mexicon_export" value="ecuador_export_id,hscode,goods_desc,importer,fob_value,quantity,date"></entry> -->
+<!-- 				<entry key="bean_db_mexicon_export" value="ecuadorExportId,hscode,goodsDesc,exporter,fobValue,quantity,date"></entry> -->
+				
+				
+				<!-- 自定义巴基斯坦（章华才） -->
+				<entry key="db_pakistan_import" value="g_Weight,importer,date"></entry>
+				<entry key="bean_db_pakistan_import" value="grossWeight,importer,date"></entry>
+				
+				<!-- 自定义巴拉马（章华才） -->
+				<entry key="db_panama_import" value="importer,g_weight,quantity,cif_value,date"></entry>
+				<entry key="bean_db_panama_import" value="importer,grossWeight,quantity,cifValue,date"></entry>
+				<entry key="db_panama_export" value="exporter,g_weight,quantity,fob_value,date"></entry>
+				<entry key="bean_db_panama_export" value="exporter,grossWeight,quantity,fobValue,date"></entry>
+			
+				<!-- 危地马拉 -->
+				<entry key="db_wdml_import" value="importer,quantity,date"></entry>
+				<entry key="bean_db_wdml_import" value="importer,quantity,date"></entry>
+				<entry key="db_wdml_export" value="exporter,quantity,date"></entry>
+				<entry key="bean_db_wdml_export" value="exporter,quantity,date"></entry>
+				
+				<!-- 萨尔瓦多 -->
+				<entry key="db_sewd_import" value="importer,quantity,date"></entry>
+				<entry key="bean_db_sewd_import" value="importer,quantity,date"></entry>
+				<entry key="db_sewd_export" value="exporter,quantity,date"></entry>
+				<entry key="bean_db_sewd_export" value="exporter,quantity,date"></entry>
+				
+			
+				<!-- 萨尔瓦多 -->
+				<entry key="db_njlg_import" value="importer,quantity,date"></entry>
+				<entry key="bean_db_njlg_import" value="importer,quantity,date"></entry>
+				<entry key="db_njlg_export" value="exporter,quantity,date"></entry>
+				<entry key="bean_db_njlg_export" value="exporter,quantity,date"></entry>
+			
+				<!-- 自定义英国（章华才） -->
+				<entry key="db_uk_import" value="company_name,date"></entry>
+				<entry key="bean_db_uk_import" value="companyName,date"></entry>
+				
+				<!-- 自定义乌拉圭（章华才） -->
+				<entry key="db_uruguay_import" value="importer,g_weight,cif_value,quantity,date"></entry>
+				<entry key="bean_db_uruguay_import" value="importer,grossWeight,cifValue,quantity,date"></entry>
+				<entry key="db_uruguay_export" value="exporter,g_weight,fob_value,quantity,date"></entry>
+				<entry key="bean_db_uruguay_export" value="exporter,grossWeight,fobValue,quantity,date"></entry>
+				
+				<!-- 自定义委内瑞拉（章华才） -->
+				<entry key="db_vnrl_import" value="importer,g_weight,cif_value,date"></entry>
+				<entry key="bean_db_vnrl_import" value="importer,grossWeight,cifValue,date"></entry>
+				<entry key="db_vnrl_export" value="exporter,g_weight,fob_value,date"></entry>
+				<entry key="bean_db_vnrl_export" value="exporter,grossWeight,fobValue,date"></entry>
+				
+				<!-- 自定义越南（章华才） -->
+				<entry key="db_yn_import" value="importer,quantity,cif_value,date"></entry>
+				<entry key="bean_db_yn_import" value="importer,quantity,cifValue,date"></entry>
+				<entry key="db_yn_export" value="exporter,quantity,fob_value,date"></entry>
+				<entry key="bean_db_yn_export" value="exporter,quantity,fobValue,date"></entry>
+				
+				<!-- 自定义哥斯达黎加（章华才） -->
+				<entry key="db_const_import" value="importer,g_weight,cif_value,date"></entry>
+				<entry key="bean_db_const_import" value="importer,grossWeight,cifValue,date"></entry>
+				<entry key="db_const_export" value="exporter,g_weight,cif_value,date"></entry>
+				<entry key="bean_db_const_export" value="exporter,grossWeight,cifValue,date"></entry>
+				
+				
+				<!-- 自定义韩国（章华才） -->
+				<entry key="db_korea" value="company_name,date"></entry>
+				<entry key="bean_db_korea" value="companyName,date"></entry>
+				
+				<!-- 自定义美国（章华才） -->
+				<entry key="db_usa_import" value="importer,g_weight,date"></entry>
+				<entry key="bean_db_usa_import" value="importer,grossWeight,date"></entry>
+				<entry key="db_usa_export" value=""></entry>
+				<entry key="bean_db_usa_export" value=""></entry>
+				
+				<!-- 自定义乌克兰（章华才） -->
+				<entry key="db_wkl_import" value="importer,n_weight,cif_value,date"></entry>
+				<entry key="bean_db_wkl_import" value="importer,netWeight,cifValue,date"></entry>
+				
+				<!-- 自定义俄罗斯（章华才） -->
+				<entry key="db_russian_import" value="importer,g_weight,cif_value,quantity,date"></entry>
+				<entry key="bean_db_russian_import" value="importer,grossWeight,cifValue,quantity,date"></entry>
+				<entry key="db_russian_export" value="exporter,g_weight,cif_value,date"></entry>
+				<entry key="bean_db_russian_export" value="exporter,grossWeight,cifValue,date"></entry>
+				
+				<!-- 自定义玻利维亚（章华才） -->
+				<entry key="db_bolivia_import" value="importer,n_weight,cif_value,date"></entry>
+				<entry key="bean_db_bolivia_import" value="importer,netWeight,cifValue,date"></entry>
+				<entry key="" value=""></entry>
+				<entry key="" value=""></entry>
+				<!-- 排除中文需要从索引中查询的字段 针对中国海关数据 -->
+			<!-- 	<entry key="exclude_field" value="company_name,product_place"></entry> -->
+				<entry key="exclude_field" value="a,b"></entry>
+			</map>
+		</constructor-arg>
+	</bean>
+</beans>
+
+

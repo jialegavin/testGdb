@@ -1,0 +1,365 @@
+/*xl 使页脚永远固定在底部*/
+html,body {
+    margin: 0;
+    padding: 0!important;
+    height: 100%;
+}
+.advancesearch 
+{
+	width: 100%!important;
+	border-radius: 15px!important;
+	border-collapse: separate!important;
+	background-color: #ffffff!important;
+	margin: .3em 0!important;
+	border-bottom-style:outset;
+	border-color: #FFFFFF;
+	font-family: 宋体;
+}
+
+.fieldname
+{
+	font-size:12px;
+	font-family:"宋体",Heiti, arial,helvetica,sans-serif !important;
+	padding-left: 12px;
+	color:#1369c0;
+}
+
+.radiofieldname
+{
+	font-size:14px;
+	font-family:"宋体",Heiti, arial,helvetica,sans-serif !important;
+	padding-left: 5px;
+	color:#777F7F;
+}
+
+.inpText{
+    line-height: 22px;
+	width: 170px;
+	height: 22px;
+	border: 1px solid #666666;
+	border-color: #e5e5e5;
+	border-radius:4px 4px 4px 4px;
+}
+
+.doubleinpText{
+	line-height: 22px;
+	width: 72px;
+	height: 22px;
+	border: 1px solid #d0d0d0;
+	border-color: #e5e5e5;
+	border-radius:4px 4px 4px 4px;
+}
+
+#c_origin_country{
+	line-height: 22px;
+	width: 170px;
+	height: 24px;
+	border: 1px solid #dfdfdf;
+	border-color: #e5e5e5;
+	border-radius:4px 4px 4px 4px;
+}
+
+.henggang
+{
+	font-family:"宋体",Heiti, arial,helvetica,sans-serif !important;
+	color:#777F7F;
+}
+
+.translatefirstcows
+{
+	position:absolute;
+	float: left;
+	margin-left:280px;
+	top: 219px;
+	cursor: pointer;
+}
+
+.translatesecondcows
+{
+	position:absolute;
+	float: left;
+	margin-left:280px;
+	top: 264px;
+	cursor: pointer;
+}
+
+.translatethirdcows
+{
+	position:absolute;
+	float: left;
+	margin-left:280px;
+	top: 219px;
+	cursor: pointer;
+}
+
+.translateforthcows
+{
+	position:absolute;
+	float: left;
+	margin-left:280px;
+	top: 264px;
+	cursor: pointer;
+}
+.addhscode
+{
+	position:absolute;
+	float: left;
+	margin-left:280px;
+	top: 173px;
+	cursor: pointer;
+}
+
+.firstfield
+{
+   height:25px;
+   width:306px;
+   padding-right: 900px;
+   padding-top: 20px;
+}
+
+.secondfield
+{
+   height:25px;
+   width:300px;
+   padding-right: 630px;
+   margin-top: -25px;
+}
+
+.thirdfield
+{
+   height:25px;
+   width:300px;
+    padding-right: 350px;
+   margin-top: -25px;
+}
+
+.forthfield
+{
+   height:25px;
+   width:300px;
+   padding-right: 100px;
+   margin-top: -25px;
+}
+.tips
+{
+	margin-left:80px;
+	width:750px;
+	font-family:"宋体",Heiti, arial,helvetica,sans-serif !important;
+	color:#333333;
+}
+
+.country_foot {
+    height: 40px;
+    overflow: hidden;
+}
+
+.buttonWhite
+{
+	border: 1px solid #C2C2C2;
+	border-top-color: #E1E1E1;
+	background-color: #FFFFFF;
+	font-size: 16px;
+	font-family: 宋体;
+	color: #6C6E73;
+	cursor: pointer;
+	border-radius:2px;
+}
+.buttonWhite:active
+{
+	border: 1px solid #C2C2C2;
+	border-top-color: #D8D8D8;
+	background-color: #DADADA;
+}
+
+/* 选项卡样式 */
+.tab_show
+{	
+	display:none;
+	width:1210px;
+	min-height: 100%; 
+	height: auto!important;
+	height: 100%;
+	border-top-color:#BBBBBB;
+	border-left:1px solid #D4D4D4;
+	border-right-color:#FFFFFF;
+	border-top-style:outset;
+	width: 100%!important;
+	border-radius: 15px!important;
+	border-collapse: separate!important;
+	background-color: #ffffff!important;
+    margin-top: 40px;
+}
+
+#con_tab_1
+{
+	display:block;
+}
+
+#menubox
+{	
+	position:absolute;
+	width:700px;
+	height:27px;
+	padding-top: 19px;
+}
+
+#menubox ul
+{	
+	margin:0;
+	padding:0;
+}
+
+#menubox ul li
+{	
+	float:left;
+	list-style:none;
+	display:inline;
+	padding-top:7px;
+	margin:0 1px;
+	cursor:pointer;
+	height:23px;
+	text-align:center;
+	font-size:14px;
+	
+}
+
+#menubox ul li a
+{	
+	font-family: 宋体;
+	color:#ffffff;
+}
+
+#menubox ul li.hover
+{
+	color: #000000;
+	font-weight:bold;
+}
+
+/* 添加到收藏夹样式 */
+.x-form-item {
+   font: 12px tahoma,arial,helvetica,sans-serif;
+   }
+
+.x-form-item label {
+    display: block;
+    float: left;
+    width: 100px;
+    padding: 3px 3px 3px 0px;
+    clear: left;
+    z-index: 2;
+    position: relative;
+}
+
+
+.x-form-element {
+    position: relative;
+}
+.x-form-clear-left {
+    clear: left;
+    height: 0px;
+    overflow: hidden;
+    line-height: 0;
+    font-size: 0px;
+}
+
+.x-form-text, textarea.x-form-field {
+    background-color: rgb(255, 255, 255);
+    border-color: rgb(181, 184, 200);
+}
+
+.ext-gecko .x-form-text, .ext-ie8 .x-form-text {
+    padding-top: 2px;
+    padding-bottom: 0px;
+}
+:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+    color: #cccccc;  
+}
+			
+::-moz-placeholder { /* Mozilla Firefox 19+ */
+    color: #cccccc;
+}
+			
+input:-ms-input-placeholder,
+textarea:-ms-input-placeholder {
+    color: #cccccc;
+}
+			
+input::-webkit-input-placeholder,
+textarea::-webkit-input-placeholder {
+    color: #cccccc;
+}
+
+/*xl 添加收藏按钮样式*/
+a.addFavorites_cls{
+    color: #000;
+    text-decoration: none;
+    font-size: 12px;
+    width:70px;
+    height:25px;
+    line-height: 25px;
+    text-align: center;
+    display: inline-block;
+    font-family: "宋体",Heiti, arial,helvetica,sans-serif !important;
+    background:url("/gbdbas/static/img/datasearch/collection.png") no-repeat center;
+}
+a.addFavorites_cls:link,.addFavorites_cls:visited{
+	color: #000;
+    text-decoration: none;
+}
+a.addFavorites_cls:hover{
+	cursor:pointer;
+	background:url("/gbdbas/static/img/datasearch/collectionHover.png") no-repeat center;
+}
+
+/*洪皓添加交易趋势同环比按钮样式*/
+a.trendThb_cls{
+	position: absolute;
+	z-index: 100;
+    color: #000;
+    text-decoration: none;
+    font-size: 12px;
+    width:100px;
+    height:25px;
+    line-height: 25px;
+    text-align: center;
+    display: inline-block;
+    font-family: "宋体",Heiti, arial,helvetica,sans-serif !important;
+    background:url("/gbdbas/static/img/datasearch/qsTHB.png") no-repeat center;
+}
+a.trendThb_cls:link,.trendThb_cls:visited{
+	color: #000;
+    text-decoration: none;
+}
+a.trendThb_cls:hover{
+	background:url("/gbdbas/static/img/datasearch/qsTHBHover.png") no-repeat center;
+}
+
+/*xl 汇总表格加载更多div样式*/
+.loadMoreDiv_cls{
+	width: 1208px; 
+	height: 31px;
+    background-color:#E2E5E7;
+	border: 1px solid #999999;
+	text-align: center;
+	line-height: 31px;
+}
+.loadMoreDiv_cls a{
+    color: red;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight:bold;
+    width:90px;
+    height:31px;
+    line-height: 31px;
+    text-align: center;
+    display: inline-block;
+    font-family: "宋体",Heiti, arial,helvetica,sans-serif !important;
+}
+.loadMoreDiv_cls a:link,a:visited{
+	color: red;
+    text-decoration: none;
+}
+.loadMoreDiv_cls a:hover{
+	cursor:pointer;
+	color: #1369c0;
+}

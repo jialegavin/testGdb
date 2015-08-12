@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>  
+<!DOCTYPE mapper  PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN" "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+<!-- 产品标签 -->
+<mapper
+	namespace="com.njyb.gbdbase.dao.alldb.projectanalyze.IProjectAnalyzeDao">
+
+	<!-- WangBo 添加 -->
+	<insert id="addProjectAnalyze"
+		parameterType="com.njyb.gbdbase.model.alldb.projectAnalyze.ProjectAnalyzeModel">
+		<![CDATA[	
+				INSERT INTO HELP_PRODUCT_COLLECTION(USERID,PRODUCTNAME,HSCODE,VERIFYCODE,ADDTIME) VALUES(#{userId},#{productName},#{hscode},#{verifycode},#{addTime})
+		]]>
+	</insert>
+
+	<!-- WangBo : 查询产品标签 -->
+	<select id="queryProjectAnalyzeModelByParam" parameterType="java.util.Map"
+		resultType="com.njyb.gbdbase.model.alldb.projectAnalyze.ProjectAnalyzeModel">
+		SELECT productid,userid,hscode,billnumber,verifycode,productname,
+		(SELECT count(1)
+		FROM help_product_collection
+		WHERE 1=1 and userid =
+		#{userId}
+		<if test="hscode != null and hscode != ''">
+			and hscode LIKE CONCAT('%','${hscode}','%')
+		</if>
+		) as total
+		FROM help_product_collection
+		WHERE 1=1 and userid = #{userId}
+		<if test="hscode != null and hscode != ''">
+			and hscode LIKE CONCAT('%','${hscode}','%')
+		</if>
+		ORDER BY ADDTIME DESC
+		LIMIT #{index},#{size}
+	</select>
+
+	<!-- WangBo:根据产品id删除相关产品 -->
+	<delete id="deleteProjectAnalyze" parameterType="java.util.Map" statementType="CALLABLE">
+		 {CALL del_product_collection_pro (#{idList,mode=IN,jdbcType=VARCHAR},#{flag,mode=OUT,jdbcType=INTEGER})}
+	</delete>
+
+	<!-- WangBo : 修改产品标签 -->
+	<update id="updateProjectAnalyze"
+		parameterType="com.njyb.gbdbase.model.alldb.projectAnalyze.ProjectAnalyzeModel">
+		<![CDATA[
+			UPDATE help_product_collection
+				SET productname = #{productName},
+				hscode = #{hscode},
+				verifycode = #{verifycode}
+				WHERE productid = #{productId}
+		]]>
+	</update>
+</mapper>

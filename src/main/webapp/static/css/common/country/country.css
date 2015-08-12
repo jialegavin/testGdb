@@ -1,0 +1,73 @@
+/*xl选择国家页面样式 */
+.country_list_ul{
+	list-style-type:none;
+	width:100%;
+}
+.country_list_ul li{
+	float:left;
+	padding-bottom: 10px;
+	padding-right: 10px;
+}
+.country_space_li{
+	margin-right: 5px;
+}
+.country_list_ul font{
+	color:#000;
+	font-size: 12px;
+}
+#countrysel{
+	background: #ffffff; 
+	border-radius:8px 8px 8px 8px;
+}
+.country_middle{
+    width: 524px;
+    height: 434px;
+}
+.country_middle_lb {
+    margin-left: 16px;
+    padding-bottom: 0px;
+    padding-top: 0px;
+    width: 464px;
+}
+.lb_div {
+   	width: 464px;
+   	margin-top: -15px;
+   	margin-left: -15px;
+}
+.bt {
+	clear:both;
+    border-bottom: 1px solid #666666;
+    color: #1369c0;
+    font-weight: bold;
+    padding-bottom: 10px;
+    text-align: left;
+    font-size: 14px;
+    padding-left: 2px;
+}
+.zlb {
+    margin-bottom: 8px;
+    margin-top: 5px;
+    text-align: left;
+}
+.zlb a {
+    color: #000;
+    display: inline;
+    float: left;
+    height: 21px;
+    text-decoration: none;
+    width: 37px;
+    font-size: 12px;
+    text-align: center;
+    padding-top: 7px;
+}
+.zlb a:link,.zlba:visited{
+	color: #000;
+    text-decoration: none;
+}
+.zlb a:hover{
+ 	background:url("/gbdbas/static/img/datasearch/country/countryHover.png") no-repeat center;
+}
+.zlb img {
+    vertical-align: middle;
+    padding-right: 2px;
+}

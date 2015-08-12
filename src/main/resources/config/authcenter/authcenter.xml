@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.1.xsd">
+	<!-- 作者:洪皓 -->
+	<description>不同用户各模块各功能权限配置中心</description>
+	<bean id="authCenterModel" class="com.njyb.gbdbase.model.authcenter.AuthCenterModel" scope="prototype">
+		<property name="authCenterMap">
+			<ref local="authCenter_map"/>
+		</property>
+	</bean>
+	
+	<bean id="authCenter_map" class="java.util.HashMap">
+		<constructor-arg>
+			<map>
+				<!-- 贸易情报模块-->
+				<!-- 海关数据查询-->
+				<entry key="customs_data_query" value="正式用户,按次用户,试用用户"></entry>
+				<!-- 数据导出-->
+				<entry key="export_data" value="正式用户"></entry>
+				<!-- 报表打印-->
+				<entry key="report_Print" value="正式用户,按次用户"></entry>
+				<!-- 报表下载-->
+				<entry key="report_download" value="正式用户"></entry>
+				<!-- 报表分析-->
+				<entry key="report_analysis" value="正式用户,试用用户"></entry>
+				<!-- 详情查看-->
+				<entry key="view_details" value="正式用户,按次用户,试用用户"></entry>
+				
+				<!-- 客户/对手-->
+				<!-- 我的客户-->
+				<entry key="my_client" value="正式用户,试用用户"></entry>
+				<!-- 我的对手-->
+				<entry key="my_opponent" value="正式用户,试用用户"></entry>
+				
+				<!-- 对比分析-->
+				<entry key="compare_analysis" value="正式用户,试用用户"></entry>
+				
+				<!-- 产品标签-->
+				<entry key="product_tags" value="正式用户,试用用户"></entry>
+				
+				<!-- 全库下载-->
+				<entry key="alldb_download" value="正式用户"></entry>
+				
+				<!-- 个人中心-->
+				<!-- 查看权限 -->
+				<entry key="personal_center" value="正式用户"></entry>
+				<!-- 我的收藏 -->
+				<entry key="my_favorites" value="正式用户,按次用户,试用用户"></entry>
+				<!-- 登录日志 -->
+				<entry key="login_log" value="正式用户,按次用户,试用用户"></entry>
+				<!-- 子账号管理 -->
+				<entry key="son_account" value="正式用户"></entry>
+				
+				<!-- 产品定制-->
+				<entry key="customization" value="正式用户,按次用户"></entry>
+				
+				<!-- 客服中心-->
+				<entry key="customer_service" value="正式用户,按次用户,试用用户"></entry>
+			</map>
+		</constructor-arg>
+	</bean>
+</beans>
+
+

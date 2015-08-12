@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>  
+<!DOCTYPE mapper  PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN" "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+<mapper namespace="com.njyb.gbdbase.dao.alldb.competitor.ICompetitorAndCustomerInfoDao">
+
+	<!-- 注意 -->
+	<!-- 竞争对手  && 客户信息 共用xml -->
+	<resultMap
+		type="com.njyb.gbdbase.model.alldb.commonrightlibrary.ComAndCusInfoResultModel"
+		id="commonResult">
+	</resultMap>
+
+	<!--WangBo:查询客户信息&&竞争对手 -->
+	<select id="queryCompetitorResult" resultType="com.njyb.gbdbase.model.alldb.commonrightlibrary.ComAndCusInfoResultModel"
+	parameterType="java.util.Map">
+		SELECT collectionid, companyname, alternativename, address, mailbox, contact, fax, usertype, userid, usergrade, tel, addTime, country, alternativeemail, website, trackingstatus, contactnum, remark, zip, datasource, customervalue, finallycontact, consigneecode, settlementcode, consignorcode, Manufacturers,
+		(select count(1) from help_user_collection WHERE 1=1 and userId = #{userId}
+		 and userType = #{param}
+			<if test="companyName != null and companyName != ''">
+    			and companyname like CONCAT('%','${companyName}','%')
+    		</if>
+		) as total
+    	FROM help_user_collection WHERE 1=1 and userId = #{userId}
+    	 and userType = #{param}
+    		<if test="companyName != null and companyName != ''">
+    			and companyname like CONCAT('%','${companyName}','%')
+    		</if>
+    	ORDER BY addTime desc
+    	LIMIT #{index},#{size}
+	</select>
+	
+	<!-- WangBo:根据Id删除表中的数据 -->
+	<delete id="deleteCompetitorAndCustomerInfo" parameterType="java.util.Map" statementType="CALLABLE">
+		 {CALL del_user_collection_pro(#{idList,mode=IN,jdbcType=VARCHAR},#{flag,mode=OUT,jdbcType=INTEGER})}
+	</delete>
+	
+	<!-- WangBo:添加竞争对手 -->
+	<insert id="addCompetitor" parameterType="com.njyb.gbdbase.model.alldb.commonrightlibrary.ComAndCusInfoResultModel">
+		INSERT INTO help_user_collection(companyname, alternativename, address, mailbox, contact, fax, usertype, userid, tel, country, alternativeemail, website,remark, zip, datasource, customervalue,consignorcode,Manufacturers,addTime)
+    	VALUES(#{companyName}, #{alternativeName}, #{address}, #{mailBox}, #{contact}, #{fax}, #{userType}, #{userId}, #{tel}, #{country}, #{alternativeEmail}, #{website}, #{remark}, #{zip}, #{datasource}, #{customerValue},#{consignorcode},#{manufacturers},#{addTime})
+	</insert>
+	
+	<!-- WangBo:添加客户信息 -->
+	<insert id="addCustomerInfo" parameterType="com.njyb.gbdbase.model.alldb.commonrightlibrary.ComAndCusInfoResultModel">
+		INSERT INTO help_user_collection(companyname, alternativename, address, mailbox, contact, fax, usertype, userid, usergrade, tel, country, alternativeemail, website,trackingstatus, contactnum, remark, zip, datasource, customervalue, finallycontact,consigneecode,settlementcode,addTime) 
+    	VALUES(#{companyName}, #{alternativeName}, #{address}, #{mailBox}, #{contact}, #{fax}, #{userType}, #{userId}, #{userGrade}, #{tel}, #{country}, #{alternativeEmail}, #{website}, #{trackingStatus}, #{contactNum}, #{remark}, #{zip}, #{datasource}, #{customerValue}, #{finallyContact},#{consigneecode},#{settlementcode},#{addTime})
+	</insert>
+	
+	<!-- WangBo:修改竞争对手 -->
+	<update id="updateCompetitor" parameterType="com.njyb.gbdbase.model.alldb.commonrightlibrary.ComAndCusInfoResultModel">
+		UPDATE help_user_collection SET companyname=#{companyName},alternativename=#{alternativeName},address=#{address},mailbox=#{mailBox},contact=#{contact},fax=#{fax},tel=#{tel},country= #{country},alternativeemail=#{alternativeEmail},website=#{website},remark=#{remark},
+			zip=#{zip},datasource=#{datasource},customervalue=#{customerValue},consignorcode=#{consignorcode},Manufacturers=#{manufacturers} where collectionid=#{collectionId}
+	</update>
+	
+	<!-- WangBo:修改客户信息 -->
+	<update id="updateCustomerInfo" parameterType="com.njyb.gbdbase.model.alldb.commonrightlibrary.ComAndCusInfoResultModel">
+		UPDATE help_user_collection SET companyname=#{companyName},alternativename=#{alternativeName},address=#{address},mailbox=#{mailBox},contact=#{contact},fax=#{fax},usergrade=#{userGrade},tel=#{tel},country= #{country},alternativeemail=#{alternativeEmail},website=#{website},trackingstatus=#{trackingStatus},contactnum=#{contactNum},remark=#{remark},
+			zip=#{zip},datasource=#{datasource},customervalue=#{customerValue},finallycontact=#{finallyContact},consigneecode=#{consigneecode},settlementcode=#{settlementcode} where collectionid=#{collectionId}
+	</update>
+</mapper>

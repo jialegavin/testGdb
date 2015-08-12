@@ -1,0 +1,118 @@
+
+.reportinpText{
+	width: 190px;
+	height: 20px;
+	border: 1px solid #95b8e7;
+	border-color: #e5e5e5;
+	border-radius:4px 4px 4px 4px;
+}
+.alldb_tab_show
+{	
+	display:none;
+	width:1210px;
+	min-height: 100%; 
+	height: auto!important;
+	height: 100%;
+	border-top-color:#BBBBBB;
+	border-left:1px solid #D4D4D4;
+	border-right-color:#FFFFFF;
+	border-top-style:outset;
+	width: 100%!important;
+	border-radius: 15px!important;
+	border-collapse: separate!important;
+	background-color: #ffffff!important;
+    margin-top: 40px;
+}
+
+.alldb_advancesearch 
+{
+	width: 100%!important;
+	overflow: auto!important;
+	border-radius: 15px!important;
+	border-collapse: separate!important;
+	background-color: #ffffff!important;
+	margin: .3em 0!important;
+	border-bottom-style:outset;
+	border-color: #FFFFFF;
+}
+
+.alldb_firstcols
+{
+   height:26px;
+   width:350px;
+   padding-left: 30px;
+   padding-top: 13px;
+}
+
+.alldb_fieldname
+{
+	font-size:12px;
+	font-family:"宋体",Heiti, arial,helvetica,sans-serif !important;
+	padding-left: 12px;
+	color:#1369c0;
+}
+.alldb_secondcols
+{
+   height:26px;
+   width:450px;
+   padding-left: 400px;
+   margin-top: -26px;
+}
+
+.alldb_choosecountry
+{
+   height:26px;
+   width:380px;
+   padding-left: 460px;
+   margin-top: -26px;
+   word-wrap:break-word;
+   word-break:break-all;
+}
+
+.alldb_down_advancesearch 
+{
+	width: 100%!important;
+	border-radius: 15px!important;
+	border-collapse: separate!important;
+	background-color: #ffffff!important;
+	margin: .3em 0!important;
+	border-bottom-style:outset;
+	border-color: #FFFFFF;
+	font-family: 宋体;
+}
+
+<!-- 权库 市场分析 -->
+#right_library_mebubox {
+	width: 800px;
+	height: 30px;
+}
+
+#right_library_mebubox ul
+{	
+	width: 800px;
+	height: 30px;
+}
+
+#right_library_mebubox ul li
+{	float:left;
+	list-style:none;
+	line-height:30px;
+	cursor:pointer;
+	width:130px;
+	height:30px;
+	text-align:center;
+	font-size:14px;
+	
+}
+
+#right_library_mebubox ul li a
+{	
+	font-family: 宋体;
+	color:#ffffff;
+}
+
+#right_library_mebubox ul li.hover
+{
+	color: #000000;
+	font-weight:bold;
+}

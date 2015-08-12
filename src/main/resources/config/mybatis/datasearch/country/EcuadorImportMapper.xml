@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.njyb.gbdbase.dao.datasearch.country.IEcuadorImportDao">
+
+	<!--实体映射-->
+	<resultMap id="ecuadorImportResultMap" type="com.njyb.gbdbase.model.datasearch.ecuador.EcuadorImportModel">
+		<!--主键编号-->
+		<id property="ecuadorImportId" column="ECUADOR_IMPORT_ID" />
+		<!--抵达时间-->
+		<result property="arrivalDate" column="ARRIVAL_DATE" />
+		<!--时间(REG_DATE)-->
+		<result property="date" column="DATE" />
+		<!--贸易类型-->
+		<result property="tradeType" column="TRADE_TYPE" />
+		<!--会签号-->
+		<result property="refNo" column="REF_NO" />
+		<!--报关单号-->
+		<result property="declarationNumber" column="DECLARATION_NUMBER" />
+		<!--项号-->
+		<result property="itemNumber" column="ITEM_NUMBER" />
+		<!--进口商编号-->
+		<result property="importerId" column="IMPORTER_ID" />
+		<!--进口商-->
+		<result property="importer" column="IMPORTER" />
+		<!--原产国-->
+		<result property="originCountry" column="ORIGIN_COUNTRY" />
+		<!--销售国-->
+		<result property="salesCountry" column="SALES_COUNTRY" />
+		<!--起运国(SHIPPING_COUNTRY)-->
+		<result property="startCountry" column="START_COUNTRY" />
+		<!--起运港（PORT）-->
+		<result property="startPort" column="START_PORT" />
+		<!--运输方式-->
+		<result property="transType" column="TRANS_TYPE" />
+		<!--海关城市-->
+		<result property="customs" column="CUSTOMS" />
+		<!--海关编码（HS_CODE）-->
+		<result property="hscode" column="HSCODE" />
+		<!--HS章注-->
+		<result property="hsDesc" column="HS_DESC" />
+		<!--产品描述（PRODUCT_DESC）-->
+		<result property="goodsDesc" column="GOODS_DESC" />
+		<!--品牌-->
+		<result property="brand" column="BRAND" />
+		<!--货物状态-->
+		<result property="goodsCondition" column="GOODS_CONDITION" />
+		<!--货柜量-->
+		<result property="container" column="CONTAINER" />
+		<!--件数(PACKAGES)-->
+		<result property="packages" column="PACKAGES" />
+		<!--数量-->
+		<result property="quantity" column="QUANTITY" />
+		<!--数量单位(UNIT_OF_QUANTITY)-->
+		<result property="quantityUnit" column="QUANTITY_UNIT" />
+		<!--从价税-->
+		<result property="adValorem" column="AD_VALOREM" />
+		<!--FOB金额(FOB)-->
+		<result property="fobValue" column="FOB_VALUE" />
+		<!--运费-->
+		<result property="freight" column="FREIGHT" />
+		<!--保险费-->
+		<result property="insurance" column="INSURANCE" />
+		<!--CIF金额(CIF)-->
+		<result property="cifValue" column="CIF_VALUE" />
+		<!--出口商(SHIPPER)-->
+		<result property="exporter" column="EXPORTER" />
+		<!--海关代理-->
+		<result property="customsAgent" column="CUSTOMS_AGENT" />
+		<!--运输代理-->
+		<result property="transAgent" column="TRANS_AGENT" />
+		<!--运输公司-->
+		<result property="transCorp" column="TRANS_CORP" />
+		<!--船名-->
+		<result property="shipName" column="SHIP_NAME" />
+		<!--提单号-->
+		<result property="blNumber" column="BL_NUMBER" />
+		<!---->
+		<result property="emb" column="EMB" />
+		<!--仓储地-->
+		<result property="deposit" column="DEPOSIT" />
+	</resultMap>
+
+
+	<!-- 通用查询结果列-->
+	<sql id="Base_Column_List">
+		ECUADOR_IMPORT_ID,
+	ARRIVAL_DATE,	DATE,	TRADE_TYPE,	REF_NO,	DECLARATION_NUMBER,	ITEM_NUMBER,	IMPORTER_ID,	IMPORTER,
+	ORIGIN_COUNTRY,	SALES_COUNTRY,	START_COUNTRY,	START_PORT,	TRANS_TYPE,	CUSTOMS,	HSCODE,	HS_DESC,
+	GOODS_DESC,	BRAND,	GOODS_CONDITION,	CONTAINER,	PACKAGES,	QUANTITY,	QUANTITY_UNIT,	AD_VALOREM,
+	FOB_VALUE,	FREIGHT,	INSURANCE,	CIF_VALUE,	EXPORTER,	CUSTOMS_AGENT,	TRANS_AGENT,	TRANS_CORP,
+	SHIP_NAME,	BL_NUMBER,	EMB,	DEPOSIT
+	</sql>
+
+	<!-- 查询（根据主键ID查询） -->
+	<select id="queryByPrimaryAll" resultMap="ecuadorImportResultMap" parameterType="java.lang.Integer">
+		 SELECT
+		 <include refid="Base_Column_List" />
+		 FROM data_ecuador_import
+		 WHERE ECUADOR_IMPORT_ID in ${sql}
+	</select>
+
+
+</mapper>

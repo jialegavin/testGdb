@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.njyb.gbdbase.dao.datasearch.country.INicaraguaImportDao">
+
+	<!--实体映射-->
+	<resultMap id="nicaraguaImportResultMap" type="com.njyb.gbdbase.model.datasearch.nicaragua.NicaraguaImportModel">
+		<!--主键编号-->
+		<id property="nicaraguaImportId" column="NICARAGUA_IMPORT_ID" />
+		<!--抵达时间(arrival_date)-->
+		<result property="date" column="DATE" />
+		<!--进口商(consigneename)-->
+		<result property="importer" column="IMPORTER" />
+		<!--进口商地址(consignee_addr)-->
+		<result property="importerAddr" column="IMPORTER_ADDR" />
+		<!--出口商(shippername)-->
+		<result property="exporter" column="EXPORTER" />
+		<!--出口商地址(shipper_addr)-->
+		<result property="exporterAddr" column="EXPORTER_ADDR" />
+		<!--通知方(notifyname)-->
+		<result property="notifier" column="NOTIFIER" />
+		<!--通知人地址(notify_addr)-->
+		<result property="notifierAddr" column="NOTIFIER_ADDR" />
+		<!--提单号(bill_of_lading)-->
+		<result property="blNumber" column="BL_NUMBER" />
+		<!--船次(voyaga_number)-->
+		<result property="voyageNumber" column="VOYAGE_NUMBER" />
+		<!--承运人(carrier)-->
+		<result property="carrier" column="CARRIER" />
+		<!--起运港(departure_port)-->
+		<result property="startPort" column="START_PORT" />
+		<!--抵达港(arrival_port)-->
+		<result property="endPort" column="END_PORT" />
+		<!--原产国(origin_country)-->
+		<result property="originCountry" column="ORIGIN_COUNTRY" />
+		<!--目的国(destination_country)-->
+		<result property="destCountry" column="DEST_COUNTRY" />
+		<!--船名(vessel_name)-->
+		<result property="vesselName" column="VESSEL_NAME" />
+		<!--船旗国(vessel_country)-->
+		<result property="vesselCountry" column="VESSEL_COUNTRY" />
+		<!--国际海事组织代码(imo_code)-->
+		<result property="imoCode" column="IMO_CODE" />
+		<!--数量(quantity)-->
+		<result property="quantity" column="QUANTITY" />
+		<!---->
+		<result property="goodsDesc" column="GOODS_DESC" />
+	</resultMap>
+
+
+	<!-- 通用查询结果列-->
+	<sql id="Base_Column_List">
+		NICARAGUA_IMPORT_ID,
+	DATE,	IMPORTER,	IMPORTER_ADDR,	EXPORTER,	EXPORTER_ADDR,	NOTIFIER,	NOTIFIER_ADDR,	BL_NUMBER,
+	VOYAGE_NUMBER,	CARRIER,	START_PORT,	END_PORT,	ORIGIN_COUNTRY,	DEST_COUNTRY,	VESSEL_NAME,	VESSEL_COUNTRY,
+	IMO_CODE,	QUANTITY,	GOODS_DESC
+	</sql>
+
+	<!-- 查询（根据主键ID查询） -->
+	<select id="queryByPrimaryAll" resultMap="nicaraguaImportResultMap" parameterType="java.lang.Integer">
+		 SELECT
+		 <include refid="Base_Column_List" />
+		 FROM data_nicaragua_import
+		 WHERE NICARAGUA_IMPORT_ID in ${sql}
+	</select>
+
+
+</mapper>

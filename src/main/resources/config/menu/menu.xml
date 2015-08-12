@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<root>
+<menus>
+	<menu name="系统管理" id="systemManager">
+		<menuitem id="user" name="用户管理" url="/gbdbas/view/admincenter/usermanager/sysuser.jsp"/>
+	</menu>
+	<menu name="订单管理" id="orderManager">
+		<menuitem id="selOrder" name="订单查询" url="/dbas/view/order/adminOrder/queryOrder.jsp"/>
+	  	<menuitem id="updateOrder" name="修改订单" url="aa"/>
+		<menuitem id="enterOrder" name="订单授权" url="/dbas/view/order/adminOrder/inputOrder.jsp"/>
+	</menu>
+	
+	<menu name="留言管理" id="orderManager">
+		<menuitem id="queryCustomer" name="查询留言" url="/gbdbas/view/servicecenter/jsp/message.jsp"/>
+	</menu>
+	
+	<menu name="财务管理" id="financeManager">
+		<menuitem id="mouthForm" name="月/报表" url="aa"/>
+		<menuitem id="yearForm" name="年/报表" url="aa"/>
+	</menu>
+	<menu name="账户管理" id="accoutManager">
+		<menuitem id="searchAccout" name="账户查询" url="/dbas/view/order/adminOrder/searchAccout.jsp"/>
+		<menuitem id="rechargeAccout" name="账户充值查询" url="/dbas/view/order/adminRecharge/showRechargeAccount.jsp"/>
+		<menuitem id="accoutDetail" name="消费信息查询" url="/dbas/view/order/consumerRecords/showAccountDetail.jsp"/>
+		<menuitem id="accoutDetailManger" name="账户管理明细" url="/dbas/view/accout/acount/accountdetails.jsp"/>
+		<menuitem id="commonInfoChange" name="动态更换网页信息" url="/dbas/view/accout/acount/showLoginCommonInfo.jsp"/>
+	</menu>
+	<menu name="账户监控" id="chemicalManager">
+		<menuitem id="chemicaAccoutDetail" name="账户管理明细" url="/dbas/view/accout/acount/chemicalAccountDetails.jsp"/>
+	</menu>
+	<menu name="试用用户管理" id="trialUserManager">
+		<menuitem id="addtrialuser" name="添加试用用户" url="/dbas/view/accout/user/addtrialuser.jsp"/>
+	</menu>
+</menus>
+<userroles>
+	<roles name="admin">
+		<role ref="systemManager"/>
+		<role ref="orderManager"/>
+		<role ref="financeManager"/>
+		<role ref="accoutManager"/>
+	</roles>
+	
+	<roles name="manager">
+		<role ref="financeManager"/>
+	</roles>
+	
+	<roles name="customService">
+		<role ref="orderManager"/>
+	</roles>
+	
+	<roles name="chemicalAdmin">
+		<role ref="chemicalManager"/>
+	</roles>
+	
+	<roles name="nantongAdmin">
+		<role ref="trialUserManager"/>
+	</roles>
+</userroles>
+</root>

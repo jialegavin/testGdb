@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.njyb.gbdbase.dao.datasearch.country.IAllCountrySelectFieldDao">
+
+	<!--实体映射-->
+	<resultMap id="allCountrySelectFieldResultMap" type="com.njyb.gbdbase.model.datasearch.allCountrySelectField.AllCountrySelectFieldModel">
+		<!--主键编号-->
+		<id property="id" column="id" />
+		<!--字段值-->
+		<result property="fieldValue" column="fieldvalue" />
+		<!--字段名称-->
+		<result property="fieldName" column="fieldname" />
+		<!-- 国家名称 -->
+		<result property="countryName" column="country" />
+	</resultMap>
+
+
+	<!-- 通用查询结果列-->
+	<sql id="Base_Column_List">
+		id,fieldvalue,fieldname,country
+	</sql>
+
+	<!-- 查询（根据主键ID查询） -->
+	<select id="queryAllCountrySelectField" resultMap="allCountrySelectFieldResultMap" parameterType="com.njyb.gbdbase.model.datasearch.common.SqlModel">
+		<![CDATA[
+			${sql}
+		]]>
+	</select>
+
+
+</mapper>

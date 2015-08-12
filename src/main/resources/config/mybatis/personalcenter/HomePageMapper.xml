@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>  
+<!DOCTYPE mapper   
+	PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"   
+		"http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+	<!--start honghao -->
+<mapper namespace="com.njyb.gbdbase.dao.personalcenter.IHomePageDao">
+    <resultMap type="com.njyb.gbdbase.model.personalcenter.CountryUpdateTimeModel" id="fieldResult">
+			<id property="id" column="id"/>
+			<result property="countryName" column="country_name"/>
+			<result property="updateTime" column="update_time"/>
+	</resultMap>
+
+	<select id="getCountryUpdateTimeModel" resultMap="fieldResult"> 
+		<![CDATA[
+		SELECT country_name,update_time FROM help_country_update_time WHERE 1=1;
+		]]>
+	  </select>
+</mapper>
+	<!--end honghao -->	
+
+

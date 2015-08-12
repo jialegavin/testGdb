@@ -1,0 +1,302 @@
+﻿/*xl 添加找回密码页面样式*/
+li {
+  margin: 0px;
+  padding: 0px;
+  list-style:none;
+}
+.all{
+	width: 1210px;
+	margin: 0 auto;
+	height: 562px;
+} 
+.header{
+	height: 62px;
+	width: 825px;
+	padding-left: 87px;
+	padding-right: 90px;
+}
+.sub{
+	width:835px;;
+	min-height:500px;
+	background-image: url(/gbdbas/static/img/login/findpwdwindow.png);
+	background-repeat:no-repeat;
+	margin: 14px auto 0px auto ;
+	position: relative;
+}
+.titleLeft{
+	width:200px;
+	height:50px;
+	padding:10px 0px 10px 20px;
+	font-size:28px;
+	font-weight:bold ;
+	font-family:Arial;
+	color:#FFF;
+	float:left;
+}
+.titleRight{
+    width:635px;
+	height:50px;
+	margin-left:210px;
+}
+.find_div{
+	margin-left: 70px;
+}
+.mod-sub-nav {
+  height: 33px;
+  background: url(/gbdbas/static/img/login/gray_bg.png) no-repeat 0 0;
+  margin: 30px 0 20px;
+  line-height: 33px;
+  color: #666;
+  font-size: 16px;
+  font-family: "宋体";
+  padding-left: 0px;
+}
+.mod-sub-nav li.list1-active {
+  background: url(/gbdbas/static/img/login/blue_bg_01.png) no-repeat 0 0;
+  color: #2e82ff;
+}
+.mod-sub-nav li.list2-active {
+  background: url(/gbdbas/static/img/login/blue_bg_02.png) no-repeat 0 0;
+  color: #2e82ff;
+  margin-left: -12px;
+  padding-left: 78px;
+}
+.mod-sub-nav li.list3-active {
+  background: url(/gbdbas/static/img/login/blue_bg_03.png) no-repeat 0 0;
+  color: #2e82ff;
+  margin-left: -12px;
+  padding-left: 78px;
+  width: 163px;
+}
+.mod-sub-nav li {
+  float: left;
+  padding-left: 66px;
+}
+.mod-sub-list1 {
+  width: 175px;
+}
+.mod-sub-list2 {
+  width: 163px;
+}
+.account-info{
+    font-size: 14px;
+}
+.clearfix:after {
+    clear: both;
+    content: " ";
+    display: block;
+    height: 0;
+    overflow: hidden;
+    visibility: hidden;
+}
+.pass-input-container {
+    margin-bottom: 15px;
+    position: relative;
+}
+.clearfix {
+  zoom: 1;
+}
+.pass-input-error {
+  border: 1px solid #da1111;
+}
+.pass-input {
+  border: 1px solid #CCC;
+  border-bottom: 1px solid #ddd;
+  border-right: 1px solid #ddd;
+  background-color: white;
+  vertical-align: middle;
+  font-size: 12px;
+  _margin-top: 1px;
+  padding: 7px 0 7px 8px;
+  height: 16px;
+  line-height: 16px;
+  overflow: hidden;
+  color: #333;
+  -webkit-transition-property: all;
+  -webkit-transition-duration: .3s;
+  -moz-transition-property: all;
+  -moz-transition-duration: .3s;
+  -o-transition-property: all;
+  -o-transition-duration: .3s;
+  transition-property: all;
+  transition-duration: .3s;
+  outline: none;
+  resize: none;
+  width: 253px;
+  float: left;
+}
+.vcode-input {
+    float: left;
+    width: 97px;
+}
+.w260 {
+  width: 260px;
+}
+.pass-input-msg {
+  line-height: 32px;
+  float: left;
+  color: #da1111;
+  margin-left: 10px;
+  font-size: 12px;
+}
+.vcode-container .vcode-img {
+  float: left;
+  width: 90px;
+  height: 30px;
+  border: 1px solid #ddd;
+  margin-left: 10px;
+}
+.vcode-container .vcode-img-change {
+  padding-left: 10px;
+  display: block;
+  padding-top: 9px;
+  float: left;
+  text-decoration: underline;
+}
+a{
+  color: #2b78e4;
+}
+.pass-button-submit{
+  height: 40px;
+  width: 103px;
+  color: #fff;
+  cursor: pointer;
+  text-align: center;
+  border: 0;
+  background: url(/gbdbas/static/img/login/findpwdbtn.png) no-repeat 0 0;
+  line-height: 40px;
+}
+.emailValidate{
+  font-weight: bold;
+  font-size: 14px;
+  margin-bottom: 20px;
+}
+.form-2-label {
+  width: 70px;
+  font-size: 14px;
+  float: left;
+  margin-right: 10px;
+  text-align: right;
+  line-height: 32px;
+}
+.line-32 {
+  line-height: 32px;
+}
+.form-2-content {
+  font-size: 14px;
+  position: relative;
+  float: left;
+}
+.form-2-content .pass-button-timer {
+  margin: 1px 0 0 10px;
+}
+.pass-button-timer, .mod-btn2 {
+  height: 29px;
+  width: 107px;
+  color: #333;
+  cursor: pointer;
+  border: 0;
+  line-height: 29px;
+  text-align: center;
+  background: url(/gbdbas/static/img/login/button_icon.png) no-repeat 0 -138px;
+  float: left;
+}
+.pass-input-stip {
+  line-height: 32px;
+  float: left;
+  font-size: 12px;
+  margin-left: 10px;
+  display: inline;
+}
+.form-2-content .pass-input-msg {
+  clear: both;
+  margin-left: 0;
+  height: 32px;
+  width: 420px;
+}
+.p-l80 {
+  padding-left: 80px;
+}
+.mod-step-detail .step-form-tip {
+  color: #999;
+  font-size: 12px;
+  padding-bottom: 20px;
+}
+.m_l80 {
+  margin-left: 80px;
+}
+.pass-input-title {
+  font-size: 14px;
+  width: 70px;
+  padding-right: 10px;
+  line-height: 32px;
+  float: left;
+  text-align: right;
+}
+.left {
+  float: left;
+}
+
+.mod-step-detail .result-info {
+  text-align: center;
+  padding-top: 60px;
+  width: 695px;
+}
+.mod-step-detail .result-info .result-message {
+  font-size: 18px;
+  font-weight: bold;
+  position: relative;
+  padding-bottom: 40px;
+}
+.mod-step-detail .result-info {
+  text-align: center;
+  padding-top: 60px;
+  width: 695px;
+}
+.result-message span, .result-message2 span {
+  position: relative;
+  top: -8px;
+  left: 8px;
+}
+.mod-step-detail .result-info .result-message {
+  font-size: 18px;
+  font-weight: bold;
+  position: relative;
+  padding-bottom: 40px;
+}
+.mod-step-detail .result-info {
+  text-align: center;
+  padding-top: 60px;
+  width: 695px;
+}
+a.result-title-btn{
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight:bold;
+    width:103px;
+    height:40px;
+    line-height: 40px;
+    text-align: center;
+    display: inline-block;
+    font-family: "宋体",Heiti, arial,helvetica,sans-serif !important;
+    background:url("/gbdbas/static/img/login/findpwdbtn.png") no-repeat center;
+}
+a.result-title-btn:link,.result-title-btn:visited{
+	color: #ffffff;
+    text-decoration: none;
+}
+.login_div_cls{
+  margin: 0 auto;
+  margin-top: 20px;
+}
+/*input定位*/
+.blue_cls{
+	 border: 1px solid #2b78e4;
+}
+.red_cls{
+	border: 1px solid #da1111;
+}
+.gray_cls{
+	color:#999999;
+}

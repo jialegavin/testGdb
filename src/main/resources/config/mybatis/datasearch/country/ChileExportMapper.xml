@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.njyb.gbdbase.dao.datasearch.country.IChileExportDao">
+
+	<!--实体映射-->
+	<resultMap id="chileExportResultMap" type="com.njyb.gbdbase.model.datasearch.chile.ChileExportModel">
+		<!--主键编号-->
+		<id property="chileExportId" column="CHILE_EXPORT_ID" />
+		<!--日-->
+		<result property="day" column="DAY" />
+		<!--月-->
+		<result property="month" column="MONTH" />
+		<!--年-->
+		<result property="year" column="YEAR" />
+		<!--编号-->
+		<result property="controlId" column="CONTROL_ID" />
+		<!--海关城市-->
+		<result property="customs" column="CUSTOMS" />
+		<!--出口商编号-->
+		<result property="exporterId" column="EXPORTER_ID" />
+		<!--校验码-->
+		<result property="verifier" column="VERIFIER" />
+		<!--出口商-->
+		<result property="exporter" column="EXPORTER" />
+		<!--海关编码-->
+		<result property="hscode" column="HSCODE" />
+		<!--HS章注-->
+		<result property="hsDesc" column="HS_DESC" />
+		<!--产品-->
+		<result property="product" column="PRODUCT" />
+		<!--规格型号-->
+		<result property="varietey" column="VARIETEY" />
+		<!--品牌-->
+		<result property="brand" column="BRAND" />
+		<!--产品描述(DESC)-->
+		<result property="goodsDesc" column="GOODS_DESC" />
+		<!--目的国-->
+		<result property="destCountry" column="DEST_COUNTRY" />
+		<!--运输类型-->
+		<result property="transType" column="TRANS_TYPE" />
+		<!--跨国公司-->
+		<result property="transCorp" column="TRANS_CORP" />
+		<!--船名-->
+		<result property="shipName" column="SHIP_NAME" />
+		<!--负载类型(TYPE_OF_LOAD)-->
+		<result property="loadType" column="LOAD_TYPE" />
+		<!--起运港-->
+		<result property="startPort" column="START_PORT" />
+		<!--抵达港-->
+		<result property="endPort" column="END_PORT" />
+		<!--毛重-->
+		<result property="grossWeight" column="G_WEIGHT" />
+		<!--数量-->
+		<result property="quantity" column="QUANTITY" />
+		<!--数量单位(UNIT_OF_QUANTITY)-->
+		<result property="quantityUnit" column="QUANTITY_UNIT" />
+		<!--fob总价(FOB)-->
+		<result property="fobValue" column="FOB_VALUE" />
+		<!--运输价-->
+		<result property="freight" column="FREIGHT" />
+		<!--保险价-->
+		<result property="insurance" column="INSURANCE" />
+		<!--cif总价-->
+		<result property="cifValue" column="CIF_VALUE" />
+		<!--fob单价-->
+		<result property="fobUnit" column="FOB_UNIT" />
+		<!--包装类型-->
+		<result property="packageType" column="PACKAGE_TYPE" />
+		<!--出口地区-->
+		<result property="exporterRegion" column="EXPORTER_REGION" />
+		<!--包装数量-->
+		<result property="packages" column="PACKAGES" />
+		<!--包装描述(PACKAGES_DESC)-->
+		<result property="packageDesc" column="PACKAGE_DESC" />
+		<!--跨国公司所在国-->
+		<result property="transCorpCountry" column="TRANS_CORP_COUNTRY" />
+		<!--销售状态-->
+		<result property="saleCondition" column="SALE_CONDITION" />
+		<!--经济活动中心-->
+		<result property="economicZone" column="ECONOMIC_ZONE" />
+		<!--出口商的主产业-->
+		<result property="exporterEconomicKey" column="EXPORTER_ECONOMIC_KEY" />
+		<!--运输文档编号-->
+		<result property="transDocNumber" column="TRANS_DOC_NUMBER" />
+		<!--运输文档日期-->
+		<result property="transDocDate" column="TRANS_DOC_DATE" />
+		<!--轮班号-->
+		<result property="voyageNumber" column="VOYAGE_NUMBER" />
+		<!--成交方式-->
+		<result property="incoterms" column="INCOTERMS" />
+		<!--支付方式-->
+		<result property="payment" column="PAYMENT" />
+		<!--日期-->
+		<result property="date" column="DATE" />
+	</resultMap>
+
+
+	<!-- 通用查询结果列-->
+	<sql id="Base_Column_List">
+		CHILE_EXPORT_ID,
+	DAY,	MONTH,	YEAR,	CONTROL_ID,	CUSTOMS,	EXPORTER_ID,	VERIFIER,	EXPORTER,
+	HSCODE,	HS_DESC,	PRODUCT,	VARIETEY,	BRAND,	GOODS_DESC,	DEST_COUNTRY,	TRANS_TYPE,
+	TRANS_CORP,	SHIP_NAME,	LOAD_TYPE,	START_PORT,	END_PORT,	G_WEIGHT,	QUANTITY,	QUANTITY_UNIT,
+	FOB_VALUE,	FREIGHT,	INSURANCE,	CIF_VALUE,	FOB_UNIT,	PACKAGE_TYPE,	EXPORTER_REGION,	PACKAGES,
+	PACKAGE_DESC,	TRANS_CORP_COUNTRY,	SALE_CONDITION,	ECONOMIC_ZONE,	EXPORTER_ECONOMIC_KEY,	TRANS_DOC_NUMBER,	TRANS_DOC_DATE,	VOYAGE_NUMBER,
+	INCOTERMS,	PAYMENT,	DATE
+	</sql>
+
+	<!-- 查询（根据主键ID查询） -->
+	<select id="queryByPrimaryAll" resultMap="chileExportResultMap" parameterType="java.lang.Integer">
+		 SELECT
+		 <include refid="Base_Column_List" />
+		 FROM data_chile_export
+		 WHERE CHILE_EXPORT_ID in ${sql}
+	</select>
+
+
+</mapper>

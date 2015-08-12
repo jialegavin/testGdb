@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.njyb.gbdbase.dao.datasearch.country.IArgentinaImportDao">
+
+	<!--实体映射-->
+	<resultMap id="argentinaImportResultMap" type="com.njyb.gbdbase.model.datasearch.argentina.ArgentinaImportModel">
+		<!--主键-->
+		<id property="argentinaImportId" column="ARGENTINA_IMPORT_ID" />
+		<!--日期-->
+		<result property="date" column="DATE" />
+		<!--日-->
+		<result property="day" column="DAY" />
+		<!--月-->
+		<result property="month" column="MONTH" />
+		<!--年-->
+		<result property="year" column="YEAR" />
+		<!--进口id-->
+		<result property="importId" column="IMPORT_ID" />
+		<!--类型-->
+		<result property="operType" column="OPER_TYPE" />
+		<!--海关城市-->
+		<result property="customs" column="CUSTOMS" />
+		<!--进口商-->
+		<result property="importer" column="IMPORTER" />
+		<!--进口商编号-->
+		<result property="importerId" column="IMPORTER_ID" />
+		<!--销售国-->
+		<result property="salesCountry" column="SALES_COUNTRY" />
+		<!--运输方式-->
+		<result property="transType" column="TRANS_TYPE" />
+		<!--起运港(ORIGIN_PORT)-->
+		<result property="startPort" column="START_PORT" />
+		<!--成交方式-->
+		<result property="incoterms" column="INCOTERMS" />
+		<!--件数,包装数量-->
+		<result property="packages" column="PACKAGES" />
+		<!--毛重-->
+		<result property="grossWeight" column="G_WEIGHT" />
+		<!--原产国-->
+		<result property="originCountry" column="ORIGIN_COUNTRY" />
+		<!--数量-->
+		<result property="quantity" column="QUANTITY" />
+		<!--数量单位(UNIT_OF_QUANTITY)-->
+		<result property="quantityUnit" column="QUANTITY_UNIT" />
+		<!--当前项FOB价-->
+		<result property="fobValue" column="FOB_VALUE" />
+		<!--当前项运费-->
+		<result property="freight" column="FREIGHT" />
+		<!--当前项保险价-->
+		<result property="insurance" column="INSURANCE" />
+		<!--海关编码(HS_CODE)-->
+		<result property="hscode" column="HSCODE" />
+		<!--产品描述(PRODUCT_DESC)-->
+		<result property="goodsDesc" column="GOODS_DESC" />
+		<!--当前项CIF价-->
+		<result property="cifValue" column="CIF_VALUE" />
+		<!--商标-->
+		<result property="brand" column="BRAND" />
+		<!--型号-->
+		<result property="attributes" column="ATTRIBUTES" />
+	</resultMap>
+
+
+	<!-- 通用查询结果列-->
+	<sql id="Base_Column_List">
+		ARGENTINA_IMPORT_ID,
+	DATE,	DAY,	MONTH,	YEAR,	IMPORT_ID,	OPER_TYPE,	CUSTOMS,	IMPORTER,
+	IMPORTER_ID,	SALES_COUNTRY,	TRANS_TYPE,	START_PORT,	INCOTERMS,	PACKAGES,	G_WEIGHT,	ORIGIN_COUNTRY,
+	QUANTITY,	QUANTITY_UNIT,	FOB_VALUE,	FREIGHT,	INSURANCE,	HSCODE,	GOODS_DESC,	CIF_VALUE,
+	BRAND,	ATTRIBUTES
+	</sql>
+
+	<!-- 查询（根据主键ID查询） -->
+	<select id="queryByPrimaryAll" resultMap="argentinaImportResultMap">
+		 SELECT
+		 <include refid="Base_Column_List" />
+		 FROM data_argentina_import
+		 WHERE ARGENTINA_IMPORT_ID in ${sql}
+	</select>
+
+
+</mapper>

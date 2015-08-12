@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.njyb.gbdbase.dao.datasearch.country.IPeruImportDao">
+
+	<!--实体映射-->
+	<resultMap id="peruImportResultMap" type="com.njyb.gbdbase.model.datasearch.peru.PeruImportModel">
+		<!---->
+		<id property="peruImportId" column="PERU_IMPORT_ID" />
+		<!--日期-->
+		<result property="date" column="DATE" />
+		<!--日-->
+		<result property="day" column="DAY" />
+		<!--月-->
+		<result property="month" column="MONTH" />
+		<!--年-->
+		<result property="year" column="YEAR" />
+		<!--编号-->
+		<result property="controlId" column="CONTROL_ID" />
+		<!---->
+		<result property="serie" column="SERIE" />
+		<!--海关城市-->
+		<result property="customs" column="CUSTOMS" />
+		<!--进口商编号-->
+		<result property="importerId" column="IMPORTER_ID" />
+		<!--进口商-->
+		<result property="importer" column="IMPORTER" />
+		<!--进口商地址-->
+		<result property="importerAddress" column="IMPORTER_ADDRESS" />
+		<!--进口商所在城市-->
+		<result property="importerCity" column="IMPORTER_CITY" />
+		<!--进口商所在国家/州-->
+		<result property="importerState" column="IMPORTER_STATE" />
+		<!--进口商所在区(县)-->
+		<result property="importerDistrict" column="IMPORTER_DISTRICT" />
+		<!--进口商电话-->
+		<result property="importerTel" column="IMPORTER_TEL" />
+		<!--进口商传真-->
+		<result property="importerFax" column="IMPORTER_FAX" />
+		<!--运输方式-->
+		<result property="transType" column="TRANS_TYPE" />
+		<!--银行-->
+		<result property="bank" column="BANK" />
+		<!--原产国-->
+		<result property="originCountry" column="ORIGIN_COUNTRY" />
+		<!--销售国-->
+		<result property="salesCountry" column="SALES_COUNTRY" />
+		<!--起运港(ORIGIN_PORT)-->
+		<result property="startPort" column="START_PORT" />
+		<!--海关编码(HS_CODE)-->
+		<result property="hscode" column="HSCODE" />
+		<!--HS章注（HS_CODE_DESC）-->
+		<result property="hsDesc" column="HS_DESC" />
+		<!--产品描述(PRODUCT_DESC)-->
+		<result property="goodsDesc" column="GOODS_DESC" />
+		<!--规格型号-->
+		<result property="varietey" column="VARIETEY" />
+		<!---->
+		<result property="desc1" column="DESC1" />
+		<!---->
+		<result property="desc2" column="DESC2" />
+		<!---->
+		<result property="desc3" column="DESC3" />
+		<!---->
+		<result property="desc4" column="DESC4" />
+		<!--生产年份-->
+		<result property="manufactureYear" column="MANUFACTURE_YEAR" />
+		<!--FOB金额(FOB)-->
+		<result property="fobValue" column="FOB_VALUE" />
+		<!--运费-->
+		<result property="freight" column="FREIGHT" />
+		<!--保险费-->
+		<result property="insurance" column="INSURANCE" />
+		<!--CIF金额(CIF)-->
+		<result property="cifValue" column="CIF_VALUE" />
+		<!--从价税-->
+		<result property="adValorem" column="AD_VALOREM" />
+		<!--地方税-->
+		<result property="localTax" column="LOCAL_TAX" />
+		<!--净重-->
+		<result property="netWeight" column="N_WEIGHT" />
+		<!--毛重-->
+		<result property="grossWeight" column="G_WEIGHT" />
+		<!--数量-->
+		<result property="quantity" column="QUANTITY" />
+		<!--数量单位-->
+		<result property="unitOfQuantity" column="UNIT_OF_QUANTITY" />
+		<!--CIF单价-->
+		<result property="cifUnit" column="CIF_UNIT" />
+		<!--贸易量-->
+		<result property="commercialQuantity" column="COMMERCIAL_QUANTITY" />
+		<!--贸易量单位(UNIT_OF_COMMERCIAL_QUANTITY)-->
+		<result property="commercialQuantityUnit" column="COMMERCIAL_QUANTITY_UNIT" />
+		<!--包装类型(TYPE_OF_PACKAGE)-->
+		<result property="packageType" column="PACKAGE_TYPE" />
+		<!--件数-->
+		<result property="packages" column="PACKAGES" />
+		<!--商品状态-->
+		<result property="merchandiseState" column="MERCHANDISE_STATE" />
+		<!--出口商，供应商(SUPPLIER_NAME)-->
+		<result property="exporter" column="EXPORTER" />
+		<!--海关代理-->
+		<result property="customsAgent" column="CUSTOMS_AGENT" />
+		<!--运输公司-->
+		<result property="transCorp" column="TRANS_CORP" />
+		<!--成交方式-->
+		<result property="incoterm" column="INCOTERM" />
+	</resultMap>
+
+
+	<!-- 通用查询结果列-->
+	<sql id="Base_Column_List">
+		PERU_IMPORT_ID,
+	DATE,	DAY,	MONTH,	YEAR,	CONTROL_ID,	SERIE,	CUSTOMS,	IMPORTER_ID,
+	IMPORTER,	IMPORTER_ADDRESS,	IMPORTER_CITY,	IMPORTER_STATE,	IMPORTER_DISTRICT,	IMPORTER_TEL,	IMPORTER_FAX,	TRANS_TYPE,
+	BANK,	ORIGIN_COUNTRY,	SALES_COUNTRY,	START_PORT,	HSCODE,	HS_DESC,	GOODS_DESC,	VARIETEY,
+	DESC1,	DESC2,	DESC3,	DESC4,	MANUFACTURE_YEAR,	FOB_VALUE,	FREIGHT,	INSURANCE,
+	CIF_VALUE,	AD_VALOREM,	LOCAL_TAX,	N_WEIGHT,	G_WEIGHT,	QUANTITY,	UNIT_OF_QUANTITY,	CIF_UNIT,
+	COMMERCIAL_QUANTITY,	COMMERCIAL_QUANTITY_UNIT,	PACKAGE_TYPE,	PACKAGES,	MERCHANDISE_STATE,	EXPORTER,	CUSTOMS_AGENT,	TRANS_CORP,
+	INCOTERM
+	</sql>
+
+	<!-- 查询（根据主键ID查询） -->
+	<select id="queryByPrimaryAll" resultMap="peruImportResultMap" parameterType="java.lang.Integer">
+		 SELECT
+		 <include refid="Base_Column_List" />
+		 FROM data_peru_import
+		 WHERE PERU_IMPORT_ID in ${sql}
+	</select>
+
+
+</mapper>

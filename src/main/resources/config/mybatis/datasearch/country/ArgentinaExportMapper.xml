@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.njyb.gbdbase.dao.datasearch.country.IArgentinaExportDao">
+
+	<!--实体映射-->
+	<resultMap id="argentinaExportResultMap" type="com.njyb.gbdbase.model.datasearch.argentina.ArgentinaExportModel">
+			<!--主键编号-->
+		<id property="argentinaExportId" column="ARGENTINA_EXPORT_ID" />
+		<!--日-->
+		<result property="day" column="DAY" />
+		<!--月-->
+		<result property="month" column="MONTH" />
+		<!--年-->
+		<result property="year" column="YEAR" />
+		<!--出口商编号-->
+		<result property="exportId" column="EXPORT_ID" />
+		<!--类型-->
+		<result property="operType" column="OPER_TYPE" />
+		<!--海关城市-->
+		<result property="customs" column="CUSTOMS" />
+		<!--目的国-->
+		<result property="destCountry" column="DEST_COUNTRY" />
+		<!--运输类型-->
+		<result property="transType" column="TRANS_TYPE" />
+		<!--成交方式(国际贸易术语)-->
+		<result property="incoterms" column="INCOTERMS" />
+		<!--包装数量-->
+		<result property="packages" column="PACKAGES" />
+		<!--毛重-->
+		<result property="grossWeight" column="G_WEIGHT" />
+		<!--数量-->
+		<result property="quantity" column="QUANTITY" />
+		<!--数量单位(UNIT_OF_QUANTITY)-->
+		<result property="quantityUnit" column="QUANTITY_UNIT" />
+		<!--项目fob价(ITEM_FOB)-->
+		<result property="fobValue" column="FOB_VALUE" />
+		<!--海关编码-->
+		<result property="hscode" column="HSCODE" />
+		<!--产品描述-->
+		<result property="goodsDesc" column="GOODS_DESC" />
+		<!--项目CIF价(ITEM_CIF)-->
+		<result property="cifValue" column="CIF_VALUE" />
+		<!--商标-->
+		<result property="brand" column="BRAND" />
+		<!--规格-->
+		<result property="attributes" column="ATTRIBUTES" />
+		<!--日期-->
+		<result property="date" column="DATE" />
+	</resultMap>
+
+
+		<!-- 通用查询结果列-->
+	<sql id="Base_Column_List">
+		ARGENTINA_EXPORT_ID,
+	DAY,	MONTH,	YEAR,	EXPORT_ID,	OPER_TYPE,	CUSTOMS,	DEST_COUNTRY,	TRANS_TYPE,
+	INCOTERMS,	PACKAGES,	G_WEIGHT,	QUANTITY,	QUANTITY_UNIT,	FOB_VALUE,	HSCODE,	GOODS_DESC,
+	CIF_VALUE,	BRAND,	ATTRIBUTES,	DATE
+	</sql>
+
+	<!-- 查询（根据主键ID查询） -->
+	<select id="queryByPrimaryAll" resultMap="argentinaExportResultMap" parameterType="java.lang.Integer">
+		 SELECT
+		 <include refid="Base_Column_List" />
+		 FROM data_argentina_export
+		 WHERE ARGENTINA_EXPORT_ID in ${sql}
+	</select>
+
+
+</mapper>

@@ -1,0 +1,7 @@
+该类有两个方法特别重要:而且也是后面其它模块可以考虑重复利用的
+
+1 把查询出来单一的List<DataSumReportModel>转成Map<String,<DataSumReportModel>>
+
+2 把上面Map<String,<DataSumReportModel>>这种结构重新转换成汇总集合List<DataSumReportModel>
+
+3 子类可以用来扩展实现更多功能

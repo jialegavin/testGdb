@@ -1,0 +1,85 @@
+﻿body 
+{
+	margin:0px auto;
+}
+
+.login_input
+{
+	width:325px;
+	height:60px;
+	border:none;
+	font-size:16px;
+	font-family:Arial,微软雅黑;
+	padding-left:15px;
+	margin-top:17px;
+	margin-left:30px;
+	border-radius:8px;
+}
+.login_btn
+{
+	width:170px;
+	height:60px;
+	border:none;
+	background-color:#27afc8;
+	color:#ffffff;
+	font-size:24px;
+	font-family:微软雅黑;
+	margin-top:17px;
+	border-radius:50px;
+	cursor:pointer;
+}
+#shiyong a:link {
+    color: #ffffff;
+    text-decoration: none;
+}
+#shiyong a:visited {
+    color: #ffffff;
+    text-decoration: none;
+}
+#shiyong a:hover {
+    color: #ffffff;
+    text-decoration: none;
+}
+
+#fp a:link {
+    color: #27afc8;
+    text-decoration: none;
+}
+#fp a:visited {
+    color: #27afc8;
+    text-decoration: none;
+}
+#fp a:hover {
+    color: #27afc8;
+    text-decoration: underline;
+}
+
+#reg a:link {
+    color: #ffffff;
+    text-decoration: none;
+}
+#reg a:visited {
+    color: #ffffff;
+    text-decoration: none;
+}
+#reg a:hover {
+    color: #ffffff;
+    text-decoration: none;
+}
+#regnow
+{
+	width:401px;
+	height:60px;
+	border:none;
+	background-color:#4faca8;
+	margin-top:-13px;
+	border-radius:5px;
+	color:#ffffff;
+	font-size:20px;
+	font-family:微软雅黑;
+	cursor:pointer;
+}
+input
+{
+	outline:none;
+}

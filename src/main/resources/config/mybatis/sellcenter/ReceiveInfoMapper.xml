@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>  
+<!DOCTYPE mapper  PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN" "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+<mapper namespace="com.njyb.gbdbase.dao.sellcenter.IReceiverInfoDao">
+	<resultMap type="com.njyb.gbdbase.model.sellcenter.ReceiverInfoModel" id="infoMap">
+	    <id property="rid" column="rid" />
+		<result property="company" column="company" />
+		<result property="userId" column="userId" />
+		<result property="consignee" column="consignee" />
+		<result property="country" column="country" />
+		<result property="postalNum" column="postalNum" />
+		<result property="province" column="province" />
+		<result property="address" column="address" />
+		<result property="phone" column="phone" />
+		<result property="city" column="city" />
+		<result property="status" column="status" />
+	</resultMap>
+	<!--chenhu:根据用户ID查询用户信息-->
+	<select id="queryUserInfoById" parameterType="com.njyb.gbdbase.model.sellcenter.ReceiverInfoModel"  resultMap="infoMap">
+		<![CDATA[
+			SELECT 
+				rid, company,userid, consignee, country, postalNum,
+				province, address, status,phone,city
+			    FROM receiver_info 
+				WHERE   userId=#{userId} and status='1'
+		]]>
+	</select>
+	<!-- chenhu:新增用户地址信息 -->
+	<insert id="addNewInfo" parameterType="com.njyb.gbdbase.model.sellcenter.ReceiverInfoModel">
+		<![CDATA[
+			  INSERT INTO receiver_info
+			(rid, company,userId, consignee, country, postalNum,
+			province, address, status,phone,city)
+			VALUES
+		    (null, #{company}, #{userId},#{consignee}, #{country},#{postalNum},
+			#{province}, #{address}, #{status},#{phone},#{city})
+		]]>
+	</insert>
+	<!-- chenhu:修改用户信息-->
+	<update id="updateInfo" parameterType="com.njyb.gbdbase.model.sellcenter.ReceiverInfoModel">
+		<![CDATA[
+			UPDATE receiver_info 
+				SET  company=#{company}, 
+				consignee=#{consignee}, 
+				country=#{country}, 
+				postalNum=#{postalNum},
+				province=#{province}, 
+				address=#{address}, 
+				status= #{status} ,
+				phone=#{phone},
+				city=#{city}
+			where userId=#{userId} and rid=#{rid}
+		]]>
+	</update>
+</mapper>

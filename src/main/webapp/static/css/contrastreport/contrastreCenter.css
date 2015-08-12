@@ -1,0 +1,183 @@
+html,body {
+    margin: 0;
+    padding: 0!important;
+    height: 100%;
+}
+table { border-width: 0px 0px 0px 0px;}  
+td { border-width: 0px 1px 1px 0px; }  
+#title{width:150px; text-align:center; font-size: 14px; font-family: ; font-weight: 600; background-color: #0070C2;color: white}
+.tdcss{width:150px; text-align:center; font-size: 14px; font-family: 寰蒋闆呴粦; font-weight: 600;}
+.advancesearchCenter{
+	width: 95%!important;
+	overflow: auto!important;
+	border-radius: 15px!important;
+	border-collapse: separate!important;
+	background-color: #ffffff!important;
+	margin: .3em 0!important;
+	border-bottom-style:outset;
+	border-color: #FFFFFF;
+}
+.advancesearch 
+{
+	width: 100%!important;
+	overflow: auto!important;
+	border-radius: 15px!important;
+	border-collapse: separate!important;
+	background-color: #ffffff!important;
+	margin: .3em 0!important;
+	border-bottom-style:outset;
+	border-color: #FFFFFF;
+	
+}
+.fontCss{
+	font-size:12px;
+	font-family:"瀹嬩綋",Heiti, arial,helvetica,sans-serif !important;
+	color:#1369c0;
+}
+
+.querySecondCss
+{
+   height:50px;
+   width:30%;
+   margin: 0px;
+   padding: 0px;
+   float: left;
+   text-align: center;
+   line-height:50px;
+}
+
+.queryCss
+{
+   height:50px;
+   width:30%;
+   margin: 0px;
+   padding: 0px;   
+   float: left;
+   text-align: center;
+    line-height:50px;
+}
+
+.dateinpText{
+	width: 68px;
+	height: 20px;
+	border: 1px solid #95b8e7;
+	border-color: #e5e5e5;
+	border-radius:4px 4px 4px 4px;
+}
+
+.inpText2{
+  width: 60%;
+  height: 22px;
+  border: 1px solid #666666;
+  border-color: #e5e5e5;
+  border-radius: 4px 4px 4px 4px;
+}
+
+
+.openMoreField
+{
+   height:100%;
+   width:90%;
+}
+
+.openMoreField2
+{
+	height:50px;
+    width:20%;
+    float: right;
+}
+.country_middle{
+    width: 524px;
+    height: 434px;
+}
+
+.country_middle_lb {
+    margin-left: 16px;
+    padding-bottom: 0px;
+    padding-top: 0px;
+    width: 464px;
+}
+.lb_div {
+   	width: 464px;
+   	margin-top: -15px;
+   	margin-left: -15px;
+}
+.bt {
+	clear:both;
+    border-bottom: 1px solid #666666;
+    color: #1369c0;
+    font-weight: bold;
+    padding-bottom: 10px;
+    text-align: left;
+    font-size: 14px;
+    padding-left: 2px;
+}
+.zlb {
+    margin-bottom: 8px;
+    margin-top: 5px;
+    text-align: left;
+}
+.zlb a {
+    color: #000;
+    display: inline;
+    float: left;
+    height: 21px;
+    text-decoration: none;
+    width: 37px;
+    font-size: 12px;
+    text-align: center;
+}
+.zlb a:link,.zlba:visited{
+	color: #000;
+    text-decoration: none;
+}
+.zlb a:hover{
+	text-decoration: underline;
+}
+
+
+#tab_barCenter {  
+    position:absolute;
+	width:1200px;
+	height:27px;
+	padding-top: 55px;
+}  
+#tab_barCenter ul {  
+    padding: 0px;  
+    margin: 0px;  
+    height: 40px;  
+    text-align: center;
+    float: left;
+}  
+  
+#tab_barCenter li {  
+    list-style-type: none;  
+    float: left;  
+    width:128px;  
+    height: 30px;  
+    cursor: pointer;
+    line-height:30px;
+    color:white;
+}  
+.tab_css {  
+    width: 100%;    
+    float: left;  
+    display:none;
+	border-top-color:#BBBBBB;
+	border-left:1px solid #D4D4D4;
+	border-right-color:#FFFFFF;
+	border-top-style:outset;
+	width: 100%!important;
+	border-radius: 15px!important;
+	border-collapse: separate!important;
+	background-color: #ffffff!important;
+    margin-top: 40px;
+}  
+.tips
+{
+	margin-left:80px;
+	width:750px;
+	font-family:"瀹嬩綋",Heiti, arial,helvetica,sans-serif !important;
+	color:#333333;
+}
+

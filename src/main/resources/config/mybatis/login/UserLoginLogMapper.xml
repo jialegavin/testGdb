@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>  
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN" "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+<mapper namespace="com.njyb.gbdbase.dao.login.IUserLoginDao">
+	<resultMap type="com.njyb.gbdbase.model.login.UserLoginlogModel" id="userReport">
+		<id property="id" column="ID"/>	<!-- 主键 -->
+		<result property="userId" column="USERID" />
+		<result property="loginName" column="LOGINNAME" />
+		<result property="loginTime" column="LOGINTIME" />
+		<result property="ipAddress" column="IPADDRESS" />
+		<!-- 2015-03-27 WangBo 添加了2个属性 -->
+		<result property="IpAttribution" column="IPATTRIBUTION" />
+	</resultMap>
+	
+	<!--honghao:写入用户登陆的日志-->
+	<insert id="insertLoginLog" parameterType="com.njyb.gbdbase.model.login.UserLoginlogModel">
+		<![CDATA[	
+			INSERT INTO USER_LOGIN_LOG
+			(USERID,LOGINNAME,LOGINTIME,IPADDRESS,IPATTRIBUTION)
+			VALUES
+			(#{userId},#{loginName},#{loginTime},#{ipAddress},#{IpAttribution})
+		]]>
+	</insert>
+	
+	<!--WangBo:根据用户Id和分页参数查询用户权限 -->
+	<select id="queryUserLogResultByUserIdAndPage" resultMap="userReport" parameterType="java.lang.Integer">
+		<![CDATA[
+			SELECT ull.id,ull.userid,ull.loginname,ull.ipaddress,ull.ipAttribution,ull.logintime
+			FROM user_login_log ull
+			WHERE ull.userid = #{userId}
+			ORDER BY ull.logintime DESC
+		]]>
+	</select>
+	
+	<!--WangBo:根据用户信息查询总条数 -->
+	<select id="queryUserLogCountByParam" parameterType="java.util.Map" resultType="java.lang.Integer">
+		<![CDATA[
+			SELECT COUNT(1)
+			FROM user_login_log
+			WHERE userid = #{userId};
+		]]>
+	</select>
+	
+    <!--honghao:查询所有分页查询所有的用户的登陆日志-->
+    <select id="getAllUserLoginLog" resultMap="userReport" parameterType="java.util.Map">
+    		<![CDATA[	
+    		select * from user_login_log order by logintime desc limit #{curpage},#{pagesize}
+    		]]>
+    </select>
+    
+	<!--honghao:根据用户输入的姓名查询日志-->
+	<select id="getLogByLoginName"  resultMap="userReport" parameterType="java.util.Map">
+          select * from user_login_log where userid = #{userId} 
+          <if test="beginDate != '' and beginDate != null and endDate != '' and endDate != null">
+          	AND unix_timestamp(loginTime) between unix_timestamp(#{beginDate}) and unix_timestamp(#{endDate}) 
+          </if>
+           order by loginTime desc
+    </select>
+    	
+    <!--honghao:查询总的条数-->
+    <select id="findLoginLogCount" resultType="java.lang.Integer">
+    	 select count(1) from user_login_log
+    </select>
+</mapper>	

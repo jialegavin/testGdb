@@ -1,0 +1,137 @@
+input:focus {
+	border:1px   blue;
+	font-size:20px;
+	background-color: #F6FBFF;  
+}
+a{
+	color:#2592E0; text-decoration:none; 
+}
+a:HOVER{
+	text-decoration: underline;
+}
+li{list-style:none; height:55px; }
+body{
+	background-color: #EEF3FA;
+}
+.all{
+	width: 1210px;
+	margin: 0 auto;
+	height: 562px;
+} 
+.sub{
+	width:835px;;
+	min-height:500px;
+	background-image: url(/gbdbas/static/img/login/regestBack.png);
+	background-repeat:no-repeat;
+	margin: 14px auto 0px auto ;
+	position: relative;
+}
+.header{
+	height: 62px;
+	width: 825px;
+	padding-left: 87px;
+	padding-right: 90px;
+}
+.titleLeft{
+	width:200px;
+	height:50px;
+	padding:10px 0px 10px 20px;
+	font-size:28px;
+	font-weight:bold ;
+	font-family:Arial;
+	color:#FFF;
+	float:left;
+}
+.titleRight{
+    width:635px;
+	height:50px;
+	margin-left:210px;
+}
+.textDiv{
+	float: right;
+	margin-right: 5px;
+	font-size:20px;
+	margin-top: 10px;
+	font-weight:normal ;
+	font-family:Arial;
+	color:#FFF;
+}
+.imgDiv{
+	float:right;
+	margin-right: 40px;
+	font-size:20px;
+	margin-top: 8px;
+}
+.mainDiv{
+	width:835px;
+	margin-top:20px;
+	height:420px;
+}
+.formDiv{
+	width:608px;
+	margin:80px auto 0px auto;
+}
+.a_text{
+	width: 100px;
+	height: 30px;
+	text-align: center;
+	padding-left: 20px;
+	float: left;
+	color: #424242;
+	font-size: 20px;
+	margin-left: 90px;
+}
+.a_input{
+	width: 438px;
+	position: relative;
+	margin-bottom: 4px;
+	height: 35px;
+}
+.a_img{
+	
+}
+.inputbox {
+	width: 202px;
+	margin-right: 10px;
+	height: 24px;
+	border: 1px solid #ddd;
+	line-height: 24px;
+	margin-right: 4px;
+	padding-left: 4px;
+	font-size: 18px;
+	color: #666;
+}
+#ag{
+}
+.pact{
+	color: #424242;
+	font-size: 16px;
+}
+#agreeDiv{
+	float:left;
+	margin-left: 185px;
+	margin-right: 10px;
+}
+#regestButton{
+	position: absolute;
+	height:39px;
+	width:248px;
+	top:390px;
+	left:323px;
+	text-align: center;
+	color:#FFF;
+	cursor:pointer;
+}
+#regestButton div{
+	margin-top: 10px;
+}
+.toMail{
+	margin: 30px auto auto auto; 
+	height:300px;
+	width: 300px;
+	font-size:12px;
+}
+#pactMessege{
+	color:red;
+	font-size:12px;
+}

@@ -1,0 +1,178 @@
+<!--系统中要使用到相关缓存 统一配置到这里 :贾红平-->
+<ehcache updateCheck="false" name="njyb">
+	
+     <!-- 创建一个支持字段查询的缓存 -->
+      <cache
+   			name="searcherCache"
+            maxElementsInMemory="20"
+            eternal="false"
+            overflowToDisk="false"
+            diskPersistent="false"
+            diskExpiryThreadIntervalSeconds="120"
+            timeToIdleSeconds="1800"    	 
+			timeToLiveSeconds="1800" 
+			memoryStoreEvictionPolicy="LFU"
+			>
+			
+    </cache>
+    
+    <!-- 创建一个报表汇总需要的集合对象缓存 -->
+     <cache
+   			name="reportSumList"
+            maxElementsInMemory="10000"
+            eternal="false"
+            overflowToDisk="false"
+            diskPersistent="false"
+            diskExpiryThreadIntervalSeconds="120"
+            timeToIdleSeconds="1800"    	 
+			timeToLiveSeconds="1800" 
+			memoryStoreEvictionPolicy="LFU">
+			<!-- 配置缓存元素监听器的工厂 -->
+			<cacheEventListenerFactory class="com.njyb.gbdbas.cache.MyCacheEventListenerFactory"/>
+    </cache>
+     <!-- 创建一个集合转换成map的结构的缓存 方便后期做同环比和汇总明细使用 -->
+     <cache
+   			name="reportSumMap"
+            maxElementsInMemory="10000"
+            eternal="false"
+            overflowToDisk="false"
+            diskPersistent="false"
+            diskExpiryThreadIntervalSeconds="1800"
+            timeToIdleSeconds="1800"    	 
+			timeToLiveSeconds="1800" 
+			memoryStoreEvictionPolicy="LFU">
+    </cache>
+    <!-- 针对新增流失报表创建缓存 -->
+     <cache
+   			name="addoffReportMap"
+            maxElementsInMemory="10000"
+            eternal="false"
+            overflowToDisk="false"
+            diskPersistent="false"
+            diskExpiryThreadIntervalSeconds="1800"
+            timeToIdleSeconds="1800"    	 
+			timeToLiveSeconds="1800" 
+			memoryStoreEvictionPolicy="LFU">
+    </cache>
+      <!-- 针对报表钻取创建缓存 -->
+       <cache
+   			name="drillReportMap"
+            maxElementsInMemory="10000"
+            eternal="false"
+            overflowToDisk="false"
+            diskPersistent="false"
+            diskExpiryThreadIntervalSeconds="1800"
+            timeToIdleSeconds="1800"    	 
+			timeToLiveSeconds="1800" 
+			memoryStoreEvictionPolicy="LFU">
+    </cache>
+    
+    <!-- 创建一个支持多条件查询的缓存 -->
+      <cache
+   			name="searcherMultiCache"
+            maxElementsInMemory="10000"
+            eternal="false"
+            overflowToDisk="false"
+            diskPersistent="false"
+            diskExpiryThreadIntervalSeconds="120"
+            timeToIdleSeconds="1800"    	 
+			timeToLiveSeconds="1800"   	
+    >
+    </cache> 
+    
+  <!-- 创建一个贸易情报模块的缓存 -->
+	<cache
+   			name="dataSearchCache"
+            maxElementsInMemory="10000"
+            eternal="false"
+            overflowToDisk="false"
+            diskPersistent="false"
+            diskExpiryThreadIntervalSeconds="120"
+            timeToIdleSeconds="1800"    	 
+			timeToLiveSeconds="1800" 
+			memoryStoreEvictionPolicy="LFU">
+    </cache>
+    
+    <!-- 创建权库查询模块的缓存 -->
+     <cache
+    	name="rightSearchCache"
+    	maxElementsInMemory="5000"
+    	eternal="false"
+    	overflowToDisk="false"
+    	diskPersistent="false"
+    	diskExpiryThreadIntervalSeconds="120"
+        timeToIdleSeconds="1800"    	 
+		timeToLiveSeconds="1800" 
+		memoryStoreEvictionPolicy="LFU"
+    	>
+    </cache>
+    
+      <!-- 创建一个缓存集合 方便报表对比报表明细使用 -->
+     <cache
+   			name="reportContrastreCache"
+            maxElementsInMemory="10000"
+            eternal="false"
+            overflowToDisk="false"
+            diskPersistent="false"
+            diskExpiryThreadIntervalSeconds="120"
+            timeToIdleSeconds="1800"    	 
+			timeToLiveSeconds="1800" 
+			memoryStoreEvictionPolicy="LFU">
+    </cache>
+    
+    <!-- 创建一个新增 缓存数据 -->
+     <cache
+		name="addCacheMap"
+        maxElementsInMemory="10000"
+        eternal="false"
+        overflowToDisk="false"
+        diskPersistent="false"
+        diskExpiryThreadIntervalSeconds="120"
+        timeToIdleSeconds="1800"    	 
+		timeToLiveSeconds="1800" 
+		memoryStoreEvictionPolicy="LFU">
+    </cache>
+    
+    <!-- 创建一个流失 缓存数据 -->
+     <cache
+		name="outCacheMap"
+        maxElementsInMemory="5000"
+        eternal="false"
+        overflowToDisk="false"
+        diskPersistent="false"
+        diskExpiryThreadIntervalSeconds="120"
+        timeToIdleSeconds="1800"    	 
+		timeToLiveSeconds="1800" 
+		memoryStoreEvictionPolicy="LFU">
+    </cache>
+    
+    <!-- 创建一个保持 缓存数据 -->
+     <cache
+		name="keepCacheMap"
+        maxElementsInMemory="5000"
+        eternal="false"
+        overflowToDisk="false"
+        diskPersistent="false"
+        diskExpiryThreadIntervalSeconds="120"
+        timeToIdleSeconds="1800"    	 
+		timeToLiveSeconds="1800" 
+		memoryStoreEvictionPolicy="LFU">
+    </cache>
+    
+    
+    <!-- 添加新的缓存实现 -->
+      <!-- 添加一个用来做测试的缓存 -->
+       <cache
+    	name="testCache"
+    	maxElementsInMemory="10000"
+    	eternal="false"
+    	overflowToDisk="false"
+    	diskPersistent="false"
+    	diskExpiryThreadIntervalSeconds="120"
+        timeToIdleSeconds="1800"    	 
+		timeToLiveSeconds="1800" 
+		memoryStoreEvictionPolicy="LFU"
+    	>
+    </cache>
+    	
+</ehcache>

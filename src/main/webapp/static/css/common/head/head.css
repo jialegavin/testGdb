@@ -1,0 +1,523 @@
+body {margin: 0;padding: 0;	font-family:"宋体"; color:#000;}
+#top{
+	position:relative;
+	align:center;
+	width:1210px;
+	margin:20px auto;
+}
+#logo{
+	position: absolute;
+	top: 0;
+	left:12px;
+}
+a:link{
+	text-decoration:none;
+	color:#CCC;
+}
+
+ul {margin:0;padding:0;list-style:none;}
+/*  Nav */
+.primary-link{font-size:16px;font-weight:bold;}
+#nav-strip .menu_line {
+  background: url('/gbdbas/static/img/common/head/menu_line.png') no-repeat center top;
+  width: 3px;
+  float: left;
+  height: 38px;
+}
+#nav-strip ul li.nav-item,#nav-strip ul li.nav-item.active ,#nav-strip ul li.nav-item:hover{}
+#nav-strip {clear: both;width:100%;height: 38px;line-height: 38px;position:a;z-index: 1000;background:url("/gbdbas/static/img/common/head/menu.png");position:absolute; border-bottom: medium;top: 79px;left:0px}
+#nav-strip ul{ width:1210px; margin:0 auto;}
+#nav-strip ul li.nav-item {	display: inline;float: left;position:relative;width:147px;height:38px;text-align:center;}
+#nav-strip ul li.nav-item:hover, #nav-strip ul li.nav-item.hover{background-color:#ffffff;}
+#nav-strip ul li.nav-item:hover a, #nav-strip ul li.nav-item.hover a{color: #0066cc;cursor:pointer;}
+
+#nav-strip ul li a{color: #FFFFFF;display:block;padding:3px;font-size: 16px;outline:none;}
+#nav-strip ul li a .primary-link, #nav-strip ul li.active a .primary-link, #nav-strip ul li.hover a .primary-link{padding-right: 10px;}
+#nav-strip ul li.no-subnav a .primary-link{	background: none;padding-right: 0;}
+/*  subNav */
+#nav-strip ul li .subnav {display: none;position:absolute;top:39px;left: -1px; background-color:#FFF;z-index: 1000;*min-width: 150px;  transition:opacity 0.25s ease-out;  -o-transition:opacity 0.25s ease-out;  -webkit-transition:opacity 0.25s ease-out;}
+#nav-strip .subnav-inner {float: left;width: 136px; background-color:#f6f9f9;border-left: 1px solid #1369c0;border-bottom:1px solid #1369c0;border-right: 1px solid #1369c0; }
+#nav-strip ul li .subnav ul{float: left;width: 136px;}
+#nav-strip ul li .subnav ul li{display:block;float:left;height: auto;margin:auto;width: 136px;}
+#nav-strip ul li .subnav ul li a{font-weight: normal; background-color:#ffffff;}
+#nav-strip ul li .subnav ul li a,#nav-strip ul li.nav-item:hover .subnav ul li a{font-size: 14px;color: #1369c0;white-space: nowrap;*white-space: normal;	_white-space: nowrap;padding: -1px 24px; text-align:center;}
+#nav-strip ul li .subnav ul li a,#nav-strip ul li.nav-item:hover .subnav ul li a {white-space: normal;}
+#nav-strip ul li .subnav ul li.active a,#nav-strip ul li .subnav ul li a:hover {background-color:#cccccc;color:#1369c0!important;}
+
+body {margin: 0;padding: 0;	font-family:"宋体";background:#fff; color:#000;}
+#top{
+	position:relative;
+	width:1210px;
+	margin:30px auto;
+}
+#logo{
+	position: absolute;
+	top: 0;
+	left:12px;
+}
+#info{
+	position: absolute;
+	right: 0;
+	top: 0px;
+	color:#999;
+}
+
+#info a:link{
+	text-decoration:none;
+	color:#CCC;
+}
+#map{
+	position:relative;
+	width:1210px;
+	height:100%;
+	margin:0px auto;
+}
+#map #map-base{
+	position:absolute;
+	top:78px;
+	width:100%;
+	z-index:-1;
+}
+#map #American{
+	position:absolute;
+	top:98px;
+	left:248px;
+}
+#map #linkAmerican{
+	display:none;
+	position: absolute;
+	top: 131px;
+	left:251px;
+	width: 50px;
+	height: 60px;
+	font-family:"宋体";
+	font-size:10px;
+	z-index:9999;
+}
+#map #Argentina{
+	position:absolute;
+	top:444px;
+	left:304px;
+}
+#map #linkArgentina{
+	display:none;
+	position: absolute;
+	top: 477px;
+	left:305px;
+	width: 50px;
+	height: 60px;
+	font-family:"宋体";
+	font-size:10px;
+	z-index:9999;
+}
+#map #Pakistan{
+	position:absolute;
+	top:158px;
+	right:452px;
+}
+#map #linkPakistan{
+	display:none;
+	position: absolute;
+	top: 191px;
+	right:451px;
+	width: 50px;
+	height: 60px;
+	font-family:"宋体";
+	font-size:10px;
+	z-index:9999;
+}
+#map #Paraguay{
+	position:absolute;
+	top:386px;
+	left:374px;
+}
+#map #linkParaguay{
+	display:none;
+	position: absolute;
+	top: 419px;
+	left:375px;
+	width: 50px;
+	height: 60px;
+	font-family:"宋体";
+	font-size:10px;
+	z-index:9999;
+}
+#map #Panama{
+	position:absolute;
+	top:326px;
+	left:266px;
+}
+#map #linkPanama{
+	display:none;
+	position: absolute;
+	top: 359px;
+	left:267px;
+	width: 50px;
+	height: 60px;
+	font-family:"宋体";
+	font-size:10px;
+	z-index:9999;
+}
+#map #Brazil{
+	position:absolute;
+	top:310px;
+	left:402px;
+}
+#map #linkBrazil{
+	display:none;
+	position: absolute;
+	top: 343px;
+	left:403px;
+	width: 50px;
+	height: 60px;
+	font-family:"宋体";
+	font-size:10px;
+	z-index:9999;
+}
+#map #Russia{
+	position:absolute;
+	top:86px;
+	right:314px;
+}
+#map #linkRussia{
+	display:none;
+	position: absolute;
+	top: 119px;
+	right:316px;
+	width: 50px;
+	height: 60px;
+	font-family:"宋体";
+	font-size:10px;
+	z-index:9999;
+}
+#map #Ecuador{
+	position:absolute;
+	top:270px;
+	left:334px;
+}
+#map #linkEcuador{
+	display:none;
+	position: absolute;
+	top: 303px;
+	left:337px;
+	width: 50px;
+	height: 60px;
+	font-family:"宋体";
+	font-size:10px;
+	z-index:9999;
+}
+#map #Columbia{
+	position:absolute;
+	top:268px;
+	left:180px;
+}
+#map #linkColumbia{
+	display:none;
+	position: absolute;
+	top: 301px;
+	left:183px;
+	width: 50px;
+	height: 60px;
+	font-family:"宋体";
+	font-size:10px;
+	z-index:9999;
+}
+#map #CostaRica{
+	position:absolute;
+	top:150px;
+	left:300px;
+}
+#map #linkCostaRica{
+	display:none;
+	position: absolute;
+	top: 183px;
+	left:301px;
+	width: 50px;
+	height: 60px;
+	font-family:"宋体";
+	font-size:10px;
+	z-index:9999;
+}
+#map #Korea{
+	position:absolute;
+	top:184px;
+	right:174px;
+}
+#map #linkKorea{
+	display:none;
+	position: absolute;
+	top: 217px;
+	right:177px;
+	width: 50px;
+	height: 60px;
+	font-family:"宋体";
+	font-size:10px;
+	z-index:9999;
+}
+#map #Honduras{
+	position:absolute;
+	top:210px;
+	left:218px;
+}
+#map #linkHonduras{
+	display:none;
+	position: absolute;
+	top: 242px;
+	left:221px;
+	width: 50px;
+	height: 60px;
+	font-family:"宋体";
+	font-size:10px;
+	z-index:9999;
+}
+#map #Peru{
+	position:absolute;
+	top:326px;
+	left:338px;
+}
+#map #linkPeru{
+	display:none;
+	position: absolute;
+	top: 359px;
+	left:340px;
+	width: 50px;
+	height: 60px;
+	font-family:"宋体";
+	font-size:10px;
+	z-index:9999;
+}
+#map #Mexico{
+	position:absolute;
+	top:154px;
+	left:178px;
+}
+#map #linkMexico{
+	display:none;
+	position: absolute;
+	top: 187px;
+	left:181px;
+	width: 50px;
+	height: 60px;
+	font-family:"宋体";
+	font-size:10px;
+}
+#map #Nicaragua{
+	position:absolute;
+	top:212px;
+	left:400px;
+}
+#map #linkNicaragua{
+	display:none;
+	position: absolute;
+	top: 245px;
+	left:401px;
+	width: 50px;
+	height: 60px;
+	font-family:"宋体";
+	font-size:10px;
+}
+#map #ElSalvador{
+	position:absolute;
+	top:268px;
+	left:456px;
+}
+#map #linkElSalvador{
+	display:none;
+	position: absolute;
+	top: 301px;
+	left:458px;
+	width: 50px;
+	height: 60px;
+	font-family:"宋体";
+	font-size:10px;
+}
+#map #Guatemala{
+	position:absolute;
+	top:266px;
+	left:253px;
+}
+#map #linkGuatemala{
+	display:none;
+	position: absolute;
+	top: 299px;
+	left:253px;
+	width: 50px;
+	height: 60px;
+	font-family:"宋体";
+	font-size:10px;
+}
+#map #Venezuela{
+	position:absolute;
+	top:212px;
+	left:336px;
+}
+#map #linkVenezuela{
+	display:none;
+	position: absolute;
+	top: 245px;
+	left:338px;
+	width: 50px;
+	height: 60px;
+	font-family:"宋体";
+	font-size:10px;
+}
+#map #Ukraine{
+	position:absolute;
+	top:112px;
+	right:504px;
+}
+#map #linkUkraine{
+	display:none;
+	position: absolute;
+	top: 146px;
+	right:505px;
+	width: 50px;
+	height: 60px;
+	font-family:"宋体";
+	font-size:10px;
+}
+#map #Uruguay{
+	position:absolute;
+	top:384px;
+	left:442px;
+}
+#map #linkUruguay{
+	display:none;
+	position: absolute;
+	top: 417px;
+	left:442px;
+	width: 50px;
+	height: 60px;
+	font-family:"宋体";
+	font-size:10px;
+}
+#map #Spain{
+	position:absolute;
+	top:156px;
+	left:603px;
+}
+#map #linkSpain{
+	display:none;
+	position: absolute;
+	top: 189px;
+	left:605px;
+	width: 50px;
+	height: 60px;
+	font-family:"宋体";
+	font-size:10px;
+}
+#map #India{
+	position:absolute;
+	top:270px;
+	right:358px;
+}
+#map #Indiatext{
+	font-family:"宋体";
+	font-size:12px;
+	color:#999;
+	position:absolute;
+	top:292px;
+	right:372px;
+}
+#map #linkIndia{
+	display:none;
+	position: absolute;
+	top: 303px;
+	right:360px;
+	width: 50px;
+	height: 60px;
+	font-family:"宋体";
+	font-size:10px;
+}
+#map #UK{
+	position:absolute;
+	top:96px;
+	left:566px;
+}
+#map #linkUK{
+	display:none;
+	position: absolute;
+	top: 129px;
+	left:567px;
+	width: 50px;
+	height: 60px;
+	font-family:"宋体";
+	font-size:10px;
+}
+#map #Vietnam{
+	position:absolute;
+	top:253px;
+	right:253px;
+}
+#map #linkVietnam{
+	display:none;
+	position: absolute;
+	top: 284px;
+	right:253px;
+	width: 50px;
+	height: 60px;
+	font-family:"宋体";
+	font-size:10px;
+}
+#map #Chile{
+	position:absolute;
+	top:386px;
+	left:300px;
+}
+#map #linkChile{
+	display:none;
+	position: absolute;
+	top: 417px;
+	left:303px;
+	width: 50px;
+	height: 60px;
+	font-family:"宋体";
+	font-size:10px;
+}
+#map #China{
+	position:absolute;
+	top:182px;
+	right:252px;
+}
+#map #linkChina{
+	display:none;
+	position: absolute;
+	top: 217px;
+	right: 254px;
+	width: 50px;
+	height: 60px;
+	font-family:"宋体";
+	font-size:10px;
+}
+#map #link-top{
+	border:#EE5664 solid thin;
+	background-color:#FFF;
+	text-align:center;
+	margin:auto;
+	padding-top:6px;
+	height:18px;
+	color:#EE5664;
+}
+#map #link-import{
+	border: #EE5664 solid thin;
+	text-align: center;
+	margin: auto;
+	height:15px;
+	background-color: #EE5664;
+}
+#map #link-import a{ 
+	text-decoration:none;
+	color: #FFF;
+	}
+#map #link-export{
+	border:#EE5664 solid thin;
+	background-color:#D14853;
+	text-align:center;
+	margin:auto;
+	height:15px;
+	color:#FFF;
+}
+#map #link-export a{ 
+	text-decoration:none;
+	color:#FFF;
+}

@@ -1,0 +1,661 @@
+#divprogressbar marquee{
+	border-radius:10px;
+}	
+#searchBar ul{
+	height:50px;
+	background-color: #eaf2ff;
+	position: relative;
+	top: -20px;
+	list-style: none;
+	padding-top: 10px;
+}
+#searchTab tr{
+	height:35px;
+}
+#searchTab tr td{
+	padding-left: 100px;
+}
+
+#rightSearchbar{
+	padding-left: 40%;
+}
+#leftSearchbar{
+	position:relative;
+	font-size: 18px;
+	bottom: 0px;
+}
+
+
+#moreSearch{
+	background:url("../images/hideHead.png") no-repeat;
+	color: white;
+	font-weight: bold;
+	font-size: 18px;
+}
+
+#leftSearchbar a{
+	text-decoration: none;
+	color: #000000;
+}
+#leftSearchbar a:HOVER{
+	color: #FFFFFF;
+}
+
+#searchBtn{
+	position: relative;
+	top:6px;
+	bottom: 1px;
+	left: -150px;
+}
+
+.inpText{
+	width: 200px;
+	height: 20px;
+	border: 1px solid #95b8e7;
+	border-color: #e5e5e5;
+	border-radius:4px 4px 4px 4px;
+}
+.doubleinpText{
+	width: 93px;
+	height: 20px;
+	border: 1px solid #95b8e7;
+	border-color: #e5e5e5;
+	border-radius:4px 4px 4px 4px;
+}
+.dateinpText{
+	width: 68px;
+	height: 20px;
+	border: 1px solid #95b8e7;
+	border-color: #e5e5e5;
+	border-radius:4px 4px 4px 4px;
+}
+
+.unitpriceinpText{
+	width: 58px;
+	height: 20px;
+	border: 1px solid #95b8e7;
+	border-color: #e5e5e5;
+	border-radius:4px 4px 4px 4px;
+}
+.reportinpText{
+	width: 190px;
+	height: 20px;
+	border: 1px solid #95b8e7;
+	border-color: #e5e5e5;
+	border-radius:4px 4px 4px 4px;
+}
+
+
+#firstDate{
+}
+#secondDate{
+}
+
+#hideBar table tr td{
+	font-size: 15px;
+}
+
+#hideBar table tr td select{
+	height: 30px;
+}
+#hideLine{
+	position: relative;
+	top: -80px;
+}
+#hideBar{
+	position: relative;
+	border-left: 1px solid #EDEDED;
+	border-right: 1px solid #EDEDED;
+}
+
+#hideBar2{
+	position: relative;
+	border-left: 1px solid #EDEDED;
+	border-right: 1px solid #EDEDED;
+}
+#showBarDiv{
+	position: relative;
+	top: 0px;
+}
+
+
+
+
+#secondSearch{
+	font-size: 12px;
+}
+
+#resert{
+	font-size: 12px;
+}
+
+#buttonSearch{
+	width:130px; 
+	height: 35px;
+	font-size: 18px;
+	position: relative;
+	top: 2px;
+	left: 10px;
+}
+#buttonShow{
+position: relative;
+cursor: pointer;
+}
+
+#head{
+	background-color:#000000;
+	position: relative;
+	color: white;
+}
+#head ul li{
+	list-style: none;
+}
+
+#icons {
+	margin: 0;
+	position: relative;
+	left: 300px;
+}
+#icons li {
+	margin: 2px;
+	position: relative;
+	padding: 4px 0;
+	cursor: pointer;
+	float: left;
+	list-style: none;
+	font-size: 13px;
+}
+#icons span.ui-icon {
+	float: left;
+	margin: 0 4px;
+}
+
+#ic{
+	padding-left: 400px;
+}
+
+#ic ul li a{
+	cursor: pointer;
+	text-decoration: none;
+	color: #EBEBEB;
+}
+#ic ul li a:HOVER{
+	color: #ffffff;
+}
+
+#showBarDiv{
+	text-align: center;
+}
+#hideButtonDiv{
+	text-align: center;
+	position: relative;
+	display: none;
+}
+#autocomplete{
+	width: 400px;
+	height: 25px;
+	position: relative;
+	left: 10px;
+}
+
+body {
+	width: 97%;
+	/*
+	background-color: #CAE1FF;
+	*/
+}
+.x-form-item {
+   font: 12px tahoma,arial,helvetica,sans-serif;
+   }
+
+.x-form-item label {
+    display: block;
+    float: left;
+    width: 100px;
+    padding: 3px 3px 3px 0px;
+    clear: left;
+    z-index: 2;
+    position: relative;
+}
+
+
+.x-form-element {
+    position: relative;
+}
+.x-form-clear-left {
+    clear: left;
+    height: 0px;
+    overflow: hidden;
+    line-height: 0;
+    font-size: 0px;
+}
+
+.x-form-text, textarea.x-form-field {
+    background-color: rgb(255, 255, 255);
+    border-color: rgb(181, 184, 200);
+}
+
+.ext-gecko .x-form-text, .ext-ie8 .x-form-text {
+    padding-top: 2px;
+    padding-bottom: 0px;
+}
+#showArea {
+width: 923px;
+height: auto;
+margin: 0 auto;
+font-size: 14px;
+}
+
+#search tr td {
+	padding: 3px 6px 3px 18px;
+	font-family: Microsoft Yahei;
+}
+
+#custom{
+border-color: #878787; 
+border-style: solid; 
+border-top-width: 0px;
+ border-right-width: 0px; 
+border-bottom-width: 1px;
+ border-left-width: 0px
+}
+
+.loginsms{
+	text-align:left;
+	margin-top:17px;
+	width:230px;
+	float:right;
+	height:20px;
+	color:#333333;
+	font-size:12px;
+}
+
+.fieldname
+{
+	font-size:14px;
+	font-family:"宋体",Heiti, arial,helvetica,sans-serif !important;
+	padding-left: 12px;
+	color:#777F7F;
+}
+.timename
+{
+	font-size:14px;
+	font-family:"宋体",Heiti, arial,helvetica,sans-serif !important;
+	color:#777F7F;
+}
+
+.openCloseField
+{
+	font-size:14px;
+	font-family:"宋体",Heiti, arial,helvetica,sans-serif !important;
+	padding-left: 8px;
+	color:#777F7F;
+}
+
+.henggang
+{
+	font-family:"宋体",Heiti, arial,helvetica,sans-serif !important;
+	color:#777F7F;
+}
+
+.orderField 
+{
+	font-size: 16px;
+	font-family:Microsoft YaHei;
+}
+
+#fmCountry div div ul
+{
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+#fmCountry div div ul li
+{
+	float: left;
+	width: 105px;
+	font-size: 14px;
+	color: #727272;
+	font-family: Microsoft YaHei;
+	line-height: 20px;
+}
+#fmCountry div div label
+{
+	font-size: 14px;
+	width: 100px;
+	color: #EC5565;
+	font-family: Microsoft YaHei;
+	line-height: 20px;
+	font-weight: normal;
+}
+.stateInformation
+{
+	 font-size:18px;
+	 color: #EC5565;
+	 text-align:center;
+     padding-bottom:5px;
+     margin-bottom:10px;
+     border-bottom:2px solid #EC5565;
+     font-family: Microsoft YaHei;
+     font-weight: normal;
+}
+.selectImport
+{
+	margin-left:40px;
+	font-size:14px;
+	color: #727272;
+}
+.selectExport
+{
+	margin-left:56px;
+	font-size:14px;
+	color: #727272;
+}
+.firstfield
+{
+   height:30px;
+   width:350px;
+   padding-left: 40px;
+   padding-top: 20px;
+}
+
+.secondfield
+{
+   height:30px;
+   width:350px;
+   padding-left: 450px;
+   margin-top: -30px;
+}
+
+.thirdfield
+{
+   height:30px;
+   width:350px;
+   padding-left: 830px;
+   margin-top: -30px;
+}
+
+.forthfield
+{
+   height:30px;
+   width:350px;
+   padding-left: 40px;
+   padding-top: 20px;
+}
+
+.fifthfield
+{
+   height:30px;
+   width:350px;
+   padding-left: 450px;
+   margin-top: -30px;
+}
+
+.sixthfield
+{
+   height:30px;
+   width:350px;
+   padding-left: 830px;
+   margin-top: -30px;
+}
+
+.seventhfield
+{
+   height:30px;
+   width:350px;
+   padding-left: 40px;
+   padding-top: 20px;
+}
+
+.eighthfield
+{
+   height:30px;
+   width:350px;
+   padding-left: 450px;
+   margin-top: -30px;
+}
+
+.ninethfield
+{
+   height:30px;
+   width:350px;
+   padding-left: 830px;
+   margin-top: -30px;
+}
+.tenthfield
+{
+   height:30px;
+   width:350px;
+   padding-left: 40px;
+   padding-top: 20px;
+}
+
+.eleventhfield
+{
+   height:30px;
+   width:350px;
+   padding-left: 450px;
+   margin-top: -30px;
+}
+
+.twelfthfield
+{
+   height:30px;
+   width:350px;
+   padding-left: 830px;
+    margin-top: -30px;
+}
+.thirteenthfield
+{
+   height:30px;
+   width:350px;
+   padding-left: 40px;
+   padding-top: 20px;
+}
+
+.fourteenthfield
+{
+   height:30px;
+   width:350px;
+   padding-left: 450px;
+   margin-top: -30px;
+}
+
+.fifteenthfield
+{
+   height:30px;
+   width:350px;
+   padding-left: 830px;
+    margin-top: -30px;
+}
+
+.timefield
+{
+   height:30px;
+   width:400px;
+   padding-left: 450px;
+   margin-top: -30px;
+}
+
+.timefieldanother
+{
+   height:30px;
+   width:425px;
+   padding-left: 40px;
+   padding-top: 20px;
+}
+
+.customtips
+{
+   height:40px;
+   width:600px;
+   padding-left: 40px;
+   padding-top: 20px;
+}
+
+.radiofield
+{
+   height:30px;
+   width:300px;
+   padding-left: 845px;
+   margin-top: -30px;
+}
+
+.closeMoreField
+{
+   height:40px;
+   width:200px;
+   padding-left: 548px;
+   padding-top: 20px;
+}
+.openMoreField
+{
+   height:40px;
+   width:200px;
+   padding-left: 548px;
+   padding-top: 20px;
+}
+
+.openfield
+{
+   height:40px;
+   width:200px;
+   padding-left: 500px;
+   padding-top: 20px;
+}
+
+
+.buttonWhite
+{
+	border: 1px solid #C2C2C2;
+	border-top-color: #E1E1E1;
+	background-color: #FFFFFF;
+	font-size: 16px;
+	font-family: Microsoft YaHei;
+	color: #6C6E73;
+	cursor: pointer;
+	border-radius:2px;
+}
+.buttonWhite:active
+{
+	border: 1px solid #C2C2C2;
+	border-top-color: #D8D8D8;
+	background-color: #DADADA;
+}
+
+.passwordfield{
+		width: 210px;
+		height: 28px;
+		border: 1px solid #95b8e7;
+		border-color: #e5e5e5;
+		border-radius:4px 4px 4px 4px;
+}
+
+.fieldname2{
+	font-size:14px;
+	font-family:"宋体",Heiti, arial,helvetica,sans-serif !important;
+	color:#777F7F;
+}
+.titleName{
+	float: left;
+	height: 24px;
+	line-height: 24px; 
+	width: 77px;
+	text-align: right;
+}
+.titleInput{
+	float: left;
+	width: 310px;
+	height: 24px;
+	line-height: 24px;
+	margin-left: 10px;
+}
+.titleInputRight{
+	float: left;
+	width: 240px;
+	height: 24px;
+	line-height: 24px;
+	margin-left: 10px;
+}
+.borderT {
+	border-right: 1px solid #EB5465;
+	border-bottom: 1px solid #EB5465;
+}
+
+.borderT td {
+	border-left: 1px solid #EB5465;
+	border-top: 1px solid #EB5465;
+}
+.dianping td{
+	border:1px solid #EB5465;border-top-style:none;width:996px;
+}
+.dianpingUkraine td{
+	border:1px solid #EB5465;border-top-style:none;width:1096px;
+}
+/*chenhao ������ʽ*/
+.singleInput {
+	width: 200px;
+	height: 24px;
+	border: 1px solid #95b8e7;
+	border-color: #e5e5e5;
+	border-radius: 4px 4px 4px 4px;
+}
+
+.fontStyle {
+	font-size: 14px;
+	font-family: "Microsoft Yahei", Heiti, arial, helvetica, sans-serif
+		!important;
+	color: #777F7F;
+}
+
+.doubleInput {
+	width: 94px;
+	height: 24px;
+	border: 1px solid #95b8e7;
+	border-color: #e5e5e5;
+	border-radius: 4px 4px 4px 4px;
+}
+
+.timeInput {
+	width: 68px;
+	height: 24px;
+	border: 1px solid #95b8e7;
+	border-color: #e5e5e5;
+	border-radius: 4px 4px 4px 4px;
+}
+
+.firstcols
+{
+   height:26px;
+   width:350px;
+   padding-left: 30px;
+   padding-top: 13px;
+}
+
+.secondcols
+{
+   height:26px;
+   width:350px;
+   padding-left: 370px;
+   margin-top: -26px;
+}
+
+/*ȫ��鿴������ʽ*/
+.one_css{
+	color: #434A52;font-size: 14px;font-weight: normal;
+}
+.two_css{
+	color: #929FAB;font-size: 14px;font-weight: normal;
+}
+.toolbarText{color:#ffffff;font-size: 16px;font-family:Microsoft YaHei;background-color:#EC5565;}
+.formtitle{margin-top:-10px;color:#EC5565;font-size:18px;font-weight:lighter;	margin-bottom:10px;border-bottom:2px solid #EC5565;padding-bottom:18px;}
+.inputField{width: 220px;height:24px;border: 1px solid #95b8e7;border-color: #e5e5e5;	border-radius:4px 4px 4px 4px;}
+.longInputField{width: 274px;height:24px;border: 1px solid #95b8e7;border-color: #e5e5e5;border-radius:4px 4px 4px 4px;}
+.shortInputField{width: 200px;height:24px;border: 1px solid #95b8e7;	border-color: #e5e5e5;border-radius:4px 4px 4px 4px;}
+.characterStyle{font-size: 14px;font-family:微软雅黑;color: #778080;}
+.textAreaStyle{width:690px;height:78px;overflow-x:hidden;overflow-y:scroll;resize:none;border: 1px solid #95b8e7;border-color: #e5e5e5;border-radius:4px 4px 4px 4px;}
+
+/*部分detailmessage.jsp开始*/
+.BusinessInfoTitle{color: #434A52;font-size: 14px;font-family: Microsoft Yahei;font-weight: normal;}
+.BusinessInfoInput{color: #929FAB;font-size: 14px;font-family: Microsoft Yahei;font-weight: normal;}
+/*部分detailmessage.jsp结束*/

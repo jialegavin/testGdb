@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.njyb.gbdbase.dao.datasearch.country.IVietnamImportDao">
+
+	<!--实体映射-->
+	<resultMap id="vietnamImportResultMap" type="com.njyb.gbdbase.model.datasearch.vietnam.VietnamImportModel">
+		<!---->
+		<id property="vietnamImportId" column="VIETNAM_IMPORT_ID" />
+		<!--日期-->
+		<result property="date" column="DATE" />
+		<!--海关编码(hscode)-->
+		<result property="hscode" column="HSCODE" />
+		<!--进口商(importer)-->
+		<result property="importer" column="IMPORTER" />
+		<!--出口商(exporter)-->
+		<result property="exporter" column="EXPORTER" />
+		<!--产品描述(goods_desp)-->
+		<result property="goodsDesc" column="GOODS_DESC" />
+		<!--成交方式(incoterms)-->
+		<result property="incoterms" column="INCOTERMS" />
+		<!--数量(quantity)-->
+		<result property="quantity" column="QUANTITY" />
+		<!--数量单位(unit_of_quantity)-->
+		<result property="quantityUnit" column="QUANTITY_UNIT" />
+		<!--cif单价（统计）-->
+		<result property="cifUnit" column="CIF_UNIT" />
+		<!--cif总价(cif)-->
+		<result property="cifValue" column="CIF_VALUE" />
+		<!--货币类型(currency)-->
+		<result property="currency" column="CURRENCY" />
+		<!--cif美元价(us_cif)-->
+		<result property="usCif" column="US_CIF" />
+		<!--支付方式(payment)-->
+		<result property="payment" column="PAYMENT" />
+		<!--税费(tax)-->
+		<result property="tax" column="TAX" />
+		<!--抵达港(port_name)-->
+		<result property="endPort" column="END_PORT" />
+		<!--原产国(origin_country)-->
+		<result property="originCountry" column="ORIGIN_COUNTRY" />
+	</resultMap>
+
+
+	<!-- 通用查询结果列-->
+	<sql id="Base_Column_List">
+		VIETNAM_IMPORT_ID,
+	DATE,	HSCODE,	IMPORTER,	EXPORTER,	GOODS_DESC,	INCOTERMS,	QUANTITY,	QUANTITY_UNIT,
+	CIF_UNIT,	CIF_VALUE,	CURRENCY,	US_CIF,	PAYMENT,	TAX,	END_PORT,
+	ORIGIN_COUNTRY
+	</sql>
+
+	<!-- 查询（根据主键ID查询） -->
+	<select id="queryByPrimaryAll" resultMap="vietnamImportResultMap" parameterType="java.lang.Integer">
+		 SELECT
+		 <include refid="Base_Column_List" />
+		 FROM data_vietnam_import
+		 WHERE VIETNAM_IMPORT_ID in ${sql}
+	</select>
+
+
+</mapper>

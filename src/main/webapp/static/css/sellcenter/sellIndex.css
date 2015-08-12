@@ -1,0 +1,145 @@
+.mainDiv{
+	width:1210px;
+	height:850px;
+	margin-left: auto;
+	margin-right: auto;
+	padding-top:60px;
+	background-color: #ffffff;
+}
+.leftDiv{
+	width:175px;
+	height:231px;
+	float: left;
+	background: url('/gbdbas/static/img/sellcenter/leftPart.png') no-repeat ;
+	margin-left: 80px;
+	font-size:20px;
+}
+.rightDiv{
+	width: 840px;
+	height:600px;
+	margin-left: 255px;
+}
+#userMessege{
+	 width: 840px;
+	 height: 188px;
+      background: url('/gbdbas/static/img/sellcenter/top.png') no-repeat ;
+      margin-left: 10px;
+      float:left;
+}
+#myPictrue{
+	width:120px;
+	height:180px;
+	margin-left:40px;
+	padding-top: 20px; 
+	float:left;
+}
+#myPictrue a:link{
+	 text-decoration:underline;
+	 font-size: 15px;
+	color: black;
+	font-family: 'ËÎÌå';
+	font-weight:lighter;
+}
+#myInfo{
+	padding-top: 20px;
+	width:300px;
+	height: 100px;
+	margin-left: 180px;
+}
+#treeFloor1 li{
+	width:150px;
+	height:25px;
+}
+#treeFloor1 img{
+	widht:13px;
+	height:13px;
+	margin-right: 8px;
+}
+#treeFloor1 a:link{
+	font-size: 16px;
+	color: black;
+	font-family: 'ËÎÌå';
+	font-weight:bold;
+}
+#treeFloor2  a:link{
+	font-size: 15px;
+	color: black;
+	font-family: 'ËÎÌå';
+	font-weight:lighter;
+}
+#treeFloor2{
+	margin-left: 30px;
+	margin-top: 2px;
+}
+#product{
+	width:840px;
+	height:600px;
+	padding-top: 10px;
+}
+.upUserForm{
+	margin-top:10px;
+	width:500px;
+	margin-left: auto;
+	margin-right: auto;
+}
+.tag{
+   width:80px;
+}
+textarea{
+    width: 220px;
+    height: 100px;
+¡¡¡¡resize:none;
+border: 1px solid #d0d0d0;
+	border-radius: 4px 4px 4px 4px;
+}
+ .formButtom{
+    width:150px;
+    margin-top:10px;
+    margin-left: 400px;
+     heith:40px;
+ }
+ 
+.buttonSpan{
+	 background-color:#3399ff ;
+	 display: block;
+	 width:auto;
+	 height:20px;
+	 float: left;
+	 margin-left: 14px;
+	 font-weight:bolder;
+	 text-align: center;
+	 -moz-border-radius: 1px;
+	-webkit-border-radius: 2px;
+	color: #ffffff;
+	padding: 3px 3px 3px 3px;
+}
+.buttonSpan:HOVER{
+	 background-color:#ffffff ;
+	 display: block;
+	 width:auto;
+	 height:20px;
+	 float: left;
+	 margin-left: 15px;
+	 text-align: center;
+	 -moz-border-radius: 1px;
+	-webkit-border-radius: 2px;
+	border:1px solid #3399ff ;
+	cursor:pointer;
+	color: #3399ff;
+	padding: 2px 2px 2px 2px;
+}
+.inputBox{
+	margin-right: 10px;
+	height: 24px;
+	border: 1px solid #ddd;
+	line-height: 24px;
+	margin-right: 4px;
+	padding-left: 4px;
+	font-size: 12px;
+	color: #666;
+}
+.inputNomarl{
+	border: 1px solid #d0d0d0;
+	border-radius: 4px 4px 4px 4px;
+	height:20px;
+}

@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.njyb.gbdbase.dao.contrastreport.customercenter.ICustomerCenterDao">
+
+	<!--实体映射-->
+	<resultMap id="centerMap" type="com.njyb.gbdbase.model.contrastreport.customercenter.CustomerCenterModel">
+		<!--主键编号-->
+		<id property="id" column="id" />
+		<!--姓名-->
+		<result property="name" column="name" />
+		<!--电话-->
+		<result property="tel" column="tel" />
+		<!--留言-->
+		<result property="centent" column="centent" />
+		<!-- 时间 -->
+		<result property="date" column="date" />
+	</resultMap>
+
+	<!-- 通用查询结果列-->
+	<sql id="Base_Column_List">
+		id , name , tel , centent , date
+	</sql>
+	
+	<!-- 插入 -->
+	<insert id="insertCentent" parameterType="com.njyb.gbdbase.model.contrastreport.customercenter.CustomerCenterModel">
+		INSERT INTO user_customercenter (name,tel,centent,date)
+		VALUE (#{name},#{tel},#{centent},#{date})
+	</insert>
+	
+	<!-- 查询所有的用户留言信息 -->
+	<select id="queryCentents" resultMap="centerMap">
+		 SELECT
+		 <include refid="Base_Column_List" />
+		 FROM user_customercenter
+	</select>
+	
+	<!-- 删除指定的用户留言信息 -->
+	<delete id="deleteCentent" parameterType="com.njyb.gbdbase.model.datasearch.common.SqlModel">
+		DELETE FROM user_customercenter
+		WHERE ID in ${sql}
+	</delete>
+	
+	<!-- 根据id查询 -->
+	<select id="queryCententByid" resultMap="centerMap" parameterType="com.njyb.gbdbase.model.datasearch.common.SqlModel">
+		 SELECT
+		 <include refid="Base_Column_List" />
+		 FROM user_customercenter 
+		 where id in ${sql}
+	</select>
+
+</mapper>

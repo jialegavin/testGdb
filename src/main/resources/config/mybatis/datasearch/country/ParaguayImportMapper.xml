@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.njyb.gbdbase.dao.datasearch.country.IParaguayImportDao">
+
+	<!--实体映射-->
+	<resultMap id="paraguayImportResultMap" type="com.njyb.gbdbase.model.datasearch.paraguay.ParaguayImportModel">
+		<!--主键编号-->
+		<id property="paraguayImportId" column="PARAGUAY_IMPORT_ID" />
+		<!--通关日期(REG_DATE)-->
+		<result property="date" column="DATE" />
+		<!--进口商编码-->
+		<result property="importerId" column="IMPORTER_ID" />
+		<!--进口商-->
+		<result property="importer" column="IMPORTER" />
+		<!--出口商(SALER)-->
+		<result property="exporter" column="EXPORTER" />
+		<!--原产国-->
+		<result property="originCountry" column="ORIGIN_COUNTRY" />
+		<!--海关编码(HS_CODE)-->
+		<result property="hscode" column="HSCODE" />
+		<!--数量-->
+		<result property="quantity" column="QUANTITY" />
+		<!--数量单位-->
+		<result property="unitOfQuantity" column="UNIT_OF_QUANTITY" />
+		<!--产品描述(PRODUCT_DESC)-->
+		<result property="goodsDesc" column="GOODS_DESC" />
+		<!--品牌(商标)-->
+		<result property="brand" column="BRAND" />
+		<!--毛重-->
+		<result property="grossWeight" column="G_WEIGHT" />
+		<!--净重-->
+		<result property="netWeight" column="N_WEIGHT" />
+		<!--FOB金额(FOB)-->
+		<result property="fobValue" column="FOB_VALUE" />
+		<!--运费-->
+		<result property="freight" column="FREIGHT" />
+		<!--保险费-->
+		<result property="insurance" column="INSURANCE" />
+		<!--CIF金额(CIF)-->
+		<result property="cifValue" column="CIF_VALUE" />
+		<!---->
+		<result property="fobUnit" column="FOB_UNIT" />
+		<!--海关城市-->
+		<result property="customs" column="CUSTOMS" />
+		<!--运输方式-->
+		<result property="transType" column="TRANS_TYPE" />
+		<!--运输公司-->
+		<result property="transCorp" column="TRANS_CORP" />
+		<!--运输公司所在国-->
+		<result property="transCountry" column="TRANS_COUNTRY" />
+		<!--销售国（SALES_COUNTRY）-->
+		<result property="salesCountry" column="SALES_COUNTRY" />
+		<!--编号-->
+		<result property="orderList" column="ORDER_LIST" />
+		<!--提单号-->
+		<result property="blNumber" column="BL_NUMBER" />
+	</resultMap>
+
+
+	<!-- 通用查询结果列-->
+	<sql id="Base_Column_List">
+		PARAGUAY_IMPORT_ID,
+	DATE,	IMPORTER_ID,	IMPORTER,	EXPORTER,	ORIGIN_COUNTRY,	HSCODE,	QUANTITY,	UNIT_OF_QUANTITY,
+	GOODS_DESC,	BRAND,	G_WEIGHT,	N_WEIGHT,	FOB_VALUE,	FREIGHT,	INSURANCE,	CIF_VALUE,
+	FOB_UNIT,	CUSTOMS,	TRANS_TYPE,	TRANS_CORP,	TRANS_COUNTRY,	SALES_COUNTRY,	ORDER_LIST,
+	BL_NUMBER
+	</sql>
+
+	<!-- 查询（根据主键ID查询） -->
+	<select id="queryByPrimaryAll" resultMap="paraguayImportResultMap" parameterType="java.lang.Integer">
+		 SELECT
+		 <include refid="Base_Column_List" />
+		 FROM data_paraguay_import
+		 WHERE PARAGUAY_IMPORT_ID in ${sql}
+	</select>
+
+
+</mapper>

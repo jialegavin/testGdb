@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.njyb.gbdbase.dao.datasearch.country.IPanamaImportDao">
+
+	<!--实体映射-->
+	<resultMap id="panamaImportResultMap" type="com.njyb.gbdbase.model.datasearch.panama.PanamaImportModel">
+		<!--主键id-->
+		<id property="panamaImportId" column="PANAMA_IMPORT_ID" />
+		<!--日-->
+		<result property="day" column="DAY" />
+		<!--月-->
+		<result property="month" column="MONTH" />
+		<!--年-->
+		<result property="year" column="YEAR" />
+		<!--进口商编号-->
+		<result property="importerId" column="IMPORTER_ID" />
+		<!--进口商-->
+		<result property="importer" column="IMPORTER" />
+		<!--海关编码-->
+		<result property="hscode" column="HSCODE" />
+		<!--产品描述-->
+		<result property="goodsDesc" column="GOODS_DESC" />
+		<!--海关中心-->
+		<result property="customsZone" column="CUSTOMS_ZONE" />
+		<!--抵达港(PORT)-->
+		<result property="endPort" column="END_PORT" />
+		<!--运输方式-->
+		<result property="transType" column="TRANS_TYPE" />
+		<!--报关单号-->
+		<result property="declarationNumber" column="DECLARATION_NUMBER" />
+		<!--原产国-->
+		<result property="originCountry" column="ORIGIN_COUNTRY" />
+		<!--净重-->
+		<result property="netWeight" column="N_WEIGHT" />
+		<!--毛重-->
+		<result property="grossWeight" column="G_WEIGHT" />
+		<!--包装数量-->
+		<result property="packages" column="PACKAGES" />
+		<!--数量-->
+		<result property="quantity" column="QUANTITY" />
+		<!--数量单位(UNIT_OF_QUANTITY)-->
+		<result property="quantityUnit" column="QUANTITY_UNIT" />
+		<!--fob总价-->
+		<result property="fobValue" column="FOB_VALUE" />
+		<!--cif总价-->
+		<result property="cifValue" column="CIF_VALUE" />
+		<!--运输费用-->
+		<result property="freight" column="FREIGHT" />
+		<!--保险费用-->
+		<result property="insurance" column="INSURANCE" />
+		<!--日期-->
+		<result property="date" column="DATE" />
+	</resultMap>
+
+
+	<!-- 通用查询结果列-->
+	<sql id="Base_Column_List">
+		PANAMA_IMPORT_ID,
+	DAY,	MONTH,	YEAR,	IMPORTER_ID,	IMPORTER,	HSCODE,	GOODS_DESC,	CUSTOMS_ZONE,
+	END_PORT,	TRANS_TYPE,	DECLARATION_NUMBER,	ORIGIN_COUNTRY,	N_WEIGHT,	G_WEIGHT,	PACKAGES,	QUANTITY,
+	QUANTITY_UNIT,	FOB_VALUE,	CIF_VALUE,	FREIGHT,	INSURANCE,	DATE
+	</sql>
+
+	<!-- 查询（根据主键ID查询） -->
+	<select id="queryByPrimaryAll" resultMap="panamaImportResultMap" parameterType="java.lang.Integer">
+		 SELECT
+		 <include refid="Base_Column_List" />
+		 FROM data_panama_import
+		 WHERE PANAMA_IMPORT_ID in ${sql}
+	</select>
+
+
+</mapper>

@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.njyb.gbdbase.dao.datasearch.country.IUruguayExportDao">
+
+	<!--实体映射-->
+	<resultMap id="uruguayExportResultMap" type="com.njyb.gbdbase.model.datasearch.uruguay.UruguayExportModel">
+		<!---->
+		<id property="uruguayExportId" column="URUGUAY_EXPORT_ID" />
+		<!--日期(REG_DATE)-->
+		<result property="date" column="DATE" />
+		<!--海关城市-->
+		<result property="customs" column="CUSTOMS" />
+		<!--出口商-->
+		<result property="exporter" column="EXPORTER" />
+		<!--出口商编号-->
+		<result property="exporterId" column="EXPORTER_ID" />
+		<!--海关编码(HS_CODE)-->
+		<result property="hscode" column="HSCODE" />
+		<!--产品描述(PRODUCT_DESC)-->
+		<result property="goodsDesc" column="GOODS_DESC" />
+		<!--目的国-->
+		<result property="destCountry" column="DEST_COUNTRY" />
+		<!--运输方式-->
+		<result property="transType" column="TRANS_TYPE" />
+		<!-- 运输公司-->
+		<result property="transCorp" column="TRANS_CORP" />
+		<!--毛重-->
+		<result property="grossWeight" column="G_WEIGHT" />
+		<!--净重-->
+		<result property="netWeight" column="N_WEIGHT" />
+		<!--数量-->
+		<result property="quantity" column="QUANTITY" />
+		<!--数量单位(UNIT_OF_QUANTITY)-->
+		<result property="quantityUnit" column="QUANTITY_UNIT" />
+		<!--物理数量-->
+		<result property="physicalQuantity" column="PHYSICAL_QUANTITY" />
+		<!-- 物理数量单位(UNIT_OF_PHYSICAL_QUANTITY)-->
+		<result property="physicalQuantityUnit" column="PHYSICAL_QUANTITY_UNIT" />
+		<!--FOB金额（FOB)-->
+		<result property="fobValue" column="FOB_VALUE" />
+	</resultMap>
+
+
+	<!-- 通用查询结果列-->
+	<sql id="Base_Column_List">
+		URUGUAY_EXPORT_ID,
+	DATE,	CUSTOMS,	EXPORTER,	EXPORTER_ID,	HSCODE,	GOODS_DESC,	DEST_COUNTRY,	TRANS_TYPE,
+	TRANS_CORP,	G_WEIGHT,	N_WEIGHT,	QUANTITY,	QUANTITY_UNIT,	PHYSICAL_QUANTITY,	PHYSICAL_QUANTITY_UNIT,	FOB_VALUE
+
+	</sql>
+
+	<!-- 查询（根据主键ID查询） -->
+	<select id="queryByPrimaryAll" resultMap="uruguayExportResultMap" parameterType="java.lang.Integer">
+		 SELECT
+		 <include refid="Base_Column_List" />
+		 FROM data_uruguay_export
+		 WHERE URUGUAY_EXPORT_ID in ${sql}
+	</select>
+
+
+</mapper>

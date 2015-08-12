@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>  
+<!DOCTYPE mapper  PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN" "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+<mapper namespace="com.njyb.gbdbase.dao.authcenter.IUserRightDao">
+	<resultMap type="com.njyb.gbdbase.model.usermanagement.ConditionRightModel"
+		id="userRightReslut">
+		<id column="RID"  property="rid"/>
+		<result column="USERID" property="userId" />
+		<result column="BYHSCODE" property="byHsCode" />
+		<result column="BYPRODUCT_DESC" property="byProductDesc" />
+		<result column="BYCOUNTRY" property="byCountry" />
+		<result column="STARTTIME" property="startTime" />
+		<result column="ENDTIME" property="endTime" />
+		<result column="IEXPORTTYPE" property="iExportType" />
+		<result column="RIGHTTYPE" property="rightType" />
+		<result column="TOTAL" property="total" />
+	</resultMap>
+	<cache/>
+	<!--洪皓:根据用户查询用户权限 -->
+	<select id="queryUserRightResultByUserIdAndPage" resultMap="userRightReslut" parameterType="java.lang.Integer">
+		<![CDATA[
+			SELECT ucr.rid,ucr.userid,ucr.bycountry,ucr.byhscode,ucr.byproduct_desc,
+			ucr.starttime,ucr.endtime,ucr.iexporttype
+			FROM user_condition_right ucr
+			WHERE ucr.userid = #{userId}
+		]]>
+	</select>
+	
+	<!-- WangBo : 根据map的userId && time && hsCode && product 查询用户时候拥有此权限 -->
+	<select id="checkUserRightByParam"  parameterType="java.util.Map" resultMap="userRightReslut">
+			select byhscode,byproduct_desc,bycountry,starttime,endtime,iexporttype,rightType 
+			from user_condition_right 
+			where ((str_to_date(${startDate},'%Y-%m-%d') BETWEEN starttime and endtime) 
+			or (str_to_date(${endDate},'%Y-%m-%d') BETWEEN starttime and endtime)) 
+			<if test="hscode != '' and null !=  hscode">
+				AND byhscode = ${hscode} 
+			</if>
+			<if test="product != '' and null != product">
+				AND byproduct_desc = ${product} 
+			</if>
+			<if test="rightType != '' and null != rightType">
+				AND rightType = ${rightType} 
+			</if>
+	</select>
+	
+	<!--WangBo:插入权限 -->
+	<insert id="insertUserRigth"
+		parameterType="com.njyb.gbdbase.model.usermanagement.ConditionRightModel">
+		<![CDATA[
+			INSERT INTO user_condition_right
+			(userid,bycountry,byhscode,byproduct_desc,starttime,endtime,iexporttype)
+			VALUES (#{userId},#{byCountry},#{byHsCode},#{byproductDesc},#{startTime},
+			#{endTime},#{iexportType},#{rightType})
+		]]>
+	</insert>
+
+</mapper>

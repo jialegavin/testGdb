@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>  
+<!DOCTYPE mapper  PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN" "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+<mapper namespace="com.njyb.gbdbase.dao.usermanagement.IViewDao">
+	<resultMap type="com.njyb.gbdbase.model.usermanagement.ViewModel" id="codeMap">
+	    <id property="codeId" column="codeId" />
+		<result property="code" column="code" />
+		<result property="value" column="value" />
+		<result property="type" column="type" />
+		<result property="rela" column="rela" />
+		<result property="language" column="language" />
+	</resultMap>
+
+	<!--chenhu:根据类型和语言查询试图列表-->
+	<select id="queryViewByTL" parameterType="com.njyb.gbdbase.model.usermanagement.ViewModel" resultType="java.util.Map">
+		<![CDATA[
+			SELECT code,value from  sys_code where type=#{type} and language=#{language}
+		]]>
+	</select>
+	<!-- chenhu:根据语言，类型，关联号查询试图 -->
+	<select id="queryViewByTLR" parameterType="com.njyb.gbdbase.model.usermanagement.ViewModel" resultType="java.util.Map">
+		<![CDATA[
+			SELECT code , value  from  sys_code where type=#{type}  and language=#{language} and rela=#{rela} 
+		   ]]>
+	</select>
+	<!-- chenhu:根据语言、编码、code 查询级联菜单 -->
+	<select id="queryViewByTLC" parameterType="com.njyb.gbdbase.model.usermanagement.ViewModel" resultType="java.util.Map">
+		<![CDATA[
+			SELECT code , value  from  sys_code where type=#{type}  and language=#{language} and code=#{code}
+		   ]]>
+	</select>
+    <!-- chenhu:调用 function 根据seqName获取seq的值-->
+	<select id="querySequenceByName" statementType="CALLABLE" parameterType="java.util.Map" >
+		<![CDATA[
+			 {#{result,mode=OUT,jdbcType=VARCHAR}=CALL getvalue(#{seqName,mode=IN,jdbcType=VARCHAR}) }   
+		]]>
+	</select>
+</mapper>

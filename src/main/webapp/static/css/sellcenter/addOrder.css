@@ -1,0 +1,83 @@
+.mainDiv{
+	width:1000px;
+	margin-left: auto;
+	margin-right: auto;
+	background-color: #f8f8f8;
+	height: auto;
+}
+body{
+	background-color: #fff;
+}
+.myT{
+	margin: 10px 15px 0 15px;
+	padding-top: 15px;
+	border-bottom: dotted 1px #999999;
+	color:#333333;
+}
+.showInfo{
+	margin: 10px 15px 5px 15px;
+	padding-left:80px;
+	padding-bottom:5px;
+}
+#mr span{
+	width:134px;
+	height:24px;
+	background: url('/gbdbas/static/img/sellcenter/deArr.png') no-repeat;
+	font-size: 14px;
+	padding-top:5px;
+	color:#ffffff;
+	display:block;
+	margin-left: 10px;
+	text-align:center;
+	cursor:pointer;
+}
+#mr span:HOVER{
+	width:134px;
+	height:24px;
+	background: url('/gbdbas/static/img/sellcenter/deArr.png') no-repeat;
+	font-size: 14px;
+	padding-top:5px;
+	color:red;
+	display:block;
+	margin-left: 10px;
+	text-align:center;
+	cursor:pointer;
+}
+.inputNomarl{
+	padding-left:5px;
+	border: 1px solid #d0d0d0;
+	border-radius: 4px 4px 4px 4px;
+	height:20px;
+}
+.tag{
+   width:100px;
+   font-family:"ËÎÌå"; 
+  color: #666;
+  font-size: 12px;
+  text-align: center;
+}
+textarea{
+	padding-left:5px;
+	padding-top:5px;
+    width: 300px;
+    height: 120px;
+¡¡¡¡resize:none;
+border: 1px solid #d0d0d0;
+	border-radius: 4px 4px 4px 4px;
+}
+.buttonSpan{
+	 background:url('/gbdbas/static/img/sellcenter/subO.png') no-repeat;
+	 display: block;
+	 width:90px;
+	 height:37px;
+	 margin-left: 14px;
+	 font-weight:bolder;
+	 text-align: center;
+	color: #ffffff;
+	padding: 8px 3px 3px 3px;
+	cursor: pointer;
+}
+.showText{
+	background-color: #f8f8f8;
+	border: 0px;
+}

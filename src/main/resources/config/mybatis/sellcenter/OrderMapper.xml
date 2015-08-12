@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>  
+<!DOCTYPE mapper  PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN" "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+<mapper namespace="com.njyb.gbdbase.dao.sellcenter.IOrderDao">
+	<resultMap type="com.njyb.gbdbase.model.sellcenter.UserOrderModel" id="orderMap">
+	    <id property="orderId" column="orderId" />
+		<result property="rid" column="rid" />
+		<result property="orderName" column="orderName" />
+		<result property="orderSummary" column="orderSummary" />
+		<result property="userId" column="userId" />
+		<result property="orderNum" column="orderNum" />
+		<result property="orderNo" column="orderNo" />
+		<result property="orderStatus" column="orderStatus" />
+		<result property="payType" column="payType" />
+		<result property="invoiceType" column="invoiceType" />
+		<result property="invoice" column="invoice" />
+		<result property="payPepole" column="payPepole" />
+		<result property="orderTime" column="orderTime" />
+	</resultMap>
+	<!--chenhu:新增订单-->
+	<insert id="addNewOrder" parameterType="com.njyb.gbdbase.model.sellcenter.UserOrderModel">
+		<![CDATA[
+		INSERT INTO user_order
+			(orderId, rid,orderName, orderSummary, userId, orderNum,
+			orderNo, orderStatus, payType, invoiceType, invoice, 
+			payPepole,orderTime)
+			VALUES
+		    (null, #{rid}, #{orderName},#{orderSummary}, #{userId},#{orderNum},
+			#{orderNo}, #{orderStatus}, #{payType}, #{invoiceType},
+			#{invoice}, #{payPepole},#{orderTime})
+		]]>
+	</insert>
+	<!--chenhu:根据用户ID查询用户信息-->
+	<select id="queryOrderInfoByNo" parameterType="java.lang.String"   resultMap="orderMap">
+		<![CDATA[
+			SELECT 
+				orderId, rid,orderName, orderSummary, userId, orderNum,
+			    orderNo, orderStatus, payType, invoiceType, invoice,userId 
+			     payPepole,orderTime
+			    FROM user_order 
+				WHERE  orderNo=#{orderNo}
+		]]>
+	</select>
+	<!-- chenhu:修改用户的订单信息 -->
+	<update id="upOrderInfo" parameterType="com.njyb.gbdbase.model.sellcenter.UserOrderModel"  >
+	     <![CDATA[
+                 update  user_order 
+	                set rid=#{rid},
+	                    orderName=#{orderName},
+	                    orderSummary=#{orderSummary},
+	                    orderNum=#{orderNum},
+	                    orderStatus=#{orderStatus},
+	                    payType=#{payType},
+	                    invoiceType=#{invoiceType},
+	                    invoice=#{invoice},
+	                    payPepole=#{payPepole},
+	                    orderTime=NOW()
+	                    where orderId=#{orderId} 
+	                    and  orderNo=#{orderNo}
+	                    and   userId=#{userId}
+	     ]]>
+	</update>
+	<!-- chenhu:查询有效订单 -->
+	<select id="queryEffectOrdersByUserId" parameterType="com.njyb.gbdbase.model.usermanagement.QueryModel"  resultType="java.util.HashMap">
+		<![CDATA[
+			select 
+				uo.orderId, uo.userId,uo.orderNo,
+				uo.orderTime,ui.consignee, (select value from 
+               sys_code where code=uo.orderStatus and type='orderStatus')orderStatus
+				, uo.orderSummary,uo.payPepole
+			    FROM user_order uo left join receiver_info ui 
+              on uo.rid=ui.rid 
+				WHERE   uo.userId=#{userId}  and uo.orderStatus!='0'
+			LIMIT #{startnum},#{pageSize}
+		]]>
+	</select>
+		<!-- chenhu:查询有效订单数量 -->
+	<select id="querySumEffectOrders" parameterType="java.lang.Integer"  resultType="java.util.HashMap">
+		<![CDATA[
+		select count(1) from(
+			select 
+				uo.orderId, uo.userId,uo.orderNo,
+				ui.userName,uo.orderTime,ui.consignee, 
+				uo.orderStatus, uo.orderSummary,uo.payPepole
+			    FROM user_order uo left join user_info ui 
+              on uo.rid=ui.rid
+				WHERE   uo.userId=#{userId}  and uo.orderStatus!='0') a
+		]]>
+	</select>
+	<!-- 根据订单ID删除订货单 -->
+	<delete id="deleteOrderByNo"   parameterType="java.lang.String" > 
+	  delete from user_order where orderNo=#{orderNo}
+	</delete>
+	<!--  根据订单号，分页模糊查询订单 -->
+	<select id="queryOrderByBlurNo" parameterType="com.njyb.gbdbase.model.usermanagement.QueryModel"  resultType="java.util.HashMap">
+		<![CDATA[
+			select 
+				uo.orderId, uo.userId,uo.orderNo,
+				uo.orderTime,ui.consignee, 
+				uo.orderStatus, uo.orderSummary,uo.payPepole
+			    FROM user_order uo left join receiver_info ui 
+              on uo.rid=ui.rid
+				WHERE   uo.userId=#{userId}  and uo.orderStatus!='0' and ${whereSql}
+			LIMIT #{startnum},#{pageSize}
+		]]>
+	</select>
+     <!-- 根据订单号，模糊查询订单的数量-->
+	<select id="querySumOrderByBlurNo" parameterType="com.njyb.gbdbase.model.usermanagement.QueryModel"  resultType="java.lang.Integer">
+		<![CDATA[
+		select count(1) from(
+			select 
+				uo.orderId, uo.userId,uo.orderNo,
+				uo.orderTime,ui.consignee, 
+				uo.orderStatus, uo.orderSummary,uo.payPepole
+			    FROM user_order uo left join receiver_info ui 
+              on uo.rid=ui.rid
+				WHERE   uo.userId=#{userId}  and uo.orderStatus!='0' and ${whereSql}
+				) a
+		]]>
+	</select>
+</mapper>

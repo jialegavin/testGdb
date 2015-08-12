@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.njyb.gbdbase.dao.datasearch.country.IPeruExportDao">
+
+	<!--实体映射-->
+	<resultMap id="peruExportResultMap" type="com.njyb.gbdbase.model.datasearch.peru.PeruExportModel">
+		<!--主键编号-->
+		<id property="peruExportId" column="PERU_EXPORT_ID" />
+		<!--日期-->
+		<result property="date" column="DATE" />
+		<!--日-->
+		<result property="day" column="DAY" />
+		<!--月-->
+		<result property="month" column="MONTH" />
+		<!--年-->
+		<result property="year" column="YEAR" />
+		<!--编号-->
+		<result property="controlId" column="CONTROL_ID" />
+		<!---->
+		<result property="serie" column="SERIE" />
+		<!--海关城市-->
+		<result property="customs" column="CUSTOMS" />
+		<!--出口商编号-->
+		<result property="exporterId" column="EXPORTER_ID" />
+		<!--出口商-->
+		<result property="exporter" column="EXPORTER" />
+		<!--出口商地址-->
+		<result property="exporterAddress" column="EXPORTER_ADDRESS" />
+		<!--出口商所在城市-->
+		<result property="exporterCity" column="EXPORTER_CITY" />
+		<!--出口商所在国家/州-->
+		<result property="exporterState" column="EXPORTER_STATE" />
+		<!--出口商所在区(县)-->
+		<result property="exporterDistrict" column="EXPORTER_DISTRICT" />
+		<!--进口商电话-->
+		<result property="exporterTel" column="EXPORTER_TEL" />
+		<!--进口商传真-->
+		<result property="exporterFax" column="EXPORTER_FAX" />
+		<!--海关编码(HS_CODE)-->
+		<result property="hscode" column="HSCODE" />
+		<!--HS章注（HS_CODE_DESC）-->
+		<result property="hsDesc" column="HS_DESC" />
+		<!--产品描述(PRODUCT_DESC)-->
+		<result property="goodsDesc" column="GOODS_DESC" />
+		<!---->
+		<result property="desc1" column="DESC1" />
+		<!---->
+		<result property="desc2" column="DESC2" />
+		<!---->
+		<result property="desc3" column="DESC3" />
+		<!---->
+		<result property="desc4" column="DESC4" />
+		<!--FOB金额(FOB)-->
+		<result property="fobValue" column="FOB_VALUE" />
+		<!--净重-->
+		<result property="netWeight" column="N_WEIGHT" />
+		<!--毛重-->
+		<result property="grossWeight" column="G_WEIGHT" />
+		<!--数量-->
+		<result property="quantity" column="QUANTITY" />
+		<!--数量单位(UNIT_OF_QUANTITY)-->
+		<result property="quantityUnit" column="QUANTITY_UNIT" />
+		<!--FOB单价-->
+		<result property="fobUnit" column="FOB_UNIT" />
+		<!--物理数量-->
+		<result property="physicalQuantity" column="PHYSICAL_QUANTITY" />
+		<!--物理数量单位(UNIT_OF_PHYSICAL_QUANTITY)-->
+		<result property="physicalQuantityUnit" column="PHYSICAL_QUANTITY_UNIT" />
+		<!--运输方式-->
+		<result property="transType" column="TRANS_TYPE" />
+		<!--银行-->
+		<result property="bank" column="BANK" />
+		<!--目的国-->
+		<result property="destCountry" column="DEST_COUNTRY" />
+		<!--目的港（DEST_PORT）-->
+		<result property="endPort" column="END_PORT" />
+		<!--海关代理-->
+		<result property="customsAgent" column="CUSTOMS_AGENT" />
+		<!--运输公司-->
+		<result property="transCorp" column="TRANS_CORP" />
+		<!--船名-->
+		<result property="shipName" column="SHIP_NAME" />
+		<!--货物状态-->
+		<result property="merchandiseState" column="MERCHANDISE_STATE" />
+	</resultMap>
+
+
+	<!-- 通用查询结果列-->
+	<sql id="Base_Column_List">
+		PERU_EXPORT_ID,
+	DATE,	DAY,	MONTH,	YEAR,	CONTROL_ID,	SERIE,	CUSTOMS,	EXPORTER_ID,
+	EXPORTER,	EXPORTER_ADDRESS,	EXPORTER_CITY,	EXPORTER_STATE,	EXPORTER_DISTRICT,	EXPORTER_TEL,	EXPORTER_FAX,	HSCODE,
+	HS_DESC,	GOODS_DESC,	DESC1,	DESC2,	DESC3,	DESC4,	FOB_VALUE,	N_WEIGHT,
+	G_WEIGHT,	QUANTITY,	QUANTITY_UNIT,	FOB_UNIT,	PHYSICAL_QUANTITY,	PHYSICAL_QUANTITY_UNIT,	TRANS_TYPE,	BANK,
+	DEST_COUNTRY,	END_PORT,	CUSTOMS_AGENT,	TRANS_CORP,	SHIP_NAME,	MERCHANDISE_STATE
+	</sql>
+
+	<!-- 查询（根据主键ID查询） -->
+	<select id="queryByPrimaryAll" resultMap="peruExportResultMap" parameterType="java.lang.Integer">
+		 SELECT
+		 <include refid="Base_Column_List" />
+		 FROM data_peru_export
+		 WHERE PERU_EXPORT_ID in ${sql}
+	</select>
+
+
+</mapper>

@@ -1,0 +1,361 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.1.xsd">
+	<description>报表配置字段</description>
+	<bean id="reportPropertiesModel" class="com.njyb.gbdbase.model.datasearch.common.ReportPropertiesModel"
+		scope="prototype">
+		<property name="reportFieldMap">
+			<ref local="report_map"/>
+		</property>
+	</bean>
+	
+	<bean id="report_map" class="java.util.HashMap">
+		<constructor-arg>
+			<map>
+				<!-- 贾红平配置报表汇总相关信息 -->
+				<!-- 组合方式 :产品趋势分析报表(cp_trade),港口分析报表(cp_port),国别分析报表(cp_country)-->	
+					<!--阿根廷进口 1-->
+					<entry key="argentina_import_cp_trade" value="qs,jks"></entry>
+					<entry key="argentina_import_cp_port" value="qyg,hgcs"></entry>
+					<entry key="argentina_import_cp_country" value="ycg"></entry>
+					
+					<!-- 阿根廷出口 1-->
+					<entry key="argentina_export_cp_trade" value="qs"></entry>
+					<entry key="argentina_export_cp_country" value="mdg"></entry>
+					<entry key="argentina_export_cp_port" value="hgcs"></entry>
+					
+					<!-- 哥斯达尼加进口 -->
+					<entry key="const_import_cp_trade" value="qs,jks"></entry>
+					<entry key="const_import_cp_port" value="hgcs"></entry>
+					<entry key="const_import_cp_country" value=""></entry>
+					
+					<!-- 哥斯达尼加出口 -->
+					<entry key="const_export_cp_trade" value="qs,cks"></entry>
+					<entry key="const_export_cp_port" value="hgcs"></entry>
+					<entry key="const_export_cp_country" value=""></entry>
+					
+					<!-- 洪都拉斯进口 -->
+					<entry key="honduras_import_cp_trade" value="qs"></entry>
+					<entry key="honduras_import_cp_country" value="ycg"></entry>
+					<entry key="honduras_import_cp_port" value=""></entry>
+					
+					<!-- 洪都拉斯出口 -->
+					<entry key="honduras_export_cp_trade" value="qs"></entry>
+					<entry key="honduras_export_cp_country" value="mdg"></entry>
+					<entry key="honduras_export_cp_port" value=""></entry>
+					
+					<!--印度进口 -->
+					<entry key="india_import_cp_trade" value="qs,jks,cks"></entry>
+					<entry key="india_import_cp_country" value="ycg"></entry>
+					<!-- 目前这个字段为空 -->
+					<entry key="india_import_cp_port" value=""></entry>
+					
+					<!--韩国进口 -->
+					<entry key="korea_cp_trade" value="qs,zg_jks"></entry>
+					<entry key="korea_cp_country" value=""></entry>
+					<entry key="korea_cp_port" value=""></entry>
+					
+					<!-- 墨西哥进口 -->
+					<entry key="mexicon_import_cp_trade" value="qs"></entry>
+					<entry key="mexicon_import_cp_country" value="ycg"></entry>
+					<entry key="mexicon_import_cp_port" value="hgcs"></entry>
+					
+					<!--乌克兰进口-->
+					<entry key="wkl_import_cp_trade" value="qs,jks,cks"></entry>
+					<entry key="wkl_import_cp_country" value=""></entry>
+					<entry key="wkl_import_cp_port" value=""></entry>
+					
+					<!--英国进口-->
+					<entry key="uk_import_cp_trade" value="qs,zg_jks"></entry>
+					<entry key="uk_import_cp_country" value=""></entry>
+					<entry key="uk_import_cp_port" value=""></entry>
+				
+					<!--巴拿马进口 -->
+					<entry key="panama_import_cp_trade" value="qs,jks"></entry>
+					<entry key="panama_import_cp_port" value="ddg"></entry>
+					<entry key="panama_import_cp_country" value="ycg"></entry>
+					
+					<!--巴拿马出口 -->
+					<entry key="panama_export_cp_trade" value="qs,cks"></entry>
+					<entry key="panama_export_cp_port" value="qyg"></entry>
+					<entry key="panama_export_cp_country" value="mdg"></entry>
+					
+					<!--巴西进口-->
+					<entry key="brazil_import_cp_trade" value="qs,jks"></entry>
+					<entry key="brazil_import_cp_port" value=""></entry>
+					<entry key="brazil_import_cp_country" value="ycg,mdg"></entry>
+					
+					<!-- 哥伦比亚进口 -->
+					<entry key="colom_import_cp_trade" value="qs,jks,cks"></entry>
+					<entry key="colom_import_cp_country" value="ycg"></entry>
+					<entry key="colom_import_cp_port" value="hgcs"></entry>
+					
+					<!-- 哥伦比亚出口 -->
+					<entry key="colom_export_cp_trade" value="qs,cks"></entry>
+					<entry key="colom_export_cp_country" value="mdg"></entry>
+					<entry key="colom_export_cp_port" value="hgcs"></entry>
+					
+					<!-- 厄瓜多尔进口 -->
+					<entry key="ecuador_import_cp_trade" value="qs,jks,cks"></entry>
+					<entry key="ecuador_import_cp_country" value="ycg"></entry>
+					<entry key="ecuador_import_cp_port" value="qyg"></entry>
+					
+					<!-- 厄瓜多尔出口 -->
+					<entry key="ecuador_export_cp_trade" value="qs,jks,cks"></entry>
+					<entry key="ecuador_export_cp_country" value="mdg"></entry>
+					<entry key="ecuador_export_cp_port" value="hgcs,ddg"></entry>
+					
+					<!-- 巴基斯坦进口 -->
+					<entry key="pakistan_import_cp_trade" value="qs,jks,cks"></entry>
+					<entry key="pakistan_import_cp_port" value="qyg,ddg"></entry>
+					<entry key="pakistan_import_cp_country" value=""></entry>
+					
+					<!-- 巴拉圭进口 -->
+					<entry key="paraguay_import_cp_trade" value="qs,jks,cks"></entry>
+					<entry key="paraguay_import_cp_country" value="ycg"></entry>
+					<entry key="paraguay_import_cp_port" value="hgcs"></entry>
+					
+					<!-- 巴拉圭出口 -->
+					<entry key="paraguay_export_cp_trade" value="qs,jks,cks"></entry>
+					<entry key="paraguay_export_cp_country" value="mdg"></entry>
+					<entry key="paraguay_export_cp_port" value="hgcs"></entry>
+					
+					<!-- 秘鲁进口 -->
+					<entry key="peru_import_cp_trade" value="qs,jks,cks"></entry>
+					<entry key="peru_import_cp_country" value="ycg"></entry>
+					<entry key="peru_import_cp_port" value="hgcs,qyg"></entry>
+					
+					<!-- 秘鲁出口 -->
+					<entry key="peru_export_cp_trade" value="qs,cks"></entry>
+					<entry key="peru_export_cp_country" value="mdg"></entry>
+					<entry key="peru_export_cp_port" value="hgcs,ddg"></entry>
+					
+					<!-- 俄罗斯进口 -->
+					<entry key="russian_import_cp_country" value="ycg"></entry>
+					<entry key="russian_import_cp_trade" value="qs,jks,cks,zzs"></entry>
+					<entry key="russian_import_cp_port" value=""></entry>
+					
+					<!-- 俄罗斯出口 -->
+					<entry key="russian_export_cp_trade" value="qs,jks,cks,zzs"></entry>
+					<entry key="russian_export_cp_country" value="mdg"></entry>
+					<entry key="russian_export_cp_port" value=""></entry>
+					
+					<!-- 乌拉圭进口 -->
+					<entry key="uruguay_import_cp_trade" value="qs,jks"></entry>
+					<entry key="uruguay_import_cp_country" value="ycg"></entry>
+					<entry key="uruguay_import_cp_port" value="hgcs"></entry>
+					
+					<!-- 乌拉圭出口 -->
+					<entry key="uruguay_export_cp_trade" value="qs,cks"></entry>
+					<entry key="uruguay_export_cp_port" value="hgcs"></entry>
+					<entry key="uruguay_export_cp_country" value="mdg"></entry>
+					
+					<!-- 委内瑞拉进口 -->
+					<entry key="vnrl_import_cp_trade" value="qs,jks"></entry>
+					<entry key="vnrl_import_cp_country" value="ycg"></entry>
+					<entry key="vnrl_import_cp_port" value="hgcs,qyg"></entry>
+					
+					<!-- 委内瑞拉出口 -->
+					<entry key="vnrl_export_cp_trade" value="qs,cks"></entry>
+					<entry key="vnrl_export_cp_country" value="mdg"></entry>
+					<entry key="vnrl_export_cp_port" value="ddg,hgcs"></entry>
+
+					<!-- 越南进口 -->
+					<entry key="yn_import_cp_trade" value="qs,jks,cks"></entry>
+					<entry key="yn_import_cp_country" value="ycg"></entry>
+					<entry key="yn_import_cp_port" value="ddg"></entry>
+					
+					<!-- 玻利维亚进口 -->
+					<entry key="bolivia_import_cp_trade" value="qs,jks,cks"></entry>
+					<entry key="bolivia_import_cp_country" value="ycg"></entry>
+					<entry key="bolivia_import_cp_port" value=""></entry>
+					
+					<!-- 越南出口 -->
+					<entry key="yn_export_cp_trade" value="qs,jks,cks"></entry>
+					<entry key="yn_export_cp_country" value="ycg"></entry>
+					<entry key="yn_export_cp_port" value="qyg"></entry>
+					
+					<!--中国-->
+					<entry key="china_cp_trade" value="qs,zg_jks,zg_sfhd"></entry>
+					<entry key="china_cp_country" value="ycg"></entry>
+					<entry key="china_cp_port" value="zg_port"></entry>
+					
+				<!-- 报表类型整合分类:产品趋势分析,产品原产地分析,产品关区分析(智利,危地马拉,尼加拉瓜,萨尔瓦多,美国)-->
+					<!-- 智利进口-->
+					<entry key="chile_import_cp_trade" value="qs,jks"></entry>
+					<entry key="chile_import_cp_port" value="hgcs,qyg,ddg"></entry>
+					<entry key="chile_import_cp_country" value="ycg"></entry>
+					<!-- 智利出口-->
+					<entry key="chile_export_cp_trade" value="qs,cks"></entry>
+					<entry key="chile_export_cp_port" value="hgcs,ddg,qyg"></entry>
+					<entry key="chile_export_cp_country" value="mdg"></entry>
+					<!-- 危地马拉进口 -->
+					<entry key="wdml_import_cp_trade" value="qs,jks,cks,tzr"></entry>
+					<entry key="wdml_import_cp_port" value="qyg,ddg"></entry>
+					<entry key="wdml_import_cp_country" value="ycg,mdg"></entry>
+					<!-- 危地马拉出口 -->
+					<entry key="wdml_export_cp_trade" value="qs,jks,cks,tzr"></entry>
+					<entry key="wdml_export_cp_port" value="qyg,ddg"></entry>
+					<entry key="wdml_export_cp_country" value="ycg,mdg"></entry>
+					<!-- 尼加拉瓜进口 -->
+					<entry key="njlg_import_cp_trade" value="qs,jks,cks,tzr"></entry>
+					<entry key="njlg_import_cp_port" value="qyg,ddg"></entry>
+					<entry key="njlg_import_cp_country" value="ycg,mdg"></entry>
+					<!-- 尼加拉瓜出口 -->
+					<entry key="njlg_export_cp_trade" value="qs,jks,cks,tzr"></entry>
+					<entry key="njlg_export_cp_port" value="qyg,ddg"></entry>
+					<entry key="njlg_export_cp_country" value="ycg,mdg"></entry>
+					<!-- 萨尔瓦多进口 -->
+					<entry key="sewd_import_cp_trade" value="qs,jks,cks,tzr"></entry>
+					<entry key="sewd_import_cp_port" value="qyg,ddg"></entry>
+					<entry key="sewd_import_cp_country" value="ycg,mdg"></entry>
+					<!-- 萨尔瓦多出口 -->
+					<entry key="sewd_export_cp_trade" value="qs,jks,cks,tzr"></entry>
+					<entry key="sewd_export_cp_port" value="qyg,ddg"></entry>
+					<entry key="sewd_export_cp_country" value="ycg,mdg"></entry>
+					<!-- 美国 -->
+					<entry key="usa_import_cp_trade" value="qs,jks,cks,tzr"></entry>
+					<entry key="usa_import_cp_port" value="qyg"></entry>
+					<entry key="usa_import_cp_country" value=""></entry>
+					
+					<!--开始:配置每种国家的海关数据 需要汇总的字段 - -->
+					<!-- 字段配置优先级:金额 重量 数量 -->
+					<!-- 字段配置次优先级:金额 重量 件数 -->
+					<!-- 字段特殊配置级别:重量 件数 尺寸 -->
+					<!-- 陪衬字段 只用作判断使用:no,no,no -->
+					<entry key="argentina_import_order" value="cif_value,g_weight,quantity"></entry>
+					<entry key="argentina_export_order" value="cif_value,g_weight,quantity"></entry>
+					<entry key="brazil_import_order" value="fob_value,n_weight,quantity"></entry>
+					<entry key="chile_import_order" value="cif_value,g_weight,quantity"></entry>
+					<entry key="chile_export_order" value="cif_value,g_weight,quantity"></entry>
+					<entry key="colom_import_order" value="cif_value,n_weight,quantity"></entry>
+					<entry key="colom_export_order" value="fob_value,n_weight,quantity"></entry>
+					<entry key="const_import_order" value="cif_value,g_weight,no"></entry>
+					<entry key="const_export_order" value="cif_value,g_weight,no"></entry>
+					<entry key="ecuador_import_order" value="cif_value,quantity,no"></entry>
+					<entry key="ecuador_export_order" value="fob_value,quantity,no"></entry>
+					<entry key="wdml_import_order" value="quantity,no,no"></entry>
+					<entry key="wdml_export_order" value="quantity,no,no"></entry>
+					<entry key="honduras_import_order" value="cif_value,g_weight,no"></entry>
+					<entry key="honduras_export_order" value="fob_value,g_weight,no"></entry>
+					<entry key="india_import_order" value="inr_value,quantity,no"></entry>
+					<!-- 韩国 英国 本身没有任何汇总字段 所以无需配置 -->
+					<entry key="korea_order" value=""></entry>
+					<entry key="uk_import_order" value=""></entry>
+					<entry key="mexicon_import_order" value="fob_value,quantity"></entry>
+					<entry key="njlg_import_order" value="quantity"></entry>
+					<entry key="njlg_export_order" value="quantity"></entry>
+					<entry key="pakistan_import_order" value="g_weight,package"></entry>
+					<entry key="panama_import_order" value="cif_value,n_weight,quantity"></entry>
+					<entry key="panama_export_order" value="fob_value,n_weight,quantity"></entry>
+					<entry key="paraguay_import_order" value="cif_value,n_weight,quantity"></entry>
+					<entry key="paraguay_export_order" value="cif_value,n_weight,quantity"></entry>
+					<entry key="peru_import_order" value="cif_value,n_weight,quantity"></entry>
+					<entry key="peru_export_order" value="fob_value,n_weight,quantity"></entry>
+					<entry key="russian_import_order" value="cif_value,g_weight,quantity"></entry>
+					<!-- WangBo 添加俄罗斯出口  不确定value是否正确 -->
+					<entry key="russian_export_order" value="cif_value,g_weight"></entry>
+					<entry key="sewd_import_order" value="quantity"></entry>
+					<entry key="sewd_export_order" value="quantity"></entry>
+					<entry key="wkl_import_order" value="cif_value,n_weight,quantity"></entry>
+					<entry key="uruguay_import_order" value="cif_value,n_weight,quantity"></entry>
+					<entry key="uruguay_export_order" value="fob_value,n_weight,quantity"></entry>
+					<entry key="usa_import_order" value="g_weight,packages,measurement"></entry>
+					<entry key="vnrl_import_order" value="cif_value,n_weight"></entry>
+					<entry key="vnrl_export_order" value="fob_value,n_weight"></entry>
+					<entry key="yn_import_order" value="cif_value,quantity"></entry>
+					<entry key="yn_export_order" value="fob_value,quantity"></entry>
+					<entry key="china_order" value="cif_value,quantity"></entry>
+					<entry key="bolivia_import_order" value="cif_value,n_weight"></entry>
+					<!--开始:拆分报表字段进行实体对象组合 -->
+					<!--包含进口商字段的国家 -->
+					<entry key="jks_field" value="argentina_import,const_import,india_import,korea,wkl_import,uk_import,panama_import,brazil_import,colom_export,colom_import,ecuador_import,ecuador_export,pakistan_import,paraguay_import,paraguay_export,peru_import,peru_export,russian_export,russian_import,uruguay_import,vnrl_import,yn_import,yn_export,chile_import,wdml_import,wdml_export,njlg_import,njlg_export,sewd_import,sewd_export,usa_import,bolivia_import"></entry>
+					<!-- 包含company_name字段的国家 -->
+					<entry key="company_field" value="china,korea,uk_import"></entry>
+					<!-- 包含收发货地的字段的国家product_place -->
+					<entry key="place_field" value="china"></entry>
+					<!-- 包含port字段的国家 -->
+					<entry key="port_field" value="china"></entry>
+					<!-- 贸易类型分进出口的国家 -->
+					<entry key="tradetype_field" value="china,korea,wkl_import,russian_import"></entry>
+					<!--包含出口商字段的国家 -->
+					<entry key="cks_field" value="const_export,india_import,wkl_import,panama_export,colom_import,colom_export,ecuador_import,ecuador_export,pakistan_import,paraguay_import,paraguay_export,peru_export,peru_import,russian_import,russian_export,uruguay_export,vnrl_export,yn_import,yn_export,chile_export,wdml_import,wdml_export,njlg_import,njlg_export,sewd_import,sewd_export,usa_import,bolivia_import"></entry>
+					<!--包含起运港字段的国家 -->
+					<entry key="qyg_field" value="argentina_import,ecuador_import,pakistan_import,peru_import,vnrl_import,yn_export,chile_import,chile_export,wdml_import,wdml_export,njlg_import,njlg_export,sewd_import,sewd_export,usa_import,panama_export,china"></entry>
+					<!--包含抵达港字段的国家 -->
+					<entry key="ddg_field" value="panama_import,ecuador_export,pakistan_import,peru_export,vnrl_export,yn_import,chile_import,chile_export,wdml_import,wdml_export,njlg_import,njlg_export,sewd_import,sewd_export,usa_import"></entry>
+					<!--包含原产国字段的国家 -->
+					<entry key="ycg_field" value="honduras_import,mexicon_import,panama_import,argentina_import,brazil_import,colom_import,ecuador_import,pakistan_import,paraguay_import,peru_import,russian_import,uruguay_import,vnrl_import,yn_import,yn_export,chile_import,wdml_import,wdml_export,njlg_import,njlg_export,sewd_import,sewd_export,usa_import,india_import,china,bolivia_import"></entry>
+					<!--包含目的国字段的国家 -->
+					<entry key="mdg_field" value="argentina_export,honduras_export,panama_export,brazil_import,colom_export,ecuador_export,paraguay_export,peru_export,uruguay_export,vnrl_export,chile_export,wdml_import,wdml_export,njlg_import,njlg_export,sewd_import,sewd_export,russian_export"></entry>
+					<!--包含通知人字段的国家 -->
+					<entry key="tzr_field" value="usa_import,sewd_export,sewd_import,njlg_export,njlg_import,wdml_export,wdml_import"></entry>
+					<!--包含制造商字段的国家 -->
+					<entry key="zzs_field" value="russian_import,russian_export"></entry>
+					<!--包含海关城市字段的国家 -->
+					<entry key="hgcs_field" value="argentina_export,const_import,const_export,mexicon_import,argentina_import,colom_import,colom_export,ecuador_import,ecuador_export,paraguay_import,paraguay_export,peru_import,peru_export,uruguay_import,uruguay_export,vnrl_export,vnrl_import,chile_import,chile_export,bolivia_import"></entry>
+					<!--没有海关编码字段的国家 -->
+					<entry key="nohscode_field" value="usa_import,sewd_export,sewd_import,njlg_export,njlg_import,wdml_export,wdml_import,pakistan_import"></entry>
+					<!--结束: 拆分报表字段进行实体对象组合 -->
+					<!--结束:配置每种国家的海关数据 需要汇总的字段 - -->
+					
+					<!-- 配置哪些国家的排序字段是按照:金额 重量 数量 -->
+					<entry key="field_mwq" value="argentina_import,argentina_export,brazil_import,chile_import,chile_export,colom_import,colom_export,panama_import,panama_export,paraguay_import,paraguay_export,peru_import,peru_export,russian_import,uruguay_import,uruguay_export"></entry>
+					<!-- 配置哪些国家的排序字段是按照:数量 -->
+					<entry key="field_quantity" value="wdml_import,wdml_export,njlg_import,njlg_export,sewd_import,sewd_export"></entry>
+					<!-- 配置哪些国家的排序字段是按照:金额 数量 -->
+					<entry key="field_mq" value="ecuador_import,ecuador_export,india_import,mexicon_import,yn_import,yn_export,china"></entry>
+					<!-- 配置哪些国家的排序字段是按照:金额 重量 -->
+					<entry key="field_mw" value="const_import,const_export,honduras_import,honduras_export,vnrl_import,vnrl_export,wkl_import,russian_export,bolivia_import"></entry>
+					<!-- 配置哪些国家的字段排序是按照:重量 件数 尺寸 -->
+					<entry key="field_wps" value="usa_import"></entry>
+					<!-- 配置哪些国家的字段排序是按照:重量 件数 尺寸 -->
+					<entry key="field_wp" value="pakistan_import"></entry>
+					
+					<!--开始: 配置报表类型对应的实际字段取值的名称 -->
+					<entry key="jks" value="importer"></entry>
+					<entry key="jckscompare" value="importer"></entry>
+					<entry key="cks" value="exporter"></entry>
+					<entry key="qyg" value="start_port"></entry>
+					<entry key="ddg" value="end_port"></entry>
+					<entry key="ycg" value="origin_country"></entry>
+					<entry key="mdg" value="dest_country"></entry>
+					<entry key="tzr" value="notifier"></entry>
+					<entry key="zzs" value="manufacture"></entry>
+					<entry key="qs" value="date"></entry>
+					<entry key="hgcs" value="customs"></entry>
+					<entry key="zg_jks" value="company_name"></entry>
+					<entry key="chinajckscompare" value="company_name"></entry>
+					<entry key="zg_port" value="start_port"></entry>
+					<entry key="zg_sfhd" value="product_place"></entry>
+					<!--新增产品描述汇总-->
+					<entry key="goodsDesc" value="goods_desc"></entry>
+					<!--新增海关编码汇总-->
+					<entry key="hsCode" value="hscode"></entry>
+					<!--结束: 配置报表类型对应的实际字段取值的名称 -->
+					
+					<!-- 配置日期的格式显示是mm/yyyy的国家-->
+					<entry key="date_my" value="china,brazil_import,honduras_import,honduras_export,korea,mexicon_import,uk_import,vnrl_import,vnrl_export"></entry>
+					<!-- 配置日期的格式显示yyyy-mm-dd国家:除上面之前的所有的国家都是按照下面的这一个格式显示日期的 -->
+					<entry key="date_ymd" value="other_all"></entry>
+					<!-- 配置是否使用线程的标识: nouse_thread:代表不开启线程功能 ,use_thread代表使用线程功能-->
+					<!-- <entry key="thread_falg" value="nouse_thread"></entry> -->
+					<entry key="type_thread_falg" value="nouse_thread"></entry>
+					<entry key="record_thread_falg" value="nouse_thread"></entry>
+					<!-- 多线程每次读取的记录条数 -->
+					<entry key="thread_pagesize" value="30000"></entry>
+					<!-- 配置汇总默认显示的记录条数 -->
+					<entry key="default_size" value="10"></entry>
+					<!--新增流失报告参数标志-->
+					<entry key="addoff" value="jkscompare_first,jkscompare_second,ckscompare_first,ckscompare_second,companycompare_first,companycompare_second"></entry>
+					<!--需要处理标点符号的字符串 -->
+					<entry key="handleStr" value="customs,dest_country,importer,exporter,start_port,end_port,notifier,manufacture,origin_country"></entry>
+					<!-- 是否启用集合的过滤功能 no不启用 yes启用 -->
+					<entry key="useFilter" value="no"></entry>
+			</map>
+		</constructor-arg>
+	</bean>
+</beans>
+
+

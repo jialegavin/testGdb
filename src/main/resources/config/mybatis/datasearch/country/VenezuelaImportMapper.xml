@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.njyb.gbdbase.dao.datasearch.country.IVenezuelaImportDao">
+
+	<!--实体映射-->
+	<resultMap id="venezuelaImportResultMap" type="com.njyb.gbdbase.model.datasearch.venezuela.VenezuelaImportModel">
+		<!--主键id-->
+		<id property="venezuelaImportId" column="VENEZUELA_IMPORT_ID" />
+		<!--日期-->
+		<result property="date" column="DATE" />
+		<!--年-->
+		<result property="year" column="YEAR" />
+		<!--月-->
+		<result property="month" column="MONTH" />
+		<!---->
+		<result property="record" column="RECORD" />
+		<!--提单号(BL)-->
+		<result property="blNumber" column="BL_NUMBER" />
+		<!--HS章-->
+		<result property="chapter" column="CHAPTER" />
+		<!--HS章注(HS_CODE_DESC)-->
+		<result property="hsDesc" column="HS_DESC" />
+		<!--海关编码(HS_CODE)-->
+		<result property="hscode" column="HSCODE" />
+		<!--产品描述（HS_CODE_DESC）-->
+		<result property="goodsDesc" column="GOODS_DESC" />
+		<!--进口商-->
+		<result property="importer" column="IMPORTER" />
+		<!--海关城市(CUSTOM)-->
+		<result property="customs" column="CUSTOMS" />
+		<!--运输方式-->
+		<result property="transType" column="TRANS_TYPE" />
+		<!--起运港(EMBARQ_PORT:装货港)-->
+		<result property="startPort" column="START_PORT" />
+		<!--原产国-->
+		<result property="originCountry" column="ORIGIN_COUNTRY" />
+		<!--销售国-->
+		<result property="salesCountry" column="SALES_COUNTRY" />
+		<!--毛重-->
+		<result property="grossWeight" column="G_WEIGHT" />
+		<!--净重-->
+		<result property="netWeight" column="N_WEIGHT" />
+		<!--FOB玻利瓦尔价-->
+		<result property="boFob" column="BO_FOB" />
+		<!--FOB美元价-->
+		<result property="fobValue" column="FOB_VALUE" />
+		<!--CIF玻利瓦尔价-->
+		<result property="boCif" column="BO_CIF" />
+		<!--CIF美元价-->
+		<result property="cifValue" column="CIF_VALUE" />
+	</resultMap>
+
+
+	<!-- 通用查询结果列-->
+	<sql id="Base_Column_List">
+		VENEZUELA_IMPORT_ID,
+	DATE,	YEAR,	MONTH,	RECORD,	BL_NUMBER,	CHAPTER,	HS_DESC,	HSCODE,
+	GOODS_DESC,	IMPORTER,	CUSTOMS,	TRANS_TYPE,	START_PORT,	ORIGIN_COUNTRY,	SALES_COUNTRY,	G_WEIGHT,
+	N_WEIGHT,	BO_FOB,	FOB_VALUE,	BO_CIF,	CIF_VALUE
+	</sql>
+
+	<!-- 查询（根据主键ID查询） -->
+	<select id="queryByPrimaryAll" resultMap="venezuelaImportResultMap" parameterType="java.lang.Integer">
+		 SELECT
+		 <include refid="Base_Column_List" />
+		 FROM data_venezuela_import
+		 WHERE VENEZUELA_IMPORT_ID in ${sql}
+	</select>
+
+
+</mapper>

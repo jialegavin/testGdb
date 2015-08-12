@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.njyb.gbdbase.dao.datasearch.country.IVietnamExportDao">
+
+	<!--实体映射-->
+	<resultMap id="vietnamExportResultMap" type="com.njyb.gbdbase.model.datasearch.vietnam.VietnamExportModel">
+		<!---->
+		<id property="vietnamExportId" column="VIETNAM_EXPORT_ID" />
+		<!--日期（REG_DATE）-->
+		<result property="date" column="DATE" />
+		<!--起运港(PORT_NAME)-->
+		<result property="startPort" column="START_PORT" />
+		<!--进口商-->
+		<result property="importer" column="IMPORTER" />
+		<!--出口商-->
+		<result property="exporter" column="EXPORTER" />
+		<!--海关编码(HS_CODE)-->
+		<result property="hscode" column="HSCODE" />
+		<!--产品描述(PRODUCT_DESC)-->
+		<result property="goodsDesc" column="GOODS_DESC" />
+		<!--原产国-->
+		<result property="originCountry" column="ORIGIN_COUNTRY" />
+		<!--数量单位(UNIT_OF_QUANTITY)-->
+		<result property="quantityUnit" column="QUANTITY_UNIT" />
+		<!--数量-->
+		<result property="quantity" column="QUANTITY" />
+		<!--FOB单价-->
+		<result property="fobUnit" column="FOB_UNIT" />
+		<!--FOB金额（FOB）-->
+		<result property="fobValue" column="FOB_VALUE" />
+		<!--币种-->
+		<result property="currency" column="CURRENCY" />
+		<!--成交方式-->
+		<result property="incoterms" column="INCOTERMS" />
+		<!--支付方式-->
+		<result property="payment" column="PAYMENT" />
+		<!--FOB美元价-->
+		<result property="usFob" column="US_FOB" />
+		<!--税收-->
+		<result property="tax" column="TAX" />
+	</resultMap>
+
+
+	<!-- 通用查询结果列-->
+	<sql id="Base_Column_List">
+		VIETNAM_EXPORT_ID,
+	DATE,	START_PORT,	IMPORTER,	EXPORTER,	HSCODE,	GOODS_DESC,	ORIGIN_COUNTRY,	QUANTITY_UNIT,
+	QUANTITY,	FOB_UNIT,	FOB_VALUE,	CURRENCY,	INCOTERMS,	PAYMENT,	US_FOB,	TAX
+
+	</sql>
+
+	<!-- 查询（根据主键ID查询） -->
+	<select id="queryByPrimaryAll" resultMap="vietnamExportResultMap" parameterType="java.lang.Integer">
+		 SELECT
+		 <include refid="Base_Column_List" />
+		 FROM data_vietnam_export
+		 WHERE VIETNAM_EXPORT_ID in ${sql}
+	</select>
+
+
+</mapper>

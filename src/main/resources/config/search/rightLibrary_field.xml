@@ -1,0 +1,227 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.1.xsd">
+	<!-- 作者:WangBo -->
+	<description>权库配置文件</description>
+	<bean id="searchRightLibraryModel"
+		class="com.njyb.gbdbase.model.alldb.commonrightlibrary.SearchRightLibraryModel"
+		scope="prototype">
+		<property name="propertiesMap">
+			<ref local="rightLibrary_map" />
+		</property>
+	</bean>
+	<bean id="rightLibrary_map" class="java.util.HashMap">
+		<constructor-arg>
+			<map>
+				<!-- *****************************************BEGIN********************************************** -->
+				<!-- 注意!!!!!!!!!!!!!!!!!!!! dateConfig 不是条件,为 日期格式处理标示符-->
+				<!-- 格式为: 索引条件 ?=? ; 报表类型 ?=? -->
+
+				<!-- 中国 -->
+				<entry key="中国"
+					value="dateConfig=,date=date,hscode=hscode,goods_desc=goods_desc,company_name=company_name,trade_type=;GOODSSUM=goods_desc,IMPORTERSUMMARY=company_name,EXPORTERSUMMARY=company_name,TRANSACTIONTREND=date">
+				</entry>
+				<!-- 美国进口 -->
+				<entry key="美国进口"
+					value="date=date,goods_desc=goods_desc,importer=importer,exporter=exporter;GOODSSUM=goods_desc,PORTOFSHIPMENT=startport,IMPORTERSUMMARY=importer,EXPORTERSUMMARY=exporter,TRANSACTIONTREND=date">
+				</entry>
+				<!-- 阿根廷进口 -->
+				<entry key="阿根廷进口"
+					value="date=date,goods_desc=goods_desc,importer=importer,hscode=hscode;GOODSSUM=goods_desc,PORTOFSHIPMENT=startport,IMPORTERSUMMARY=importer,TRANSACTIONTREND=date,NATIVE=origin_country">
+				</entry>
+				<!-- 阿根廷出口 -->
+				<entry key="阿根廷出口"
+					value="date=date,goods_desc=goods_desc,hscode=hscode;GOODSSUM=goods_desc,TRANSACTIONTREND=date">
+				</entry>
+				<!-- 巴西进口 -->
+				<entry key="巴西进口"
+					value="dateConfig=,date=date,goods_desc=goods_desc,importer=importer,hscode=hscode;TRANSACTIONTREND=date,GOODSSUM=goods_desc,NATIVE=origin_country,IMPORTERSUMMARY=importer">
+				</entry>
+				<!-- 智利进口 -->
+				<entry key="智利进口"
+					value="date=date,goods_desc=goods_desc,importer=importer,hscode=hscode;TRANSACTIONTREND=date,GOODSSUM=goods_desc,NATIVE=origin_country,IMPORTERSUMMARY=importer,PORTOFSHIPMENT=startport,PORTOFARRIVAL=endport">
+				</entry>
+				<!-- 智利出口 -->
+				<entry key="智利出口"
+					value="date=date,goods_desc=goods_desc,hscode=hscode,exporter=exporter;TRANSACTIONTREND=date,GOODSSUM=goods_desc,EXPORTERSUMMARY=exporter,PORTOFSHIPMENT=startport,PORTOFARRIVAL=endport"></entry>
+				<!-- 哥伦比亚进口 -->
+				<entry key="哥伦比亚进口"
+					value="date=date,goods_desc=goods_desc,importer=importer,hscode=hscode,exporter=exporter;TRANSACTIONTREND=date,GOODSSUM=goods_desc,EXPORTERSUMMARY=exporter,IMPORTERSUMMARY=importer,NATIVE=origin_country">
+				</entry>
+				<!-- 哥伦比亚出口 -->
+				<entry key="哥伦比亚出口"
+					value="date=date,goods_desc=goods_desc,importer=importer,hscode=hscode,exporter=exporter;TRANSACTIONTREND=date,GOODSSUM=goods_desc,EXPORTERSUMMARY=exporter,IMPORTERSUMMARY=importer">
+				</entry>
+				<!-- 哥斯达黎加进口 -->
+				<entry key="哥斯达黎加进口"
+					value="date=date,goods_desc=goods_desc,importer=importer,hscode=hscode;TRANSACTIONTREND=date,GOODSSUM=goods_desc,IMPORTERSUMMARY=importer">
+				</entry>
+				<!-- 哥斯达黎加出口 -->
+				<entry key="哥斯达黎加出口"
+					value="date=date,goods_desc=goods_desc,hscode=hscode,exporter=exporter;TRANSACTIONTREND=date,GOODSSUM=goods_desc,EXPORTERSUMMARY=exporter">
+				</entry>
+				<!-- 厄瓜多尔进口 -->
+				<entry key="厄瓜多尔进口"
+					value="date=date,goods_desc=goods_desc,importer=importer,hscode=hscode,exporter=exporter;TRANSACTIONTREND=date,GOODSSUM=goods_desc,IMPORTERSUMMARY=importer,EXPORTERSUMMARY=exporter,NATIVE=origin_country,PORTOFSHIPMENT=startport"></entry>
+				<!-- 厄瓜多尔出口 -->
+				<entry key="厄瓜多尔出口"
+					value="date=date,goods_desc=goods_desc,importer=importer,hscode=hscode,exporter=exporter;TRANSACTIONTREND=date,GOODSSUM=goods_desc,IMPORTERSUMMARY=importer,EXPORTERSUMMARY=exporter,PORTOFARRIVAL=endport">
+				</entry>
+				<!-- 危地马拉进口 -->
+				<entry key="危地马拉进口"
+					value="date=date,goods_desc=goods_desc,importer=importer,exporter=exporter;TRANSACTIONTREND=date,GOODSSUM=goods_desc,IMPORTERSUMMARY=importer,EXPORTERSUMMARY=exporter,NATIVE=origin_country,PORTOFSHIPMENT=startport,PORTOFARRIVAL=endport">
+				</entry>
+				<!-- 危地马拉出口 -->
+				<entry key="危地马拉出口"
+					value="date=date,goods_desc=goods_desc,importer=importer,exporter=exporter;TRANSACTIONTREND=date,GOODSSUM=goods_desc,IMPORTERSUMMARY=importer,EXPORTERSUMMARY=exporter,NATIVE=origin_country,PORTOFSHIPMENT=startport,PORTOFARRIVAL=endport">
+				</entry>
+				<!-- 洪都拉斯进口 -->
+				<entry key="洪都拉斯进口"
+					value="dateConfig=,date=date,goods_desc=goods_desc,hscode=hscode;TRANSACTIONTREND=date,GOODSSUM=goods_desc,NATIVE=origin_country">
+				</entry>
+				<!-- 洪都拉斯出口  No Data-->
+				<entry key="洪都拉斯出口"
+					value="dateConfig=,date=date,goods_desc=goods_desc,hscode=hscode;TRANSACTIONTREND=date,GOODSSUM=goods_desc,NATIVE=origin_country">
+				</entry>
+				<!-- 印度进口 -->
+				<entry key="印度进口"
+					value="date=date,goods_desc=goods_desc,hscode=hscode,importer=importer,exporter=exporter;TRANSACTIONTREND=date,GOODSSUM=goods_desc,IMPORTERSUMMARY=importer,EXPORTERSUMMARY=exporter,PORTOFSHIPMENT=startport,NATIVE=origin_country"></entry>
+				<!-- 韩国 -->
+				<entry key="韩国"
+					value="dateConfig=,date=date,goods_desc=goods_desc,hscode=hscode,trade_type=,company_name=company_name;TRANSACTIONTREND=date,GOODSSUM=goods_desc,IMPORTERSUMMARY=company_name,EXPORTERSUMMARY=company_name">
+				</entry>
+				<!-- 墨西哥进口 -->
+				<entry key="墨西哥进口"
+					value="dateConfig=,date=date,goods_desc=goods_desc,hscode=hscode;TRANSACTIONTREND=date,GOODSSUM=goods_desc,NATIVE=origin_country">
+				</entry>
+				<!-- 尼加拉瓜进口 -->
+				<entry key="尼加拉瓜进口"
+					value="date=date,goods_desc=goods_desc,importer=importer,exporter=exporter;TRANSACTIONTREND=date,GOODSSUM=goods_desc,NATIVE=origin_country,IMPORTERSUMMARY=importer,EXPORTERSUMMARY=exporter,PORTOFSHIPMENT=startport,PORTOFARRIVAL=endport">
+				</entry>
+				<!-- 尼加拉瓜出口 -->
+				<entry key="尼加拉瓜出口"
+					value="date=date,goods_desc=goods_desc,importer=importer,exporter=exporter;TRANSACTIONTREND=date,GOODSSUM=goods_desc,NATIVE=origin_country,IMPORTERSUMMARY=importer,EXPORTERSUMMARY=exporter,PORTOFSHIPMENT=startport,PORTOFARRIVAL=endport">
+				</entry>
+				<!-- 巴基斯坦进口 -->
+				<entry key="巴基斯坦进口"
+					value="date=date,goods_desc=goods_desc,importer=importer,exporter=exporter;TRANSACTIONTREND=date,GOODSSUM=goods_desc,IMPORTERSUMMARY=importer,EXPORTERSUMMARY=exporter,PORTOFSHIPMENT=startport,PORTOFARRIVAL=endport">
+				</entry>
+				<!-- 巴拿马进口 -->
+				<entry key="巴拿马进口"
+					value="date=date,goods_desc=goods_desc,hscode=hscode,importer=importer;TRANSACTIONTREND=date,GOODSSUM=goods_desc,IMPORTERSUMMARY=importer,PORTOFARRIVAL=endport,NATIVE=origin_country">
+				</entry>
+				<!-- 巴拿马出口 -->
+				<entry key="巴拿马出口"
+					value="date=date,goods_desc=goods_desc,hscode=hscode,exporter=exporter;TRANSACTIONTREND=date,GOODSSUM=goods_desc,PORTOFSHIPMENT=startport,EXPORTERSUMMARY=exporter">
+				</entry>
+				<!-- 巴拉圭进口 -->
+				<entry key="巴拉圭进口"
+					value="date=date,goods_desc=goods_desc,hscode=hscode,importer=importer,exporter=exporter;TRANSACTIONTREND=date,GOODSSUM=goods_desc,NATIVE=origin_country,IMPORTERSUMMARY=importer,EXPORTERSUMMARY=exporter">
+				</entry>
+				<!-- 巴拉圭出口 -->
+				<entry key="巴拉圭出口"
+					value="date=date,goods_desc=goods_desc,hscode=hscode,importer=importer,exporter=exporter;TRANSACTIONTREND=date,GOODSSUM=goods_desc,IMPORTERSUMMARY=importer,EXPORTERSUMMARY=exporter">
+				</entry>
+				<!-- 秘鲁进口 -->
+				<entry key="秘鲁进口"
+					value="date=date,goods_desc=goods_desc,hscode=hscode,importer=importer;TRANSACTIONTREND=date,GOODSSUM=goods_desc,IMPORTERSUMMARY=importer,EXPORTERSUMMARY=exporter,PORTOFSHIPMENT=startport,NATIVE=origin_country">
+				</entry>
+				<!-- 秘鲁出口 -->
+				<entry key="秘鲁出口"
+					value="date=date,goods_desc=goods_desc,hscode=hscode,exporter=exporter;TRANSACTIONTREND=date,GOODSSUM=goods_desc,EXPORTERSUMMARY=exporter,PORTOFARRIVAL=endport">
+				</entry>
+				<!-- 萨尔瓦多进口 -->
+				<entry key="萨尔瓦多进口"
+					value="date=date,goods_desc=goods_desc,importer=importer,exporter=exporter;TRANSACTIONTREND=date,GOODSSUM=goods_desc,IMPORTERSUMMARY=importer,EXPORTERSUMMARY=exporter,PORTOFSHIPMENT=startport,PORTOFARRIVAL=endport,NATIVE=origin_country">
+				</entry>
+				<!-- 萨尔瓦多出口 -->
+				<entry key="萨尔瓦多出口"
+					value="date=date,goods_desc=goods_desc,importer=importer,exporter=exporter;TRANSACTIONTREND=date,GOODSSUM=goods_desc,IMPORTERSUMMARY=importer,EXPORTERSUMMARY=exporter,PORTOFSHIPMENT=startport,PORTOFARRIVAL=endport,NATIVE=origin_country">
+				</entry>
+				<!-- 英国进口  注意！！！！！-->
+				<entry key="英国进口"
+					value="dateConfig=,date=date,hscode=hscode,company_name=company_name,goods_desc=goods_desc;TRANSACTIONTREND=date,GOODSSUM=goods_desc,IMPORTERSUMMARY=company_name,EXPORTERSUMMARY=company_name">
+				</entry>
+				<!-- 乌克兰进口 -->
+				<entry key="乌克兰进口"
+					value="date=date,goods_desc=goods_desc,hscode=hscode,importer=importer,exporter=exporter;TRANSACTIONTREND=date,GOODSSUM=goods_desc,IMPORTERSUMMARY=importer,EXPORTERSUMMARY=exporter">
+				</entry>
+				<!-- 乌拉圭进口 -->
+				<entry key="乌拉圭进口"
+					value="date=date,goods_desc=goods_desc,hscode=hscode,importer=importer;TRANSACTIONTREND=date,GOODSSUM=goods_desc,IMPORTERSUMMARY=importer,NATIVE=origin_country">
+				</entry>
+				<!-- 乌拉圭出口 -->
+				<entry key="乌拉圭出口"
+					value="date=date,goods_desc=goods_desc,hscode=hscode,exporter=exporter;TRANSACTIONTREND=date,GOODSSUM=goods_desc,EXPORTERSUMMARY=exporter">
+				</entry>
+				<!-- 委内瑞拉进口 -->
+				<entry key="委内瑞拉进口"
+					value="dateConfig=,date=date,goods_desc=goods_desc,hscode=hscode,importer=importer;TRANSACTIONTREND=date,GOODSSUM=goods_desc,IMPORTERSUMMARY=importer,PORTOFSHIPMENT=startport,NATIVE=origin_country">
+				</entry>
+				<!-- 委内瑞拉出口 -->
+				<entry key="委内瑞拉出口"
+					value="dateConfig=,date=date,goods_desc=goods_desc,hscode=hscode,exporter=exporter;TRANSACTIONTREND=date,GOODSSUM=goods_desc,EXPORTERSUMMARY=exporter,PORTOFARRIVAL=endport">
+				</entry>
+				<!-- 越南进口 -->
+				<entry key="越南进口"
+					value="date=date,goods_desc=goods_desc,hscode=hscode,importer=importer,exporter=exporter;TRANSACTIONTREND=date,GOODSSUM=goods_desc,IMPORTERSUMMARY=importer,EXPORTERSUMMARY=exporter,NATIVE=origin_country,PORTOFARRIVAL=endport">
+				</entry>
+				<!-- 越南出口 -->
+				<entry key="越南出口"
+					value="date=date,goods_desc=goods_desc,hscode=hscode,importer=importer,exporter=exporter;TRANSACTIONTREND=date,GOODSSUM=goods_desc,IMPORTERSUMMARY=importer,EXPORTERSUMMARY=exporter,NATIVE=origin_country,PORTOFSHIPMENT=startport"></entry>
+				<!-- 俄罗斯进口 -->
+				<entry key="俄罗斯进口"
+					value="date=date,hscode=hscode,goods_desc=goods_desc,importer=importer,exporter=exporter;TRANSACTIONTREND=date,GOODSSUM=goods_desc,IMPORTERSUMMARY=importer,EXPORTERSUMMARY=exporter,NATIVE=origin_country">
+				</entry>
+				<!-- 俄罗斯出口 -->
+				<entry key="俄罗斯出口"
+					value="date=date,hscode=hscode,goods_desc=goods_desc,importer=importer,exporter=exporter;TRANSACTIONTREND=date,GOODSSUM=goods_desc,IMPORTERSUMMARY=importer,EXPORTERSUMMARY=exporter,NATIVE=origin_country">
+				</entry>
+				<!-- 玻利维亚进口 -->
+<!-- 				<entry key="玻利维亚进口" -->
+<!-- 					value="date=date,hscode=hscode,goods_desc=goods_desc,importer=importer,exporter=exporter;NATIVE=origin_country,TRANSACTIONTREND=date,GOODSSUM=goods_desc,IMPORTERSUMMARY=importer,EXPORTERSUMMARY=exporter"> -->
+<!-- 				</entry> -->
+
+				<!-- *****************************************END********************************************** -->
+
+				<!-- 报告类型和字段的映射 -->
+				<!-- *****************************************BEGIN********************************************** -->
+					<!-- IMPORTERSUMMARY 进口商汇总 -->
+					<entry key="IMPORTERSUMMARY" value="importer"></entry>
+					<!-- EXPORTERSUMMARY 出口商汇总 -->
+					<entry key="EXPORTERSUMMARY" value="exporter"></entry>
+					<!-- TRANSACTIONTREND 交易趋势 -->
+					<entry key="TRANSACTIONTREND" value="date"></entry>
+					<!-- SAMERING 同环比汇总 -->
+					<entry key="SAMERING" value="date"></entry>
+					<!-- GOODSSUM 产品汇总报告 -->
+					<entry key="GOODSSUM" value="goods_desc"></entry>
+					<!-- PORTOFSHIPMENT 起运港汇总报告 -->
+					<entry key="PORTOFSHIPMENT" value="startport"></entry>
+					<!-- PORTOFARRIVAL 抵达港汇总报告 -->
+					<entry key="PORTOFARRIVAL" value="endport"></entry>
+					<!-- NATIVE 原产国汇总报告 -->
+					<entry key="NATIVE" value="origin_country"></entry>
+				<!-- *****************************************END************************************************* -->
+				
+				<!--开始: 配置报表类型对应的实际字段取值的名称 -->
+					<entry key="importer" value="jks"></entry>
+					<entry key="exporter" value="cks"></entry>
+					<entry key="startport" value="qyg"></entry>
+					<entry key="endport" value="ddg"></entry>
+					<entry key="origin_country" value="ycg"></entry>
+					<entry key="dest_country" value="mdg"></entry>
+					<entry key="notifier" value="tzr"></entry>
+					<entry key="manufacture" value="zzs"></entry>
+					<entry key="date" value="qs"></entry>
+					<entry key="customs" value="hgcs"></entry>
+					<entry key="company_name" value="zg_jks"></entry>
+					<entry key="port" value="zg_port"></entry>
+					<entry key="prodcut_place" value="zg_sfhd"></entry>
+					<entry key="goods_desc" value="goodsDesc"></entry>
+				<!--结束: 配置报表类型对应的实际字段取值的名称 -->
+			</map>
+		</constructor-arg>
+	</bean>
+</beans>
