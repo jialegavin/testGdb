@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>  
+<!DOCTYPE mapper  PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN" "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+<mapper namespace="com.njyb.auth.dao.cmp.IOrderAuthDao">
+	
+	<!-- WangBo : 查询按次用户个数用户个数 -->
+	<resultMap type="com.njyb.gbdbase.model.admincenter.UserCountModel" id="userCountModel">
+		<result column="userid" property="userId" jdbcType="VARCHAR"/>
+		<result column="email" property="email" jdbcType="VARCHAR"/>
+		<result column="doMain" property="domain" jdbcType="VARCHAR"/>
+		<result column="loginname" property="loginName" jdbcType="VARCHAR"/>
+		<result column="totalnum" property="totalNum" jdbcType="INTEGER"/>
+		<result column="totalMoney" property="totalMoney" jdbcType="INTEGER"/>
+		<result column="remainnum" property="remainNum" jdbcType="INTEGER"/>
+		<result column="residueNum" property="residueNum" jdbcType="INTEGER"/>
+		<result column="residueMoney" property="residueMoney" jdbcType="INTEGER"/>
+		<result column="consumptionMoney" property="consumptionMoney" jdbcType="INTEGER"/>
+	</resultMap>
+	
+	<!--  WangBo : 按次用户 购买的 国家 和 对应的国家id  -->
+	<resultMap type="com.njyb.gbdbase.model.admincenter.UserCountBuyerModel" id="UserCountBuyer">
+		<result column="country_en" property="countryEn" />
+		<result column="country_cn" property="countryCn" />
+		<result column="country_id" property="countryId" />
+	</resultMap>
+	
+	<!--  WangBo : 扣费业务过程 -->
+	<select id="userCountBuUserId" statementType="CALLABLE"  parameterType="java.util.Map">
+		{CALL user_next_look_pro(#{temp_userid,mode=IN,jdbcType=VARCHAR},#{country_en,mode=IN,jdbcType=VARCHAR},#{countryid,mode=IN,jdbcType=INTEGER},#{look_money,mode=IN,jdbcType=DOUBLE},#{state,mode=OUT,jdbcType=INTEGER},#{message,mode=OUT,jdbcType=VARCHAR})}
+	</select>
+	
+	<!--  WangBo : 查询出按次用户所有的用户 -->
+	<select id="queryUserConsuming" parameterType="java.util.Map" resultMap="userCountModel">
+		SELECT su.userid as userid,su.domain as doMain,sum(ucr.totalmoney) as totalMoney,su.loginname as loginname,su.email as email,
+		ucrt.totalnum as totalnum,ucrt.remainnum as remainnum,(sum(ucr.totalmoney) - (#{look_price} * ucrt.remainnum)) as residueMoney,
+		(ucrt.remainnum * #{look_price}) as consumptionMoney,CAST((sum(ucr.totalmoney) / #{look_price} - ucrt.remainnum) AS unsigned) as residueNum
+		FROM user_consuming_records ucr
+		LEFT JOIN user_count_right ucrt ON ucr.userid = ucrt.userid
+		LEFT JOIN sys_user su ON ucr.userid = su.userid
+		WHERE su.userdesc = #{type} 
+		GROUP BY ucr.userid
+	</select>
+	
+	<!--  WangBo : 查询出按次用户所有的用户 -->
+	<select id="userRightCount" parameterType="java.util.Map" resultMap="userCountModel">
+		SELECT su.userid as userid,sum(ucr.totalmoney) as totalMoney,su.loginname as loginname,su.email as email,
+		ucrt.totalnum as totalnum,ucrt.remainnum as remainnum,(sum(ucr.totalmoney) - (#{look_price} * ucrt.remainnum)) as residueMoney,
+		(ucrt.remainnum * #{look_price}) as consumptionMoney,CAST((sum(ucr.totalmoney) / #{look_price} - ucrt.remainnum) AS unsigned) as residueNum
+			FROM user_consuming_records ucr
+			LEFT JOIN user_count_right ucrt ON ucr.userid = ucrt.userid
+			LEFT JOIN sys_user su ON ucr.userid = su.userid
+			WHERE su.userdesc = #{type} AND ucr.userid = #{userId}
+	</select>
+	
+	<!--  WangBo : 查询国家,国家对应的id -->
+	<select id="queryCountIdList" parameterType="java.util.Map" resultMap="UserCountBuyer">
+		SELECT scc.country_en,scc.country_cn,unc.country_id
+			FROM user_count_right ucr 
+			LEFT JOIN sys_user su ON ucr.userid = su.userid
+			LEFT JOIN user_next_count unc ON unc.userid = ucr.userid
+			LEFT JOIN sys_country_code scc ON unc.code_id = scc.code_id
+			WHERE su.userdesc = #{type} 
+			AND ucr.userid = #{userId} 
+			AND scc.country_en = #{country_en} 
+	</select>
+	
+	<!--  WangBo : 添加用户次数表 -->
+	<insert id="addUserCount" parameterType="java.util.Map">
+		INSERT INTO user_count_right(userid,totalnum,remainnum)
+		VALUES (#{userId},#{totalNum},#{remaiNum})
+	</insert>
+</mapper>

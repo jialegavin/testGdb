@@ -24,6 +24,7 @@
 		<menuitem id="accoutDetail" name="消费信息查询" url="/dbas/view/order/consumerRecords/showAccountDetail.jsp"/>
 		<menuitem id="accoutDetailManger" name="账户管理明细" url="/dbas/view/accout/acount/accountdetails.jsp"/>
 		<menuitem id="commonInfoChange" name="动态更换网页信息" url="/dbas/view/accout/acount/showLoginCommonInfo.jsp"/>
+		<menuitem id="addRightbyuser" name="账户授权" url="/gbdbas/view/admincenter/addRightByUser/adduser.jsp"/>
 	</menu>
 	<menu name="账户监控" id="chemicalManager">
 		<menuitem id="chemicaAccoutDetail" name="账户管理明细" url="/dbas/view/accout/acount/chemicalAccountDetails.jsp"/>

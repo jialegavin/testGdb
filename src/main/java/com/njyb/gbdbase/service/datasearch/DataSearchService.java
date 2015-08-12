@@ -67,7 +67,7 @@ public class DataSearchService<T> extends CommonSearchService implements
 	@SuppressWarnings("unchecked")
 	public <T> List<T> getDataById(String country, List<Integer> idList) {
 		// 切换数据库
-		DBContextUtil.setDbTypeName(DBContextUtil.DATA_SOURCE_DS);
+		//DBContextUtil.setDbTypeName(DBContextUtil.DATA_SOURCE_DS);
 		List<T> list = new ArrayList<T>();
 		SqlModel sqlModel = new SqlModel();
 		sqlModel.setSql(getMyBatiesSql(idList));
@@ -83,6 +83,22 @@ public class DataSearchService<T> extends CommonSearchService implements
 			list = (List<T>) IChileImportDao.queryByPrimaryAll(sqlModel);
 		} else if (country.equals(DataSearchConstantUtil.CHINA_EIGHT)) {
 			list = (List<T>) IChinaEightDao.queryByPrimaryAll(sqlModel);
+			if(list!=null){
+				for(T t:list){
+					try {
+						String orgdate=BeanUtils.getProperty(t, "date");
+					    if (orgdate.contains("/")) {
+					    	String ndate=orgdate.substring(3,orgdate.length())+orgdate.substring(0,2);
+							BeanUtils.setProperty(t, "date", ndate);
+						}
+					    else{
+					    	BeanUtils.setProperty(t, "date", orgdate);
+					    }
+					} catch (Exception e) {
+						e.printStackTrace();
+					}
+				}
+			}
 		} else if (country.equals(DataSearchConstantUtil.COLOMBIA_EXPORT)) {
 			list = (List<T>) IColombiaExportDao.queryByPrimaryAll(sqlModel);
 		} else if (country.equals(DataSearchConstantUtil.COLOMBIA_IMPORT)) {

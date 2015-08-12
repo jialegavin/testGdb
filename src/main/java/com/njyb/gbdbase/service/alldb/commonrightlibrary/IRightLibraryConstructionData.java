@@ -1,5 +1,6 @@
 package com.njyb.gbdbase.service.alldb.commonrightlibrary;
 
+import java.util.IdentityHashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -80,4 +81,14 @@ public interface IRightLibraryConstructionData {
 	 * @return resultReportName : 返回的报告类型 字符串
 	 */
 	public String getReportName(String reportName);
+
+	/**
+	 * 全库下载 构造函数
+	 * @param key
+	 * @param value
+	 * @param countryName
+	 * @return
+	 */
+	IdentityHashMap<String, Map<String, Object>> constantDownLoad(List<String> key,
+			List<String> value, String countryName);
 }

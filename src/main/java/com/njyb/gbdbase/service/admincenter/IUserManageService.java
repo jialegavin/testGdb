@@ -2,6 +2,7 @@ package com.njyb.gbdbase.service.admincenter;
 
 import java.util.List;
 
+import com.njyb.gbdbase.model.admincenter.UserConsumingRecordsModel;
 import com.njyb.gbdbase.model.admincenter.UserModel;
 import com.njyb.gbdbase.model.usermanagement.QueryModel;
 
@@ -81,5 +82,34 @@ public interface IUserManageService {
 	 * @return
 	 */
 	boolean upUserInfo(UserModel user);
+	
+	/**
+	 * 添加拥有权限用户
+	 * @param user
+	 * @param userConsumingRecordsModel
+	 * @return String
+	 * @author XL
+	 * @createTime 2015-06-24
+	 */
+	String addRightUser(UserModel user,UserConsumingRecordsModel userConsumingRecordsModel);
+	
+	/**
+	 * 添加用户消费记录
+	 * @param userConsumingRecordsModel
+	 * @return boolean
+	 * @author XL
+	 * @createTime 2015-06-25
+	 */
+	boolean addConsumingRecords(UserConsumingRecordsModel userConsumingRecordsModel);
+	
+	/**
+	 * 为已注册用户添加消费记录
+	 * @param user
+	 * @param userConsumingRecordsModel
+	 * @return String
+	 * @author XL
+	 * @createTime 2015-06-25
+	 */
+	String addConsumingRecordsByUser(UserModel user,UserConsumingRecordsModel userConsumingRecordsModel);
 	
 }

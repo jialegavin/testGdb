@@ -65,3 +65,21 @@ a.print_cls:hover{
 	cursor:pointer;
 	background:url("/gbdbas/static/img/datasearch/viewdetail/printHover.png") no-repeat center;
 }
+
+a.russion_print_cls{
+    color: #000;
+    text-decoration: none;
+    font-size: 12px;
+    width:110px;
+    height:25px;
+    line-height: 25px;
+    text-align: center;
+    display: inline-block;
+    font-family: "宋体",Heiti, arial,helvetica,sans-serif !important;
+    background:url("/gbdbas/static/img/datasearch/viewdetail/print_big.png") no-repeat center;
+}
+
+a.russion_print_cls:hover{
+	cursor:pointer;
+	background:url("/gbdbas/static/img/datasearch/viewdetail/printHover_big.png") no-repeat center;
+}

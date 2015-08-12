@@ -124,3 +124,24 @@ function openCompareDataDialog(title,divId,dialogId,width, height,lock){
 	});
 }
 
+/*function openCompareDataDialog2(title,divId,dialogId,width, height,lock){
+	var dlgTitle = title;
+	var divid = divId;
+	var dialogid = dialogId;
+	if (lock == null || lock == "") {
+		lock = false;
+	}
+	art.dialog({  
+		title:dlgTitle,
+	    content: 'shclKeyframesDiv',  
+	    id:dialogid,
+	    width:width,
+	    height:height,
+	    lock:lock,  //背景是否灰化
+	    opacity: 0.3,//透明度
+	    close:function(){
+	    	
+		}
+	});
+}
+*/

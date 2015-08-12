@@ -433,6 +433,12 @@ var $dp, WdatePicker;
 	}
 	var Q, _;
 	function U(K, C) {
+		// 重新赋值 日期格式
+		if (dateObj) {
+			if (K['dateFmt'] != dateObj['dateFmt']){
+				K['dateFmt'] = dateObj['dateFmt'];
+			}
+		}
 		if (!$dp)
 			return;
 		B();

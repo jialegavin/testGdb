@@ -1,6 +1,7 @@
 package com.njyb.gbdbase.service.admincenter.imp;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import net.sf.json.JSONArray;
@@ -10,13 +11,16 @@ import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.njyb.auth.dao.cmp.IUserConsumingRecordsDao;
 import com.njyb.gbdbas.util.IConstantUtil;
 import com.njyb.gbdbas.util.MD5Util;
 import com.njyb.gbdbas.util.ds.spring.DBContextUtil;
 import com.njyb.gbdbase.dao.admincenter.IUserDao;
+import com.njyb.gbdbase.model.admincenter.UserConsumingRecordsModel;
 import com.njyb.gbdbase.model.admincenter.UserModel;
 import com.njyb.gbdbase.model.usermanagement.QueryModel;
 import com.njyb.gbdbase.service.admincenter.IUserManageService;
+import com.njyb.gbdbase.service.login.ILoginService;
 
 /**
  * 管理服务
@@ -28,6 +32,11 @@ public class UserManageService implements IUserManageService {
 
 	@Autowired
 	private  IUserDao userDao;
+	@Autowired
+	private IUserConsumingRecordsDao userConsumingRecordsDao;
+	@Autowired
+	private ILoginService loginService;
+	
 	private static final Logger log=Logger.getLogger(UserManageService.class);
 	@Override
 	public List<UserModel>  queryAllSons(int uId) {
@@ -50,7 +59,6 @@ public class UserManageService implements IUserManageService {
 	private List<UserModel>  querySonUseRecun(int uId)
 	{
 	
-		DBContextUtil.setDbTypeName(DBContextUtil.DATA_SOURCE_USER);
 		 List<UserModel> list=new  ArrayList<UserModel>();
 		try{
 			List<UserModel> users=new ArrayList<UserModel>();
@@ -80,7 +88,6 @@ public class UserManageService implements IUserManageService {
 	}
 	@Override
 	public List<UserModel> queryAllUsersByDescForPaging(QueryModel query) {
-		DBContextUtil.setDbTypeName(DBContextUtil.DATA_SOURCE_USER);
 		List<UserModel> list=new ArrayList<UserModel>();
        try{
     	   if((query!=null)&&(query.getCurPage()!=0)&&(query.getPageSize()!=0)&&("".equals(query.getUserDesc())))
@@ -97,7 +104,6 @@ public class UserManageService implements IUserManageService {
 	}
 	@Override
 	public int queryUserCountByDesc(QueryModel query) {
-		DBContextUtil.setDbTypeName(DBContextUtil.DATA_SOURCE_USER);
 		  int count=0;
 	       try{
 	    	   if((query!=null)&&(query.getCurPage()!=0)&&(query.getPageSize()!=0)&&("".equals(query.getUserDesc())))
@@ -118,7 +124,6 @@ public class UserManageService implements IUserManageService {
      */
 	@Override
 	public String queryUserTree() {
-		DBContextUtil.setDbTypeName(DBContextUtil.DATA_SOURCE_USER);
 	    //一级树根
 	    JSONArray root=new JSONArray();
 	    try{
@@ -195,7 +200,6 @@ public class UserManageService implements IUserManageService {
 	 * @return
 	 */
 	 private JSONArray getSonLeaf(int uId){
-		 DBContextUtil.setDbTypeName(DBContextUtil.DATA_SOURCE_USER);
 		  JSONArray farther=new JSONArray();
 		  try{
 			  QueryModel query=new QueryModel();
@@ -226,7 +230,6 @@ public class UserManageService implements IUserManageService {
 
 	@Override
 	public UserModel queryUserById(QueryModel query) {
-		DBContextUtil.setDbTypeName(DBContextUtil.DATA_SOURCE_USER);
 		UserModel user=new UserModel();
 		try{
 			if(query!=null&&query.getUserId()!=0)
@@ -243,7 +246,6 @@ public class UserManageService implements IUserManageService {
 	}
 	@Override
 	public int queryFloorById(QueryModel query) {
-		DBContextUtil.setDbTypeName(DBContextUtil.DATA_SOURCE_USER);
 		int floorNum=0;
 		try{
 			if(query!=null&&query.getUserId()!=0)
@@ -275,7 +277,6 @@ public class UserManageService implements IUserManageService {
 	 */
 	private int queryFloRC(QueryModel query)
 	{
-		DBContextUtil.setDbTypeName(DBContextUtil.DATA_SOURCE_USER);
 		int floor=1;
 		try{
 			QueryModel queryModel=new QueryModel();
@@ -297,7 +298,6 @@ public class UserManageService implements IUserManageService {
 	}
 	@Override
 	public String addNewUser(UserModel user) {
-		DBContextUtil.setDbTypeName(DBContextUtil.DATA_SOURCE_USER);
 		//0-添加失败 ， 1-添加成功
 		String operFlag="0";
 		try{
@@ -335,7 +335,6 @@ public class UserManageService implements IUserManageService {
 	}
 	@Override
 	public String upUser(UserModel user) {
-		DBContextUtil.setDbTypeName(DBContextUtil.DATA_SOURCE_USER);
 		String operFlag="0";
 		try{
 			log.info("修改用户-输入:登录名="+user.getLoginName());
@@ -363,7 +362,6 @@ public class UserManageService implements IUserManageService {
 	}
 	@Override
 	public String upUserSonCount(UserModel user) {
-		DBContextUtil.setDbTypeName(DBContextUtil.DATA_SOURCE_USER);
 		String operFlag="0";
 		try{
 			if(user!=null&&user.getUserId()!=0)
@@ -380,7 +378,6 @@ public class UserManageService implements IUserManageService {
 	}
 	@Override
 	public String updateUserFiedStatus(QueryModel query) {
-		DBContextUtil.setDbTypeName(DBContextUtil.DATA_SOURCE_USER);
 		//用户表中的状态字段返回值
 		String flag="";
 		try{
@@ -404,7 +401,6 @@ public class UserManageService implements IUserManageService {
 	}
 	@Override
 	public void updateUserDesc(int userId, String userDesc) {
-		DBContextUtil.setDbTypeName(DBContextUtil.DATA_SOURCE_USER);
 		 try{
 			 if((userId!=0)&&!("".equals(userDesc))){
 				 QueryModel query=new QueryModel();
@@ -422,7 +418,6 @@ public class UserManageService implements IUserManageService {
 	}
 	@Override
 	public boolean upUserInfo(UserModel user) {
-		DBContextUtil.setDbTypeName(DBContextUtil.DATA_SOURCE_USER);
 		 try{
 			 if((user!=null)&&(user.getUserId()!=0)){
 				 userDao.upUserInfo(user);
@@ -436,4 +431,72 @@ public class UserManageService implements IUserManageService {
 		 }
 		 return false;
 	}
+	
+	@Override
+	public String addRightUser(UserModel user,UserConsumingRecordsModel userConsumingRecordsModel) {
+		try {
+			//判断用户是否为空
+			if(null != user) {
+				//设置注册时间
+				user.setRegistertime(loginService.getDateStr());
+				//插入用户
+				userDao.addNewUser(user);
+				String  str = addConsumingRecordsByUser(user, userConsumingRecordsModel);
+				return str;
+			}
+		} catch (Exception e) {
+			e.toString();
+			log.debug(e.toString());
+		}
+		return null;
+	}
+	
+	@Override
+	public boolean addConsumingRecords(
+			UserConsumingRecordsModel userConsumingRecordsModel) {
+		try {
+			//判断记录是否为空
+			if(null != userConsumingRecordsModel) {
+				//创建时间
+				userConsumingRecordsModel.setCreatetime(loginService.getDateStr());
+				//插入用户消费记录
+				userConsumingRecordsDao.addConsumingRecords(userConsumingRecordsModel);
+				return true;
+			}
+		} catch (Exception e) {
+			e.toString();
+			log.debug(e.toString());
+		}
+		return false;
+	}
+	
+	@Override
+	public String addConsumingRecordsByUser(UserModel user,
+			UserConsumingRecordsModel userConsumingRecordsModel) {
+		JSONObject jsonObject = new JSONObject();
+		if(null != user && null != userConsumingRecordsModel) {
+			//根据loginName获取整个用户的信息
+			UserModel userModle=loginService.queryUserByName(user.getLoginName());
+			if(null != userModle) {
+				jsonObject.put("userIsExist", true);
+				//插入记录
+				userConsumingRecordsModel.setUserId(userModle.getUserId());
+				boolean isflag = addConsumingRecords(userConsumingRecordsModel);
+				if(isflag) {
+					//插入成功
+					jsonObject.put("flag", true);
+					jsonObject.put("loginName", user.getLoginName());
+					jsonObject.put("buyMoney", userConsumingRecordsModel.getTotalmoney());
+				} else {
+					//插入失败
+					jsonObject.put("flag", false);
+				}
+			} else {
+				jsonObject.put("userIsExist", false);
+			}
+		}
+		System.out.println(jsonObject.toString());
+		return jsonObject.toString();
+	}
+
 }

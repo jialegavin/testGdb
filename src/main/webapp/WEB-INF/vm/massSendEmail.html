@@ -1,0 +1,72 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Insert title here</title>
+<style type='text/css'>
+  .email{
+     width:611px;
+     height:469px;  
+     margin-left: auto;
+     margin-right: auto;
+   
+  }
+  .content_top{
+     width: 540px;
+     height: 220px;
+     padding: 18px 5px 0px 18px;
+  }
+   .content_top table tr{
+      height:21px;
+      width:540px;
+   }
+   .content_bottom{
+      width: 540px;
+      height: 100px;
+     padding: 15px 5px 0px 18px;
+   }
+
+</style>
+</head>
+
+<body >
+   <div class="email" style="background: url(${updateUrl}static/img/login/emailback.png) no-repeat;">
+    <table  border='0'  width="560px" align="center" cellpadding='0'
+	cellspacing='1'>
+      <tr><td style="widht:350px;height: 56px;"><img src="${updateUrl}static/img/personalcenter/$!{context_logoimg}"/></td>
+      <td style='padding-top:9px;'><img src="${updateUrl}static/img/personalcenter/$!{context_phoneimg}" /></td>
+      </tr>
+      <tr>
+        <td height='15px' colspan="2"><img src="${updateUrl}static/img/login/emailLine.png"/>
+        </td>
+      </tr>
+      <tr><td colspan="2" style="background:url(${updateUrl}static/img/login/$!{context_mainbg}) no-repeat;height:235px;width:560px;">
+            <div class='content_top'>
+              <table>
+                <tr><td><span>尊敬的用户</span><span style="color:red;">${userName}：</span></td></tr>
+                <tr><td><span style="font-family: SimSun;font-size: 12px;">您好！</span><br/></td></tr>
+                <tr><td><span  style="font-family: SimSun;font-size: 12px;">您购买总的使用次数：${totalNum}</span></td></tr>
+                <tr><td> <span  style="font-family: SimSun;font-size: 12px;">已使用的次数：${remainNum}</span></td></tr>
+                <tr><td><span style="font-family: SimSun;font-size: 12px;">剩余次数：${residueNum}</span></td></tr>
+                <tr><td><span style="font-family: SimSun;font-size: 12px;">消费金额：${consumptionMoney}</span></td></tr>
+                <tr><td><span style="font-family: SimSun;font-size: 12px;">剩余金额：${residueMoney}</span></td></tr>
+              </table>
+           </div>
+         </td>
+      </tr>
+      <tr>
+	      <td colspan="2" style="background:url(${updateUrl}static/img/login/$!{context_bottombg}) no-repeat;height:127px;width:560px;">
+	        <div class="content_bottom">
+	           <table>
+	              <tr><td><span style="font-family: SimSun;font-size: 12px;">$!{companyTitle}——中国专业的进出口贸易资讯服务提供商</span></td></tr>
+	              <tr><td><span style="font-family: SimSun;font-size: 12px;">公司网址：<a href="$!{domain}">$!{domain}</a></span></td></tr>
+	              <tr><td><span style="font-family: SimSun;font-size: 12px;">如欲享有更多专业数据服务，或有其他疑问，请联系$!{companyTitle}客服，服务热线：$!{onlineTel}</span></td></tr>
+	            </table>
+	         </div>
+	      </td>
+      </tr>
+    </table>  
+   </div> 
+</body>
+</html>

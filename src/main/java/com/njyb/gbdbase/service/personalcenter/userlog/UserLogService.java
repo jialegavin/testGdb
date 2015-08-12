@@ -43,7 +43,7 @@ public class UserLogService implements IUserLogService {
 		List<UserLoginlogModel> userLogList = Lists.newArrayList();
 		if (null != userModel) {
 			//切换数据库
-			DBContextUtil.setDbTypeName(DBContextUtil.DATA_SOURCE_USER);
+			
 			userLogList = userLogDao.queryUserLogResultByUserIdAndPage(userModel.getUserId());
 		}
 		return userLogList;
@@ -56,6 +56,8 @@ public class UserLogService implements IUserLogService {
 	public UserModel queryUserModelByLoginName(String loginName) {
 		QueryModel queryModel = new QueryModel();
 		queryModel.setUpdateSql(loginName);
+		//切换数据库
+		
 		UserModel userModel = userSonBaseOperService.queryUserByLoginName(queryModel);
 		return userModel;
 	}
@@ -67,6 +69,8 @@ public class UserLogService implements IUserLogService {
 	public int queryUserLogCountByParam(UserModel userModel) {
 		int result = 0;
 		Map<String,Object> paramMap = Maps.newHashMap();
+		//切换数据库
+		
 		if (null != userModel) {
 			paramMap.put("userId", userModel.getUserId());
 			result = userLogDao.queryUserLogCountByParam(paramMap);
@@ -81,6 +85,8 @@ public class UserLogService implements IUserLogService {
 	public List<UserLoginlogModel> queryLogResultByLoginModel(
 			Map<String, Object> paramMap) {
 		List<UserLoginlogModel> resultList = Lists.newArrayList();
+		//切换数据库
+		
 		if (null != paramMap) {
 			resultList = userLogDao.getLogByLoginName(paramMap);
 		}

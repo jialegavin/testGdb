@@ -2,6 +2,9 @@ package com.njyb.gbdbase.controller.authcenter;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
@@ -16,11 +19,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.njyb.gbdbas.util.PageBeanUtil;
+import com.njyb.auth.service.impl.cmp.IOrderCountCmp;
+import com.njyb.gbdbas.util.DataUtil;
 import com.njyb.gbdbase.controller.common.PublicCommonController;
+import com.njyb.gbdbase.dao.admincenter.IAuthorityDao;
+import com.njyb.gbdbase.model.admincenter.AuthorityFieldModel;
+import com.njyb.gbdbase.model.admincenter.UserCountModel;
 import com.njyb.gbdbase.model.admincenter.UserModel;
 import com.njyb.gbdbase.model.authcenter.AuthCenterModel;
-import com.njyb.gbdbase.model.datasearch.common.ResultFieldModel;
 import com.njyb.gbdbase.model.usermanagement.ConditionRightModel;
 import com.njyb.gbdbase.service.authcenter.IPermissionService;
 
@@ -40,6 +46,11 @@ public class PermissionController  extends PublicCommonController  {
 	private IPermissionService perService;
 	@Resource
 	private  AuthCenterModel authCenterModel;
+	@Resource
+	private AuthorityFieldModel authorityFieldModel;
+	@Autowired
+	private IOrderCountCmp orderCountCmp;
+	
 	//添加日志
 	public static final Logger log=Logger.getLogger(PermissionController.class);
 	/**
@@ -101,6 +112,33 @@ public class PermissionController  extends PublicCommonController  {
 	}
 	
 	/**
+	 * 获取当前登录用户所有权限信息
+	 * @param request
+	 * @param response
+	 * @throws IOException
+	 */
+	@RequestMapping(value="/queryUserRightMessage")
+	public void queryUserRightMessage(HttpServletRequest request,HttpServletResponse response) throws IOException {
+		UserModel userModel = (UserModel) request.getSession().getAttribute("user");
+		//切换数据库
+		List<ConditionRightModel> userRightList = perService.getConditionRight(userModel.getUserId());
+		for (ConditionRightModel rightModel : userRightList) {			// 对中国从新赋值时间
+			if (rightModel.getStartTime().split("-").length ==2 || rightModel.getEndTime().split("-").length == 2) {
+				rightModel.setStartTime(rightModel.getStartTime() + "-01");
+				rightModel.setEndTime(rightModel.getEndTime() + "-30");
+			} else {
+				// 国家+进出口类型
+				rightModel.setByCountry(rightModel.getByCountry() + rightModel.getiExportType());
+			}
+		}
+		JSONObject object = new JSONObject();
+		object.put("key", userRightList);
+		object.put("user", userModel);
+		object.put("nowDate", DataUtil.parseDate(new Date(), 3));
+		response.getWriter().println(object.toString());
+	}
+	
+	/**
 	 * 个人中心模块查询用户权限
 	 * @param request : 请求
 	 * @param response : 响应
@@ -110,13 +148,49 @@ public class PermissionController  extends PublicCommonController  {
 	@RequestMapping(value="/QueryUserRight")
 	public String queryUserRight(HttpServletRequest request,HttpServletResponse response) throws Exception 
 	{
-		PrintWriter out = response.getWriter();
-		UserModel userModel = (UserModel) request.getSession().getAttribute("user");
-		List<ConditionRightModel> userRightList = perService.queryUserRight(userModel);
-		//前台展示给用户
+		/**
+		  * 权限控制
+		  */
 		JSONObject jsonObject = new JSONObject();
-		if(userRightList != null)
+		PrintWriter out = response.getWriter();
+//		if(MainAuthoriy.isVisitModule(request, response, ((UserModel)request.getSession().getAttribute("user")).getUserDesc(), authorityFieldModel.getAuthorityFieldMap(), jsonObject)){
+			UserModel userModel = (UserModel) request.getSession().getAttribute("user");
+			List<ConditionRightModel> userRightList = perService.queryUserRight(userModel);
+			if(userRightList != null)
+			{
+				jsonObject.put("total",userRightList.size());
+			}
+			jsonObject.put("rows",userRightList);
+//		}else{
+//			jsonObject.put("total",0);
+//			jsonObject.put("rows","");
+//		}
+		out.write(jsonObject.toString());
+		return null;
+	}
+	
+	/**
+	 * 按次用户查看权限
+	 * @param request
+	 * @param response
+	 * @return
+	 * @throws Exception
+	 */
+	@RequestMapping(value="/queryUserCountRight")
+	public String queryUserCountRight(HttpServletRequest request,HttpServletResponse response) throws Exception 
+	{
+		JSONObject jsonObject = new JSONObject();
+		PrintWriter out = response.getWriter();
+		//获取用户
+		UserModel userModel = (UserModel) request.getSession().getAttribute("user");
+		Map<String, Object> paramMap = new HashMap<String, Object>();
+		paramMap.put("userId", userModel.getUserId());
+		paramMap.put("type", userModel.getUserDesc());
+		UserCountModel userCountModel = orderCountCmp.queryUserCountModel(paramMap);
+		List<UserCountModel> userRightList = new LinkedList<UserCountModel>();
+		if(userCountModel != null)
 		{
+			userRightList.add(userCountModel);
 			jsonObject.put("total",userRightList.size());
 		}
 		jsonObject.put("rows",userRightList);

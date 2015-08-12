@@ -170,7 +170,7 @@ public interface IConstantUtil {
 	
 	//登录模块各种状态码1:表示用户成功登录2:表示密码不正确3:表示用户不存在
 	//4:表示用户验证码不正确5:同一个账号同时登陆的地方不超过3个6:该用户占时被锁定
-	//7:表示未激活8:表示账号被禁用
+	//7:表示未激活8:表示账号被禁用 9:表示用户的账号有效期到期
 	public final static String LOGIN_SUCCESS = "1";
 	public final static String PASSWD_INCORRENT = "2";
 	public final static String USER_NOTEXIST = "3";
@@ -179,6 +179,7 @@ public interface IConstantUtil {
 	public final static String USER_LOCKED = "6";
 	public final static String INACTIVE = "7";
 	public final static String USER_DISABLE = "8";
+	public final static String USER_TimeOut = "9";
 	//密码输入错误次数超过5次 
 	public final static int PASSWD_ENTER_TIMES = 5;
 	//当锁定后超过15分钟方可登录
@@ -192,6 +193,11 @@ public interface IConstantUtil {
 	public final static String FILTERFIELD = "filterfield";
 	//查看详情的properties文件
 	public final static String VIEWDETAIL = "viewdetail";
+	//动态替换网页信息的properties文件及参数
+	public final static String WEBINFO = "webinfo";
+	public final static String WEBINFO_INFOBASE = "infobase";
+	public final static String WEBINFO_TRADE_EASY = "trade_easy";
+	
 	//导出excel及pdf中需要的信息
 	public final static String EXPORTINFO = "exportInfo";
 	//支付宝参数配置文件
@@ -244,4 +250,18 @@ public interface IConstantUtil {
 	public static final String COMPETITOR = "我的竞争对手";
 	//我的客户
 	public static final String CUSTOMER = "我的客户";
+	
+	/**
+	 * 授权方式
+	 */
+	//海关编码
+	public static final String AUTH_HSCODE = "auth_hscode";
+	//产品描述
+	public static final String AUTH_DESC = "auth_desc";
+	//国家
+	public static final String AUTH_COUNTRY = "auth_country";
+	//按次
+	public static final String AUTH_COUNT = "auth_count";
+	//各个国家更新时间配置文件名
+	public static final String COUNTRYUPDATETIME = "countryUpdateTime";
 }

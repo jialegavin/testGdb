@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>  
+<!DOCTYPE mapper  PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN" "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+<mapper namespace="com.njyb.gbdbase.dao.admincenter.ISubModuleDao">
+	<resultMap id="subMap" type="com.njyb.gbdbase.model.admincenter.SubModuleModel">
+		<id property="submid" column="submid"/>
+		<result property="mainid" column="mainid"/>
+		<result property="subname" column="subname"/>
+		<result property="urlname" column="urlname"/>
+		<result property="mentodname" column="mentodname"/>
+		<result property="hasright" column="hasright"/>
+		<result property="loginame" column="loginame"/>
+	</resultMap>
+	
+	
+	<sql id="subId">
+		submid,mainid,subname,urlname,mentodname,hasright,loginame
+	</sql>
+	
+	<select id="querySubModule" resultMap="subMap" parameterType="java.lang.String">
+		SELECT 
+		 <include refid="subId"/>
+		 FROM system_submodule
+		 WHERE loginame = #{loginame}
+	</select>
+</mapper>

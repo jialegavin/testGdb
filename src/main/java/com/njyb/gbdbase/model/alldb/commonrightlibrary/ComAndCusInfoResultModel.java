@@ -67,6 +67,8 @@ public class ComAndCusInfoResultModel extends CommonTotalModel implements Serial
 	private String manufacturers;
 	// 插入时间
 	private Date addTime;
+	// 不可操作 修改,删除
+	private int isOperate;
 	//条件ID 用在删除 竞争对手 和 我的客户信息
 	private String id;
 	public Integer getCollectionId() {
@@ -230,5 +232,11 @@ public class ComAndCusInfoResultModel extends CommonTotalModel implements Serial
 	}
 	public void setAddTime(Date addTime) {
 		this.addTime = addTime;
+	}
+	public int getIsOperate() {
+		return isOperate;
+	}
+	public void setIsOperate(int isOperate) {
+		this.isOperate = isOperate;
 	}
 }

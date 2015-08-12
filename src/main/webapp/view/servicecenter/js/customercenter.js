@@ -52,13 +52,46 @@ function btnClick(obj){
 					"centent":centent
 				},   
 				function (data, textStatus){
-				alert('十分感谢您联系英蓓，您反馈的问题已提交，我们会在48小时内进行处理，并根据您的电话进行回复！');
+				 var href = window.location.href;
+				 if(contains(href,'trade-easy',true)){
+					 alert('十分感谢您联系趣易，您反馈的问题已提交，我们会在48小时内进行处理，并根据您的电话进行回复！');
+				 }else if(contains(href,'www.ybdb.net',true)){
+					 alert('十分感谢您联系英蓓，您反馈的问题已提交，我们会在48小时内进行处理，并根据您的电话进行回复！');
+				 }	
 				$("#name").val("");
 				$("#tel").val("");
 				$("#centent").val("");
 		});
 	}
 }
+
+
+/**
+ * 字符串包含
+ * @param string
+ * @param substr
+ * @param isIgnoreCase
+ * @returns {Boolean}
+ */
+function contains(string,substr,isIgnoreCase){
+	if(isIgnoreCase){ 
+		string=string.toLowerCase();
+		substr=substr.toLowerCase();
+		var startChar=substr.substring(0,1); 
+		var strLen=substr.length; 
+		
+		 for(var j=0;j<string.length-strLen+1;j++) {
+			 if(string.charAt(j)==startChar){//如果匹配起始字符,开始查找              
+		
+				 if(string.substring(j,j+strLen)==substr) {
+					 return true;
+				}
+			 } 
+		 }
+		return false; 
+	}
+}
+
 
 /**
  * 检查字符串是否为合法手机号码

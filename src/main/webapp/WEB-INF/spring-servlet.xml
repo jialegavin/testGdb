@@ -61,4 +61,34 @@
 	
 	 <!-- 让控制器不要拦截一些常用的静态资源 -->
 	<mvc:resources location="/static/css,/static/img,/static/js" mapping="/static/*"/>
+	
+	<!-- 添加自定义拦截器  -->
+	<mvc:interceptors>
+		<mvc:interceptor>
+<!-- 		    拦截路径开发者自己定义 -->
+			<mvc:mapping path="/getResultFieldList"/>
+			<mvc:mapping path="/export/downloadService"/>
+			<mvc:mapping path="/export/generatePdfTemplate"/>
+			<mvc:mapping path="/export/downloadReport"/>
+			<mvc:mapping path="/export/exportSummaryDetail"/>
+			<mvc:mapping path="/export/printDetial"/>
+			<mvc:mapping path="/downloadDB/downLoadDBByParams"/>
+			<mvc:mapping path="/permission/QueryUserRight"/>
+			<mvc:mapping path="/contrastre/exportExcel"/>
+			<mvc:mapping path="/contrastre/contrastreAddOutController"/>
+			<mvc:mapping path="/getResultFieldList"/>
+			<mvc:mapping path="/getReportSummaryList"/>
+			<bean class="com.njyb.auth.interceptor.AuthorityInterceptor"/>
+		</mvc:interceptor>
+	</mvc:interceptors>
+	
+	<!-- 按次用户拦截器  -->
+	<bean id="userCount" class="com.njyb.auth.interceptor.UserCountInterceptor"></bean>
+	<mvc:interceptors>
+		<mvc:interceptor>
+			<!-- 指定拦截 按次用户 路径 -->
+			<mvc:mapping path="/getRowData"/>
+			<ref bean="userCount"/>
+		</mvc:interceptor>
+	</mvc:interceptors>
 </beans>

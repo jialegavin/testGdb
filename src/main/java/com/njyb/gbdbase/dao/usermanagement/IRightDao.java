@@ -54,6 +54,14 @@ public interface IRightDao {
 	 * @param countyRight
 	 */
     public void addRight(Map rightMap);
+    
+    /**
+     * 后台添加用户权限
+     * @param conditionRightModel
+     * @author XL
+     * @createTime 2015-06-24
+     */
+    public void addUserRight(ConditionRightModel conditionRightModel);
     /**
      * 根据用户ID和权限类别统计权限数量
      * @param query
@@ -65,5 +73,13 @@ public interface IRightDao {
 	 * @param condition
 	 */
 	public int checkHaveSearchRight(ConditionRightModel condition);  
+	
+	
+	/**
+	 * 根据用户id查询权限信息
+	 * @param userid
+	 * @return
+	 */
+	public List<ConditionRightModel> queryCondtiright(int userid);
 	
 }

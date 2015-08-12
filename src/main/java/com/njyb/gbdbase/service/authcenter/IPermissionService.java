@@ -44,4 +44,11 @@ public interface IPermissionService {
 	 * @return String 返回判断结果
 	 */
 	public String getRightByUser(HttpServletRequest request,Map map,String module) throws Exception;
+	
+	/**
+	 * 获取用户所购买的所有权限
+	 * @param userId
+	 * @return
+	 */
+	public List<ConditionRightModel> getConditionRight(int userId);
 }

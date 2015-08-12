@@ -11,7 +11,28 @@
 		<result property="endTime" column="ENDTIME" />
 		<result property="iExportType" column="IEXPORTTYPE" />
 		<result property="rightType" column="RIGHTTYPE" />
+		<result property="openHistoryData" column="OPENHISTORYDATA" />
+		<result property="historyStartTime" column="HISTORYSTARTTIME" />
+		<result property="historyEndTime" column="HISTORYENDTIME" />
+		<result property="treeStartTime" column="treeStartTime" />
+		<result property="treeEndTime" column="treeEndTime" />
 	</resultMap>
+	
+	<!-- 通用查询结果列-->
+	<sql id="Base_Column_List">
+		RID,USERID,BYHSCODE,BYPRODUCT_DESC,BYCOUNTRY,STARTTIME,ENDTIME,IEXPORTTYPE
+		,RIGHTTYPE,OPENHISTORYDATA,HISTORYSTARTTIME,HISTORYENDTIME,treeEndTime,treeStartTime
+	</sql>
+	
+	
+	<!-- 查询权限基本信息 -->
+	<select id="queryCondtiright" resultMap="rightResult" parameterType="java.lang.Integer">
+		SELECT  
+		<include refid="Base_Column_List" />
+		FROM user_condition_right
+		WHERE userid = #{userid}
+	</select>
+	
 	<!--chenhu:根据条件查询国家的权限列表-->
 	<select id="queryRightsByUidCN" parameterType="com.njyb.gbdbase.model.usermanagement.QueryModel"  resultMap="rightResult">
 		<![CDATA[
@@ -79,4 +100,16 @@
 				 ELSE  1=1 END)
 		]]>
 	</select>
+	
+	<!-- xl:管理员给用户添加权限 -->
+	<insert id="addUserRight" parameterType="com.njyb.gbdbase.model.usermanagement.ConditionRightModel">
+		<![CDATA[
+			insert into USER_CONDITION_RIGHT(rid,userid,byhscode,byproduct_desc,
+			bycountry,starttime,endtime,iexporttype,rightType,openHistoryData,
+			historyStartTime,historyEndTime,treeStartTime,treeEndTime)
+			values (null,#{userId},#{byHsCode},#{byProductDesc},#{byCountry},
+			#{startTime},#{endTime},#{iExportType}, #{rightType}, #{openHistoryData},
+			#{historyStartTime},#{historyEndTime},#{treeStartTime},#{treeEndTime})
+		]]>
+	</insert>
 </mapper>

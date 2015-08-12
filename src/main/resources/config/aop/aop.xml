@@ -1,8 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p" xmlns:aop="http://www.springframework.org/schema/aop" xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd ">
+<beans xmlns="http://www.springframework.org/schema/beans" 
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+xmlns:p="http://www.springframework.org/schema/p" 
+xmlns:aop="http://www.springframework.org/schema/aop" 
+xsi:schemaLocation="http://www.springframework.org/schema/beans 
+http://www.springframework.org/schema/beans/spring-beans.xsd 
+http://www.springframework.org/schema/aop 
+http://www.springframework.org/schema/aop/spring-aop.xsd ">
+	
+	<!--自定义一个拦截器拦截每个方法执行:记录方法执行的开始时间和结束时间 -->
+	<bean id="systemMethodPerfInterceptor"
+          class="com.njyb.auth.interceptor.SystemMethodPerfInterceptor" />
+    <!-- 开启 切面自动检测功能-->
 	<aop:aspectj-autoproxy></aop:aspectj-autoproxy>
-	<bean id="aop" class="com.njyb.gbdbas.util.ds.spring.DynamicDataSourceAopUtil"></bean>
- </beans>
+	<!-- 指定添加了aspectj的类-->
+	<bean  class="com.njyb.gbdbas.util.ds.spring.DynamicDataSourceAopUtil"></bean>
+	 <!-- 配置切面 和切入点-->
+	<aop:config>
+		  <aop:pointcut id="allServiceMethods" expression="execution(public * com.njyb.gbdbase.service..*.*(..))"/>
+		  <aop:advisor pointcut-ref="allServiceMethods" advice-ref="systemMethodPerfInterceptor"/>
+	</aop:config>
+	
+</beans>
 
 
 

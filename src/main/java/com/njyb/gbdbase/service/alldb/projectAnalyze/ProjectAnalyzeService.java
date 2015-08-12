@@ -24,6 +24,7 @@ import com.njyb.gbdbase.model.alldb.competitor.RightLibrarySearchModel;
 import com.njyb.gbdbase.model.alldb.projectAnalyze.BuyerModel;
 import com.njyb.gbdbase.model.alldb.projectAnalyze.ProjectAnalyzeModel;
 import com.njyb.gbdbase.model.datasearch.common.DataReportSumModel;
+import com.njyb.gbdbase.model.usermanagement.ConditionRightModel;
 import com.njyb.gbdbase.service.alldb.buyerresource.IBuyerResourceService;
 import com.njyb.gbdbase.service.alldb.commonrightlibrary.IDataConvertDBModel;
 import com.njyb.gbdbase.service.alldb.commonrightlibrary.IQueryDataService;
@@ -83,7 +84,7 @@ public class ProjectAnalyzeService implements IProjectAnalyzeService {
 	@Override
 	public int addProjectAnalyze(ProjectAnalyzeModel projectAnalyzeModel) {
 		//切换数据库
-		DBContextUtil.setDbTypeName(DBContextUtil.DATA_SOURCE_USER);
+		
 		if (null != projectAnalyzeModel) {
 			projectAnalyzeModel.setAddTime(new Date());
 		}
@@ -119,10 +120,7 @@ public class ProjectAnalyzeService implements IProjectAnalyzeService {
 					.get("queryModel");
 			paramMap.put("hscode", projectAnalyzeModel.getHscode());
 			paramMap.remove("queryModel");
-			// 切换数据库
-			DBContextUtil.setDbTypeName(DBContextUtil.DATA_SOURCE_USER);
-			queryList = projectAnalyzeDao
-					.queryProjectAnalyzeModelByParam(paramMap);
+			queryList = projectAnalyzeDao.queryProjectAnalyzeModelByParam(paramMap);
 		}
 		return queryList;
 	}
@@ -232,11 +230,32 @@ public class ProjectAnalyzeService implements IProjectAnalyzeService {
 		page.setPageSize(Integer.MAX_VALUE);
 		//获取数据
 		resultList = buyerResourceService.queryBuyerModelList(request, fields, values, countryName, module, page);
-		resultList = buyerResourceService.queryBuyerModelByCountry(countryName, resultList);		//根据国家筛选
+		resultList = queryBuyerList(request, resultList, countryName);
 		if (null != resultList && !resultList.isEmpty()) {
 			ECacheContrastUtil.addCacheByParams(RightLibraryConstant.RIGHT_SEARCH_CACHE, eCacheKey, resultList);
 		}
 		return resultList;
+	}
+	
+	/**
+	 * 根据权限中的国家查询出相应的数据
+	 * @param request : 请求
+	 * @param buyerList : 买家资源库
+	 * @param countryName : 国家名称
+	 * @return
+	 */
+	private List<BuyerModel> queryBuyerList(HttpServletRequest request,List<BuyerModel> buyerList,String countryName) {
+		List<ConditionRightModel> list = (List<ConditionRightModel>) request.getSession().getAttribute("authorityInfo");
+		List<BuyerModel> queryBuyList = Lists.newArrayList();
+		if (!Strings.isNullOrEmpty(countryName)) {
+			queryBuyList = buyerResourceService.queryBuyerModelByCountry(countryName, buyerList);		//根据国家筛选
+		} else {
+			for (ConditionRightModel model : list) {
+				List<BuyerModel> temp_buyerList = buyerResourceService.queryBuyerModelByCountry(model.getByCountry(), buyerList);
+				queryBuyList.addAll(temp_buyerList);
+			}
+		}
+		return queryBuyList;
 	}
 	
 	/**

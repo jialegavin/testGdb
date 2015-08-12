@@ -1,7 +1,11 @@
 package com.njyb.gbdbase.service.alldb.commonrightlibrary;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.IdentityHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -13,6 +17,7 @@ import org.springframework.stereotype.Service;
 import com.google.common.base.Strings;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
+import com.njyb.auth.service.impl.cmp.IUserRightAllDBService;
 import com.njyb.gbdbas.util.ArrayUtil;
 import com.njyb.gbdbas.util.DataUtil;
 import com.njyb.gbdbas.util.InitCountryCENameUtil;
@@ -41,9 +46,13 @@ public class RightLibraryConstructionData implements
 
 	@Autowired
 	private IDataSearchService dataSearchService;
+	
+	@Autowired
+	private IUserRightAllDBService userRightAllDBService;
 
 	@Resource
 	private SearchRightLibraryModel searchRightLibraryModel;
+	
 
 	/**
 	 * 报告类型和字段的映射
@@ -119,9 +128,10 @@ public class RightLibraryConstructionData implements
 						// 如果kyes 为 tread_type(贸易类型) 则不处理
 						if (!keys.equals(RightLibraryConstant.TRADETYPE)) {
 						}
+						// 权限控制 对于中国 日期 特殊处理
+//						userRightAllDBService.getValue(request, doKey, doValue, country, keys, index);
 						// 如果存在 日期配置标示符,则对日期处理
-						if (keyValueMap
-								.containsKey(RightLibraryConstant.DATECONFIG)) {
+						if (keyValueMap.containsKey(RightLibraryConstant.DATECONFIG)) {
 							if (keys.equals(RightLibraryConstant.DATE)) {
 								String dateSplit = doValue.get(index);
 								String date = getDateFormat(dateSplit);
@@ -180,7 +190,60 @@ public class RightLibraryConstructionData implements
 	@Override
 	public Map<String,Map<String,Object>> constantParamByCountry(List<String> key,
 			List<String> value, String countryName) {
-		Map<String,Map<String,Object>> paramTotalMap = Maps.newHashMap();
+		IdentityHashMap<String,Map<String,Object>> paramTotalMap = Maps.newIdentityHashMap();
+		String[] countrys = countryName.split(",");
+		configMap = searchRightLibraryModel.getPropertiesMap();
+		List<String> doKey = null;
+		List<String> doValue = null;
+		// 构造条件
+		for (String country : countrys) {
+			Map<String,Object> paramMap = Maps.newHashMap();
+			// 复制条件,用于循环构造添加,保证是前台传入的齐全参数
+			doKey = Lists.newArrayList(key);
+			doValue = Lists.newArrayList(value);
+			if (configMap.containsKey(country)) {
+				// 获取当前国家的配置value
+				String conditionToStr = String.valueOf(configMap.get(country));
+				String[] conditionArray = conditionToStr.split(";");
+				Map<String, String> keyValueMap = ArrayUtil
+						.getReportNameList(conditionArray[0]);
+				// 构造个个国家的条件
+				for (String keys : key) {
+					int index = doKey.indexOf(keys);
+					// 删除个个国家无用的条件
+					if (!keyValueMap.containsKey(keys)) {
+						doKey.remove(index);
+						doValue.remove(index);
+					}
+					// 如果存在 日期配置标示符,则对日期处理
+					if (keyValueMap.containsKey(RightLibraryConstant.DATECONFIG)) {
+						if (keys.equals(RightLibraryConstant.DATE)) {
+							String dateSplit = doValue.get(index);
+							String date = getDateFormat(dateSplit);
+							doValue.set(index, date);
+						}
+					}
+				}
+			}
+			if (doKey.size() > 1) {		//如果条件超过1个,则查询
+				getParamTotalMap(doKey, doValue, country, paramMap,  paramTotalMap);
+				System.out.println(paramTotalMap);
+			}
+		}
+		
+		return paramTotalMap;
+	}
+	
+	/**
+	 * 交易记录,竞争对手,同环比
+	 * 构造条件
+	 */
+	@SuppressWarnings("static-access")
+	@Override
+	public IdentityHashMap<String,Map<String,Object>> constantDownLoad(List<String> key,
+			List<String> value, String countryName) {
+		IdentityHashMap<String,Map<String,Object>> paramTotalMap = Maps.newIdentityHashMap();
+		IdentityHashMap<String,Map<String,Object>> temp_paramTotalMap = Maps.newIdentityHashMap();
 		String[] countrys = countryName.split(",");
 		configMap = searchRightLibraryModel.getPropertiesMap();
 		List<String> doKey = null;
@@ -217,9 +280,45 @@ public class RightLibraryConstructionData implements
 			}
 			if (doKey.size() > 1) {		//如果条件超过1个,则查询
 				getParamTotalMap(doKey, doValue, country, paramMap, paramTotalMap);
+				temp_paramTotalMap.putAll(getParamsByHscode(paramTotalMap));
 			}
 		}
-		return paramTotalMap;
+		return temp_paramTotalMap;
+	}
+	
+	/**
+	 * 根据HsCode的个数生成条件Map
+	 * @param paramMap : 条件Map
+	 * @return IdentityHashMap
+	 */
+	@SuppressWarnings("unchecked")
+	private IdentityHashMap<String,Map<String,Object>> getParamsByHscode(IdentityHashMap<String,Map<String,Object>> paramMap){
+		IdentityHashMap<String,Map<String,Object>> resultMap = new IdentityHashMap<String, Map<String,Object>>();
+		for (Entry<String, Map<String, Object>> entyry : paramMap.entrySet()) {
+			String country = entyry.getKey();										//获取key
+			List<String> newKey = (List<String>) entyry.getValue().get("key");		//获取List Key
+			List<String> newValue = (List<String>) entyry.getValue().get("value");  //获取List value
+			if (newKey.contains(RightLibraryConstant.HSCODE)) {		// 获得海关编码
+				int index = newKey.indexOf(RightLibraryConstant.HSCODE);
+				String hsCodeValue = newValue.get(index);
+				if (hsCodeValue.contains(",")) {		// 如果海关编码多个
+					String [] hsCodeArray = hsCodeValue.split(",");
+					for (String hscode : hsCodeArray) {
+						Map<String,Object> keyMap = new HashMap<String, Object>();
+						List<String> tempValue = new ArrayList<String>(newValue);
+						tempValue.set(index, hscode);		// 设置当前的hscode
+						keyMap.put("key", newKey);
+						keyMap.put("value", tempValue);
+						resultMap.put(new String(country), keyMap);
+					}
+				} else {
+					return paramMap;			// 针对不是正式用户,并且不是多个海关编码,直接返回当前的map条件
+				}
+			} else {
+				return paramMap;				// 如果不含有海关编码,直接返回当前的map对象
+			}
+		}
+		return resultMap;
 	}
 	
 	/**
@@ -231,15 +330,17 @@ public class RightLibraryConstructionData implements
 	 * @param paramTotalMap
 	 * @return
 	 */
-	private Map<String,Map<String,Object>> getParamTotalMap(List<String> doKey,List<String> doValue,String country,Map<String,Object> paramMap,Map<String,Map<String,Object>> paramTotalMap){
-		if (doKey.contains(RightLibraryConstant.TRADETYPE)) {		//如果Keys 为 tread_type(贸易类型) 则处理成 数组
+	private IdentityHashMap<String,Map<String,Object>> getParamTotalMap(List<String> doKey,List<String> doValue,String country,Map<String,Object> paramMap,IdentityHashMap<String,Map<String,Object>> paramTotalMap){
+		if (country.equals("中国") || country.equals("英国") && doKey.contains(RightLibraryConstant.TRADETYPE)) {		//如果Keys 为 tread_type(贸易类型) 则处理成 数组
 			int index = doKey.indexOf(RightLibraryConstant.TRADETYPE);
 			String [] treadTypeArray = getTreadType(doValue.get(index));
 			for (int i = 0; i < treadTypeArray.length; i++) {
+				Map<String,Object> paramMaps = Maps.newHashMap();
 				doValue.set(index, treadTypeArray[i]);
-				paramMap.put("key", doKey);
-				paramMap.put("value", doValue);
-				paramTotalMap.put(country, paramMap);
+				paramMaps.put("key", doKey);
+				List<String> listValue = Lists.newArrayList(doValue);
+				paramMaps.put("value", listValue);
+				paramTotalMap.put(new String(country), paramMaps);
 			}
 		} else {
 			paramMap.put("key", doKey);

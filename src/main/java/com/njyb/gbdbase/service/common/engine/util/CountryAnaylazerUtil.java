@@ -1,5 +1,6 @@
 package com.njyb.gbdbase.service.common.engine.util;
 import java.io.File;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.lucene.analysis.Analyzer;
@@ -10,6 +11,7 @@ import org.apache.lucene.analysis.standard.StandardAnalyzer;
 import org.apache.lucene.util.Version;
 
 import com.njyb.common.anayler.lucene.IKAnalyzer;
+import com.njyb.gbdbase.model.admincenter.AuthorityFieldModel;
 
 /**
  * 获取不同国家所使用的分词器
@@ -88,6 +90,89 @@ public class CountryAnaylazerUtil {
 			return null;
 		}
 	}
+	
+	
+	public static File[] getIndexFileByTime(String commonIndexPath,String startTime,String endTime,boolean falg){
+		String datestr = null;
+		//同步锁
+		synchronized (CountryAnaylazerUtil.class) {
+			if(AuthorityFieldModel.getAuthorityFieldMap().get("first")!=null){
+				if(!AuthorityFieldModel.getAuthorityFieldMap().get("first").toString().equals("1")){
+					datestr = (String) AuthorityFieldModel.getAuthorityFieldMap().get("datestr");
+				}
+			}else{
+				datestr = (String) AuthorityFieldModel.getAuthorityFieldMap().get("datestr");
+			}
+		}
+		List<File>fs=new java.util.ArrayList<File>();
+		File file=null;
+		String commonyear;
+		String s_m;
+		String e_m;
+		String[]months=getActualMonthsBySplit(startTime, endTime);
+	    System.out.println(months.toString());
+		for(String month:months){
+			commonyear=month.substring(0,4);//2012
+			s_m=month.substring(5,7);//01
+			if (Integer.parseInt(s_m)<10) {
+				file=new File(commonIndexPath+"/"+commonyear+"/"+"0"+Integer.parseInt(s_m));//d:/lucene/2012/01
+				//判断月份是否存在
+				if(isFileExist(file)){
+					//排除月份
+					excludeMonth(datestr, file, month, fs);
+				}
+			}
+			else{
+				file=new File(commonIndexPath+"/"+commonyear+"/"+Integer.parseInt(s_m));
+				//判断月份是否存在
+				if(isFileExist(file)){
+					//排除月份
+					excludeMonth(datestr, file, month, fs);
+				}
+			}
+		}
+		File[]sf=fs.toArray(new File[fs.size()]);
+ 		if (sf!=null && sf.length>0) {
+			return sf;
+		}
+		return null;
+	}
+	
+	/**
+	 * 排除月份
+	 * @param datestr
+	 * @param file
+	 * @param month
+	 * @param fs
+	 */
+	public static void excludeMonth(String datestr,File file,String month,List<File> fs){
+		//排除月份
+		if(datestr!=null && !"".equals(datestr)){
+			if(datestr.contains(month)){
+				//month:2012-01
+				fs.add(file);
+			}
+	    }
+		else{
+	    	fs.add(file);
+	    }
+	}
+	
+	
+	
+	/**
+	 * 判断索引是否存在
+	 * @param file
+	 * @return
+	 */
+	public static boolean isFileExist(File file){
+		  if(!file.exists()){
+			  System.err.println("对不起,不存在这个文件夹!:"+file.getAbsolutePath());
+			  return false;
+		  }
+		  return true;
+	}
+	
 	/**
 	 * 根据用户输入的查询时间去寻找索引文件对应的目录
 	 * @param commonIndexPath
@@ -96,7 +181,7 @@ public class CountryAnaylazerUtil {
 	 * @param falg
 	 * @return
 	 */
-	public static File[] getIndexFileByTime(String commonIndexPath,String startTime,String endTime,boolean falg){
+	/*public static File[] getIndexFileByTime(String commonIndexPath,String startTime,String endTime,boolean falg){
 		List<File>fs=new java.util.ArrayList<File>();
 		File file=null;
 		 
@@ -187,6 +272,80 @@ public class CountryAnaylazerUtil {
 		}
 		
 		return null;
+	}*/
+	
+	
+	
+	
+	/**
+	 * 算出两段时间内相差的月份
+	 * @param start 起始时间
+	 * @param end   结束时间
+	 * @return
+	 */
+	public static String[] getActualMonthsBySplit(String start, String end) {
+		String splitSign = "-";
+		String regex = "\\d{4}" + splitSign + "(([0][1-9])|([1][012]))";
+		if (!start.matches(regex) || !end.matches(regex)){
+			List<String> list = new ArrayList<String>();
+			if (start.compareTo(end) > 0) {
+				String temp = start;
+				start = end;
+				end = temp;
+			}
+			String temp = start;
+			while (temp.compareTo(start) >= 0 && temp.compareTo(end) <= 0) {
+				list.add(temp);
+				String[] arr = temp.split(splitSign);
+				int year = Integer.valueOf(arr[0]);
+				int month = Integer.valueOf(arr[1]) + 1;
+				if (month > 12) {
+					month = 1;
+					year++;
+				}
+				if (month < 10) {
+					temp = year + splitSign + "0" + month+splitSign;
+				} else {
+					temp = year + splitSign + month+splitSign;
+				}
+			}
+			int size = list.size();
+			String[] result = new String[size];
+			for (int i = 0; i < size; i++) {
+				result[i] = list.get(i);
+			}
+			return result;
+		}else{
+			
+		
+			List<String> list = new ArrayList<String>();
+			if (start.compareTo(end) > 0) {
+				String temp = start;
+				start = end;
+				end = temp;
+			}
+			String temp = start;
+			while (temp.compareTo(start) >= 0 && temp.compareTo(end) <= 0) {
+				list.add(temp);
+				String[] arr = temp.split(splitSign);
+				int year = Integer.valueOf(arr[0]);
+				int month = Integer.valueOf(arr[1]) + 1;
+				if (month > 12) {
+					month = 1;
+					year++;
+				}
+				if (month < 10) {
+					temp = year + splitSign + "0" + month;
+				} else {
+					temp = year + splitSign + month;
+				}
+			}
+			int size = list.size();
+			String[] result = new String[size];
+			for (int i = 0; i < size; i++) {
+				result[i] = list.get(i);
+			}
+			return result;
+		}
 	}
-
 }

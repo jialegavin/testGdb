@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>  
+<!DOCTYPE mapper  PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN" "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+<mapper namespace="com.njyb.auth.dao.cmp.IUserConsumingRecordsDao">
+	<!--xl 添加用户消费记录 -->
+	<insert id="addConsumingRecords" parameterType="com.njyb.gbdbase.model.admincenter.UserConsumingRecordsModel">
+		<![CDATA[
+			INSERT INTO USER_CONSUMING_RECORDS (USERID,TOTALMONEY,CREATETIME,REMARKS)
+			VALUES(#{userId},#{totalmoney},#{createtime},#{remarks})
+		]]>
+	</insert>
+	
+	<select id="getRecordsList" parameterType="java.util.Map" resultType="com.njyb.gbdbase.model.admincenter.UserConsumingRecordsModel">
+		<![CDATA[
+			SELECT USERID,TOTALMONEY,CREATETIME,REMARKS FROM USER_CONSUMING_RECORDS
+			WHERE 1=1 ${sqlparam}
+			LIMIT #{curpage},#{pagesize};
+		]]>
+	</select>
+</mapper>

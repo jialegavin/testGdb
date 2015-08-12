@@ -9,6 +9,8 @@ var queryParam = {};
 
 var reportHtml = {};
 
+var userModel = {};
+
 /**
  * 区别进度条  立即查询 && 分页查询
  */
@@ -53,6 +55,608 @@ function LoadAllCountry(divId, selectId, countryArray, inputTitle, inputText) {
 	divId.appendTo(selectId.combo('panel'));
 }
 
+//-------------------------------------------权限------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+/**
+ * 判断用户的权限
+ * @return  true : 正式用户  false : 超级用户,试用用户 
+ */
+var checkUserRightDesc = function(){
+	var result = false;
+	var userRight = userRightCfg.user.userDesc;
+	if (userRight == '正式用户') {
+		result = true;
+	}
+	return result;
+}
+
+/**
+ * 初始化用户国家和时间<br>
+ * 赠送时间根据用户有效时间得出<br>
+ * 用户所购买的国家如果为中国,2种情况: 1. 开放了历史数据 2. 没有开放历史数据<br>
+ * 并且赠送3个月国外数据.为全部国家,3个月过期之后,不再赠送国外数据<br>
+ * 中国 : 数据检索时间 , 国外 : 账户时间
+ * @param userRightModel : 用户权限model
+ * @param queryBeginTime : 查询开始时间
+ * @param queryEndTime : 查询结束时间
+ * @returns userRightModel : 处理过的用户权限Model
+ */
+var initUserRightMethod = function(userRightModel,queryBeginTime,queryEndTime) {
+	try {
+		if (userRightModel) {
+			var startTime = userRightCfg.user.beginTime;		//用户有效开始时间
+			var endTime = userRightCfg.user.endTime;			//用户结束时间
+			var temp_countryArray = [];
+			var serviceTime =userRightCfg.nowDate;				//服务器当前时间截
+			var isDispark = getChinaMonth(serviceTime,startTime);		// 赠送时间
+			for (x in userRightModel) {
+	//			var startTime = userRightModel[x].startTime;	// 开始时间
+				var endTime = userRightModel[x].endTime;		// 结束时间
+				// 是否含有中国
+				if (userRightModel[x].byCountry == "中国") {
+					// 是否开放了历史数据
+					if (userRightModel[x].openHistoryData) {
+						// 开放历史数据
+						if (isDispark) {		// 在赠送时间范围内
+							// 设置为全部国家
+							userRightCfg.countryArray = reportArray.ALL;
+							// 对输入的时间进行国家筛选
+							userRightCfg.countryArray = checkChinaBuyCountry(queryBeginTime,queryEndTime);
+						} else {										// 不再赠送时间范围内
+							// 获取当前用户所购买的国家数组
+							userRightCfg.countryArray = queryCountryArray(queryBeginTime,queryEndTime);
+						}
+					} else {
+						// 未开放历史数据
+						// 判断在赠送时间内
+						if (isDispark) {		// 在赠送时间范围内
+							// 设置为全部国家
+							userRightCfg.countryArray = reportArray.ALL;
+							// 对输入的时间进行国家筛选
+							checkChinaBuyCountry(queryBeginTime,queryEndTime);
+						} else {
+							// 未在赠送时间内
+							// 获取当前用户所购买的国家数组
+							userRightCfg.countryArray = queryCountryArray(queryBeginTime,queryEndTime);
+						}
+					}
+				} else {
+					// 获取当前用户所购买的国家数组
+					userRightCfg.countryArray = queryCountryArray(queryBeginTime,queryEndTime);
+				}
+			}
+		}
+	} catch (e) {
+		console.debug("commonRightLibrary.js 出现异常 : " + e);
+	}
+}
+
+/**
+ * 是否是试用用户<br>
+ * 当前行对象是否是不可操作的数据<br>
+ * 模块 : 我的客户,我的对手,产品标签
+ * @param rowObj : 当前行的数据
+ * @return true , false 
+ */
+var isOperate = function(rowObj){
+	var result = false;
+	if (userRightCfg.user.userDesc == '试用用户') {
+		if (rowObj) {
+			if (1 == rowObj.isOperate) {
+				result = true;
+			}
+		}
+	}
+	return result;
+}
+
+/**
+ * 根据输入的国家返回当前的国家元素索引
+ */
+var getCountryIndex = function(countryArray,countryName){
+	for (x in countryArray) {
+		if (countryArray[x] == countryName) {
+			return x;
+		}
+	}
+	return "";
+}
+
+/**
+ * 
+ */
+var checkChinaBuyCountry = function(queryBeginTime,queryEndTime){
+	var countryArray = [];
+	var rightModel = userRightCfg.key;
+	var temp_queryBeginTime = formatDate(queryBeginTime,"");			// 查询开始时间
+	var temp_queryEndTime = formatDate(queryEndTime,"");				// 查询结束时间
+	var temp_userEndTime = formatDate(userRightCfg.user.endTime);		// 用户结束时间 
+	for (var x = 0; x < rightModel.length ; x++) {
+		var startTime = formatDate(rightModel[x].startTime);	// 开始时间
+		var endTime = formatDate(rightModel[x].endTime);		// 结束时间
+		countryArray = removal_Country(countryArray);			// 去重复
+		// 如果为中国,按照数据检索时间
+		if (rightModel[x].byCountry == '中国') {
+			if ((temp_queryBeginTime >= startTime && startTime <= temp_queryEndTime)
+					|| (temp_queryBeginTime <= endTime && endTime <= temp_queryEndTime)) {
+				// 设置为全部国家
+				countryArray = reportArray.ALL;
+				countryArray.unshift('中国');
+				countryArray = removal_Country(countryArray);
+			} else {
+				countryArray = reportArray.ALL;
+				var temp_index = getCountryIndex(countryArray,'中国');
+				if (temp_index) {
+					countryArray.splice(temp_index,1);
+				}
+				countryArray = removal_Country(countryArray);
+			}
+		}
+	}
+	return removal_Country(countryArray);
+}
+
+/**
+ * 获取当前用户所购买的国家数组
+ * @param queryBeginTime : 查询开始时间	
+ * @param queryEndTime : 查询结束时间
+ * @param countryArray : 经过查询时间处理过的国家数组
+ */
+var queryCountryArray = function(queryBeginTime,queryEndTime){
+	var countryArray = [];
+	var rightModel = userRightCfg.key;
+	var temp_queryBeginTime = formatDate(queryBeginTime,"");			// 查询开始时间
+	var temp_queryEndTime = formatDate(queryEndTime,"");				// 查询结束时间
+	var temp_userEndTime = formatDate(userRightCfg.user.endTime);		// 用户结束时间 
+	for (x in rightModel) {
+		var startTime = formatDate(rightModel[x].startTime);	// 开始时间
+		var endTime = formatDate(rightModel[x].endTime);		// 结束时间
+		// 如果为中国,按照数据检索时间
+		if (rightModel[x].byCountry == '中国') {
+			if ((temp_queryBeginTime >= startTime && startTime <= temp_queryEndTime)
+					|| (temp_queryBeginTime <= endTime && endTime <= temp_queryEndTime)) {
+				countryArray[x] = rightModel[x].byCountry;
+			}
+		} else {
+			// 如果国外,按照账户有效时间
+			// 只计算 购买数据结束时间 于 账户结束时间
+			if (temp_userEndTime >= endTime) {
+				countryArray[x] = rightModel[x].byCountry;
+			}
+		}
+	}
+	return removal_Country(countryArray);
+}
+
+/**
+ * 去重复数组
+ */
+var removal_Country = function(countryArray){
+	var temp_CountryArray = [],temp_hash = [];
+	for (x in countryArray) {
+		if (!temp_hash[countryArray[x]]) {
+			temp_hash[countryArray[x]] = true;
+			temp_CountryArray.push(countryArray[x]);
+		}
+	}
+	return temp_CountryArray;
+}
+
+/**
+ * 是否在中国赠送时间范围内
+ * @param ServiceTime : 服务器当前时间
+ * @param startTime : 用户有效开始时间
+ * @returns false : 失效  true : 生效
+ */
+var getChinaMonth = function(ServiceTime,startTime) {
+	var result = true;
+	var serviceTime = formatDate(ServiceTime,"");
+	var buyStartTime = formatDate(startTime,3);	//中国数据开始时间+3个月
+	if (serviceTime > buyStartTime) {			//服务器时间大于用户购买时间
+		result = false;
+	}
+	return result;
+}
+
+/**
+ * 验证当前用户所购买的权限
+ * @param input_hsCode : 用户输入的hsCode
+ * @param input_hsCode : 用户输入的产品描述
+ * @returns  1 : hsCode 不存在 2 : goodsDesc 不存在
+ */
+var checkUserBuyParam = function(input_hsCode,input_goodsDesc) {
+	result = 0;
+	userList = userRightCfg.key;
+	for (x in userList) {
+		if (userList[x].byHsCode != input_hsCode) {
+			result = 0;
+		}
+		if (userList[x].byProductDesc != input_goodsDesc) {
+			result = 1;
+		}
+	}
+	return result;
+}
+
+/**
+ * 是否有中国这个国家并且没有开放了历史数据
+ * @return true : 开放  false : 未开放
+ */
+var getChinaAndHistry = function() {
+	var result = false;
+	// 是否含有中国
+	if (userRightModel[x].byCountry == "中国"){
+		// 是否开放了历史数据
+		if (userRightModel[x].openHistoryData) {
+			result = true;
+		}
+	}
+	return result;
+}
+
+/**
+ * 是否购买了中国
+ * @return true : 开放  false : 未开放
+ */
+var getChinaAndHistry = function() {
+	var rightModel = userRightCfg.key;
+	for (x in rightModel) {
+		if (rightModel[x].byCountry == "中国") {
+			return true;
+		}
+	}
+	return false;
+}
+
+/**
+ * 获取对应的饼图的显示中文值
+ * @param param : 对象的字段
+ * @return result : 返回对应的中文名称
+ */
+var getPieChatsValue = function(param){
+	var result = "";
+	if (param) {
+		if (param == 'tradeWeight') {
+			result = "重量";
+		} else if (param == 'tradeMoney') {
+			result = "金额";
+		} else if (param == 'tradeQuantity') {
+			result = "数量";
+		} else if (param == 'tradeCount') {
+			result = "次数";
+		} 
+	} else {
+		// 如果为空,默认为 重量
+		result = "重量";
+	}
+	return result;
+}
+
+/**
+ * 对中国的时间进行转换<br>
+ * 获取时间截
+ * @param date : 日期
+ * @param afterTime : 追加时间 可以设置为""
+ * @return 时间截
+ */
+var formatDate = function(date,afterTime) {
+	if (date) {
+		if (date.length > 10) {
+			date = date.substring(0,date.indexOf(" "));
+		}
+		var dateArray = date.split("-");
+		var temp_date = new Date(dateArray[0],dateArray[1],dateArray[2]);
+		if (afterTime) {
+			temp_date.setMonth(temp_date.getMonth() +  parseInt(afterTime - 1));
+			return temp_date.getTime();	// 加上3个月
+		}
+		temp_date.setMonth(temp_date.getMonth() -1);
+		return temp_date.getTime();
+	}
+}
+
+/**
+ * 获得当前用户所购买海关编码的总数量
+ * @param userRightModel : 用户权限集合
+ * @return hsCodeArray : 海关编码数量数组
+ */
+var gethsCodeCount = function(userRightModel){
+	var hsCodeArray = [];
+	var rightList = userRightModel.key;
+	for (x in rightList) {
+		if (rightList[x].byHsCode) {
+			hsCodeArray.push(rightList[x].byHsCode);
+		}
+	}
+	return hsCodeArray;
+}
+
+/**
+ * 试用用户 查询时间效验
+ * @param queryBeginDate : 查询开始时间
+ * @param queryEndDate : 查询结束时间
+ * @return true : 有效  false : 无效
+ */
+var probationUser = function(queryBeginDate,queryEndDate) {
+	var result = false;
+	// 试用用户限制时间
+	var beginDate = formatDate("2012-01-01", "");
+	var endDate = formatDate("2013-12-31", "");
+	var temp_queryBeginDate = formatDate(queryBeginDate, "");
+	var temp_queryEndDate = formatDate(queryEndDate, "");
+	if (temp_queryBeginDate > beginDate && temp_queryEndDate > endDate
+			|| temp_queryBeginDate < beginDate && temp_queryEndDate < endDate) {
+		result = true;
+	}
+	return result;
+}
+
+/**
+ * 是否购买过hscode
+ * @return true : 购买过  false : 未购买
+ */
+var checkHsCodeOfBuy = function(inputHscode){
+	var result = false;
+	var userRight = userRightCfg.key;
+	if (userRight) {
+		for (x in userRight) {
+			var temp_inputHscode = inputHscode;
+			if (userRight[x].byHsCode) {
+				// 以用户购买hscode的长度为准
+				var temp_userBuyHscode = userRight[x].byHsCode;
+				var buy_HscodeLength = temp_userBuyHscode.length;
+				var temp_inputHscode = temp_inputHscode.substring(0,buy_HscodeLength);
+				if (temp_inputHscode.trim() == temp_userBuyHscode.trim()) {
+					result = true;
+				}
+			}
+		}
+	} else {
+		result = true;
+	}
+	return result;
+}
+
+/**
+ * 获取当前用户所购买的所有国家列表
+ */
+var getUserCountry = function(userCountrys) {
+	var userCountry = [];
+	if (getUserBuyChina(userRightCfg.key) == 1 || getUserBuyChina(userRightCfg.key) == 3) {
+		console.debug("赠送");
+		userCountry = reportArray.ALL;
+	} else if (getUserBuyChina(userRightCfg.key) == 2) {
+		console.debug("不赠送");
+		for (x in userCountrys) {
+			userCountry[x] = userCountrys[x].bycountry;
+		}
+	}
+	return userCountry;
+}
+
+/**
+ * 获取用户购买的国家集合
+ */
+var getUserBuyCountry = function(userCountrys){
+	var userCountry = [];
+	for (x in userCountrys) {
+		userCountry[x] = userCountrys[x].byCountry;
+	}
+	return userCountry;
+}
+
+/**
+ * 循环对象,是否含有中国的国家,是否开放了历史数据
+ * @returns 0 : 没有中国  1 : 开了历史数据,还在赠送时间内 2 : 未开历史数据,不再赠送时间 3 : 未开中国历史数据,还在赠送时间内
+ */
+var getUserBuyChina = function(userRightList){
+	var result = 0;
+	for (x in userRightList) {
+		// 购买的国家 是 中国
+		if (userRightList[x].bycountry == '中国') {
+			// 中国数据是否开放历史数据
+			if (userRightList[x].openHistoryData == 0) {		// 未开中国历史数据,还在赠送时间内
+				if (proBationUser(userRightList[x].starttime)) {
+					result = 3;
+				}
+			} else if (userRightList[x].openHistoryData == 1){	// 开了历史数据
+				if (proBationUser(userRightList[x].starttime)) {
+					result = 1;
+				} else {
+					result = 2;
+				}
+			}
+		}
+	}
+	return result;
+}
+
+/**
+ * 对于中国,判断赠送国家的日期之内
+ */
+var proBationUser = function(beginDate) {
+	var result = false;
+	var nowDate = userRightCfg.nowDate;			// 服务器时间
+	if (checkUserDate(nowDate,beginDate)) {
+		result = true;
+	}
+	return result;
+}
+
+/**
+ * 数据格式统一
+ */
+var checkDate = function(date){
+	if (date && date != 'undefined') {
+		var dateArray = date.split("-");
+		if (dateArray.length == 2) {
+			date += "-01";
+		}
+	}
+	return date;
+}
+
+/**
+ * 用户权限验证方法
+ * @returns true : SUCCESS false : ERROR
+ */
+var checkUserRole = function(){
+	var result = false;
+	var userModel = userRightCfg.user;
+	if (userModel.userDesc == '正式用户') {
+		result = true;
+	} else if (userModel.userDesc == '超级用户') {
+		result = true;
+	} else if (userModel.userDesc == '试用用户') {
+		probationUser();
+		result = true;
+	} else if (userModel.userDesc == '按次用户') {
+		alertRightMessage();
+	}
+	return result;
+}
+
+/**
+ * 判断用户有效日期是否超过3个月<br>
+ * 对于中国来说<br>
+ * 如果超过3个月,false  否则 true
+ * @param serviceNowDate : 服务开始时间
+ * @param userBuyBeginDate : 购买时间
+ */
+var checkUserDate = function(serviceNowDate,userBuyBeginDate){
+	var result = true;
+	var temp_serviceNowDate = serviceNowDate.split("-");
+	var temp_nowDate = new Date(temp_serviceNowDate[0],temp_serviceNowDate[1],temp_serviceNowDate[2]);
+	var temp_serviceDate = temp_nowDate.getTime();
+	userBuyBeginDate = userBuyBeginDate.split(" ");
+	var temp_beginDate = userBuyBeginDate[0].split("-");
+	var temp_begin = new Date(temp_beginDate[0],Number(temp_beginDate[1]) + 2,temp_beginDate[2]);
+	var temp_buyDate = temp_begin.getTime();
+	if(temp_serviceDate > temp_buyDate) {
+		result = false;
+	}
+	return result;
+}
+
+/**
+ * 判断用户有效日期是否超过3个月<br>
+ * 对于中国来说<br>
+ * @param serviceDate : 服务开始时间
+ * @param buyBeginDate : 购买时间
+ * @return true : 有效   false : 无效
+ */
+var checkServiceOrBuyTime = function(serviceDate,buyBeginDate) {
+	var result = false;
+	if (serviceDate > buyBeginDate) {
+		result = true;
+	}
+	return result;
+}
+
+/**
+ * 点击国家下拉按钮时触发<br>
+ * 开始时间和结束时间 和 用户所购买的国家所对应
+ */
+var checkBeginAndEndDate = function(beginDate,endDate){
+	var temp_countryArray = [];
+	var temp_all_country = reportArray.ALL;		// 存放要过滤的国家
+	beginDate = getDateSub(beginDate);			// 查询开始时间
+	endDate = getDateSub(endDate);				// 查询结束时间
+	if (beginDate && endDate) {
+		var userRightData = userRightCfg.key;
+		for (x in userRightData) {
+			var buyBeginDate = getDateSub(userRightData[x].starttime);		// 购买开始时间
+			var buyEndDate = getDateSub(userRightData[x].endtime);			// 购买结束时间
+			if (userRightData[x].bycountry = '中国') {
+				// 是否开放了历史数据
+				if (checkUserRightHisty(userRightData[x])) {
+					// 在赠送时间 生效
+					if (checkServiceOrBuyTime(getDateSub(userRightCfg.nowDate),buyBeginDate)) {
+						// 判断时间
+						if (beginDate > buyBeginDate || buyBeginDate < endDate &&
+								endDate > buyBeginDate || buyEndDate < endDate) {
+							temp_countryArray = reportArray.ALL;
+						} else {
+							// 不再查询之内
+							var index = getArrayIndex(userRightData[x].bycountry,temp_all_country);
+							temp_all_country.splice(index,1);
+							temp_countryArray = temp_all_country;
+						}
+					} else {
+						// 不再赠送时间之内的
+						// 判断购买时间是否在查询时间之内
+						if (beginDate > buyBeginDate || buyBeginDate < endDate &&
+								endDate > buyBeginDate || buyEndDate < endDate) {
+							temp_countryArray[x] = userRightData[x].bycountry;
+						}
+					}
+				} else {
+					// 不开放历史数据
+					// 在赠送时间 生效
+					if (checkServiceOrBuyTime(getDateSub(userRightCfg.nowDate),buyBeginDate)) {
+						// 查询时间和购买时间对比
+						if (beginDate > buyBeginDate || buyBeginDate < endDate &&
+								endDate > buyBeginDate || buyEndDate < endDate) {
+							temp_countryArray = reportArray.ALL;
+						} else {
+							// 不再查询之内
+							var index = getArrayIndex(userRightData[x].bycountry,temp_all_country);
+							temp_all_country.splice(index,1);
+							temp_countryArray = temp_all_country;
+						}
+					} else {
+						// 不再赠送时间之内的
+						// 判断购买时间是否在查询时间之内
+						if (beginDate > buyBeginDate || buyBeginDate < endDate &&
+								endDate > buyBeginDate || buyEndDate < endDate) {
+							temp_countryArray[x] = userRightData[x].bycountry;
+						}
+					}
+				}
+			}
+		}
+	}
+	return temp_countryArray;
+}
+
+
+var getArrayIndex = function (value,array) {
+	var index = -1;
+	for (var i = 0; i < array.length; i++) {
+		if (array[i] == value) {
+			index = i;
+			break;
+		}
+	}
+	return index;
+}
+
+/**
+ * 判断当前国家是否开放了历史数据<br>
+ * 对于中国来说
+ */
+var checkUserRightHisty = function(RightModel){
+	var result = false;
+	if (RightModel.openHistoryData == 1) {
+		result = true;
+	}
+	return result;
+}
+
+/**
+ * 获取时间的时间截
+ */
+var getDateSub = function(date) {
+	date = checkDate(date);
+	var temp_date = date.split("-");
+	var temp_nowDate = new Date(temp_date[0],temp_date[1],temp_date[2]);
+	var temp_serviceDate = temp_nowDate.getTime();
+	return temp_serviceDate;
+}
+
+// -------------------------------------权限END---------------------------------------------------------------
 /**
  * 创建 input ,提供给 初始化国家用
  * 
@@ -127,21 +731,21 @@ function queryCusAndComCount(compId,cusId){
  */
 function selectManayAllCountry(inpName, displayCountryDiv, all, countryId) {
 	var lang = $("input[name='" + inpName + "']");
-	var s = "";
+	var countryArray = "";
 	for (x in lang) {
 		lang[x].checked = all.checked;
 		if (lang[x].value) {
-			s = s + lang[x].value + "、&nbsp;";
+			countryArray = countryArray + lang[x].value + "、&nbsp;";
 		}
 	}
 	if (all.checked) {
 		$('#' + displayCountryDiv).html(
 				"<font color='#0066CC' style='font-family: 微软雅黑,宋体;'>* 当前已选 &nbsp;:&nbsp;"
-						+ s + "</font>");
+						+ countryArray + "</font>");
 	} else {
 		$('#' + displayCountryDiv).html("");
 	}
-	$('#' + countryId).combo('setText', s.substring(0, s.lastIndexOf(',')))
+	$('#' + countryId).combo('setText', countryArray.substring(0, countryArray.lastIndexOf(',')))
 			.combo('hidePanel');
 }
 
@@ -311,6 +915,7 @@ function sendLoadData(){
 		pageSize : 10,
 		showFooter:true,
 		onBeforeLoad : function(param){
+			queryParam.marketplace.sort = param.sort;		// 排序字段
 			flagPro = param.page;
 			if (1 == flagPro) {
 				$('div[name="clientProgress"]').show();
@@ -327,9 +932,9 @@ function sendLoadData(){
 				//起运港 和 抵达港 为饼图	param.reportType 报告类型
 				if ('PORTOFSHIPMENT' == param.reportType || 'PORTOFARRIVAL' == param.reportType) {
 					var pieData = pieCreateEcharts(data);
-					if (pieData) {
+					if (checkObjectNull(pieData)) {
 						$("#echartsDiv").show();
-						showPieChart('echartsDiv', pieData, getTitle(param.reportType), '',950, 500,'重量');
+						showPieChart('echartsDiv', pieData, getTitle(param.reportType), '',950, 500,getPieChatsValue(queryParam.marketplace.sort));
 					} else {
 						$("#echartsDiv").hide();
 					}
@@ -350,6 +955,27 @@ function sendLoadData(){
 			}
 		}
 	});
+}
+
+/**
+ * 判断是否为空<br>
+ * 针对饼状数据
+ * @param obj : 数据
+ * @return result : true | false
+ */
+var checkObjectNull = function(obj){
+	var result = true;
+	var count = obj.length;
+	var num = 0;
+	for (x in obj) {
+		if (obj[x].value == '') {
+			num++;
+		}
+	}
+	if (count == num) {
+		result = false;
+	}
+	return result;
 }
 
 /**
@@ -374,11 +1000,11 @@ function validateDate(firstStart, firstEnd, secondStart, secondEnd, message,
 		reporttype) {
 	// 验证第一段日期
 	if (firstStart == null || firstStart == '') {
-		alertMessage("提示", "开始日期不能为空!", "info");
+		$.messager.alert("提示", "开始日期不能为空!", "info");
 		return false;
 	}
 	if (firstEnd == null || firstEnd == '') {
-		alertMessage("提示", "结束日期不能为空!", "info");
+		$.messager.alert("提示", "结束日期不能为空!", "info");
 		return false;
 	}
 	var fsDate = new Date(firstStart);
@@ -387,12 +1013,12 @@ function validateDate(firstStart, firstEnd, secondStart, secondEnd, message,
 	var etime = feDate.getTime(firstEnd);
 	var time = parseInt(etime) - parseInt(btime);
 	if (fsDate > feDate) {
-		alertMessage("提示", message, "info");
+		$.messager.alert("提示", message, "info");
 		return false;
 	}
 	// 验证时间段不超过一年
 	if (time > 31536000000) {
-		alertMessage("提示", "查询最大的时间差不能超过一年!", "info");
+		$.messager.alert("提示", "查询最大的时间差不能超过一年!", "info");
 		return false;
 	}
 	// 判断当报告类型为新增，流失进口商，新增流失出口商时校验第二段日期
@@ -400,11 +1026,11 @@ function validateDate(firstStart, firstEnd, secondStart, secondEnd, message,
 			|| reporttype == 'ADDEXPORTER' || reporttype == 'REDURCEEXPORTER') {
 		// 验证第二段日期
 		if (secondStart == null || secondStart == '') {
-			alertMessage("提示", "新增时间段开始日期不能为空!", "info");
+			$.messager.alert("提示", "新增时间段开始日期不能为空!", "info");
 			return false;
 		}
 		if (secondEnd == null || secondEnd == '') {
-			alertMessage("提示", "新增时间段结束日期不能为空!", "info");
+			$.messager.alert("提示", "新增时间段结束日期不能为空!", "info");
 			return false;
 		}
 		var ssDate = new Date(secondStart);
@@ -413,12 +1039,12 @@ function validateDate(firstStart, firstEnd, secondStart, secondEnd, message,
 		var setime = seDate.getTime(secondEnd);
 		var stime = parseInt(setime) - parseInt(sbtime);
 		if (ssDate > seDate) {
-			alertMessage("提示", message, "info");
+			$.messager.alert("提示", message, "info");
 			return false;
 		}
 		// 验证新增时间不超过一年
 		if (stime > 31536000000) {
-			alertMessage("提示", "查询最大的时间差不能超过一年!", "info");
+			$.messager.alert("提示", "查询最大的时间差不能超过一年!", "info");
 			return false;
 		}
 	}
@@ -491,23 +1117,35 @@ function isEmpty(gradId) {
 function checkTradeType(inputType, countryArray) {
 	var array = [];
 	if ('全部' == inputType) {
-		array = reportArray.ALL;
+		if (checkUserRightDesc()) {
+			array = unique1(userRightCfg.countryArray);
+		} else {
+			array = reportArray.ALL;
+		}
 	}
 	if (inputType && countryArray) { // 不为空
-		for (x in noFilterArray) {
-			// 如果不存在不用过滤的国家,则加进数组中
-			if (countryArray.indexOf(noFilterArray[x]) == -1) {
-				array.push(noFilterArray[x]);
-			}
-		}
-		for (x in countryArray) {
+ 		for (x in countryArray) {
 			// 如果字符中存在 inputType {进口,出口}
 			if (countryArray[x].indexOf(inputType) != -1) {
 				array.push(countryArray[x]);
 			}
 		}
+ 		if (userRightCfg.user.userDesc != '正式用户') {
+			for (x in noFilterArray) {
+				// 如果不存在不用过滤的国家,则加进数组中
+//				if (countryArray.indexOf(noFilterArray[x]) == -1) {
+					array.unshift(noFilterArray[x]);
+//				}
+			}
+		} else {
+			for (x in noFilterArray) {
+				if (getChinaMonth(userRightCfg.nowDate,userRightCfg.user.beginTime)) {
+					array.unshift(noFilterArray[x]);
+				}
+			}
+		}
 	}
-	return array;
+	return unique1(array);
 }
 
 /**
@@ -570,11 +1208,33 @@ function checkParamCreateCountryArray() {
 			if (param.tradeType) {
 				param.countryArray = checkTradeType(param.tradeType,
 						countryArray);
+				// 权限国家在当前报告类型中存在的国家
+				if (userRightCfg.user.userDesc == "正式用户") {
+					param.countryArray = getCountryArrayOfTwoArray(param.countryArray,userRightCfg.countryArray);
+				}
 				getAppendCountryByParam();
 				$("#quankuselectcountry").html("");
 			}
 		}
 	}
+}
+
+/**
+ * 实现 countryArray 的元素是否存在于 typeCountryArray,如果存在,则添加到临时数组中
+ * @param typeCountryArray : 报告类型所需要的国家
+ * @param countryArray : 用户权限所购买的国家
+ * @return temp_array : 临时数组
+ */
+var getCountryArrayOfTwoArray = function(typeCountryArray,countryArray) {
+	var temp_array = [];
+	for (i in typeCountryArray) {
+		for (y in countryArray) {
+			if (typeCountryArray[i] == countryArray[y]) {
+				temp_array[i] = typeCountryArray[i];
+			}
+		}
+	}
+	return temp_array;
 }
 
 /**
@@ -671,6 +1331,12 @@ function collectEchatsX(field,title){
 	return params;
 }
 
+/**
+ * 根据行号删除表格中的行数据
+ */
+var deleteDataGridByRow = function(row) {
+	$('table[name="marketplaceDataGrid"]').datagrid('deleteRow', row);
+}
 
 /**
  * 汇总datagrid页面
@@ -690,7 +1356,8 @@ function judgeEquirementquanku(tp) {
 			width : 206,
 			formatter : function(value, row, index) {
 				if (!value) {
-					value = "N/A";
+					deleteDataGridByRow(row);
+//					value = "N/A";
 				}
 				return value;
 			}
@@ -787,7 +1454,8 @@ function judgeEquirementquanku(tp) {
 		ass["align"] = 'center';
 		ass["formatter"] = function(value, row, index) {
 			if (!value) {
-				value = "N/A";
+				deleteDataGridByRow(row);
+//				value = "N/A";
 			}
 			return value;
 		}
@@ -1035,7 +1703,8 @@ function judgeEquirementquanku(tp) {
 		ass["align"] = 'center';
 		ass["formatter"] = function (value, row, index) {
 			if (!value) {
-				value = "N/A";
+//				value = "N/A";
+				deleteDataGridByRow(row);
 			}
 			return value;
 		}
@@ -1122,7 +1791,8 @@ function judgeEquirementquanku(tp) {
 		ass["align"] = 'center';
 		ass["formatter"] = function (value, row, index) {
 			if (!value) {
-				value = "N/A";
+				deleteDataGridByRow(row);
+//				value = "N/A";
 			}
 			return value;
 		}
@@ -1206,7 +1876,7 @@ function judgeEquirementquanku(tp) {
 	} else if (tp == 'NATIVE') {
 		var ass = {};
 		ass["field"] = "origin_country";
-		ass["title"] = getFormatStr('产品描述');
+		ass["title"] = getFormatStr('原产国');
 		ass["titleValue"] = '产品描述';	// 不作处理的文字
 		ass["width"] = 226;
 		ass["align"] = 'center';
@@ -1293,14 +1963,18 @@ function judgeEquirementquanku(tp) {
  * @author honghao
  */
 function fmoney(s, n) {
-	n = n > 0 && n <= 20 ? n : 2;
-	s = parseFloat((s + "").replace(/[^\d\.-]/g, "")).toFixed(n) + "";
-	var l = s.split(".")[0].split("").reverse(), r = s.split(".")[1];
-	t = "";
-	for (i = 0; i < l.length; i++) {
-		t += l[i] + ((i + 1) % 3 == 0 && (i + 1) != l.length ? "," : "");
+	var result = 0;
+	if (s) {
+		n = n > 0 && n <= 20 ? n : 2;
+		s = parseFloat((s + "").replace(/[^\d\.-]/g, "")).toFixed(n) + "";
+		var l = s.split(".")[0].split("").reverse(), r = s.split(".")[1];
+		t = "";
+		for (i = 0; i < l.length; i++) {
+			t += l[i] + ((i + 1) % 3 == 0 && (i + 1) != l.length ? "," : "");
+		}
+		result = t.split("").reverse().join("") + "." + r;
 	}
-	return t.split("").reverse().join("") + "." + r;
+	return result;
 }
 
 //****************************************echarts******************************************
@@ -1399,9 +2073,12 @@ function pieCreateEcharts(data){
 			pieDatas.name = xData[x];
 		}
 		// 饼图只对重量做处理
-		var resultValue = newData[echartsData[index].field];
+		var resultValue = "";
+		if (index) {
+			resultValue = newData[echartsData[index].field];
+		}
 		totalWeight += resultValue;
-		pieDatas.value = resultValue;
+		pieDatas.value = cutOutNum(resultValue);		// 格式化  2位数
 		pieData.push(pieDatas);
 	}
 	return pieData;
@@ -1413,8 +2090,15 @@ function pieCreateEcharts(data){
  */
 function getIndexByParams(echartsData) {
 	for (var i = 0; i < echartsData.length; i++) {
-		if (echartsData[i].field == 'tradeWeight') {
-			return i;
+		if (queryParam.marketplace.sort) {
+			if (echartsData[i].field == queryParam.marketplace.sort) {
+				return i;
+			}
+		} else {
+			// 如果排序字段为空,默认为重量
+			if (echartsData[i].field == 'tradeWeight') {
+				return i;
+			}
 		}
 	}
 }
@@ -1434,9 +2118,13 @@ function cutOutNum(numOrStr){
 //	return numOrStr;
 	
 	numOrStr = fmoney(numOrStr, 2);	//截取2位
-	var radixBefore = numOrStr.substring(0,numOrStr.lastIndexOf('.'));
-	var radlxLater = numOrStr.substring(numOrStr.lastIndexOf('.'),numOrStr.lang);
-	var result = replaceComma(radixBefore,",", /,/g, '');
+	if (numOrStr == 0) {
+		return numOrStr;
+	} else {
+		var radixBefore = numOrStr.substring(0,numOrStr.lastIndexOf('.'));
+		var radlxLater = numOrStr.substring(numOrStr.lastIndexOf('.'),numOrStr.lang);
+		var result = replaceComma(radixBefore,",", /,/g, '');
+	}
 	return result + radlxLater;
 }
 

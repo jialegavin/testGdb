@@ -2,10 +2,13 @@ package com.njyb.gbdbase.service.common.componet.report.sumary;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collection;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 import net.sf.ehcache.Cache;
 import net.sf.ehcache.Element;
@@ -39,7 +42,7 @@ public class ReportDataSummary extends AbstractCacheListCmp implements IReportDa
 	@SuppressWarnings({"static-access"})
 	@Override
 	public List<DataReportSumModel> getSumListModel(String[] fields, String[] values, String country,@SuppressWarnings("rawtypes") Map map) {
-	//	System.out.println("获取汇总需要的基础集合....");
+		List<DataReportSumModel> lists = new ArrayList<DataReportSumModel>();
 		//启用集合过滤功能 得到新的集合
 		if (map.get("useFilter").toString().equals("no")) {
 			List<DataReportSumModel>list=null;
@@ -51,7 +54,7 @@ public class ReportDataSummary extends AbstractCacheListCmp implements IReportDa
 			if (oldCountry.equals(country)) {
 				//用户本次检索的条件以及对应的值和上一次检索的条件以及对应的值
 				if (LuceneFileUtis.judgeEqual(oldFields, fields)&&LuceneFileUtis.judgeEqual(oldValues, values)) {
-					return CreateFactory.createListFactory(ParamEnumUtil.same.name()).getFilterListModel(fields, values, country, map, null);
+					lists =  CreateFactory.createListFactory(ParamEnumUtil.same.name()).getFilterListModel(fields, values, country, map, null);
 				}
 				//用户两次查询的条件不一致
 				if (!LuceneFileUtis.judgeEqual(oldFields, fields)){
@@ -69,7 +72,7 @@ public class ReportDataSummary extends AbstractCacheListCmp implements IReportDa
 							}
 							//多:一致:两次查询没有同时包含海关编码
 							if (!Arrays.asList(oldFields).contains("hscode")||!Arrays.asList(fields).contains("hscode")) {
-								return CreateFactory.createListFactory(ParamEnumUtil.nocontainhscode.name()).getFilterListModel(fields, values, country, map, null);
+								lists = CreateFactory.createListFactory(ParamEnumUtil.nocontainhscode.name()).getFilterListModel(fields, values, country, map, null);
 							}			
 						}
 					}
@@ -77,15 +80,36 @@ public class ReportDataSummary extends AbstractCacheListCmp implements IReportDa
 			}
 			//各种情况导致 需要重新检索数据
 			if (!ReportHelpUtil.newInstanceReportUtil().isInitSearch(oldCountry,oldFields,oldValues,country, fields, values)) {
-				return CreateFactory.createListFactory(ParamEnumUtil.init.name()).getFilterListModel(fields, values, country, map,null);
+				lists = CreateFactory.createListFactory(ParamEnumUtil.init.name()).getFilterListModel(fields, values, country, map,null);
 			}
-			return null;
 		}
 		//直接通过检索索引文档 得到新的集合
 		if (map.get("useFilter").toString().equals("yes")) {
-			return CreateFactory.createListFactory(ParamEnumUtil.init.name()).getFilterListModel(fields, values, country, map,null);
+			lists =  CreateFactory.createListFactory(ParamEnumUtil.init.name()).getFilterListModel(fields, values, country, map,null);
 		}
-		return null;
+//		//list转化 方便删除
+//		CopyOnWriteArrayList arr = new CopyOnWriteArrayList(lists);
+//		
+//		//排除月份
+//		if(map.get("datestr")!=null){
+//			StringBuilder sb = new StringBuilder();
+//			String datestr = (String)map.get("datestr").toString();
+//			if(datestr!=null){
+//				String[] dt = datestr.split(",");
+//				for (String s : dt) {
+//					sb.append(s.split("-")[0]+s.split("-")[1]+",");
+//				}
+//				datestr = sb.toString();
+//			}
+//			Iterator it = arr.iterator();
+//			while (it.hasNext()) {
+//				DataReportSumModel d = (DataReportSumModel) it.next();
+//				if(datestr.contains(d.getDate())){
+//					arr.remove(d);
+//				}
+//			}
+//		}
+		return lists;
 	}
 	
 	

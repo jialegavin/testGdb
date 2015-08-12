@@ -30,6 +30,8 @@ public class ProjectAnalyzeModel extends CommonTotalModel implements Serializabl
 	private String deleteId;
 	// 添加时间
 	private Date addTime;
+	// 不可操作 删除,修改
+	private int isOperate;
 
 	public Integer getProductId() {
 		return productId;
@@ -93,5 +95,13 @@ public class ProjectAnalyzeModel extends CommonTotalModel implements Serializabl
 
 	public void setAddTime(Date addTime) {
 		this.addTime = addTime;
+	}
+
+	public int getIsOperate() {
+		return isOperate;
+	}
+
+	public void setIsOperate(int isOperate) {
+		this.isOperate = isOperate;
 	}
 }

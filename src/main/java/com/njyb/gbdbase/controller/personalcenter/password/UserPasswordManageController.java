@@ -18,6 +18,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.google.common.base.Strings;
 import com.google.common.collect.Maps;
+import com.njyb.auth.util.GetDoMainName;
+import com.njyb.gbdbas.loginFilter.CheckSessionFilter;
 import com.njyb.gbdbas.util.MD5Util;
 import com.njyb.gbdbase.controller.common.PublicCommonController;
 import com.njyb.gbdbase.model.admincenter.UserModel;
@@ -161,6 +163,11 @@ public class UserPasswordManageController extends PublicCommonController{
 	@RequestMapping(value = "/isUserExit", method = RequestMethod.POST)
 	public String confirmAccount(HttpServletRequest request, HttpServletResponse response, @ModelAttribute UserModel model, String veritycode)throws Exception 
 	{
+		String domain = GetDoMainName.getDoMain(request);
+		synchronized (this) {
+			//重新设置域名
+			CheckSessionFilter.domainMap.put("domain", domain);	
+		}
 		String result = userPasswordManageService.exsit(model.getLoginName(), veritycode, request);
 		response.getWriter().write(result);
 		return null;

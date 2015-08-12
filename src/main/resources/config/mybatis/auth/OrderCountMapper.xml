@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>  
+<!DOCTYPE mapper  PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN" "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+<mapper namespace="com.njyb.auth.dao.cmp.IOrderCountDao">
+	
+	<!-- 查询按次用户个数用户个数 -->
+	<resultMap type="com.njyb.gbdbase.model.admincenter.UserCountModel" id="userCountModel">
+		<result column="userid" property="userId" />
+		<result column="email" property="email" />
+		<result column="loginname" property="loginName" />
+		<result column="totalnum" property="totalNum" />
+		<result column="remainnum" property="remainNum" />
+		<result column="residueNum" property="residueNum" />
+		<result column="residueMoney" property="residueMoney" />
+		<result column="consumptionMoney" property="consumptionMoney" />
+	</resultMap>
+	
+	<select id="userCountBuUserId" statementType="CALLABLE"  parameterType="java.util.Map">
+		{CALL user_next_look_pro(#{temp_userid,mode=IN,jdbcType=VARCHAR},#{country_en,mode=IN,jdbcType=VARCHAR},#{countryid,mode=IN,jdbcType=INTEGER},#{look_money,mode=IN,jdbcType=DOUBLE},#{state,mode=OUT,jdbcType=INTEGER},#{message,mode=OUT,jdbcType=VARCHAR})}
+	</select>
+	
+	<!-- 查询出按次用户所有的用户 -->
+	<select id="queryUserConsuming" parameterType="java.util.Map" resultMap="userCountModel">
+		SELECT userid,email,loginname,totalnum,remainnum,residueNum,residueMoney,consumptionMoney FROM user_count_right_view
+	</select>
+	
+	<!-- 查询出按次用户所有的用户 -->
+	<select id="userRightCount" parameterType="java.util.Map" resultMap="userCountModel">
+		SELECT userid,email,loginname,totalnum,remainnum,residueNum,residueMoney,consumptionMoney FROM user_count_right_view WHERE userid = #{userId}
+	</select>
+</mapper>

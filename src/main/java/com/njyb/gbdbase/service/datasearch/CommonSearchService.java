@@ -50,6 +50,7 @@ import com.njyb.gbdbase.dao.datasearch.country.IVenezuelaExportDao;
 import com.njyb.gbdbase.dao.datasearch.country.IVenezuelaImportDao;
 import com.njyb.gbdbase.dao.datasearch.country.IVietnamExportDao;
 import com.njyb.gbdbase.dao.datasearch.country.IVietnamImportDao;
+import com.njyb.gbdbase.model.usermanagement.ConditionRightModel;
 import com.njyb.gbdbase.service.common.engines.IMonthYearTrendService;
 import com.njyb.gbdbase.service.common.engines.IReportDrillService;
 import com.njyb.gbdbase.service.common.engines.IReportEngineService;
@@ -226,4 +227,20 @@ public class CommonSearchService {
         }
         return end;
 	}
+	
+	
+	
+//	/**
+//	 * 返回一个在权限范围内的时间
+//	 * @return
+//	 */
+//	public String newTime(HttpServletRequest request){
+////		List<ConditionRightModel> list = (List<ConditionRightModel>) request.getSession().getAttribute("authorityInfo");
+////		for (ConditionRightModel c : list) {
+////			if(c.getByCountry().equals((String)request.getSession().getAttribute("countryZhName"))){
+////				date = c.getStartTime() + "," + c.getEndTime();
+////			}
+////		}
+//		
+//	}
 }

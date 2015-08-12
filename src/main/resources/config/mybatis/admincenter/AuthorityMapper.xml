@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>  
+<!DOCTYPE mapper  PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN" "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+<mapper namespace="com.njyb.gbdbase.dao.admincenter.IAuthorityDao">
+
+	<resultMap type="com.njyb.gbdbase.model.usermanagement.ConditionRightModel" id="anthorityMap">
+		<id property="rid" column="rid"/>
+		<result property="userId" column="userid"/>
+		<result property="byHsCode" column="byhscode"/>
+		<result property="byProductDesc" column="byproduct_desc"/>
+		<result property="byCountry" column="bycountry"/>
+		<result property="startTime" column="starttime"/>
+		<result property="endTime" column="endtime"/>
+		<result property="iExportType" column="iexporttype"/>
+		<result property="rightType" column="rightType"/>
+		<result property="openHistoryData" column="openHistoryData"/>
+		<result property="historyStartTime" column="historyStartTime"/>
+		<result property="historyEndTime" column="historyEndTime"/>
+	</resultMap>
+	
+	
+	<!-- 通用查询结果列-->
+	<sql id="Base_Column_List">
+		userid,byhscode,byproduct_desc,bycountry,starttime,endtime,
+		iexporttype,rightType,openHistoryData,historyStartTime,historyEndTime
+	</sql>
+	
+	
+	<!-- 查询权限基本信息 -->
+	<select id="queryJurisdictInfo" resultMap="anthorityMap" parameterType="java.lang.Integer">
+		SELECT  
+		<include refid="Base_Column_List" />
+		FROM user_condition_right
+		WHERE userid = #{userid}
+	</select>
+</mapper>	
+	
+
+

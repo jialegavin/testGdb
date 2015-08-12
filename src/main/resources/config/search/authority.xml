@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.1.xsd">
+	<!-- 作者:章华才 -->
+	<description>各国查询条件配置</description>
+	<bean id="anthority" class="com.njyb.gbdbase.model.admincenter.AuthorityFieldModel" scope="prototype">
+		<property name="authorityFieldMap">
+			<ref local="anthority_map"/>
+		</property>
+	</bean>
+	
+	<bean id="anthority_map" class="java.util.HashMap">
+		<constructor-arg>
+			<map>
+				<entry key="试用用户" value="/gbdbas/export/downloadData,/gbdbas/export/printDetial,/gbdbas/export/downloadReport,/gbdbas/downloadDB/downLoadDBByParams,/gbdbas/export/downloadService,/gbdbas/export/generatePdfTemplate,/gbdbas/export/printDetial,/gbdbas/export/exportSummaryDetail,/gbdbas/contrastre/exportExcel,/gbdbas/view/personalcenter/account/accountManagement.jsp"></entry>
+				<entry key="按次用户" value="/gbdbas/export/downloadData,/gbdbas/export/downloadReport,/gbdbas/contrastre/contrastreAddOutController,/gbdbas/getReportSummaryList,/gbdbas/contrastre/exportExcel,/gbdbas/downloadDB/downLoadDBByParams,/gbdbas/permission/QueryUserRight,/gbdbas/permission/queryUserCountRight "></entry>
+				<entry key="正式用户" value=""></entry>
+				<!-- 购买中国赠送的国家是否可以下载 -->
+				<entry key="notGiveDownLoad" value="/gbdbas/export/downloadData,/gbdbas/export/printDetial,/gbdbas/export/downloadReport,/gbdbas/downloadDB/downLoadDBByParams,/gbdbas/export/downloadService,/gbdbas/export/generatePdfTemplate,/gbdbas/export/printDetial,/gbdbas/export/exportSummaryDetail,/gbdbas/contrastre/exportExcel"></entry>
+				<!-- 没有海关编码的国家 -->
+				<entry key="noHscode" value="美国进口,危地马拉进口,危地马拉出口,尼加拉瓜进口,尼加拉瓜出口,巴基斯坦进口,巴基斯坦出口,萨尔瓦多进口,萨尔瓦多出口"></entry>
+				<!-- 超级用户 -->
+				<entry key="超级用户" value="superUserDownload"></entry>
+				<!-- 特殊用户 -->
+				<entry key="special_user" value="july100;中国"></entry>
+				<!-- 试用用户数据检索时间 -->
+				<entry key="tyrUserDate" value="2012-01-01,2013-12-31"></entry>
+			</map>
+		</constructor-arg>
+	</bean>
+</beans>
+
+

@@ -17,7 +17,7 @@ import com.njyb.gbdbase.service.common.engines.ISearchEngineService;
 public class TestOne {
 	//定义需要参数的值
 	static ApplicationContext context=null;
-	String path="config\\core\\applicationContext.xml";;
+	String path="config\\core\\applicationContext.xml";
 	String[]fields=new String[]{"hscode","date","trade_type"};
 	String[]values=new String[]{"842199","2013-01,2013-12","I"};
 	PageBeanUtil page=new PageBeanUtil(500);
