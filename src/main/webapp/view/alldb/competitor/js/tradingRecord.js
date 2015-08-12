@@ -3,22 +3,76 @@
  */
 var tradingDataGrid;
 var countryArray = "";
-$(function() {
-	// 对 交易记录的时间 初始化 赋值 2012-01-01 2012-12-31
-	$("#compTradestartDate").val('2012-01-01');
-	$("#compTradeendDate").val('2012-12-31');
-	// equirementSelects
-	allCountryOptionShow();
-	tradingDataGrid = $("#tradingDataGrid");
-	// 进出口类型 初始化  国家列表
-	$("#competitorIexportType").combobox({
-		onSelect : function(record){
-			var tradeType = getTradeType(record.value);
-			countryArray = checkTradeType(tradeType, reportArray.ALL);
-			allCountryOptionShow();
+
+var userRightCfg;
+
+//初始化用户权限数据
+$(function(){
+	/**
+	 * 初始化 用户权限信息
+	 */
+	$.ajax({
+		url: getRootPath() + "/permission/queryUserRightMessage",
+		data : [],
+		type : "post",
+		dataType : "json",
+		success : function(data) {
+			userRightCfg = data;
+			userRightCfg.hsHsCode = queryHsCode(userRightCfg.key);		//判断集合中是否存在hscode
+			userRightCfg.hsGoodsDesc = queryHsGoodsDesc(userRightCfg.key);	//判断集合中是否存在产品描述
+			// 对 交易记录的时间 初始化 赋值 2012-01-01 2012-12-31
+			changeDateValue();				//根据用户权限初始化不同的日期
+			// 绑定离开时间 日期控件初始化
+			initDateFormat();
+			$("#compTradestartDate").on('focus',initDateFormat);
+			$("#compTradeendDate").on('focus',initDateFormat);
+			// 初始化国家下拉框
+			initUserRightMethod(userRightCfg.key,$("#compTradestartDate").val(),$("#compTradeendDate").val());
+			if (userRightCfg.user.userDesc == '正式用户') {
+				countryArray = userRightCfg.countryArray;
+			} else {
+				countryArray = reportArray.ALL;
+			}
+			allCountryOptionShow();		//显示国家
+			tradingDataGrid = $("#tradingDataGrid");
+			// 进出口类型 初始化  国家列表
+			$("#competitorIexportType").combobox({
+				onSelect : function(record){
+					var tradeType = getTradeType(record.value);
+					if (userRightCfg.user.userDesc == '正式用户') {
+						initUserRightMethod(userRightCfg.key,$("#compTradestartDate").val(),$("#compTradeendDate").val());					// 初始化国家
+						countryArray = checkTradeType(tradeType, userRightCfg.countryArray);
+						// 购买时间在3个月内.赠送所有国家
+						if (getChinaMonth(userRightCfg.nowDate,userRightCfg.user.beginTime)) {
+							userRightCfg.countryArray.unshift('韩国');
+							userRightCfg.countryArray.unshift('中国');
+						}
+					} else {
+						countryArray = checkTradeType(tradeType, reportArray.ALL);
+//						userRightCfg.countryArray.unshift('韩国');
+//						userRightCfg.countryArray.unshift('中国');
+					}
+					allCountryOptionShow();
+				}
+			});
 		}
 	});
 });
+
+/**
+ * 获取用户点击的时间,对国家数组从新赋值
+ * @param dp
+ */
+function getDate(dp){
+	if (userRightCfg.user.userDesc == '正式用户') {
+		$("#" + this.id).val(dp.cal.getNewDateStr());		// 从新赋值用户点击最新的时间
+		var queryBeginDate = $("#compTradestartDate").val();	// 查询开始时间
+		var queryEndDate = $("#compTradeendDate").val();		// 查询结束时间
+		initUserRightMethod(userRightCfg.key,queryBeginDate,queryEndDate);					// 初始化国家
+		countryArray = userRightCfg.countryArray;
+		allCountryOptionShow();
+	}
+}
 
 /**
  * 国家填充
@@ -30,10 +84,12 @@ function selectCompcountrySelectAddText(country) {
 		if ($(this).attr("checked")) {
 			text += $(this).val() + ",";
 		}
-	})
+	});
 	$('#' + country).combo('setText', text.substring(0, text.lastIndexOf(',')))
 			.combo('hidePanel');
 	validateCompIexport(text);
+//	$("#compTradestartDate").off('focus');
+//	$("#compTradeendDate").off('focus');
 }
 
 /**
@@ -43,24 +99,19 @@ function selectCompcountrySelectAddText(country) {
  */
 function validateCompIexport(text) {
 	var str = text.substring(0, text.lastIndexOf(','));
+	createDate(text);		// 动态时间控件
 	var data = $('#competitorIexportType').combobox('getData');
-//	var parent = /(?!.*中国|.*韩国|.*俄罗斯)^.*$/;
-//	if (parent.test(str)) {
-//		$("#competitorIexportType").combobox('select', data[1].value);
-//	} else {
-//		$("#competitorIexportType").combobox('select', data[0].value);
-//	}
 }
 
 /**
  * 加载所有的国家
  */
 function allCountryOptionShow() {
+	countryArray = removal_Country(countryArray);
 	$("#sps").empty();
-	$("#sps")
-			.append(
-					"<input type=\"checkbox\" onClick=\"selectCompAllChangeClick(this,'equirementSelects')\" name=\"all\"><span>Select All</span><br/>")
-	for (var i = 0; i < countryArray.length; i++) {
+	$("#sps").append(
+					"<input type=\"checkbox\" onClick=\"selectCompAllChangeClick(this,'equirementSelects')\" name=\"all\"><span>选择全部</span><br/>")
+	for (i in countryArray) {
 		$("#sps")
 				.append(
 						"<input type=\"checkbox\" onClick=\"selectCompcountrySelectAddText('equirementSelects')\" name=\"lang\"  value=\""
@@ -94,7 +145,7 @@ function formatTitle(value, rowData, rowIndex) {
  * @param id
  * @param country
  */
-function searchTradeDetail(id,country){
+function searchTradeDetail(id,country) {
 	console.debug("id" + id + "     " + "country" + country);
 	if (id && country) {
 		$.ajax({
@@ -128,15 +179,42 @@ function queriesCompiterorShow(v) {
 			countrySelect = countrySelect + lang[i].value + ",";
 		}
 	}
+//	var beginQueryDate = toDate($("input[name='c_startdate']").val().trim(),1);
+//	var endQueryDate = toDate($("input[name='c_enddate']").val().trim(),2);
 	var params = {
 			'hscode' : $("input[name='compHscode']").val().trim(),
 			'goodsdescription' : $("input[name='compProductDesc']").val().trim(),
 			'tradeType' : $('#competitorIexportType').combobox('getValue').trim(),
-			'beginDateFlex' : $("input[name='compTradestartDate']").val().trim(),
-			'endDateFlex' : $("input[name='compTradeendDate']").val().trim(),
+			'beginDateFlex' : toDate(1,$("#compTradestartDate").val().trim()),
+			'endDateFlex' : toDate(2,$("#compTradeendDate").val().trim()),
 			'countrySelect' : countrySelect,
 			'companyName' : $("input[name='companyNameByTradingRecord']").val().trim()
 	};
+	console.debug(params.beginDateFlex);
+	console.debug(params.endDateFlex);
+	// 试用用户 权限验证
+	if (userRightCfg.user.userDesc == '试用用户') {
+		if (probationUser(params.beginDateFlex, params.endDateFlex)) {
+			$.messager.alert("提示", "试用户查询时间为2012-01-01 - 2013-12-30!");
+			return;
+		}
+	} else if (userRightCfg.user.userDesc == '正式用户') {
+		if (params.hscode) {
+			if (!checkHsCodeOfBuy(params.hscode)) {		// 是否买过hasoce
+				$.messager.alert("提示", "您没有购买此 "+params.hscode+" 编码!",'info');
+				return;
+			}
+		} else {
+			$.messager.alert("提示", "请输入海关编码!",'info');
+			return;
+		}
+		if (params.goodsdescription) {
+			if (!queryHsGoodsDesc(params.goodsdescription)) {	// 是否买过产品描述
+				$.messager.alert("提示", "您没有购买此 "+params.goodsdescription+" 产品描述!",'info');
+				return;
+			}
+		}
+	}
 	checkFromParams(params);
 	// 验证合法性
 	if (!checkSibmitHtml(params)) {
@@ -146,12 +224,15 @@ function queriesCompiterorShow(v) {
 	if (flagPage == 1) {
 		params.exporter = $("input[name='companyNameByTradingRecord']").val().trim();
 		params.importer = "";
+		params.tradeType = 'E';
 		$("#tradingDataGrid").datagrid({
 			url: getRootPath() + "/competitor/queryCompetitorTradingData",
 			queryParams : params,
 			pagination:true,
 			autoRowHeight : false,
 			columns:[arr],
+			pageNumber:1,
+			pageSize:50,
 			onBeforeLoad : function(param){
 				flagIndex = param.page;
 				if (1 == flagIndex) {
@@ -187,6 +268,7 @@ function queriesCompiterorShow(v) {
 	} else if (flagPage == 2) {
 		params.importer = $("input[name='companyNameByTradingRecord']").val().trim();
 		params.exporter = "";
+		params.tradeType = 'I';
 		$("#tradingDataGrid").datagrid({
 			url: getRootPath() + "/customer/queryCustomerTradingData",
 			queryParams : params,
@@ -194,6 +276,8 @@ function queriesCompiterorShow(v) {
 			autoRowHeight : false,
 			columns:[arr],
 			agination:true,
+			pageNumber:1,
+			pageSize:50,
 			onBeforeLoad : function(param){
 				flagIndex = param.page;
 				if (1 == flagIndex) {
