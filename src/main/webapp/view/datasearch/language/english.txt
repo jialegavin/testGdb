@@ -1,0 +1,232 @@
+Argentina import data
+Argentina export data
+Uruguay import data
+Uruguay export data
+Paraguay import data
+Paraguay export data
+Peru import data
+Peru export data
+Ecuador import data
+Ecuador export data
+Chile import data
+Chile export data
+Colombia import data
+Colombia export data
+Brazil import data
+Venezuela import data
+Venezuela export data
+Panama import data
+Panama export data
+Mexico import data
+Honduras import data
+Costa Rica import data
+Costa Rica export data
+Guatemala import data
+Guatemala export data
+Nicaragua import data
+Nicaragua export data
+Salvador import data
+Salvador export data
+UK import data
+China data
+Korea data
+Pakistan import data
+Vietnam import data
+Vietnam export data
+India import data
+Hscode
+Bill of lading number
+Translate
+Chinese
+English
+Russia
+spain
+Taxes (US $)
+Landed Date
+Vessel
+Company Name
+Importer Country / State
+Exporters city
+Importer Number
+Bank
+Product description
+Fax
+Notify the person
+Declaration number
+The total insurance
+Remark
+Serial number
+HS chapter
+Export Markets
+FOB price of $
+Other Information
+Transportation Document Number
+Importers city
+Specification
+Exporters of primary industry
+Storage place
+Importers phone
+Exchange rate
+Description 3
+Description 4
+Description 1
+Description 2
+The carrier
+The main importers of industrial
+Sale
+Transport type
+CIF total price
+Importer Address 2
+Euro Price
+Project fob price
+Vessel
+Cargo type
+Importers fax
+Country of origin
+Zip Code
+Zip code
+Enterprise Coding
+The total amount of the invoice
+The number of sub-items
+Contact 2
+Exporters No.
+Quantity
+Trade
+FOB port
+Shipping and receiving land
+Transport Agency
+Import numbers
+Bill of lading date
+Importer Address
+Transaction method
+Item Number
+Trade
+Product Information
+Transportation Document Date
+Shipment status
+Importer Address 1
+E-mail
+Exporters
+Packing
+Number of units
+Total freight
+Flag State
+Serial number
+Autonomous region
+Chief Executive Officer
+Ruble price
+CIF Price
+The total number of containers
+Importer Address (large range: Province)
+Exporter Country / State
+Shipping Information
+Premium Currency
+Phone
+GW
+Units of measurement
+Multinational country
+Arrived in Hong Kong
+Customs Agents
+This CIF price
+Address
+Customs Center
+HS Chapter Note
+Trade unit
+Unit Type
+Economic activity center
+Vessels
+Import and Export Type
+Bolivar FOB price
+Number of units
+Customs cities
+Series
+Exporters Contact
+20 ft container
+Company Information
+Packing
+Zip Code
+Off a single number
+Breakdown fob price
+Product Description
+Package Type
+Physical quantity
+The number of physical units
+Importer Address
+Ship No.
+Checksum
+Notify people address
+Company Type
+Exporters Address
+IMO code
+Exporters where the district (county)
+Shipping
+Route
+Ruble Price
+Area
+Transit country
+Project CIF price
+Customs Agents
+Local Taxes
+Product
+Product Index No.
+Countersigned No.
+Load type
+States where the district (county)
+Specifications Model
+Type
+State sales
+Net weight
+dollar price cif
+Shipment status
+National Transportation
+Breakdown of numbers
+Bill of lading number
+FOB dollar total price
+Shift No.
+Year of Production
+Exporters address (small scale)
+Date
+CIF amount
+Importer
+Payment
+Exporters No.
+Dollar Price
+Country of destination
+Serial Number
+Business Info
+Freight currency
+The current term insurance price
+Arrival time
+GW
+CIF price Bolivar
+Valorem tax
+Details
+Product Price Information
+Species
+City
+Multinational
+Transaction method
+Serial number
+Taxes
+Container volume
+Packaging Description
+Contact 1
+Contacts
+Current item shipping
+40 ft container
+45 ft container
+Trademark
+Phone
+Other foot container
+Import manifest No.
+Exporters Address (large range: Province)
+Units of measurement
+Exporters Country
+Importers fax
+Country of origin
+FOB Price
+Serial number
+Net weight
+Importers phone
+Export
+Print

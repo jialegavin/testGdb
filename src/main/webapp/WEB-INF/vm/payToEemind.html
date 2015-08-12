@@ -1,0 +1,90 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Insert title here</title>
+<style type='text/css'>
+  .email{
+     width:611px;
+     height:469px;  
+     margin-left: auto;
+     margin-right: auto;
+   
+  }
+  .content_top{
+     width: 540px;
+     height: 220px;
+     padding: 18px 5px 0px 18px;
+  }
+   .content_top table tr{
+      height:21px;
+      width:540px;
+   }
+   .content_bottom{
+      width: 540px;
+      height: 100px;
+     padding: 15px 5px 0px 18px;
+   }
+
+</style>
+</head>
+
+<body >
+   <div class="email" style="background: url(${updateUrl}static/img/login/emailback.png) no-repeat;">
+    <table  border='0'  width="560px" align="center" cellpadding='0'
+	cellspacing='1'>
+      <tr><td width="350px;"height="56px"><img src="${updateUrl}static/img/login/logo.png"/></td>
+      <td style='padding-top:9px;'><img src="${updateUrl}static/img/login/emailPhone.png" /></td>
+      </tr>
+      <tr>
+        <td height='15px' colspan="2"><img src="${updateUrl}static/img/login/emailLine.png"/>
+        </td>
+      </tr>
+      <tr><td colspan="2" style="background:url(${updateUrl}static/img/login/emailMid.png) no-repeat;height:235px;width:560px;">
+            <div class='content_top'>
+             <table>
+				<tr>
+					<td><span>尊敬的用户</span><span style="color:red;">${username}：</span>
+					</td>
+				</tr>
+				<tr>
+					<td><span style="font-family: SimSun;font-size: 12px;">您好！您于${buyTime}购买的产品,订单号: ${orderNum}${stateText},点击以下链接,即可登录使用平台</span>
+						<br/>
+					</td>
+				</tr>
+				<tr>
+					<td><span style="font-family: SimSun;font-size: 12px;"><a href="http://data.trade-easy.com.cn/dbas/">http://data.trade-easy.com.cn/dbas/</a></span>
+					</td>
+				</tr>
+				<tr>
+					<td> <span style="font-family: SimSun;font-size: 12px;">(如果无法点击该RUL链接地址，请将它复制并黏贴到浏览器地址栏后访问)</span>
+					</td>
+				</tr>
+				<tr>
+					<td> <span style="font-family: SimSun;font-size: 12px; width:100px; margin-left:500px;">趣易</span>
+					</td>
+				</tr>
+				<tr>
+					<td> <span style="font-family: SimSun;font-size: 12px; width:100px; margin-left:500px;">日期</span>
+					</td>
+				</tr>
+			</table>
+           </div>
+         </td>
+      </tr>
+      <tr>
+	      <td colspan="2" style="background:url(${updateUrl}static/img/login/emailBottom.png) no-repeat;height:127px;width:560px;">
+	        <div class="content_bottom">
+	           <table>
+	              <tr><td><span style="font-family: SimSun;font-size: 12px;">趣易——中国专业的进出口贸易资讯服务提供商</span></td></tr>
+	              <tr><td><span style="font-family: SimSun;font-size: 12px;">公司网址：<a href="http://www.trade-easy.com.cn">http://www.trade-easy.com.cn</a></span></td></tr>
+	              <tr><td><span style="font-family: SimSun;font-size: 12px;">如欲享有更多专业数据服务，或有其他疑问，请联系趣易客服，服务热线：400-1816-008</span></td></tr>
+	            </table>
+	         </div>
+	      </td>
+      </tr>
+    </table>  
+   </div> 
+</body>
+</html>

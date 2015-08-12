@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app id="WebApp_ID" version="3.0"
+	xmlns="http://java.sun.com/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee   http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd">
+   <!-- 设置默认页面 -->
+	<welcome-file-list>
+	   <!--from /view/login/infobase/login/jsp  -->
+       <welcome-file>/view/newhomepage/index.jsp</welcome-file>
+      
+       
+ </welcome-file-list>
+	
+	<!-- 上下文参数 -->
+	<context-param>
+		<param-name>contextConfigLocation</param-name>
+		<!-- 配置spring上下文的初始化参数 -->
+		<param-value>
+			classpath*:/config/core/applicationContext.xml
+		</param-value>
+	</context-param>
+
+	<context-param>
+		<param-name>spring.profiles.default</param-name>
+		<param-value>production</param-value>
+	</context-param>
+	<!-- 配置spring监听器 -->
+	<listener>
+		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+	</listener>
+
+	<!-- 过滤查询中要进行范围过滤的字段 -->
+	<context-param>
+		<param-name>filterfield</param-name>
+		<param-value>config/search/project_config.properties</param-value>
+	</context-param>
+
+	<!-- 支付宝参数配置文件 -->
+	<context-param>
+		<param-name>alipayParamConfig</param-name>
+		<param-value>config/alipay/alipayParamConfig.properties</param-value>
+	</context-param>
+
+	<!-- 过滤查询中要进行范围过滤的字段 -->
+	<context-param>
+		<param-name>viewdetail</param-name>
+		<param-value>config/search/view_detail.properties</param-value>
+	</context-param>
+
+	<!-- 对比中心 -->
+	<context-param>
+		<param-name>contrastreCenter</param-name>
+		<param-value>/config/search/contrastre.properties</param-value>
+	</context-param>
+
+	<!-- 导出excel及pdf中需要的信息 -->
+	<context-param>
+		<param-name>exportInfo</param-name>
+		<param-value>config/search/export_config.properties</param-value>
+	</context-param>
+
+	<!-- 登录过滤,没有登录跳转Login.jsp -->
+	<filter>
+		<filter-name>checkloginFilter</filter-name>
+		<filter-class>com.njyb.gbdbas.loginFilter.CheckSessionFilter</filter-class>
+	</filter>
+
+	<filter-mapping>
+		<filter-name>checkloginFilter</filter-name>
+		<url-pattern>*.jsp</url-pattern>
+	</filter-mapping>
+	
+	<!-- 自动登录 -->
+	<filter>
+		<filter-name>autoLoginFilter</filter-name>
+		<filter-class>com.njyb.gbdbas.loginFilter.AutoLoginFilter</filter-class>
+	</filter>
+
+	<filter-mapping>
+		<filter-name>autoLoginFilter</filter-name>
+		<url-pattern>*.jsp</url-pattern>
+	</filter-mapping>
+		
+	<!-- 配置解决中文乱码-->
+	<filter>
+		<filter-name>encodingFilter</filter-name>
+		<filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
+		<init-param>
+			<param-name>encoding</param-name>
+			<param-value>UTF-8</param-value>
+		</init-param>
+		<init-param>
+			<param-name>forceEncoding</param-name>
+			<param-value>true</param-value>
+		</init-param>
+	</filter>
+	<filter-mapping>
+		<filter-name>encodingFilter</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+
+
+	<!-- 配置springmvc的核心控制器 -->
+	<servlet>
+		<servlet-name>spring</servlet-name>
+		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>spring</servlet-name>
+		<url-pattern>/</url-pattern>
+	</servlet-mapping>
+
+	<!-- 国际化 -->
+	<context-param>
+		<param-name>javax.servlet.jsp.jstl.fmt.localizationContext</param-name>
+		<param-value>com.web.sys.resources.message</param-value>
+	</context-param>
+
+
+	<!-- 设置session的失效时间 -->
+	<session-config>
+		<session-timeout>30</session-timeout>
+	</session-config>
+	<!--服务器错误提示页面 -->
+	<error-page>
+		<error-code>500</error-code>
+		<location>/WEB-INF/error/500.jsp</location>
+	</error-page>
+	<error-page>
+		<error-code>400</error-code>
+		<location>/WEB-INF/error/400.jsp</location>
+	</error-page>
+	<error-page>
+		<error-code>404</error-code>
+		<location>/WEB-INF/error/404.jsp</location>
+	</error-page>
+	<error-page>
+		<error-code>403</error-code>
+		<location>/WEB-INF/error/403.jsp</location>
+	</error-page>
+
+
+</web-app>
