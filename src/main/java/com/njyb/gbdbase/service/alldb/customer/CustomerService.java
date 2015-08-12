@@ -84,17 +84,13 @@ public class CustomerService implements ICustomerService {
 			QueryCustomerModel queryCompetitorQueryModel = (QueryCustomerModel) paramMap
 					.get("queryModel");
 			if (null != queryCompetitorQueryModel && null != pageBean) {
-				paramMap.put("index", pageBean.getPageIndex());
-				paramMap.put("size", pageBean.getPageSize());
 				paramMap.put("companyName",
 						StringUtil.getKillNull(queryCompetitorQueryModel.getCompanyName()));
 				paramMap.put("param", IConstantUtil.CUSTOMER);
 				paramMap.remove("pageBean");
 				paramMap.remove("queryModel");
 				//切换数据库
-				DBContextUtil.setDbTypeName(DBContextUtil.DATA_SOURCE_USER);
-				resultList = competitorAndCustomerInfoDao
-						.queryCompetitorResult(paramMap);
+				resultList = competitorAndCustomerInfoDao.queryCompetitorResult(paramMap);
 			}
 		}
 		return resultList;
@@ -112,7 +108,7 @@ public class CustomerService implements ICustomerService {
 			Map<String, Object> paramMap = Maps.newHashMap();
 			paramMap.put("idList", id);
 			//切换数据库
-			DBContextUtil.setDbTypeName(DBContextUtil.DATA_SOURCE_USER);
+			
 			competitorAndCustomerInfoDao
 					.deleteCompetitorAndCustomerInfo(paramMap);
 			reuslt = (int) paramMap.get("flag");
@@ -134,7 +130,7 @@ public class CustomerService implements ICustomerService {
 				competitorAndCustomerInfoResultModel.setAddTime(new Date());
 			}
 			//切换数据库
-			DBContextUtil.setDbTypeName(DBContextUtil.DATA_SOURCE_USER);
+			
 			result = competitorAndCustomerInfoDao
 					.addCustomerInfo(competitorAndCustomerInfoResultModel);
 		}
@@ -152,7 +148,7 @@ public class CustomerService implements ICustomerService {
 			competitorAndCustomerInfoResultModel
 					.setUserType(IConstantUtil.CUSTOMER);
 			//切换数据库
-			DBContextUtil.setDbTypeName(DBContextUtil.DATA_SOURCE_USER);
+			
 			result = competitorAndCustomerInfoDao
 					.updateCustomerInfo(competitorAndCustomerInfoResultModel);
 		}

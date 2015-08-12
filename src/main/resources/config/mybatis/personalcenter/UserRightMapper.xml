@@ -13,13 +13,16 @@
 		<result column="IEXPORTTYPE" property="iExportType" />
 		<result column="RIGHTTYPE" property="rightType" />
 		<result column="TOTAL" property="total" />
+		<result column="OPENHISTORYDATA" property="openHistoryData" />
+		<result column="HISTORYSTARTTIME" property="historyStartTime" />
+		<result column="HISTORYENDTIME" property="historyEndTime" />
 	</resultMap>
 	<cache/>
 	<!--洪皓:根据用户查询用户权限 -->
 	<select id="queryUserRightResultByUserIdAndPage" resultMap="userRightReslut" parameterType="java.lang.Integer">
 		<![CDATA[
 			SELECT ucr.rid,ucr.userid,ucr.bycountry,ucr.byhscode,ucr.byproduct_desc,
-			ucr.starttime,ucr.endtime,ucr.iexporttype
+			ucr.starttime,ucr.endtime,ucr.iexporttype,ucr.openHistoryData,ucr.historyStartTime,ucr.historyEndTime
 			FROM user_condition_right ucr
 			WHERE ucr.userid = #{userId}
 		]]>

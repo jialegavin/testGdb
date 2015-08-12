@@ -5,27 +5,20 @@ import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.google.common.collect.Maps;
 import com.njyb.gbdbas.util.AuthCenterConstantUtil;
 import com.njyb.gbdbas.util.DataSearchConstantUtil;
-import com.njyb.gbdbas.util.IConstantUtil;
-import com.njyb.gbdbas.util.LoadPropertiesUtil;
-import com.njyb.gbdbas.util.MD5Util;
-import com.njyb.gbdbas.util.UserCookieUtil;
-import com.njyb.gbdbas.util.ds.spring.DBContextUtil;
+import com.njyb.gbdbase.dao.admincenter.IAuthorityDao;
 import com.njyb.gbdbase.dao.authcenter.ICountRightDao;
 import com.njyb.gbdbase.dao.authcenter.IUserRightDao;
 import com.njyb.gbdbase.dao.usermanagement.IRightDao;
 import com.njyb.gbdbase.model.admincenter.UserModel;
 import com.njyb.gbdbase.model.authcenter.CountRightModel;
 import com.njyb.gbdbase.model.usermanagement.ConditionRightModel;
-import com.njyb.gbdbase.model.usermanagement.QueryModel;
 import com.njyb.gbdbase.service.authcenter.IPermissionService;
 /**
  * 用户权限验证服务
@@ -43,6 +36,9 @@ public class PermissionService implements IPermissionService {
 	private ICountRightDao countRightDao;
 	@Autowired
 	private IUserRightDao userRightDao;
+	
+	@Autowired
+	private IAuthorityDao authorityDao;
 	/**
 	 * 备注：该方法暂时未考虑国际化
 	 */
@@ -157,7 +153,7 @@ public class PermissionService implements IPermissionService {
 	@Override
 	public List<ConditionRightModel> queryUserRight(UserModel userModel) {
 		//切换数据库
-		DBContextUtil.setDbTypeName(DBContextUtil.DATA_SOURCE_USER);
+		
 		List<ConditionRightModel> userRightList = null;
 		userRightList = userRightDao.queryUserRightResultByUserIdAndPage(userModel.getUserId());
 		return null == userRightList ? new ArrayList<ConditionRightModel>() : userRightList;
@@ -192,5 +188,16 @@ public class PermissionService implements IPermissionService {
 		{
 			return AuthCenterConstantUtil.NO_PERMISSION;
 		}
+	}
+	
+	@Override
+	public List<ConditionRightModel> getConditionRight(int userId) {
+		List<ConditionRightModel> list = null;
+		try {
+			list = authorityDao.queryJurisdictInfo(userId);
+		} catch (Exception e) {
+			log.debug(e);
+		}
+		return list;
 	}
 }

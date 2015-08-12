@@ -24,6 +24,7 @@ import com.njyb.gbdbase.model.alldb.commonrightlibrary.ComAndCusInfoResultModel;
 import com.njyb.gbdbase.model.alldb.competitor.QueryCompetitorQueryModel;
 import com.njyb.gbdbase.model.alldb.competitor.RightLibrarySearchModel;
 import com.njyb.gbdbase.model.datasearch.common.DataReportSumModel;
+import com.njyb.gbdbase.model.usermanagement.ConditionRightModel;
 import com.njyb.gbdbase.service.alldb.commonrightlibrary.IDataConvertDBModel;
 import com.njyb.gbdbase.service.alldb.commonrightlibrary.IQueryDataService;
 import com.njyb.gbdbase.service.alldb.commonrightlibrary.IRightLibraryConstructionData;
@@ -85,15 +86,11 @@ public class CompetitorService implements ICompetitorService {
 			QueryCompetitorQueryModel queryCompetitorQueryModel = (QueryCompetitorQueryModel) paramMap
 					.get("queryModel");
 			if (null != queryCompetitorQueryModel && null != pageBean) {
-				paramMap.put("index", pageBean.getPageIndex());
-				paramMap.put("size", pageBean.getPageSize());
 				paramMap.put("companyName",StringUtil.getKillNull(queryCompetitorQueryModel.getCompanyName()));
-				paramMap.put("countryName",StringUtil.getKillNull(queryCompetitorQueryModel.getCountryName()));
 				paramMap.put("param", IConstantUtil.COMPETITOR);
 				paramMap.remove("pageUtil");
 				paramMap.remove("queryModel");
 				//切换数据库
-				DBContextUtil.setDbTypeName(DBContextUtil.DATA_SOURCE_USER);
 				resultList = competitorDao.queryCompetitorResult(paramMap);
 			}
 		}
@@ -112,7 +109,6 @@ public class CompetitorService implements ICompetitorService {
 			Map<String, Object> paramMap = Maps.newHashMap();
 			paramMap.put("idList", id);
 			//切换数据库
-			DBContextUtil.setDbTypeName(DBContextUtil.DATA_SOURCE_USER);
 			competitorDao.deleteCompetitorAndCustomerInfo(paramMap);
 			result = (int) paramMap.get("flag");
 		}
@@ -131,7 +127,6 @@ public class CompetitorService implements ICompetitorService {
 				competitorAndCustomerInfoResultModel.setAddTime(new Date());
 			}
 			//切换数据库
-			DBContextUtil.setDbTypeName(DBContextUtil.DATA_SOURCE_USER);
 			result = competitorDao
 					.addCompetitor(competitorAndCustomerInfoResultModel);
 		}
@@ -147,7 +142,6 @@ public class CompetitorService implements ICompetitorService {
 		int result = 0;
 		if (null != competitorAndCustomerInfoResultModel) {
 			//切换数据库
-			DBContextUtil.setDbTypeName(DBContextUtil.DATA_SOURCE_USER);
 			result = competitorDao
 					.updateCompetitor(competitorAndCustomerInfoResultModel);
 		}

@@ -38,7 +38,7 @@ public class MyFavoritesService implements IMyFavoritesService {
 	public List<HistoryAndFavoritesModel> queryFavoritesResult(int userId) {
 		List<HistoryAndFavoritesModel> myFavoritesList = Lists.newArrayList();
 		// 切换数据源
-		DBContextUtil.setDbTypeName(DBContextUtil.DATA_SOURCE_USER);
+		
 		myFavoritesList = favoritesDao.queryMyFavoritesByParamModel(userId);
 		return myFavoritesList;
 	}
@@ -49,7 +49,7 @@ public class MyFavoritesService implements IMyFavoritesService {
 	@Override
 	public int addFavorites(HistoryAndFavoritesModel t) {
 		//切换数据库
-		DBContextUtil.setDbTypeName(DBContextUtil.DATA_SOURCE_USER);
+		
 		int result = 0;
 		if (null != t) {
 			result = favoritesDao.addMyFavorites(t);
@@ -63,7 +63,7 @@ public class MyFavoritesService implements IMyFavoritesService {
 	@Override
 	public int deleteFavorites(HistoryAndFavoritesModel t) {
 		//切换数据库
-		DBContextUtil.setDbTypeName(DBContextUtil.DATA_SOURCE_USER);
+		
 		int result = 0;
 		if (null != t) {
 			// TODO 注意: 这里是储存过程 pro
@@ -80,7 +80,7 @@ public class MyFavoritesService implements IMyFavoritesService {
 	public List<HistoryAndFavoritesModel> queryFavoritesByParams(
 			Map<String, Object> paramsMap) {
 		//切换数据库
-		DBContextUtil.setDbTypeName(DBContextUtil.DATA_SOURCE_USER);
+		
 		List<HistoryAndFavoritesModel> resultList = Lists.newArrayList();
 		if (null != paramsMap && !paramsMap.isEmpty()) {
 			resultList = favoritesDao.queryMyFavoritesByParams(paramsMap);
@@ -97,7 +97,7 @@ public class MyFavoritesService implements IMyFavoritesService {
 		int result = 0; 
 		//切换数据库
 		if (!Strings.isNullOrEmpty(idSubList)) {
-			DBContextUtil.setDbTypeName(DBContextUtil.DATA_SOURCE_USER);
+			
 			paramMap.put("idList", idSubList);
 			log.info("调用producte,参数为: " + idSubList);
 			try {

@@ -91,7 +91,7 @@ public class PayhandleService implements IPayhandleService {
 			 			aliPalyFilingModel.setTrade_status("2");		// 2 支付失败
 						payHandleDao.addAliPalyFiling(aliPalyFilingModel);
 			 		}
-					emailService.sendAttachMail(mailModel,emailParamMap,"payToEemind.html");		//发送邮件
+					emailService.sendAttachMail(mailModel,emailParamMap,"payToEemind.html",null);		//发送邮件
 			 	}
 			}
 		} catch (Exception e) {
@@ -147,7 +147,7 @@ public class PayhandleService implements IPayhandleService {
 		 			aliPalyFilingModel.setTrade_status("2");		// 2 支付失败
 					payHandleDao.addAliPalyFiling(aliPalyFilingModel);
 		 		}
-				emailService.sendAttachMail(mailModel,emailParamMap,"payToEemind.html");		//发送邮件
+				emailService.sendAttachMail(mailModel,emailParamMap,"payToEemind.html",null);		//发送邮件
 			}
 		} catch (Exception e) {
 			log.debug(e.toString());

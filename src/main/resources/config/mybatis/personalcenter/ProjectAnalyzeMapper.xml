@@ -15,22 +15,21 @@
 	<!-- WangBo : 查询产品标签 -->
 	<select id="queryProjectAnalyzeModelByParam" parameterType="java.util.Map"
 		resultType="com.njyb.gbdbase.model.alldb.projectAnalyze.ProjectAnalyzeModel">
-		SELECT productid,userid,hscode,billnumber,verifycode,productname,
-		(SELECT count(1)
-		FROM help_product_collection
-		WHERE 1=1 and userid =
-		#{userId}
+		SELECT p.productid,p.userid,p.productname,p.hscode,p.billnumber,p.verifycode,p.addTime,p.isOperate
+		FROM
+			(SELECT hpc.productid,hpc.userid,hpc.productname,hpc.hscode,hpc.billnumber,hpc.verifycode,hpc.addTime,0 as isOperate
+			FROM HELP_PRODUCT_COLLECTION hpc
+			LEFT JOIN sys_user su on su.userid = hpc.userid
+			WHERE hpc.userid = #{userId}
+			UNION ALL
+			SELECT utp.productid,utp.userid,utp.productname,utp.hscode,utp.billnumber,utp.verifycode,utp.addTime,utp.isOperate
+			FROM user_trial_product_t utp,sys_user su 
+			WHERE su.userdesc = '试用用户' and su.userid = #{userId}) p
+		WHERE 1=1 
 		<if test="hscode != null and hscode != ''">
-			and hscode LIKE CONCAT('%','${hscode}','%')
+			and p.hscode LIKE CONCAT('%','${hscode}','%')
 		</if>
-		) as total
-		FROM help_product_collection
-		WHERE 1=1 and userid = #{userId}
-		<if test="hscode != null and hscode != ''">
-			and hscode LIKE CONCAT('%','${hscode}','%')
-		</if>
-		ORDER BY ADDTIME DESC
-		LIMIT #{index},#{size}
+		ORDER BY p.ADDTIME DESC
 	</select>
 
 	<!-- WangBo:根据产品id删除相关产品 -->

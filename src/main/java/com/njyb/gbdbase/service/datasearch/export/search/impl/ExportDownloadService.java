@@ -1,7 +1,9 @@
 package com.njyb.gbdbase.service.datasearch.export.search.impl;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -15,6 +17,7 @@ import org.springframework.stereotype.Service;
 
 import com.itextpdf.text.Document;
 import com.itextpdf.text.PageSize;
+import com.njyb.auth.service.impl.cmp.IOrderCountCmp;
 import com.njyb.gbdbas.cache.CreateEncache;
 import com.njyb.gbdbas.util.IConstantUtil;
 import com.njyb.gbdbas.util.InitCountryCENameUtil;
@@ -50,6 +53,8 @@ public class ExportDownloadService extends CommonSearchService implements IExpor
 	private IDataSearchService dataSearchService;
 	@Autowired
 	private  ISearchEngineService searcherEngineService;
+	@Autowired
+	private IOrderCountCmp orderCountCmp;
 	
 	// 存放数据集合
 	private List<String[]> dataList = new ArrayList<String[]>();
@@ -96,7 +101,8 @@ public class ExportDownloadService extends CommonSearchService implements IExpor
 		// 获取用户当前进入的国家
 		String countryName = (String) request.getSession().getAttribute("country");
 		// 根据国家名称获取标题名称(获取国家中文名称)
-		String title = InitCountryCENameUtil.queryCountryCnName(countryName) + "数据";
+/*		String title = InitCountryCENameUtil.queryCountryCnName(countryName) + "数据";
+*/		String title = InitCountryCENameUtil.queryCountryCnName(countryName) + "海关数据";
 		// 获取备注名称
 		String[] comm = QueryReportFieldByCountryUtil.queryCommonRemarksByCountry(request, countryName);
 		// 根据用户的选择，调用不同的导出方法
@@ -131,6 +137,8 @@ public class ExportDownloadService extends CommonSearchService implements IExpor
 	@Override
 	public <T> String commonExportService(JSONObject jsonObject, int type, HttpServletResponse response, HttpServletRequest request)
 	{
+		// 获取用户
+		UserModel user = (UserModel) request.getSession().getAttribute("user");
 		//获取用户当前进入的国家
 		String country = (String) request.getSession().getAttribute("country");
 		//当前页集合
@@ -158,50 +166,60 @@ public class ExportDownloadService extends CommonSearchService implements IExpor
   			//根据具体国家以及数据库id查询具体国家的详细数据
   			exportList = dataSearchService.getDataById(country, idList);
   		}
+		//判断按次用户是否查看下载数据
+  		if(user.getUserDesc().equals("按次用户")){
+  			Map map = new HashMap();
+//  			 userId : 用户Id 2. type : 用户角色  3. country_en 
+  			map.put("userId", user.getUserId());
+  			map.put("type", user.getUserDesc());
+  			map.put("country_en", country);
+  			List list = orderCountCmp.queryUserBuyerList(map);
+  			if(list.size()>0){
+  				exportList = list;
+  			}
+  		}
 		// 判断需要导出的集合是否有值
 		if (exportList.size() != 0) 
 		{
 			// 切换数据源
-			DBContextUtil.setDbTypeName(DBContextUtil.DATA_SOURCE_USER);
-			// 获取用户
-			UserModel user = (UserModel) request.getSession().getAttribute("user");
-			// 查询用户下载的记录(适用于任何用户)
-			UserDownloadRightModel rightModel= queryDownLoadRight(user.getUserId());
-			// 判断用户是否有下载权限
-			// 如果总下载量等于0的话表示没有下载权限，给出提示
-			if(rightModel.getTotalNum()<=0)
-			{
-				jsonObject.put("loadDataFlag", true);
-				jsonObject.put("message", "对不起，您没有导出权限！");
-			}
-			else
-			{
-				jsonObject.put("loadDataFlag", false);
-				// 计算用户已经导出excel与pdf总量
-				int exportNum = rightModel.getExcelNum()+rightModel.getPdfNum();
-				// 判断用户导出excel量与pdf量是否已经超过总下载量，给出提示
-				if(exportNum >= rightModel.getTotalNum())
-				{
-					jsonObject.put("loadNumFlag", true);
-					jsonObject.put("message", "对不起，您本月下载量已达到本月总下载量"+rightModel.getTotalNum()+"条！");
-				}
-				else
-				{
-					jsonObject.put("loadNumFlag", false);
-					// 判断用户本次选择的数据加上已经导出的数据总量是否已经超过总下载量，并给出提示
-					if((exportNum+exportList.size()) >= rightModel.getTotalNum())
-					{
-						jsonObject.put("isLog", true);
-						jsonObject.put("message", "对不起，您本次累积下载量已超过本月下载总量"+rightModel.getTotalNum()+"条！");
-					}
-					else
-					{
-						jsonObject.put("isLog", false);
-						// 提示用户可下载量
-						jsonObject.put("dowonlodMessage", "(每月最多可下载" + rightModel.getTotalNum() + "条 ！还可以下载:" + (rightModel.getTotalNum() - exportNum) + "条)");
-						// 根据国家获取转换后的数据集合
+			
+//			// 查询用户下载的记录(适用于任何用户)
+//			UserDownloadRightModel rightModel= queryDownLoadRight(user.getUserId());
+//			// 判断用户是否有下载权限
+//			// 如果总下载量等于0的话表示没有下载权限，给出提示
+//			if(rightModel.getTotalNum()<=0)
+//			{
+//				jsonObject.put("loadDataFlag", true);
+//				jsonObject.put("message", "对不起，您没有导出权限！");
+//			}
+//			else
+//			{
+//				jsonObject.put("loadDataFlag", false);
+//				// 计算用户已经导出excel与pdf总量
+//				int exportNum = rightModel.getExcelNum()+rightModel.getPdfNum();
+//				// 判断用户导出excel量与pdf量是否已经超过总下载量，给出提示
+//				if(exportNum >= rightModel.getTotalNum())
+//				{
+//					jsonObject.put("loadNumFlag", true);
+//					jsonObject.put("message", "对不起，您本月下载量已达到本月总下载量"+rightModel.getTotalNum()+"条！");
+//				}
+//				else
+//				{
+//					jsonObject.put("loadNumFlag", false);
+//					// 判断用户本次选择的数据加上已经导出的数据总量是否已经超过总下载量，并给出提示
+//					if((exportNum+exportList.size()) >= rightModel.getTotalNum())
+//					{
+//						jsonObject.put("isLog", true);
+//						jsonObject.put("message", "对不起，您本次累积下载量已超过本月下载总量"+rightModel.getTotalNum()+"条！");
+//					}
+//					else
+//					{
+//						jsonObject.put("isLog", false);
+//						// 提示用户可下载量
+//						jsonObject.put("dowonlodMessage", "(每月最多可下载" + rightModel.getTotalNum() + "条 ！还可以下载:" + (rightModel.getTotalNum() - exportNum) + "条)");
+//						// 根据国家获取转换后的数据集合
 						dataList = getCountryDatas(exportList, country, request);
-						// 用户导出类型
+//						// 用户导出类型
 						// type值1：excel 值2：pdf
 						if(IConstantUtil.EXCELTYPE == type)
 						{
@@ -211,9 +229,9 @@ public class ExportDownloadService extends CommonSearchService implements IExpor
 						{
 							downloadModel = new UserDownloadRightModel(user.getUserId(), 0 ,dataList.size());
 						}
-					}
-				}
-			}
+//					}
+//				}
+//			}
 			return jsonObject.toString();
 		}
 		return null;

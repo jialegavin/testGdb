@@ -26,7 +26,6 @@ public class SearchLogService implements ISearchLogService {
     private static final Logger log=Logger.getLogger(SearchLogService.class);
 	@Override
 	public List<UserSystemLogModel> querySystemLogListForPaging(QueryModel query) {
-		DBContextUtil.setDbTypeName(DBContextUtil.DATA_SOURCE_USER);
 		List<UserSystemLogModel> list=new ArrayList<UserSystemLogModel>();
 		if((query!=null)&&(query.getCurPage()!=0)&&(query.getPageSize()!=0))
 		{
@@ -39,7 +38,6 @@ public class SearchLogService implements ISearchLogService {
 	@Override
 	public List<UserSystemLogModel> querySystemLogListByUserIdForPaging(
 			QueryModel query) {
-		DBContextUtil.setDbTypeName(DBContextUtil.DATA_SOURCE_USER);
 		List<UserSystemLogModel> list=new ArrayList<UserSystemLogModel>();
 		if((query!=null)&&(query.getCurPage()!=0)&&(query.getPageSize()!=0)&&(query.getUserId()!=0))
 		{
@@ -51,7 +49,6 @@ public class SearchLogService implements ISearchLogService {
 
 	@Override
 	public int querySysLogCountByUserId(QueryModel query) {
-		DBContextUtil.setDbTypeName(DBContextUtil.DATA_SOURCE_USER);
 		int count=0;
 		try{
 			count=systemLogDao.querySysLogCountByUserId(query);

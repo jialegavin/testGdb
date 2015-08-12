@@ -83,11 +83,12 @@ public class CommonLuceneComponent {
 	 */
 	protected List<Document> getDocList(HttpServletRequest request,String[] fields, String[] values, String countryName,String module, PageBeanUtil page) {
 
-		Map mp = getResultMap(request, fields, values, countryName, module,
-				page);
-		IndexSearcher searcher = (IndexSearcher) mp.get("searcher");
-		TopDocs td = (TopDocs) mp.get("td");
+		
 		try {
+			Map mp = getResultMap(request, fields, values, countryName, module,
+					page);
+			IndexSearcher searcher = (IndexSearcher) mp.get("searcher");
+			TopDocs td = (TopDocs) mp.get("td");
 			ScoreDoc[] sc = td.scoreDocs;
 			List<Document> dlist = new LinkedList<Document>();
 			for (ScoreDoc s : sc) {
@@ -143,74 +144,7 @@ public class CommonLuceneComponent {
 		}
 	}
 
-	/**
-	 * 返回检索结果的document
-	 * 
-	 * @param request
-	 *            封装请求参数
-	 * @param fields
-	 *            请求参数名称
-	 * @param values
-	 *            请求参数值
-	 * @param page
-	 *            请求的分页信息
-	 * @param countryName
-	 *            国家名称
-	 * @param module
-	 *            模块简称 详情见ParamEnumUtil
-	 * @param cls
-	 *            返回的实体对象的类
-	 * @param key
-	 *            存在searchIndex.xml配置文件中的key
-	 * @return list(object) 章华才修改索引字段和model字段匹配:时间 2015-04-01
-	 */
-	@SuppressWarnings("static-access")
-	protected List<Object> getListObject(HttpServletRequest request,String[] fields, String[] values, String countryName,String module, PageBeanUtil page, Class cls, String key) {
-		List<Document> ls = getDocList(request, fields, values, countryName,module, page);
-		// 获取要赋值的属性 这里的属性保持和lucene索引文件中的一致
-		String[] str = searchPropertiesModel.getPropertiesMap().get(key).toString().split(",");
-		// 从xml配置文件中拿到model相应的属性
-		String[] s = searchPropertiesModel.getPropertiesMap().get("bean_" + key).toString().split(",");
-		List<Object> objList = new LinkedList<Object>();
-		//循环变量赋值
-		getObjList(cls, ls, str, s, objList);
-		return objList;
-	}
-	 
-	/**
-	 * 组装一个object对象的集合..
-	 * 
-	 * @param cls
-	 * @param ls
-	 * @param str
-	 * @param s
-	 * @param objList
-	 */
-	private void getObjList(Class cls, List<Document> ls, String[] str,String[] s, List<Object> objList) {
-		long start = System.currentTimeMillis();
-		// 定义变量 来优化..
-		int i = 0;
-		int jj = 0;
-		String name;
-		Object obj;
-		try {
-			for (i = 0; i < ls.size(); i++) {
-				obj = cls.newInstance();
-				for (jj = 0; jj < str.length; jj++) {
-					name = s[jj];
-					// 创建对象
-					BeanUtils.setProperty(obj, name, ls.get(i).get(str[jj]));
-				}
-				// 赋值
-				objList.add(obj);
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		long end = System.currentTimeMillis();
-		System.out.println("赋值数据" + objList.size() + "条记录" + ",耗时:"
-				+ (end - start) / 1000 + "秒");
-	}
+	
 
 	/**
 	 * 产品检索和明细
@@ -230,10 +164,13 @@ public class CommonLuceneComponent {
 		initParam(countryName);
 		// 获取生成结果对象
 		Map mp = getDirector(module).getData(request, indexPath, fields,values, page, keyId, countryName, module, null);
-		@SuppressWarnings("unchecked")
-		List<Integer> list = (List<Integer>) mp.get("search_list");
-		return list;
-
+		if (mp==null) {
+			return new LinkedList<Integer>();
+		}
+		else{
+			return (List<Integer>) mp.get("search_list");
+		}
+ 
 	}
 
 }

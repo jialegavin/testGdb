@@ -51,7 +51,7 @@
 	<select id="getLogByLoginName"  resultMap="userReport" parameterType="java.util.Map">
           select * from user_login_log where userid = #{userId} 
           <if test="beginDate != '' and beginDate != null and endDate != '' and endDate != null">
-          	AND unix_timestamp(loginTime) between unix_timestamp(#{beginDate}) and unix_timestamp(#{endDate}) 
+          	AND loginTime between str_to_date(#{beginDate},'%Y-%m-%d %H:%i:%s') and ADDDATE(STR_TO_DATE(#{endDate},'%Y-%m-%d %H:%i:%s'),INTERVAL 1 DAY)  
           </if>
            order by loginTime desc
     </select>

@@ -15,6 +15,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.google.common.base.Strings;
+import com.google.common.collect.Lists;
 import com.njyb.gbdbas.util.PageBeanUtil;
 import com.njyb.gbdbas.util.sort.DataGridSortUtil;
 import com.njyb.gbdbase.controller.common.PublicCommonController;
@@ -50,7 +51,6 @@ public class ProjectAnalyzeController extends PublicCommonController {
 
 	/**
 	 * 添加 产品标签
-	 * 
 	 * @param request
 	 * @param response
 	 * @param projectAnalyzeModel
@@ -59,7 +59,7 @@ public class ProjectAnalyzeController extends PublicCommonController {
 	@RequestMapping(value = "/addProjectAnalyze")
 	public void addProjectAnalyze(HttpServletRequest request,
 			HttpServletResponse response,
-			ProjectAnalyzeModel projectAnalyzeModel){
+			ProjectAnalyzeModel projectAnalyzeModel) throws IOException{
 		UserModel userModel = (UserModel) request.getSession().getAttribute(
 				"user");
 		projectAnalyzeModel.setUserId(userModel.getUserId());
@@ -82,30 +82,24 @@ public class ProjectAnalyzeController extends PublicCommonController {
 	@RequestMapping(value = "/queryProjectAnalyzeByParam")
 	public void queryProjectAnalyzeByParam(HttpServletRequest request,
 			HttpServletResponse response,
-			ProjectAnalyzeModel projectAnalyzeModel){
+			ProjectAnalyzeModel projectAnalyzeModel) throws IOException{
 		PageBeanUtil pageBean = this.getPageBeanToWorked(request);
 		UserModel userModel = (UserModel) request.getSession().getAttribute(
 				"user");
 		Map<String, Object> paramMap = this.getNewMap();
-		paramMap.put("queryModel", projectAnalyzeModel);
 		paramMap.put("userId", userModel.getUserId());
-		paramMap.put("index", pageBean.getPageIndex());
-		paramMap.put("size", pageBean.getPageSize());
+		paramMap.put("queryModel", projectAnalyzeModel);
 		List<ProjectAnalyzeModel> projectAnalyzeList = projectAnalyzeService
 				.queryProjectAnalyzeModelByParam(paramMap);
-		int total = projectAnalyzeList.size() == 0 ? 0 : projectAnalyzeList
-				.get(0).getTotal();
-		JSONObject json = this.getJsonObject(total, projectAnalyzeList);
+		int total = projectAnalyzeList.size() == 0 ? 0 : projectAnalyzeList.size();
+		List<ProjectAnalyzeModel> resultList = this.getSubList(pageBean, projectAnalyzeList);
+		JSONObject json = this.getJsonObject(total, resultList);
 		Map<String, Object> jsonMap = this.getJsonParamMap();
 		if (null != jsonMap) {
 			json.putAll(jsonMap);
 			this.setJsonParamMap(null);
 		}
-		try {
-			response.getWriter().println(json.toString());
-		} catch (IOException e) {
-			log.debug(e.getMessage());
-		}
+		response.getWriter().println(json.toString());
 	}
 
 	/**
@@ -215,6 +209,7 @@ public class ProjectAnalyzeController extends PublicCommonController {
 		paramMap.put("queryModel", rightLibrarySearchModel);
 		// 获取数据
 		List<BuyerModel> buyerList = projectAnalyzeService.queryBuyerList(paramMap);
+		buyerList = getHscodeAndDesc(buyerList, rightLibrarySearchModel);
 		Map<String,Object> map = ResultFieldModel.getResultFieldMap();	// 获取map对象
 		if (!Strings.isNullOrEmpty(rightLibrarySearchModel.getSort())){
 			new DataGridSortUtil().executeSearchSort(request,buyerList,map,rightLibrarySearchModel.getSort());
@@ -227,6 +222,26 @@ public class ProjectAnalyzeController extends PublicCommonController {
 		} catch (IOException e) {
 			log.debug(e.getMessage());
 		}
+	}
+	
+	/**
+	 * 对 海关编码 进行筛选
+	 * @param buyerList
+	 * @param rightLibrarySearchModel
+	 * @return
+	 */
+	private List<BuyerModel> getHscodeAndDesc(List<BuyerModel> buyerList,RightLibrarySearchModel rightLibrarySearchModel) {
+		List<BuyerModel> newBuyerList = Lists.newLinkedList();
+		if (!Strings.isNullOrEmpty(rightLibrarySearchModel.getHscode())) {
+			int length = rightLibrarySearchModel.getHscode().length();
+			for (BuyerModel buyer : buyerList) {
+				String temp_buyer = buyer.getHscode().substring(0, length);
+				if (temp_buyer.equals(rightLibrarySearchModel.getHscode())) {
+					newBuyerList.add(buyer);
+				}
+			}
+		}
+		return newBuyerList;
 	}
 	
 	/**

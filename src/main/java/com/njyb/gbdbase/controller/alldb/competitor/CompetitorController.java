@@ -71,8 +71,9 @@ public class CompetitorController extends PublicCommonController {
 		paramMap.put("queryModel", queryCompetitorQueryModel);
 		List<ComAndCusInfoResultModel> resultList = competitorService
 				.queryCompetitorResult(paramMap);
-		int total = resultList.size() == 0 ? 0 : resultList.get(0).getTotal();
-		JSONObject json = this.getJsonObject(total, resultList);
+		int total = resultList.size() == 0 ? 0 : resultList.size();
+		List<ComAndCusInfoResultModel> tempResultList = this.getSubList(pageBean, resultList);
+		JSONObject json = this.getJsonObject(total, tempResultList);
 		Map<String, Object> paramMaps = this.getJsonParamMap();
 		if (null != paramMaps) {
 			json.putAll(paramMaps);

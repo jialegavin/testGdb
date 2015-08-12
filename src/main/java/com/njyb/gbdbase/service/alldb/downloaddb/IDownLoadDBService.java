@@ -1,5 +1,6 @@
 package com.njyb.gbdbase.service.alldb.downloaddb;
 
+import java.util.IdentityHashMap;
 import java.util.Map;
 
 /**
@@ -15,5 +16,5 @@ public interface IDownLoadDBService {
 	 * @param paramMap
 	 * @return
 	 */
-	<T> Map<String, Map<String, Object>> downLoadDBByParams(Map<String,Object> paramMap);
+	<T> IdentityHashMap<String, Map<String, Object>> downLoadDBByParams(Map<String,Object> paramMap);
 }

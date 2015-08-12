@@ -34,7 +34,7 @@ public class UserSonRightService implements IUserSonRightService {
 	private static final Logger log = Logger.getLogger(UserSonRightService.class);
 	@Override
 	public List<ConditionRightModel> queryRightsByUidCN(QueryModel query) {
-		DBContextUtil.setDbTypeName(DBContextUtil.DATA_SOURCE_USER);
+		
 		List<ConditionRightModel> list=new ArrayList<ConditionRightModel>();
 		try
 		{
@@ -55,7 +55,7 @@ public class UserSonRightService implements IUserSonRightService {
 
 	@Override
 	public List<Map<String,String>> queryAllCountries(String lang) {
-		DBContextUtil.setDbTypeName(DBContextUtil.DATA_SOURCE_USER);
+		
 		List<Map<String,String>> viewList=new ArrayList<Map<String,String>>();
 		try
 		{
@@ -73,7 +73,7 @@ public class UserSonRightService implements IUserSonRightService {
 
 	@Override
 	public List<String> queryCountriesByUid(QueryModel query) {
-		DBContextUtil.setDbTypeName(DBContextUtil.DATA_SOURCE_USER);
+		
 		List<String> countryList=new ArrayList<String>();
 		try
 		{
@@ -91,7 +91,7 @@ public class UserSonRightService implements IUserSonRightService {
 	}
 	@Override
 	public int queryCountCountryRightByUserID(QueryModel query) {
-		DBContextUtil.setDbTypeName(DBContextUtil.DATA_SOURCE_USER);
+		
 		int num=0;
 		try{
 			if(query!=null&&query.getUserId()!=0&&query.getCountryName()!=null)
@@ -108,7 +108,7 @@ public class UserSonRightService implements IUserSonRightService {
 	}
 	@Override
 	public boolean addRights(List<Map<String, String>> list,int userId) {
-		DBContextUtil.setDbTypeName(DBContextUtil.DATA_SOURCE_USER);
+		
 		boolean flag=false;
 		try{
 			if((list!=null)&&(list.size()>0))
@@ -131,7 +131,7 @@ public class UserSonRightService implements IUserSonRightService {
 	}
 	@Override
 	public boolean addUserConditionRight(Map rightMap) {
-		DBContextUtil.setDbTypeName(DBContextUtil.DATA_SOURCE_USER);
+		
 		 boolean flag=false;  
 		try{
 			  rightDao.addRight(rightMap);
@@ -146,7 +146,7 @@ public class UserSonRightService implements IUserSonRightService {
 
 	@Override
 	public List<ConditionRightModel> queryRightsForPaging(QueryModel query) {
-		DBContextUtil.setDbTypeName(DBContextUtil.DATA_SOURCE_USER);
+		
 		List<ConditionRightModel> list=new ArrayList<ConditionRightModel>();
 		try{
 			if(query!=null&&!("".equals(query.getParam()))&&query.getUserId()!=0)
@@ -164,7 +164,7 @@ public class UserSonRightService implements IUserSonRightService {
 
 	@Override
 	public int queryRightNum(QueryModel query) {
-		DBContextUtil.setDbTypeName(DBContextUtil.DATA_SOURCE_USER);
+		
 		int num=0;
 		try{
 			if(query!=null&&!("".equals(query.getParam()))&&query.getUserId()!=0)
@@ -182,7 +182,7 @@ public class UserSonRightService implements IUserSonRightService {
 
 	@Override
 	public List<UserDownloadRightModel> queryDownLoadNum(QueryModel query) {
-		DBContextUtil.setDbTypeName(DBContextUtil.DATA_SOURCE_USER);
+		
 		List<UserDownloadRightModel> list=new ArrayList<UserDownloadRightModel>();
 		try{
 			if(query!=null&&query.getUserId()!=0&&query.getRelaId()!=0)
@@ -211,7 +211,7 @@ public class UserSonRightService implements IUserSonRightService {
 
 	@Override
 	public boolean updateDownNum(UserDownloadRightModel downRightModel) {
-		DBContextUtil.setDbTypeName(DBContextUtil.DATA_SOURCE_USER);
+		
 		boolean flag=false;
 		try{
 			if(downRightModel!=null&&downRightModel.getUserId()!=0&&downRightModel.getTotalNum()!=0)

@@ -20,13 +20,18 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.njyb.auth.service.authoritycontrol.component.MainAuthoriy;
+import com.njyb.gbdbas.util.DataSearchConstantUtil;
 import com.njyb.gbdbas.util.InitCountryCENameUtil;
 import com.njyb.gbdbas.util.LoadPropertiesUtil;
 import com.njyb.gbdbas.util.PageBeanUtil;
 import com.njyb.gbdbas.util.export.ExportDataUtil;
 import com.njyb.gbdbas.util.export.ExportExcelUtil;
+import com.njyb.gbdbase.model.admincenter.AuthorityFieldModel;
+import com.njyb.gbdbase.model.admincenter.UserModel;
 import com.njyb.gbdbase.model.contrastreport.querybean.CommonSearchModel;
 import com.njyb.gbdbase.model.datasearch.common.DataReportSumModel;
+import com.njyb.gbdbase.model.datasearch.common.ReportPropertiesModel;
 import com.njyb.gbdbase.model.datasearch.common.SearchPropertiesModel;
 import com.njyb.gbdbase.service.common.engines.IReportDetailService;
 import com.njyb.gbdbase.service.common.engines.IReportDrillService;
@@ -60,7 +65,8 @@ public class ContrastreReportController{
 	
 	@Resource
 	private CountryAllManagerComponent allManagerComponet;
-	
+	@Resource
+	private AuthorityFieldModel authorityFieldModel;
 	//存放新增流失后的集合
 //	private List<DataReportSumModel> lists = null;
 	/**
@@ -81,29 +87,44 @@ public class ContrastreReportController{
 	public String addContrastre(HttpServletRequest request,HttpServletResponse response,
 			                     CommonSearchModel bean,String sortKey,String countryName,String imexType,String addOrOut,String sort,String order){
 		
-		System.out.println("comein...");
-		JSONObject jsonObject = new JSONObject();
-		//将中文的国家转化为英文
-		countryName = InitCountryCENameUtil.queryCountryEnName(countryName);
-//		if(!countryName.equals("china") && !countryName.equals("korea"))
-//		{
-//			//重置国家value
-//			countryName = countryName + "_" + imexType;
-//		}
-		//将国家放入到map
-		SearchPropertiesModel.getPropertiesMap().put("countryName", countryName);
-		//实例化分页工具
-		PageBeanUtil beanUtil = allManagerComponet.getPageBeanUtil(request,"10");
-		List<DataReportSumModel> lists=service.addImportAndExport(request, null, null, bean, sortKey,countryName,addOrOut,imexType);
-		//将集合数据放入到缓存中
-		allManagerComponet.createCacheSetList(lists,"reportListAll","reportContrastreCache");
-		//分页
-		beanUtil.setPageCount(lists == null? 0:lists.size());
-		Map<String, DataReportSumModel> map = allManagerComponet.getCount(lists,addOrOut,imexType);
-		jsonObject.put("total", beanUtil.getPageCount());
-		jsonObject.put("rows", lists == null||lists.size() ==0?"":allManagerComponet.orderListDescOrAsc(allManagerComponet.pageList(lists, beanUtil), order==null?"desc":order, sort==null?allManagerComponet.getSortName(request,countryName):sort, "double"));
-		jsonObject.put("barChart",map.get("barChart"));
-		jsonObject.put("pieChart", map.get("pieChart"));
+			JSONObject jsonObject = new JSONObject();
+		
+				synchronized (this) {
+					if(AuthorityFieldModel.getAuthorityFieldMap().get("newTime")!=null){
+						  if(AuthorityFieldModel.getAuthorityFieldMap().get("july100")!=null){
+							 bean.setEndAddDate((AuthorityFieldModel.getAuthorityFieldMap().get("newTime").toString()));
+						  }else{
+							  String [] stime = AuthorityFieldModel.getAuthorityFieldMap().get("newTime").toString().split(",");
+							  bean.setBeginAddDate(stime[0]);
+							  bean.setEndAddDate(allManagerComponet.dateFormat(stime[1],InitCountryCENameUtil.queryCountryEnName(countryName)));
+						  }
+					 }	
+				}
+		
+				System.out.println("comein...");
+				//将中文的国家转化为英文
+				countryName = InitCountryCENameUtil.queryCountryEnName(countryName);
+//				synchronized (this) {
+//					if(countryName.equals(DataSearchConstantUtil.CHINA_EIGHT)){
+//						authorityFieldModel.getAuthorityFieldMap().put("datestr",  allManagerComponet.excludDate((String)authorityFieldModel.getAuthorityFieldMap().get("nowDate"), (String)authorityFieldModel.getAuthorityFieldMap().get("historyDate"), (String)authorityFieldModel.getAuthorityFieldMap().get("queryDate")));
+//					}else{
+//						authorityFieldModel.getAuthorityFieldMap().put("datestr",null);
+//					}
+//				}
+				//将国家放入到map
+				SearchPropertiesModel.getPropertiesMap().put("countryName", countryName);
+				//实例化分页工具
+				PageBeanUtil beanUtil = allManagerComponet.getPageBeanUtil(request,"10");
+				List<DataReportSumModel> lists=service.addImportAndExport(request, null, null, bean, sortKey,countryName,addOrOut,imexType);
+				//将集合数据放入到缓存中
+				allManagerComponet.createCacheSetList(lists,"reportListAll","reportContrastreCache");
+				//分页
+				beanUtil.setPageCount(lists == null? 0:lists.size());
+				Map<String, DataReportSumModel> map = allManagerComponet.getCount(lists,addOrOut,imexType);
+				jsonObject.put("total", beanUtil.getPageCount());
+				jsonObject.put("rows", lists == null||lists.size() ==0?"":allManagerComponet.orderListDescOrAsc(allManagerComponet.pageList(lists, beanUtil), order==null?"desc":order, sort==null?allManagerComponet.getSortName(request,countryName):sort, "double"));
+				jsonObject.put("barChart",map.get("barChart"));
+				jsonObject.put("pieChart", map.get("pieChart"));
 		try {
 			response.getWriter().write(jsonObject.toString());
 		} catch (IOException e) {
@@ -182,28 +203,42 @@ public class ContrastreReportController{
 	 */
 	@RequestMapping(value = "exportExcel")
 	public String exportExcle(HttpServletRequest request,HttpServletResponse response,String paman,String countryName,String imexType){
-		//将中文国家转化为英文
-		String country = null;
-		try {
-			//URLDecoder.decode解码
-			country = InitCountryCENameUtil.queryCountryEnName(URLDecoder.decode(countryName,"UTF-8"));  
-			paman = URLDecoder.decode(paman,"UTF-8");  
-		} catch (UnsupportedEncodingException e) {
-			e.printStackTrace();
+		/**
+		 * 权限控制
+		 */
+		JSONObject jsonObject = new JSONObject();
+//		if(MainAuthoriy.isVisitModule(request, response, ((UserModel)request.getSession().getAttribute("user")).getUserDesc(), authorityFieldModel.getAuthorityFieldMap(), jsonObject)){
+			if(countryName!=null){
+				//将中文国家转化为英文
+				String country = null;
+				try {
+					//URLDecoder.decode解码
+					country = InitCountryCENameUtil.queryCountryEnName(URLDecoder.decode(countryName,"UTF-8"));  
+					paman = URLDecoder.decode(paman,"UTF-8");  
+				} catch (UnsupportedEncodingException e) {
+					e.printStackTrace();
+				}
+				
+				List<DataReportSumModel> ls = new ArrayList<DataReportSumModel>();
+				//获取map集合
+				Map<String, DataReportSumModel> map = allManagerComponet.getDataReportModelMap(allManagerComponet.getCacheList("reportListAll","reportContrastreCache"),(String) SearchPropertiesModel.getPropertiesMap().get("countryName"),null,imexType);
+				String[] str = paman.split(",");
+				//根据选中的进出口商去map当中找，找到后加入到新的集合当中
+				for (String s : str) {
+					ls.add(map.get(s));
+				}
+				//执行导出execl方法
+				List<String[]> data = ExportDataUtil.getList(ls, allManagerComponet.getFieldsByCountryName(request,country,imexType).get("field"));
+				String [] field = allManagerComponet.getFieldsByCountryName(request,country,imexType).get("strName");
+				ExportExcelUtil.exportExcel("报表对比信息", data, field, new String[]{}, new String[]{}, request, response);
+//			}else{
+//				try {
+//					response.getWriter().write(jsonObject.toString());
+//				} catch (IOException e) {
+//					e.printStackTrace();
+//				}
+//			}
 		}
-		
-		List<DataReportSumModel> ls = new ArrayList<DataReportSumModel>();
-		//获取map集合
-		Map<String, DataReportSumModel> map = allManagerComponet.getDataReportModelMap(allManagerComponet.getCacheList("reportListAll","reportContrastreCache"),(String) SearchPropertiesModel.getPropertiesMap().get("countryName"),null,imexType);
-		String[] str = paman.split(",");
-		//根据选中的进出口商去map当中找，找到后加入到新的集合当中
-		for (String s : str) {
-			ls.add(map.get(s));
-		}
-		//执行导出execl方法
-		List<String[]> data = ExportDataUtil.getList(ls, allManagerComponet.getFieldsByCountryName(request,country,imexType).get("field"));
-		String [] field = allManagerComponet.getFieldsByCountryName(request,country,imexType).get("strName");
-		ExportExcelUtil.exportExcel("报表对比信息", data, field, new String[]{}, new String[]{}, request, response);
 		return null;
 	}
 	

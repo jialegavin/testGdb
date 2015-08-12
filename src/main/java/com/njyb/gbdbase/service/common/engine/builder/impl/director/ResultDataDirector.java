@@ -66,7 +66,7 @@ public class ResultDataDirector {
 			e1.printStackTrace();
 		}
 		Query query = buidler.getQuery(request, fields, values, countryName);
-		return TopDocsFactory.getObject(searcher, query, filter, module, page, keyId);
+		return TopDocsFactory.getObject(request,searcher, query, filter, module, page, keyId);
 	}
 
 }

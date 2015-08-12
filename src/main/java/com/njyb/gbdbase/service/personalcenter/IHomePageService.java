@@ -2,16 +2,14 @@
 package com.njyb.gbdbase.service.personalcenter;
 
 import java.util.List;
-import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.stereotype.Service;
+
 import com.njyb.gbdbase.model.personalcenter.CountryUpdateTimeModel;
-import com.njyb.gbdbase.dao.personalcenter.IHomePageDao;
 
 /**
  * 查询各个国家数据的数据更新时间
- * 
- * @author honghao
- * 
+ * @author honghao 需求变更,重写 wangB
  */
 @Service
 public interface IHomePageService {

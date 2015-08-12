@@ -129,7 +129,6 @@ public abstract class AbstractCacheListCmp extends CommonLuceneComponent{
 		String[]fs=ConditionModel.getLastTimeFields().split(";");
 		String[]vs=ConditionModel.getLastTimeValues().split(";");
 		String key=country+ ";"+ ReportHelpUtil.queryKeyOrValue(fs, vs);
-		System.out.println("获取缓存中的key："+key);
 		List<DataReportSumModel>list=(List<DataReportSumModel>) cache.get(key).getObjectValue();
 		if (list!=null) {
 			return list;

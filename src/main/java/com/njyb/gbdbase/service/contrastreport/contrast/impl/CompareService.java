@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.stereotype.Service;
 
+import com.njyb.gbdbase.model.admincenter.AuthorityFieldModel;
 import com.njyb.gbdbase.model.contrastreport.querybean.CommonSearchModel;
 import com.njyb.gbdbase.model.datasearch.common.DataReportSumModel;
 import com.njyb.gbdbase.service.contrastreport.contrast.ICompareService;
@@ -61,7 +62,7 @@ public class CompareService implements ICompareService{
 		}
 		String [] fieldKey = allManagerComponet.findByFieldKey(map);
 		String [] fieldValue = allManagerComponet.findByFieldValue(map);
-		
+		AuthorityFieldModel.getAuthorityFieldMap().put("first", "1");
 		//返回第一次时间查询的汇总集合
 		firstlists = (List<DataReportSumModel>) sumDataComponent.getCommonSumData(request, fieldKey, fieldValue, countryName, sortKey, imexType, isAdd, "first");
 		//处理日期格式
@@ -72,6 +73,7 @@ public class CompareService implements ICompareService{
 		map = allManagerComponet.setParameters(request,countryName,model);
 		fieldKey = allManagerComponet.findByFieldKey(map);
 		fieldValue = allManagerComponet.findByFieldValue(map);
+		AuthorityFieldModel.getAuthorityFieldMap().put("first", "2");
 		//返回第二次时间查询的汇总集合
 		secondLists = (List<DataReportSumModel>) sumDataComponent.getCommonSumData(request, fieldKey, fieldValue, countryName, sortKey, imexType, isAdd, "second");
 		if(isAdd.equals("add"))
@@ -89,6 +91,7 @@ public class CompareService implements ICompareService{
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		AuthorityFieldModel.getAuthorityFieldMap().put("first",null);
 		return lss;
 	}
 

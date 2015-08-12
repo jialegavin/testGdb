@@ -63,9 +63,8 @@ public class CustomerInfoController extends PublicCommonController {
 		paramMap.put("pageBean", pageBean);
 		paramMap.put("userId", userModel.getUserId());
 		paramMap.put("queryModel", queryCustomerModel);
-		List<ComAndCusInfoResultModel> reslutList = customerService
-				.queryCompetitorResult(paramMap);
-		int total = reslutList.size() == 0 ? 0 : reslutList.get(0).getTotal();
+		List<ComAndCusInfoResultModel> reslutList = customerService.queryCompetitorResult(paramMap);
+		int total = reslutList.size() == 0 ? 0 : reslutList.size();
 		JSONObject json = this.getJsonObject(total, reslutList);
 		Map<String, Object> paramMaps = this.getJsonParamMap();
 		if (null != paramMaps) {

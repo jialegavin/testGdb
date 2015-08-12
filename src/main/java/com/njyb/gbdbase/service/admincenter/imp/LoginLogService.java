@@ -30,7 +30,6 @@ public class LoginLogService implements ILoginLogService {
 	private static final Logger log=Logger.getLogger(LoginLogService.class);
 	@Override
 	public List<UserLoginlogModel> queryUserLogModelForPaging(QueryModel qury) {
-		DBContextUtil.setDbTypeName(DBContextUtil.DATA_SOURCE_USER);
 		List<UserLoginlogModel>  list=new ArrayList<UserLoginlogModel>();
 		try{
 			if((qury!=null)&&(qury.getCurPage()!=0)&&(qury.getPageSize()!=0))
@@ -51,7 +50,6 @@ public class LoginLogService implements ILoginLogService {
 	@Override
 	public List<UserLoginlogModel> queryUserLogModelByUserIdForPaging(
 			QueryModel query) {
-		DBContextUtil.setDbTypeName(DBContextUtil.DATA_SOURCE_USER);
 		List<UserLoginlogModel>  list=new ArrayList<UserLoginlogModel>();
 		try{
 			if((query!=null)&&(query.getCurPage()!=0)&&(query.getPageSize()!=0)&&(query.getUserId()!=0))
@@ -72,7 +70,6 @@ public class LoginLogService implements ILoginLogService {
 	@Override
 	public int  queryCountUserLogModelByUserId(
 			QueryModel query) {
-		DBContextUtil.setDbTypeName(DBContextUtil.DATA_SOURCE_USER);
 	     int count=0;
 	     try{
 	    	 if((query!=null)&&(query.getUserId()!=0))
@@ -88,7 +85,6 @@ public class LoginLogService implements ILoginLogService {
 
 	@Override
 	public int queryCountUserLogModel(QueryModel query) {
-		DBContextUtil.setDbTypeName(DBContextUtil.DATA_SOURCE_USER);
 		int count=0;
 		try{
 			count=userLogDao.findLoginLogCount();

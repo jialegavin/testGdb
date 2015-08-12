@@ -76,8 +76,9 @@ public class ExportExcelUtil {
 		tableName = tableName.replaceAll("\\s*", "");
 		
 		// 工作表名称
-		String workSheet = tableName + sheetNum;
-		
+		/*String workSheet = tableName + sheetNum;*/
+		String workSheet = tableName;
+
 		try 
 		{
 			// start 可打开页面导出对话框

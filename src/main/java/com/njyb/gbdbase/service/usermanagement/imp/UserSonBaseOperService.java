@@ -39,7 +39,7 @@ public class UserSonBaseOperService implements IUserSonBaseOperService {
 	@Override
 	public List<UserModel> queryUserSonsByLoginNameForPaging(QueryModel queryModel) 
 	{
-		DBContextUtil.setDbTypeName(DBContextUtil.DATA_SOURCE_USER);
+		
 	  List<UserModel> list=new  ArrayList<UserModel>();
 	  try{
 		  if((queryModel!=null)&&(queryModel.getPageSize()!=0)&&(queryModel.getCurPage()!=0))
@@ -63,7 +63,7 @@ public class UserSonBaseOperService implements IUserSonBaseOperService {
 	}
 	@Override
 	public List<UserModel> queryUserSonsByIdForPaging(QueryModel queryModel) {
-		DBContextUtil.setDbTypeName(DBContextUtil.DATA_SOURCE_USER);
+		
 		List<UserModel> list=new  ArrayList<UserModel>();
 		  try{
 			  if((queryModel!=null)&&(queryModel.getPageSize()!=0)&&(queryModel.getCurPage()!=0)&&queryModel.getUserId()!=0)
@@ -79,7 +79,7 @@ public class UserSonBaseOperService implements IUserSonBaseOperService {
 	}
 	@Override
 	public int queryUserSonNumById(QueryModel queryModel) {
-		DBContextUtil.setDbTypeName(DBContextUtil.DATA_SOURCE_USER);
+		
 		int num=0;
 		try{
 			if(queryModel!=null&&queryModel.getUserId()!=0)
@@ -96,7 +96,7 @@ public class UserSonBaseOperService implements IUserSonBaseOperService {
 	}
 	@Override
 	public UserModel queryUserByLoginName(QueryModel queryModel) {
-		DBContextUtil.setDbTypeName(DBContextUtil.DATA_SOURCE_USER);
+		
 		UserModel user=new UserModel();
 		try{
 			if((queryModel!=null)&&!("".equals(queryModel.getLoginName())))
@@ -114,7 +114,7 @@ public class UserSonBaseOperService implements IUserSonBaseOperService {
 	
 	@Override
 	public String getIpAddress(HttpServletRequest request) {
-		DBContextUtil.setDbTypeName(DBContextUtil.DATA_SOURCE_USER);
+		
 		 String ip = request.getHeader("x-forwarded-for"); 
 		    if(ip == null || ip.length() == 0 || "unknown".equalsIgnoreCase(ip)) 
 		    { 
@@ -135,7 +135,7 @@ public class UserSonBaseOperService implements IUserSonBaseOperService {
 	@Override
 	public int  checkAbleCreateSon(UserModel userModel) 
 	{
-		DBContextUtil.setDbTypeName(DBContextUtil.DATA_SOURCE_USER);
+		
 		//是否可以创建子用户的标志
 		int flag=0;
 		try{
@@ -224,7 +224,7 @@ public class UserSonBaseOperService implements IUserSonBaseOperService {
 	 */
 	private int queryEmailNum(UserModel user)
 	{
-		DBContextUtil.setDbTypeName(DBContextUtil.DATA_SOURCE_USER);
+		
 		int emailNum=0;
 		try{
 			if(user.getEmail()!=null&&!("".equals(user.getEmail())))
@@ -251,7 +251,7 @@ public class UserSonBaseOperService implements IUserSonBaseOperService {
 	 */
 	public int queryLoginNameNum(UserModel user)
 	{
-		DBContextUtil.setDbTypeName(DBContextUtil.DATA_SOURCE_USER);
+		
 		int loginNameNum=0;
 		try{
 			if(user.getLoginName()!=null&&!("".equals(user.getLoginName())))
@@ -271,7 +271,7 @@ public class UserSonBaseOperService implements IUserSonBaseOperService {
 	@Override
 	public boolean addUserSon(UserModel son, UserModel user) 
 	{
-		DBContextUtil.setDbTypeName(DBContextUtil.DATA_SOURCE_USER);
+		
 		boolean flag=false;
 		try{
 			if((checkUser(user))&&(checkUser(son)))

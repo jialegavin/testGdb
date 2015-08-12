@@ -146,44 +146,44 @@ public class DataConvertDBModel implements IDataConvertDBModel {
 				}
 			case LuceneConstant.ECUADOR_EXPORT_STRING:		//厄瓜多尔出口
 				if (object instanceof EcuadorExportModel){
-					dbResultList.add(EcuadorEConvertModel.getEcuadorEConvertModel((EcuadorExportModel) object, country));
+					dbResultList.add(EcuadorEConvertModel.getEcuadorEConvertModel((EcuadorExportModel) object, cnCountry));
 					break;
 				}
 			case LuceneConstant.ECUADOR_IMPORT_STRING:		//厄瓜多尔进口
 				if (object instanceof EcuadorImportModel){
-					dbResultList.add(EcuadorIConvertModel.getEcuadorIConvertModel((EcuadorImportModel) object, country));
+					dbResultList.add(EcuadorIConvertModel.getEcuadorIConvertModel((EcuadorImportModel) object, cnCountry));
 					break;
 				}
 			case LuceneConstant.GUATEMALA_EXPORT_STRING:	//危地马拉出口
 				if (object instanceof GuatemalaExportModel){
-					dbResultList.add(GuatemalaEConvertModel.getGuatemalaEConvertModel((GuatemalaExportModel) object, country));
+					dbResultList.add(GuatemalaEConvertModel.getGuatemalaEConvertModel((GuatemalaExportModel) object, cnCountry));
 					break;
 				}
 			case LuceneConstant.GUATEMALA_IMPORT_STRING:		//危地马拉进口
 				if (object instanceof GuatemalaImportModel){
-					dbResultList.add(GuatemalaIConvertModel.getGuatemalaIConvertModel((GuatemalaImportModel) object, country));
+					dbResultList.add(GuatemalaIConvertModel.getGuatemalaIConvertModel((GuatemalaImportModel) object, cnCountry));
 					break;
 				}
 			// TODO 没有 洪都拉斯 出口
 			case LuceneConstant.HONDURAS_IMPORT_STRING:		//洪都拉斯进口
 				if (object instanceof HondurasImportModel){
-					dbResultList.add(HondurasIConvertModel.getHondurasIConvertModel((HondurasImportModel) object, country));
+					dbResultList.add(HondurasIConvertModel.getHondurasIConvertModel((HondurasImportModel) object, cnCountry));
 					break;
 				}
 			// TODO 没有印度出口
 			case LuceneConstant.INDIA_IMPORT_STRING:		//印度进口
 				if (object instanceof IndiaImportModel){
-					dbResultList.add(IndiaIConvertModel.getIConvertModel((IndiaImportModel) object, country));
+					dbResultList.add(IndiaIConvertModel.getIConvertModel((IndiaImportModel) object, cnCountry));
 					break;
 				}
 			case LuceneConstant.KOREA_STRING:		//韩国
 				if (object instanceof KoreaModel){
-					dbResultList.add(KoreaConvertModel.getKoreaConvertModel((KoreaModel) object, country));
+					dbResultList.add(KoreaConvertModel.getKoreaConvertModel((KoreaModel) object, cnCountry));
 					break;
 				}
 			case LuceneConstant.MEXICON_IMPORT_STRING:		//墨西哥进口
 				if (object instanceof MexicoImportModel){
-					dbResultList.add(MexicoIConvertModel.getMexicoIConvertModel((MexicoImportModel) object, country));
+					dbResultList.add(MexicoIConvertModel.getMexicoIConvertModel((MexicoImportModel) object, cnCountry));
 					break;
 				}
 			case LuceneConstant.NICARAGUA_EXPORT_STRING:		//尼加拉瓜出口
@@ -196,7 +196,7 @@ public class DataConvertDBModel implements IDataConvertDBModel {
 					allDBModel.setEndport(nicaraguaExportModel.getEndPort());
 					allDBModel.setOrgincountry(nicaraguaExportModel.getOriginCountry());
 					allDBModel.setCountNum(nicaraguaExportModel.getQuantity());
-					allDBModel.setCountry(InitCountryCENameUtil.queryCountryCnName(country));
+					allDBModel.setCountry(InitCountryCENameUtil.queryCountryCnName(cnCountry));
 					allDBModel.setGoodsdescription(nicaraguaExportModel.getGoodsDesc());
 					allDBModel.setExporter(nicaraguaExportModel.getExporter());
 					allDBModel.setHscode("");
@@ -217,7 +217,7 @@ public class DataConvertDBModel implements IDataConvertDBModel {
 					allDBModel.setStartport(nicaraguaImportModel.getStartPort());
 					allDBModel.setOrgincountry(nicaraguaImportModel.getOriginCountry());
 					allDBModel.setCountNum(nicaraguaImportModel.getQuantity());
-					allDBModel.setCountry(InitCountryCENameUtil.queryCountryCnName(country));
+					allDBModel.setCountry(InitCountryCENameUtil.queryCountryCnName(cnCountry));
 					allDBModel.setGoodsdescription(nicaraguaImportModel.getGoodsDesc());
 					allDBModel.setExporter(nicaraguaImportModel.getExporter());
 					allDBModel.setHscode("");
@@ -237,7 +237,7 @@ public class DataConvertDBModel implements IDataConvertDBModel {
 					allDBModel.setStartport(pakistanImportModel.getStartPort());
 					allDBModel.setOrgincountry(pakistanImportModel.getOriginCountry());
 					allDBModel.setCountNum(0);
-					allDBModel.setCountry(InitCountryCENameUtil.queryCountryCnName(country));
+					allDBModel.setCountry(InitCountryCENameUtil.queryCountryCnName(cnCountry));
 					allDBModel.setGoodsdescription(pakistanImportModel.getGoodsDesc());
 					allDBModel.setExporter(pakistanImportModel.getExporter());
 					allDBModel.setHscode("");
@@ -258,7 +258,7 @@ public class DataConvertDBModel implements IDataConvertDBModel {
 					allDBModel.setStartport(panamaExportModel.getStartPort());
 					allDBModel.setOrgincountry("");
 					allDBModel.setCountNum(panamaExportModel.getQuantity());
-					allDBModel.setCountry(InitCountryCENameUtil.queryCountryCnName(country));
+					allDBModel.setCountry(InitCountryCENameUtil.queryCountryCnName(cnCountry));
 					allDBModel.setGoodsdescription(panamaExportModel.getGoodsDesc());
 					allDBModel.setExporter(panamaExportModel.getExporter());
 					allDBModel.setIexport("");
@@ -280,7 +280,7 @@ public class DataConvertDBModel implements IDataConvertDBModel {
 					allDBModel.setStartport("");
 					allDBModel.setOrgincountry(panamaImportModel.getOriginCountry());
 					allDBModel.setCountNum(panamaImportModel.getQuantity());
-					allDBModel.setCountry(InitCountryCENameUtil.queryCountryCnName(country));
+					allDBModel.setCountry(InitCountryCENameUtil.queryCountryCnName(cnCountry));
 					allDBModel.setGoodsdescription(panamaImportModel.getGoodsDesc());
 					allDBModel.setIexport(panamaImportModel.getTransType());
 					allDBModel.setExporter("");
@@ -302,7 +302,7 @@ public class DataConvertDBModel implements IDataConvertDBModel {
 					allDBModel.setStartport("");
 					allDBModel.setOrgincountry("");
 					allDBModel.setCountNum(paraguayExportModel.getQuantity());
-					allDBModel.setCountry(InitCountryCENameUtil.queryCountryCnName(country));
+					allDBModel.setCountry(InitCountryCENameUtil.queryCountryCnName(cnCountry));
 					allDBModel.setGoodsdescription(paraguayExportModel.getGoodsDesc());
 					allDBModel.setIexport(paraguayExportModel.getTransType());
 					allDBModel.setExporter(paraguayExportModel.getExporter());
@@ -324,7 +324,7 @@ public class DataConvertDBModel implements IDataConvertDBModel {
 					allDBModel.setStartport("");
 					allDBModel.setOrgincountry(paraguayImportModel.getOriginCountry());
 					allDBModel.setCountNum(paraguayImportModel.getQuantity());
-					allDBModel.setCountry(InitCountryCENameUtil.queryCountryCnName(country));
+					allDBModel.setCountry(InitCountryCENameUtil.queryCountryCnName(cnCountry));
 					allDBModel.setGoodsdescription(paraguayImportModel.getGoodsDesc());
 					allDBModel.setIexport(paraguayImportModel.getTransType());
 					allDBModel.setExporter(paraguayImportModel.getExporter());
@@ -345,7 +345,7 @@ public class DataConvertDBModel implements IDataConvertDBModel {
 					allDBModel.setStartport("");
 					allDBModel.setOrgincountry("");
 					allDBModel.setCountNum(peruExportModel.getQuantity());
-					allDBModel.setCountry(InitCountryCENameUtil.queryCountryCnName(country));
+					allDBModel.setCountry(InitCountryCENameUtil.queryCountryCnName(cnCountry));
 					allDBModel.setGoodsdescription(peruExportModel.getGoodsDesc());
 					allDBModel.setIexport(peruExportModel.getTransType());
 					allDBModel.setExporter(peruExportModel.getExporter());
@@ -367,7 +367,7 @@ public class DataConvertDBModel implements IDataConvertDBModel {
 					allDBModel.setStartport(peruImportModel.getStartPort());
 					allDBModel.setOrgincountry(peruImportModel.getOriginCountry());
 					allDBModel.setCountNum(peruImportModel.getQuantity());
-					allDBModel.setCountry(InitCountryCENameUtil.queryCountryCnName(country));
+					allDBModel.setCountry(InitCountryCENameUtil.queryCountryCnName(cnCountry));
 					allDBModel.setGoodsdescription(peruImportModel.getGoodsDesc());
 					allDBModel.setIexport(peruImportModel.getTransType());
 					allDBModel.setExporter(peruImportModel.getExporter());
@@ -398,7 +398,7 @@ public class DataConvertDBModel implements IDataConvertDBModel {
 					allDBModel.setStartport(salvatoreImportModel.getStartPort());
 					allDBModel.setOrgincountry(salvatoreImportModel.getOriginCountry());
 					allDBModel.setCountNum(salvatoreImportModel.getQuantity());
-					allDBModel.setCountry(InitCountryCENameUtil.queryCountryCnName(country));
+					allDBModel.setCountry(InitCountryCENameUtil.queryCountryCnName(cnCountry));
 					allDBModel.setGoodsdescription(salvatoreImportModel.getGoodsDesc());
 					allDBModel.setIexport("");
 					allDBModel.setExporter(salvatoreImportModel.getExporter());
@@ -420,7 +420,7 @@ public class DataConvertDBModel implements IDataConvertDBModel {
 					allDBModel.setStartport(salvatoreExportModel.getStartPort());
 					allDBModel.setOrgincountry(salvatoreExportModel.getOriginCountry());
 					allDBModel.setCountNum(salvatoreExportModel.getQuantity());
-					allDBModel.setCountry(InitCountryCENameUtil.queryCountryCnName(country));
+					allDBModel.setCountry(InitCountryCENameUtil.queryCountryCnName(cnCountry));
 					allDBModel.setGoodsdescription(salvatoreExportModel.getGoodsDesc());
 					allDBModel.setIexport("");
 					allDBModel.setExporter(salvatoreExportModel.getExporter());
@@ -444,7 +444,7 @@ public class DataConvertDBModel implements IDataConvertDBModel {
 					allDBModel.setStartport("");
 					allDBModel.setOrgincountry("");
 					allDBModel.setCountNum(0);
-					allDBModel.setCountry(InitCountryCENameUtil.queryCountryCnName(country));
+					allDBModel.setCountry(InitCountryCENameUtil.queryCountryCnName(cnCountry));
 					allDBModel.setGoodsdescription(ukImportModel.getGoodsDesc());
 					allDBModel.setIexport("");
 					allDBModel.setExporter("");
@@ -467,7 +467,7 @@ public class DataConvertDBModel implements IDataConvertDBModel {
 					allDBModel.setStartport("");
 					allDBModel.setOrgincountry(uruguayImportModel.getOriginCountry());
 					allDBModel.setCountNum(uruguayImportModel.getQuantity());
-					allDBModel.setCountry(InitCountryCENameUtil.queryCountryCnName(country));
+					allDBModel.setCountry(InitCountryCENameUtil.queryCountryCnName(cnCountry));
 					allDBModel.setGoodsdescription(uruguayImportModel.getGoodsDesc());
 					allDBModel.setIexport(uruguayImportModel.getTransType());
 					allDBModel.setExporter("");
@@ -490,7 +490,7 @@ public class DataConvertDBModel implements IDataConvertDBModel {
 					allDBModel.setStartport("");
 					allDBModel.setOrgincountry("");
 					allDBModel.setCountNum(uruguayExportModel.getQuantity());
-					allDBModel.setCountry(InitCountryCENameUtil.queryCountryCnName(country));
+					allDBModel.setCountry(InitCountryCENameUtil.queryCountryCnName(cnCountry));
 					allDBModel.setGoodsdescription(uruguayExportModel.getGoodsDesc());
 					allDBModel.setIexport(uruguayExportModel.getTransType());
 					allDBModel.setExporter(uruguayExportModel.getExporter());
@@ -514,7 +514,7 @@ public class DataConvertDBModel implements IDataConvertDBModel {
 					allDBModel.setStartport("");
 					allDBModel.setOrgincountry("");
 					allDBModel.setCountNum(0);
-					allDBModel.setCountry(InitCountryCENameUtil.queryCountryCnName(country));
+					allDBModel.setCountry(InitCountryCENameUtil.queryCountryCnName(cnCountry));
 					allDBModel.setGoodsdescription(venezuelaExportModel.getGoodsDesc());
 					allDBModel.setIexport(venezuelaExportModel.getTransType());
 					allDBModel.setExporter(venezuelaExportModel.getExporter());
@@ -535,7 +535,7 @@ public class DataConvertDBModel implements IDataConvertDBModel {
 					allDBModel.setStartport(venezuelaImportModel.getStartPort());
 					allDBModel.setOrgincountry(venezuelaImportModel.getOriginCountry());
 					allDBModel.setCountNum(0);
-					allDBModel.setCountry(InitCountryCENameUtil.queryCountryCnName(country));
+					allDBModel.setCountry(InitCountryCENameUtil.queryCountryCnName(cnCountry));
 					allDBModel.setGoodsdescription(venezuelaImportModel.getGoodsDesc());
 					allDBModel.setIexport(venezuelaImportModel.getTransType());
 					allDBModel.setExporter("");
@@ -557,7 +557,7 @@ public class DataConvertDBModel implements IDataConvertDBModel {
 					allDBModel.setStartport(vietnamExportModel.getStartPort());
 					allDBModel.setOrgincountry(vietnamExportModel.getOriginCountry());
 					allDBModel.setCountNum(vietnamExportModel.getNum());
-					allDBModel.setCountry(InitCountryCENameUtil.queryCountryCnName(country));
+					allDBModel.setCountry(InitCountryCENameUtil.queryCountryCnName(cnCountry));
 					allDBModel.setGoodsdescription(vietnamExportModel.getGoodsDesc());
 					allDBModel.setIexport("");
 					allDBModel.setExporter("");
@@ -579,7 +579,7 @@ public class DataConvertDBModel implements IDataConvertDBModel {
 					allDBModel.setStartport("");
 					allDBModel.setOrgincountry(vietnamImportModel.getOriginCountry());
 					allDBModel.setCountNum(vietnamImportModel.getNum());
-					allDBModel.setCountry(InitCountryCENameUtil.queryCountryCnName(country));
+					allDBModel.setCountry(InitCountryCENameUtil.queryCountryCnName(cnCountry));
 					allDBModel.setGoodsdescription(vietnamImportModel.getGoodsDesc());
 					allDBModel.setIexport("");
 					allDBModel.setExporter(vietnamImportModel.getExporter());
@@ -596,7 +596,7 @@ public class DataConvertDBModel implements IDataConvertDBModel {
 					allDBModel.setQuantity(uruguayImportModel.getQuantity());
 					allDBModel.setId(uruguayImportModel.getUruguayImportId());
 					allDBModel.setCountNum(uruguayImportModel.getNum());
-					allDBModel.setCountry(InitCountryCENameUtil.queryCountryCnName(country));
+					allDBModel.setCountry(InitCountryCENameUtil.queryCountryCnName(cnCountry));
 					allDBModel.setDate(uruguayImportModel.getDate());
 //					allDBModel.setExporter(uruguayImportModel.get);
 					allDBModel.setImporter(uruguayImportModel.getImporter());

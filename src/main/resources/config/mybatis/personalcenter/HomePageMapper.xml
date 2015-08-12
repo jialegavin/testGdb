@@ -2,20 +2,23 @@
 <!DOCTYPE mapper   
 	PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"   
 		"http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
-	<!--start honghao -->
+
 <mapper namespace="com.njyb.gbdbase.dao.personalcenter.IHomePageDao">
     <resultMap type="com.njyb.gbdbase.model.personalcenter.CountryUpdateTimeModel" id="fieldResult">
 			<id property="id" column="id"/>
-			<result property="countryName" column="country_name"/>
-			<result property="updateTime" column="update_time"/>
+			<result property="chCountryName" column="ch_name"/>
+			<result property="ehCountryName" column="eh_name"/>
+			<result property="startTime" column="start_time"/>
+			<result property="endTime" column="end_time"/>
 	</resultMap>
 
+	<!-- wangB 个个国家的数据时间 -->
 	<select id="getCountryUpdateTimeModel" resultMap="fieldResult"> 
 		<![CDATA[
-		SELECT country_name,update_time FROM help_country_update_time WHERE 1=1;
+			SELECT id,ch_name,eh_name,start_time,end_time
+			FROM sys_data_timelimit 
+			where 1 = 1 
+			ORDER BY start_time ASC
 		]]>
-	  </select>
+	</select>
 </mapper>
-	<!--end honghao -->	
-
-

@@ -30,9 +30,9 @@
 		<!--数量单位-->
 		<result property="packagesUnit" column="PACKAGES_UNIT" />
 		<!--运输重量(TRANS_WEIGHT)-->
-		<result property="grossWeight" column="G_WEIGHT" />
+		<result property="grossWeight" column="G_WEIGHT_USA" />
 		<!--重量单位-->
-		<result property="weightUnit" column="WEIGHT_UNIT" />
+		<result property="weightUnit" column="WEIGHT_UNIT_USA" />
 		<!--运输体积-->
 		<result property="transVolume" column="TRANS_VOLUME" />
 		<!--装货港(TRANS_PORTLOADING)-->
@@ -84,7 +84,7 @@
 	<sql id="Base_Column_List">
 		USA_IMPORT_ID,
 	BL_NUMBER,	TRANS_CODE,	EXTEND1,	EXTEND2,	CARRIER_CODE,	SHIP_IMO,	SHIP_NAME,	SHIP_TRANS_CODE,
-	DATE,	PACKAGES,	PACKAGES_UNIT,	G_WEIGHT,	WEIGHT_UNIT,	TRANS_VOLUME,	START_PORT,	CONTAINER_NO,
+	DATE,	PACKAGES,	PACKAGES_UNIT,	G_WEIGHT_USA,	WEIGHT_UNIT_USA,	TRANS_VOLUME,	START_PORT,	CONTAINER_NO,
 	Package_No,	Flow_No,	CONT_MARKS,	PRODUCT_ORDER,	GOODS_DESC,	PRODUCT_QUANTITY,	PRODUCT_WEIGHT,	EXPORTER,
 	EXPORTER_ADDRESS,	EXPORTER_CONTACT,	EXPORTER_COUNTRY,	IMPORTER,	IMPORTER_ADDRESS,	IMPORTER_CONTACT,	IMPORTER_COUNTRY,	NOTIFIER,
 	NOTIFIER_ADDRESS,	NOTIFIER_CONTACT,	NOTIFIER_COUNTRY

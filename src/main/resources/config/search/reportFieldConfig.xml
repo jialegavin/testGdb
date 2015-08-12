@@ -282,7 +282,7 @@
 					<!--包含出口商字段的国家 -->
 					<entry key="cks_field" value="const_export,india_import,wkl_import,panama_export,colom_import,colom_export,ecuador_import,ecuador_export,pakistan_import,paraguay_import,paraguay_export,peru_export,peru_import,russian_import,russian_export,uruguay_export,vnrl_export,yn_import,yn_export,chile_export,wdml_import,wdml_export,njlg_import,njlg_export,sewd_import,sewd_export,usa_import,bolivia_import"></entry>
 					<!--包含起运港字段的国家 -->
-					<entry key="qyg_field" value="argentina_import,ecuador_import,pakistan_import,peru_import,vnrl_import,yn_export,chile_import,chile_export,wdml_import,wdml_export,njlg_import,njlg_export,sewd_import,sewd_export,usa_import,panama_export,china"></entry>
+					<entry key="qyg_field" value="india_import,argentina_import,ecuador_import,pakistan_import,peru_import,vnrl_import,yn_export,chile_import,chile_export,wdml_import,wdml_export,njlg_import,njlg_export,sewd_import,sewd_export,usa_import,panama_export,china"></entry>
 					<!--包含抵达港字段的国家 -->
 					<entry key="ddg_field" value="panama_import,ecuador_export,pakistan_import,peru_export,vnrl_export,yn_import,chile_import,chile_export,wdml_import,wdml_export,njlg_import,njlg_export,sewd_import,sewd_export,usa_import"></entry>
 					<!--包含原产国字段的国家 -->

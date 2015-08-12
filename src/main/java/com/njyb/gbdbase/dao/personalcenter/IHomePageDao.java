@@ -7,7 +7,7 @@ import com.njyb.gbdbase.model.personalcenter.CountryUpdateTimeModel;
 /**
  * 查询各个国家数据的数据更新时间
  * 
- * @author honghao
+ * @author honghao  业务需求变更,重写 wangB
  * 
  */
 @MyBatisReposity

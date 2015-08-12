@@ -25,7 +25,7 @@ public class ResolveXMLUtil {
 	public ResolveXMLUtil(String path){
 		SAXReader reader = new SAXReader();
 		try {
-			String newPath = ChangeOperSystemPath.getMenuPath();  //first try to get file as tomcat
+			String newPath = ChangeOperSystemPath.getMenuPath();
 			Document doc = reader.read(new File(newPath));
 			root = doc.getRootElement();
 		} catch (Exception e) {

@@ -48,7 +48,7 @@ public class BrowsingHistoryService implements IBrowsingHistoryService {
 	public List<HistoryAndFavoritesModel> queryFavoritesResult(int userId) {
 		List<HistoryAndFavoritesModel> favoritesList = Lists.newArrayList();
 		//切换数据库
-		DBContextUtil.setDbTypeName(DBContextUtil.DATA_SOURCE_USER);
+		
 		favoritesList = favoritesDao.queryBrowsingHistoryByParamModel(userId);
 		return favoritesList;
 	}
@@ -72,7 +72,7 @@ public class BrowsingHistoryService implements IBrowsingHistoryService {
 			t.setQueryValue(queryValue);
 			t.setQuerytime(DataUtil.parseDate(new Date(), 0));
 			//切换数据库
-			DBContextUtil.setDbTypeName(DBContextUtil.DATA_SOURCE_USER);
+			
 			reuslt = favoritesDao.addBrowsingHistory(t);
 		}
 		return reuslt;

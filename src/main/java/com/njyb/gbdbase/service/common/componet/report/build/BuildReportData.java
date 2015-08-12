@@ -68,15 +68,11 @@ public class BuildReportData extends ReportSumaryCmp  implements IBuildReportDat
 			String types=map.get(country+"_"+typename).toString();
 			if (null != new_type) {		// 获取报告类型
 				String request_type = new_type.toString();
-				System.out.println("单一" + request_type);
 				list = super.getSumListModel(request, fields, values, country,request_type,map,moduleName,isShowAll);
-				System.out.println("abc_size:"+list.size());
 				if (list!=null) {
-					System.out.println("abc....");
 					mps.put(request_type, list);
 				}
 			} else {
-				System.out.println("开始循环了");
 				//正常查询
 				for(String type:types.split(",")){
 					//每次保证请求一次 ：controller请求几次这里就请求几次

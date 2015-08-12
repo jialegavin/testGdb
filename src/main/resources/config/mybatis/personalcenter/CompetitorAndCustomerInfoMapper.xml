@@ -12,20 +12,29 @@
 	<!--WangBo:查询客户信息&&竞争对手 -->
 	<select id="queryCompetitorResult" resultType="com.njyb.gbdbase.model.alldb.commonrightlibrary.ComAndCusInfoResultModel"
 	parameterType="java.util.Map">
-		SELECT collectionid, companyname, alternativename, address, mailbox, contact, fax, usertype, userid, usergrade, tel, addTime, country, alternativeemail, website, trackingstatus, contactnum, remark, zip, datasource, customervalue, finallycontact, consigneecode, settlementcode, consignorcode, Manufacturers,
-		(select count(1) from help_user_collection WHERE 1=1 and userId = #{userId}
-		 and userType = #{param}
+		SELECT cc.collectionid,cc.companyname,cc.alternativename,cc.address,cc.mailbox,cc.contact,cc.fax,cc.usertype,cc.userid,
+		cc.usergrade,cc.tel,cc.country,cc.alternativeemail,cc.website,cc.trackingstatus,cc.contactnum,cc.remark,cc.zip,
+		cc.datasource,cc.customervalue,cc.finallycontact,cc.consigneecode,cc.settlementcode,cc.consignorcode,cc.Manufacturers,cc.addTime,
+		cc.isOperate 
+			FROM 
+				(SELECT utcc.collectionid,utcc.companyname,utcc.alternativename,utcc.address,utcc.mailbox,utcc.contact,utcc.fax,utcc.usertype,utcc.userid,
+				utcc.usergrade,utcc.tel,utcc.country,utcc.alternativeemail,utcc.website,utcc.trackingstatus,utcc.contactnum,utcc.remark,utcc.zip,
+				utcc.datasource,utcc.customervalue,utcc.finallycontact,utcc.consigneecode,utcc.settlementcode,utcc.consignorcode,utcc.Manufacturers,utcc.addTime,
+				utcc.isOperate
+				FROM user_trial_cus_comp_t utcc,sys_user su
+				WHERE su.userdesc = '试用用户' AND su.userid = #{userId}
+				UNION ALL
+				SELECT huc.collectionid,huc.companyname,huc.alternativename,huc.address,huc.mailbox,huc.contact,huc.fax,huc.usertype,huc.userid,
+				huc.usergrade,huc.tel,huc.country,huc.alternativeemail,huc.website,huc.trackingstatus,huc.contactnum,huc.remark,huc.zip,
+				huc.datasource,huc.customervalue,huc.finallycontact,huc.consigneecode,huc.settlementcode,huc.consignorcode,huc.Manufacturers,huc.addTime,
+				0 AS isOperate
+				FROM help_user_collection huc
+				WHERE huc.userid = #{userId}) cc
+			WHERE cc.userType = #{param}
 			<if test="companyName != null and companyName != ''">
-    			and companyname like CONCAT('%','${companyName}','%')
+    			and cc.companyname like CONCAT('%','${companyName}','%')
     		</if>
-		) as total
-    	FROM help_user_collection WHERE 1=1 and userId = #{userId}
-    	 and userType = #{param}
-    		<if test="companyName != null and companyName != ''">
-    			and companyname like CONCAT('%','${companyName}','%')
-    		</if>
-    	ORDER BY addTime desc
-    	LIMIT #{index},#{size}
+		GROUP BY cc.addTime desc;
 	</select>
 	
 	<!-- WangBo:根据Id删除表中的数据 -->
