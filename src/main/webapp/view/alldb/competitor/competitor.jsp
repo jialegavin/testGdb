@@ -26,7 +26,7 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<meta name="renderer" content="webkit">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>My Competitors</title>
+	<title>我的竞争对手</title>
 	<style type="text/css">
 	.body_style {
 		font-family: "Microsoft Yahei", Heiti, arial, helvetica,
